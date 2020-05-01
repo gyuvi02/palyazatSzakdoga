@@ -1,4 +1,4 @@
-package com.gyula;
+package palyazatkezelo;
 
 import org.junit.Test;
 
