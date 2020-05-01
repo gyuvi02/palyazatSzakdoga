@@ -1,26 +1,12 @@
 package palyazatkezelo;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-import org.bson.json.JsonWriterSettings;
+import okatok.OktatoBetoltes;
 
-public class Main
-{
-    public static void main( String[] args )
-    {
-     String connectioString = System.getProperty("mongodb.uri");
+public class Main {
 
-        try (MongoClient mongoClient = MongoClients.create(connectioString)){
-            MongoDatabase palyazatDB = mongoClient.getDatabase("PalyazatDB");
+    public static void main(String[] args) {
 
-
-            MongoCollection<Document> oktatok = palyazatDB.getCollection("Oktatok");
-            JsonWriterSettings prettyPrint = JsonWriterSettings.builder().indent(true).build();
-        }
-
-
+        OktatoBetoltes oktatok = new OktatoBetoltes();
+        oktatok.oktatoBeolvaso();
     }
 }
