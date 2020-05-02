@@ -2,24 +2,30 @@ package okatok;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 import org.bson.json.JsonWriterSettings;
 import palyazatkezelo.MongoAccess;
 
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.ne;
 
 public class OktatoBetoltes {
+    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    MongoCollection<Oktato> oktatok = palyazatDB.getCollection("Oktatok", Oktato.class);
+
+    public void oktatoFeltolto() {
+        OktatoRogzito oktatoRogzito = new OktatoRogzito();
+        oktatok.insertOne(oktatoRogzito.oktatoOsszeallito());
+    }
 
     public void oktatoBeolvaso() {
-        String keresettNev = "Dr. Szabó Gyula";
-        JsonWriterSettings prettyPrint = JsonWriterSettings.builder().indent(true).build();
-        MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-        MongoCollection<Document> oktatok = palyazatDB.getCollection("Oktatok");
-        Document kivalasztottOktato = oktatok.find(new Document("nev", keresettNev)).first();
-        Oktato oktato = new Oktato(kivalasztottOktato.getString("nev"), kivalasztottOktato.getString("tanszek"),
-                new ArrayList<String>(kivalasztottOktato.get("kutatasiTema", ArrayList.class)),
-                kivalasztottOktato.getString("email"),kivalasztottOktato.getString("honlap"));
-        System.out.println(oktato.getKutatasiTema());
+        String kivalasztottoktato = "Valaki";
+        Oktato keresettOktato = oktatok.find(eq("nev", kivalasztottoktato)).first();
+        System.out.println(keresettOktato.getKutatasiTema());
+
 
 
 

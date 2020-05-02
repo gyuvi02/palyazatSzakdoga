@@ -1,47 +1,63 @@
 package okatok;
 
-import java.util.List;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
+import java.util.ArrayList;
 
 public class Oktato {
 
-    String oktatoNev;
-    String Tanszek;
-    List<String> kutatasiTema;
+    @BsonProperty(value = "nev")    //az elnevezesi szokasok ne keveredjenek
+    String nev;
+    @BsonProperty(value = "tanszek")
+    String tanszek;
+    @BsonProperty(value = "kutatasiTema")
+    ArrayList<String> kutatasiTema;
+    @BsonProperty(value = "email")
     String email;
+    @BsonProperty(value = "honlap")
     String honlap;
+    @BsonProperty(value = "palyazatiTema")
+    ArrayList<String> palyazatiTema;
 
-    public Oktato(String oktatoNev, String tanszek, List<String> kutatasiTema, String email, String honlap) {
-        this.oktatoNev = oktatoNev;
-        Tanszek = tanszek;
+    public Oktato(String nev, String tanszek, ArrayList<String> kutatasiTema, String email,
+                  String honlap, ArrayList<String> palyazatiTema) {
+        this.nev = nev;
+        this.tanszek = tanszek;
         this.kutatasiTema = kutatasiTema;
         this.email = email;
         this.honlap = honlap;
+        this.palyazatiTema = palyazatiTema;
+    }
+
+    public Oktato(ArrayList<String> palyazatiTema) {
+        this.palyazatiTema = palyazatiTema;
     }
 
     public Oktato() {
+
     }
 
-    public String getOktatoNev() {
-        return oktatoNev;
+    public String getNev() {
+        return nev;
     }
 
-    public void setOktatoNev(String oktatoNev) {
-        this.oktatoNev = oktatoNev;
+    public void setNev(String nev) {
+        this.nev = nev;
     }
 
     public String getTanszek() {
-        return Tanszek;
+        return tanszek;
     }
 
     public void setTanszek(String tanszek) {
-        Tanszek = tanszek;
+        this.tanszek = tanszek;
     }
 
-    public List<String> getKutatasiTema() {
+    public ArrayList<String> getKutatasiTema() {
         return kutatasiTema;
     }
 
-    public void setKutatasiTema(List<String> kutatasiTema) {
+    public void setKutatasiTema(ArrayList<String> kutatasiTema) {
         this.kutatasiTema = kutatasiTema;
     }
 
@@ -60,4 +76,13 @@ public class Oktato {
     public void setHonlap(String honlap) {
         this.honlap = honlap;
     }
+
+    public ArrayList<String> getPalyazatiTema() {
+        return palyazatiTema;
+    }
+
+    public void setPalyazatiTema(ArrayList<String> palyazatiTema) {
+        this.palyazatiTema = palyazatiTema;
+    }
+
 }
