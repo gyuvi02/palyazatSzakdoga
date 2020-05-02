@@ -2,7 +2,6 @@ package felhivasok;
 
 import okatok.Oktato;
 
-import java.util.Date;
 import java.util.List;
 
 public class Felhivas {
@@ -10,14 +9,14 @@ public class Felhivas {
     String felhivasKiiro;
     String targymutato;
     String kiPalyazhat;
-    Date beadasiHatarido;
+    String beadasiHatarido; //nem lehet datum, mert neha pl. annyi szerepel, hogy "folyamatos"
     String felhivasLink;
     String reszletesLeiras;
     List<String> kategoriak;
     List<Oktato> lehetsegesResztvevok;
 
     public Felhivas(String felhivasCim, String felhivasKiiro, String targymutato, String kiPalyazhat,
-                    Date beadasiHatarido, String felhivasLink, String reszletesLeiras,
+                    String beadasiHatarido, String felhivasLink, String reszletesLeiras,
                     List<String> kategoriak, List<Oktato> lehetsegesResztvevok) {
         this.felhivasCim = felhivasCim;
         this.felhivasKiiro = felhivasKiiro;
@@ -29,4 +28,5 @@ public class Felhivas {
         this.kategoriak = kategoriak;
         this.lehetsegesResztvevok = lehetsegesResztvevok;
     }
+
 }

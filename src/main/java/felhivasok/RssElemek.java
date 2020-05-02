@@ -1,19 +1,18 @@
 package felhivasok;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.ArrayList;
 
 public class RssElemek {
     String link;
     String title;
     String description;
-    List<String> category;
+    ArrayList<String> category;
     String pubdate;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY. MMMM dd.");
 
-    public RssElemek(String link, String title, String description, List<String> category) {
+    public RssElemek(String link, String title, String description, ArrayList<String> category) {
         this.link = link;
         this.title = title;
         this.description = description;
@@ -33,12 +32,8 @@ public class RssElemek {
         return description;
     }
 
-    public List<String> getCategory() {
+    public ArrayList<String> getCategory() {
         return category;
-    }
-
-    public String getPubdate() {
-        return pubdate;
     }
 
     public void setLink(String link) {
@@ -53,13 +48,10 @@ public class RssElemek {
         this.description = description;
     }
 
-    public void setCategory(List<String> category) {
+    public void setCategory(ArrayList<String> category) {
         this.category = category;
     }
 
-    public void setPubdate(String pubdate) {
-        this.pubdate = pubdate;
-    }
 
     @Override
     public String toString() {

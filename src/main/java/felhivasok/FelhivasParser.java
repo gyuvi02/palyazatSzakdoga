@@ -1,0 +1,74 @@
+package felhivasok;
+
+import okatok.Oktato;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Whitelist;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class FelhivasParser {
+
+
+    protected Felhivas felhivasKeszito(RssElemek elem) throws IOException {
+        String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
+        Document doc = Jsoup.connect(elem.link).get();
+        Elements alapAdatok = doc.select("td");
+        for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
+            int[] elemek = {9, 11, 13, 17, 19};
+            adatok[i] = alapAdatok.get(elemek[i]).text();
+        }
+
+        String date = datumKeszito(adatok[2]);
+
+        String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
+
+        ArrayList<Oktato> lehetsegesResztvevok = lehetsegesResztvevok(elem.category);
+
+
+        Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.link,
+                reszletesLeiras, elem.category, lehetsegesResztvevok);
+        return keszFelhivas;
+    }
+
+    private static String leirasParser(String html) {  //ez megoldja, hogy a <br> tageket atalakitsuk \n jelekke, es jol tagolja a szoveget
+        if(html==null)
+            return html;
+        Document document = Jsoup.parse(html);
+        document.outputSettings(new Document.OutputSettings().prettyPrint(false));
+        document.select("br").append("\n");
+        document.select("p").prepend("\n\n");
+        String s = document.html().replaceAll("\n", "\n");
+        return Jsoup.clean(s, "", Whitelist.none(), new Document.OutputSettings().prettyPrint(false));
+    }
+
+    private String reszletesLeiras(String get22) {
+        return leirasParser(get22).trim();   //vissza is kaptam a jol tagolt szoveget
+    }
+
+    private String datumKeszito(String get2) {
+        Date date;
+        String datumStr;
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy"); //eloszor a String adott formatumarol kell atalakitani
+        SimpleDateFormat formatter2 = new SimpleDateFormat("YYYY. MMMM dd."); //majd mikor mar datum, akkor ugy formazon, ahogy akarom
+        try {
+            date = formatter.parse(get2);  //itt vigyazni kell, mert nem mindig datum van
+            datumStr = formatter2.format(date);
+        } catch (Exception e) {
+            datumStr = get2; //ha pl. "folyamatosan" szerepel a szovegben
+        }
+        return datumStr;
+    }
+
+    private ArrayList<Oktato> lehetsegesResztvevok(ArrayList<String> kategoriak) { //itt valogatjuk le, kinek a kutatasi terulete egyezik a kategoriakkal
+        ArrayList<Oktato> resztvevok = new ArrayList<>();
+
+
+
+        return resztvevok;
+    }
+}

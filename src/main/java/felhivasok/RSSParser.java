@@ -7,7 +7,6 @@ import com.rometools.rome.io.XmlReader;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class RSSParser {
@@ -30,7 +29,7 @@ public class RSSParser {
         List<RssElemek> feedLista = new ArrayList<>();
         int bejegyzesekSzama = feed.getEntries().size();
         for (int i = 0; i < bejegyzesekSzama ; i++) {
-            List<String> categories = new LinkedList<>();
+            ArrayList<String> categories = new ArrayList<>();
             SyndEntry bejegyzes = feed.getEntries().get(i);
             int categorySzama = bejegyzes.getCategories().size();
             for (int j = 0; j < categorySzama ; j++) {
@@ -42,8 +41,18 @@ public class RSSParser {
                     bejegyzes.getDescription().getValue(),
                     categories
             );
-            feedLista.add(elemek);
+            if (rssEllenorzo(elemek)) {     //csak az kerul bele az ArrayListbe, amelyik relevans
+                feedLista.add(elemek);
+            }
         }
         return feedLista;
     }
+
+    private boolean rssEllenorzo(RssElemek elemek) {
+        //itt ellenorizzuk, hogy az RSS item megfelelo-a temajat tekintve, ha nem relevans, akkor false
+        return true;
+    }
+
+
+
 }
