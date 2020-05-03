@@ -14,25 +14,28 @@ import java.util.Date;
 public class FelhivasParser {
 
 
-    protected Felhivas felhivasKeszito(RssElemek elem) throws IOException {
-        String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
-        Document doc = Jsoup.connect(elem.link).get();
-        Elements alapAdatok = doc.select("td");
-        for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
-            int[] elemek = {9, 11, 13, 17, 19};
-            adatok[i] = alapAdatok.get(elemek[i]).text();
+    public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
+        int[] elemek = {9, 11, 13, 17, 19};
+
+        for (RssElemek elem : feedLista) {
+            String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
+            Document doc = Jsoup.connect(elem.link).get();
+            Elements alapAdatok = doc.select("td");
+            for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
+                adatok[i] = alapAdatok.get(elemek[i]).text();
+            }
+
+            String date = datumKeszito(adatok[2]);
+
+            String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
+
+            ArrayList<Oktato> lehetsegesResztvevok = lehetsegesResztvevok(elem.category);
+
+            Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.link,
+                    reszletesLeiras, elem.category, lehetsegesResztvevok);
+            FelhivasConnectMongo feltolt = new FelhivasConnectMongo();
+            feltolt.felhivasFeltolto(keszFelhivas);
         }
-
-        String date = datumKeszito(adatok[2]);
-
-        String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
-
-        ArrayList<Oktato> lehetsegesResztvevok = lehetsegesResztvevok(elem.category);
-
-
-        Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.link,
-                reszletesLeiras, elem.category, lehetsegesResztvevok);
-        return keszFelhivas;
     }
 
     private static String leirasParser(String html) {  //ez megoldja, hogy a <br> tageket atalakitsuk \n jelekke, es jol tagolja a szoveget
@@ -64,7 +67,7 @@ public class FelhivasParser {
         return datumStr;
     }
 
-    private ArrayList<Oktato> lehetsegesResztvevok(ArrayList<String> kategoriak) { //itt valogatjuk le, kinek a kutatasi terulete egyezik a kategoriakkal
+    private ArrayList<Oktato> lehetsegesResztvevok(ArrayList<String> kategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
         ArrayList<Oktato> resztvevok = new ArrayList<>();
 
 

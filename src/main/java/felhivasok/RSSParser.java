@@ -24,9 +24,9 @@ public class RSSParser {
         return feed;
     }
 
-    public List<RssElemek> rssListaKeszito() {
+    public ArrayList<RssElemek> rssListaKeszito() {
         SyndFeed feed = rssOlvaso();
-        List<RssElemek> feedLista = new ArrayList<>();
+        ArrayList<RssElemek> feedLista = new ArrayList<>();
         int bejegyzesekSzama = feed.getEntries().size();
         for (int i = 0; i < bejegyzesekSzama ; i++) {
             ArrayList<String> categories = new ArrayList<>();
@@ -41,9 +41,9 @@ public class RSSParser {
                     bejegyzes.getDescription().getValue(),
                     categories
             );
-            if (rssEllenorzo(elemek)) {     //csak az kerul bele az ArrayListbe, amelyik relevans
+//            if (rssEllenorzo(elemek)) {     //csak az kerul bele az ArrayListbe, amelyik relevans
                 feedLista.add(elemek);
-            }
+//            }
         }
         return feedLista;
     }

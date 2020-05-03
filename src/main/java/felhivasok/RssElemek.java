@@ -8,7 +8,7 @@ public class RssElemek {
     String title;
     String description;
     ArrayList<String> category;
-    String pubdate;
+//    String pubdate;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY. MMMM dd.");
 
@@ -56,7 +56,7 @@ public class RssElemek {
     @Override
     public String toString() {
         return "A pályázat címe: " + title + "\nLeírás: " + description + "\nLink: " +
-                link + "\nPályázati kategóriák: " + category + "\nLetöltés dátuma: " + pubdate + "\n";
+                link + "\nPályázati kategóriák: " + category + "\n\n";
     }
 
 }
