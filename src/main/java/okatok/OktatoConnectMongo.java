@@ -19,13 +19,14 @@ public class OktatoConnectMongo {
             System.out.println("Ezzel az email cimmel mar regisztráltal oktatót");
     }
 
-    public Oktato oktatoBeolvaso(String oktato) {
+    public Oktato oktatoLetolto(String oktato) {
         Oktato keresettOktato = oktatok.find(eq("nev", oktato)).first();
-        if (keresettOktato != null){
-            System.out.println(keresettOktato.toString());
+        if (keresettOktato == null){
+            System.out.println("Nincs ilyen oktató");
+            return null;
         }
-        else System.out.println("Nincs ilyen oktató");
-        return keresettOktato;
+        else
+            return keresettOktato;
     }
 
     public void oktatoTorol(String torlendoOktato) {

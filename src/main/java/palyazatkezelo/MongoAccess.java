@@ -11,7 +11,6 @@ import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class MongoAccess {
-    private static MongoClient mongoClient;
     private static MongoAccess mongoAccess;
 
     private MongoAccess() {
@@ -25,6 +24,10 @@ public class MongoAccess {
         if (mongoAccess == null) {
             mongoAccess = new MongoAccess();
         }
+
+//        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+//                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 pojoCodecRegistry);

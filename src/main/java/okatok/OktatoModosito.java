@@ -40,13 +40,13 @@ public class OktatoModosito {
         oktatok.updateOne(filter, ujElem);
     }
 
-    public void oktatoUjKutatasi(String nev, ArrayList ujKutatasi) {
+    public void oktatoUjKutatasi(String nev, ArrayList<String> ujKutatasi) {
         Bson filter = eq("nev", nev);
         Bson ujElem = set("kutatasiTema", ujKutatasi);
         oktatok.updateOne(filter, ujElem);
     }
 
-    public void oktatoUjPalyazati(String nev, ArrayList ujPalyazati) {
+    public void oktatoUjPalyazati(String nev, ArrayList<String> ujPalyazati) {
         Bson filter = eq("nev", nev);
         Bson ujElem = set("palyazatiTema", ujPalyazati);
         oktatok.updateOne(filter, ujElem);

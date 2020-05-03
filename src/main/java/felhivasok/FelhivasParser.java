@@ -16,8 +16,10 @@ public class FelhivasParser {
 
     public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
         int[] elemek = {9, 11, 13, 17, 19};
+        int k = 1;
 
         for (RssElemek elem : feedLista) {
+            System.out.println("Elemek szama: " + k++);
             String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
             Document doc = Jsoup.connect(elem.link).get();
             Elements alapAdatok = doc.select("td");

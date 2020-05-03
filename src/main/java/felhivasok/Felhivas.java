@@ -4,6 +4,7 @@ import okatok.Oktato;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Felhivas {
     @BsonProperty(value = "felhivasCim")    //az elnevezesi szokasok ne keveredjenek
@@ -37,6 +38,9 @@ public class Felhivas {
         this.reszletesLeiras = reszletesLeiras;
         this.kategoriak = kategoriak;
         this.lehetsegesResztvevok = lehetsegesResztvevok;
+    }
+
+    public Felhivas() {
     }
 
     public Felhivas(String felhivasCim) {
@@ -117,7 +121,7 @@ public class Felhivas {
 
     @Override
     public String toString() {
-        return  "A felhívás címe: '" + felhivasCim + "\n" +
+        return  "A felhívás címe: " + felhivasCim + "\n" +
                 "Kiíró: " + felhivasKiiro + "\n" +
                 "Tárgymutato: " + targymutato + "\n" +
                 "Ki pályázhat: " + kiPalyazhat + "\n" +

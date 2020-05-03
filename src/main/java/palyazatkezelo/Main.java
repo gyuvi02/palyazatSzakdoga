@@ -1,8 +1,8 @@
 package palyazatkezelo;
 
-import felhivasok.FelhivasConnectMongo;
-import felhivasok.FelhivasParser;
-import felhivasok.RSSParser;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import felhivasok.*;
 import okatok.Oktato;
 import okatok.OktatoConnectMongo;
 import okatok.OktatoModosito;
@@ -10,18 +10,28 @@ import okatok.OktatoModosito;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static com.mongodb.client.model.Filters.eq;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        MongoAccess.closeDatabase();
+        OktatoConnectMongo oktatok = new OktatoConnectMongo();
         FelhivasParser felhivasParser = new FelhivasParser();
         RSSParser rssParser = new RSSParser();
         FelhivasConnectMongo felhivasConnectMongo = new FelhivasConnectMongo();
-//        System.out.println(rssParser.rssListaKeszito());
-        felhivasParser.felhivasKeszito(rssParser.rssListaKeszito());
+        FelhivasModosito felhivasModosito = new FelhivasModosito();
 
-//        felhivasConnectMongo.felhivasLetolto("Valami");
-//        felhivasConnectMongo.felhivasLetolto("Fogyatékos személyek helyi, regionális és országos szervezeteinek szakmai programjainak támogatása 2020 / FOF2020");
+//        felhivasParser.felhivasKeszito(rssParser.rssListaKeszito());
+
+//        felhivasConnectMongo.felhivasLetolto("Az én koronás bakancslistám - hétköznapi vágyaim az önkarantén idején");
+//        felhivasConnectMongo.felhivasTorol("Az én koronás bakancslistám - hétköznapi vágyaim az önkarantén idején");
+//        felhivasModosito.felhivasUjCim("Private Horizons fotópályázat", "Saját horizont");
+//        felhivasModosito.felhivasUjLink("Saját horizont", "http:\\mittomEn");
+//        felhivasModosito.felhivasUjKategoriak("Saját horizont", new ArrayList<>(Arrays.asList("ösztöndíj", "közművelődés")));
+        felhivasModosito.felhivasUjResztvevok("Saját horizont",
+                new ArrayList<Oktato>(Arrays.asList(oktatok.oktatoLetolto("Dr. Szabó Gyula"),
+                oktatok.oktatoLetolto("Dr. Balázs-Földi Emese"))));
 
 //        OktatoModosito oktatoModosito = new OktatoModosito();
 
@@ -31,7 +41,6 @@ public class Main {
 //        oktatoModosito.oktatoUjHonlap("Dr. Szabó Gyula", "https://gygyk.unideb.hu/munkatars/3425");
 //        oktatoModosito.oktatoUjEmail("Dr. Szabó Gyula", "szabogy@ped.unideb.hu");
 
-//        OktatoConnectMongo oktatok = new OktatoConnectMongo();
 //        ArrayList<String> oKutatasiTema = new ArrayList<>(Arrays.asList("projektmenedzsment", "pályázatírás",
 //                "szociális munka", "cigányság", "ifjúság"));
 //        ArrayList<String> oPalyazatiTema = new ArrayList<>(Arrays.asList("ifjúság", "média"));
@@ -39,7 +48,7 @@ public class Main {
 //        oktatok.oktatoFeltolto(new Oktato("Kocsis Péter Csaba", "Szociálpedagógia",oKutatasiTema,
 //                "kocspet@gmail.com", "https://gygyk.unideb.hu/hu/kocsis-peter-csaba-0#overlay-context=munkatars/6270", oPalyazatiTema));
 
-//        oktatok.oktatoBeolvaso("Dr. Gortka-Rákó Erzsébet");
+//        oktatok.oktatoBeolvaso("Dr. Szabó Gyula");
 //        oktatok.oktatoTorol("Valaki");
     }
 }
