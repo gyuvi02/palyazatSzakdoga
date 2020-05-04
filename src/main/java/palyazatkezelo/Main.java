@@ -15,23 +15,23 @@ import static com.mongodb.client.model.Filters.eq;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        MongoAccess.closeDatabase();
+//        MongoAccess.closeDatabase();
         OktatoConnectMongo oktatok = new OktatoConnectMongo();
         FelhivasParser felhivasParser = new FelhivasParser();
         RSSParser rssParser = new RSSParser();
         FelhivasConnectMongo felhivasConnectMongo = new FelhivasConnectMongo();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
 
-//        felhivasParser.felhivasKeszito(rssParser.rssListaKeszito());
+        felhivasParser.felhivasKeszito(rssParser.rssListaKeszito());
 
 //        felhivasConnectMongo.felhivasLetolto("Az én koronás bakancslistám - hétköznapi vágyaim az önkarantén idején");
 //        felhivasConnectMongo.felhivasTorol("Az én koronás bakancslistám - hétköznapi vágyaim az önkarantén idején");
 //        felhivasModosito.felhivasUjCim("Private Horizons fotópályázat", "Saját horizont");
 //        felhivasModosito.felhivasUjLink("Saját horizont", "http:\\mittomEn");
 //        felhivasModosito.felhivasUjKategoriak("Saját horizont", new ArrayList<>(Arrays.asList("ösztöndíj", "közművelődés")));
-        felhivasModosito.felhivasUjResztvevok("Saját horizont",
-                new ArrayList<Oktato>(Arrays.asList(oktatok.oktatoLetolto("Dr. Szabó Gyula"),
-                oktatok.oktatoLetolto("Dr. Balázs-Földi Emese"))));
+//        felhivasModosito.felhivasUjResztvevok("Saját horizont",
+//                new ArrayList<Oktato>(Arrays.asList(oktatok.oktatoLetolto("Dr. Szabó Gyula"),
+//                oktatok.oktatoLetolto("Dr. Balázs-Földi Emese"))));
 
 //        OktatoModosito oktatoModosito = new OktatoModosito();
 
@@ -48,7 +48,7 @@ public class Main {
 //        oktatok.oktatoFeltolto(new Oktato("Kocsis Péter Csaba", "Szociálpedagógia",oKutatasiTema,
 //                "kocspet@gmail.com", "https://gygyk.unideb.hu/hu/kocsis-peter-csaba-0#overlay-context=munkatars/6270", oPalyazatiTema));
 
-//        oktatok.oktatoBeolvaso("Dr. Szabó Gyula");
+//        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Valaki");
     }
 }
