@@ -1,8 +1,17 @@
 package regi_palyazatok;
 
+import aktualis_palyazatok.AktualisPalyazat;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.conversions.Bson;
+import palyazatkezelo.MongoAccess;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class RegiPalyazat {
     String regiCim;
@@ -39,6 +48,36 @@ public class RegiPalyazat {
     }
 
     public RegiPalyazat() {
+    }
+
+    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    MongoCollection<RegiPalyazat> regiPalyazatokColl = palyazatDB.getCollection("RegiPalyazatok", RegiPalyazat.class);
+
+    public void regiPalyazatFeltolto() {
+        regiPalyazatokColl.insertOne(this);
+    }
+
+    public void regiPalyazatLetolto(String cim) {
+        RegiPalyazat keresettRegiPalyazat = regiPalyazatokColl.find((eq("regiCim", cim))).first();
+        if (regiPalyazatEllenorzo(keresettRegiPalyazat)) {
+            System.out.println(keresettRegiPalyazat.toString());
+        }else System.out.println("Nincs ilyen pályázat");
+    }
+
+    public void regiPalyazatTorol(String torlendoRegiPalyazat) {
+        Bson filter = eq("regiCim", torlendoRegiPalyazat);
+        if (regiPalyazatEllenorzo(regiPalyazatokColl.find(filter).first())){
+            regiPalyazatokColl.deleteOne(filter);
+        }
+        else System.out.println("Nincs ilyen pályázat");
+
+    }
+
+    private boolean regiPalyazatEllenorzo(RegiPalyazat keresettRegiPalyazat) {
+        if (keresettRegiPalyazat != null) {
+            return true;
+        }
+        return false;
     }
 
     public String getRegiCim() {
@@ -145,6 +184,7 @@ public class RegiPalyazat {
         this.resztvevok = resztvevok;
     }
 
+    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy. MMMM dd. ");
     @Override
     public String toString() {
         return "Pályázat címe: " + regiCim + "\n" +
@@ -152,8 +192,8 @@ public class RegiPalyazat {
                 "Szerződés száma: " + szerzodesSzam + "\n" +
                 "Leírás: " + leiras + "\n" +
                 "Felhíváskód: " + felhivasKod + "\n" +
-                "Pályázat kezdete: " + kezdet + "\n" +
-                "Pályázat vége: " + veg + "\n" +
+                "Pályázat kezdete: " + kezdet.format(formatters) + "\n" +
+                "Pályázat vége: " + veg.format(formatters) + "\n" +
                 "K+F: " + KplusF + "\n" +
                 "Önerő: " + onero + "\n" +
                 "Tervezett összköltség: " + tervezettOsszkoltseg + "\n" +

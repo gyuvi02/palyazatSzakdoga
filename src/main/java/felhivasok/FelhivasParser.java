@@ -35,8 +35,7 @@ public class FelhivasParser {
 
             Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.link,
                     reszletesLeiras, elem.category, lehetsegesResztvevok);
-            FelhivasConnectMongo feltolt = new FelhivasConnectMongo();
-            feltolt.felhivasFeltolto(keszFelhivas);
+            keszFelhivas.felhivasFeltolto();
         }
     }
 

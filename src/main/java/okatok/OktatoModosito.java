@@ -14,8 +14,6 @@ public class OktatoModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Oktato> oktatok = palyazatDB.getCollection("Oktatok", Oktato.class);
 
-    OktatoConnectMongo modositando = new OktatoConnectMongo();
-
     public void oktatoUjNev(String nev, String ujNev) {
         Bson filter = eq("nev", nev);
         Bson ujElem = set("nev", ujNev);

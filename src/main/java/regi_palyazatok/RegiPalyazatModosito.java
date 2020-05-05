@@ -14,8 +14,6 @@ public class RegiPalyazatModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<RegiPalyazat> regiPalyazatokColl = palyazatDB.getCollection("RegiPalyazatok", RegiPalyazat.class);
 
-    RegiConnectMongo regiModositando = new RegiConnectMongo();
-
     public void regiModosito(int mezo, String cim, String ujAdat) {
         String mezoStr;
         switch (mezo) {
@@ -86,7 +84,7 @@ public class RegiPalyazatModosito {
 
     public void regiPalyazatResztvevok(String cim, RegiResztvevok ujResztvevok) {
         Bson filter = eq("regiCim", cim);
-        Bson ujElem = set("igenyeltTamogatas", ujResztvevok);
+        Bson ujElem = set("resztvevok", ujResztvevok);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 

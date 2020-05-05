@@ -1,12 +1,7 @@
 package palyazatkezelo;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import felhivasok.*;
 import okatok.Oktato;
-import okatok.OktatoConnectMongo;
-import okatok.OktatoModosito;
-import regi_palyazatok.RegiConnectMongo;
 import regi_palyazatok.RegiPalyazat;
 import regi_palyazatok.RegiPalyazatModosito;
 import regi_palyazatok.RegiResztvevok;
@@ -17,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -25,12 +19,15 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
 //        MongoAccess.closeDatabase();
-        OktatoConnectMongo oktatok = new OktatoConnectMongo();
+//        Oktato oktato = new Oktato();
+//        Oktato oktato = new Oktato("Dr. Pornói Imre", "Szociálpedagógia",
+//                new ArrayList<String>(Arrays.asList("pedagógií","módszertan")), "pornoi.imre@ped.unideb.hu",
+//                "https://gygyk.unideb.hu/hu/node/292#overlay-context=", new ArrayList<String>(Arrays.asList("gyermek", "ifjúság")));
+//        oktato.oktatoFeltolto();
+
         FelhivasParser felhivasParser = new FelhivasParser();
         RSSParser rssParser = new RSSParser();
-        FelhivasConnectMongo felhivasConnectMongo = new FelhivasConnectMongo();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
-        RegiConnectMongo regiConnectMongo = new RegiConnectMongo();
         RegiPalyazatModosito regiModosito = new RegiPalyazatModosito();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -46,15 +43,13 @@ public class Main {
                 1200000.0, "", resztvevok);
 
 //        System.out.println(regiPalyazat.toString());
-//        regiConnectMongo.regiPalyazatLetolto("asas");
+//        regiConnectMongo.regiPalyazatLetolto("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
 //        regiConnectMongo.regiPalyazatFeltolto(regiPalyazat);
 //        regiModosito.regiModosito(1, "Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", "XXXXXXXXX");
 //        regiModosito.regiPalyazatOnero("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", 10000.0);
 
 //        felhivasParser.felhivasKeszito(rssParser.rssListaKeszito());
 
-//        felhivasConnectMongo.felhivasLetolto("Az én koronás bakancslistám - hétköznapi vágyaim az önkarantén idején");
-//        felhivasConnectMongo.felhivasTorol("Az én koronás bakancslistám - hétköznapi vágyaim az önkarantén idején");
 //        felhivasModosito.felhivasUjCim("Private Horizons fotópályázat", "Saját horizont");
 //        felhivasModosito.felhivasUjLink("Saját horizont", "http:\\mittomEn");
 //        felhivasModosito.felhivasUjKategoriak("Saját horizont", new ArrayList<>(Arrays.asList("ösztöndíj", "közművelődés")));
@@ -78,6 +73,6 @@ public class Main {
 //                "kocspet@gmail.com", "https://gygyk.unideb.hu/hu/kocsis-peter-csaba-0#overlay-context=munkatars/6270", oPalyazatiTema));
 
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
-//        oktatok.oktatoTorol("Valaki");
+//        oktatok.oktatoTorol("Dr. Pornói Imre");
     }
 }

@@ -1,10 +1,17 @@
 package felhivasok;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import okatok.Oktato;
 import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.conversions.Bson;
+import palyazatkezelo.MongoAccess;
+import regi_palyazatok.RegiPalyazat;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class Felhivas {
     @BsonProperty(value = "felhivasCim")    //az elnevezesi szokasok ne keveredjenek
@@ -42,6 +49,36 @@ public class Felhivas {
 
     public Felhivas() {
     }
+
+    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
+
+    public void felhivasFeltolto() {
+        felhivasokColl.insertOne(this);
+    }
+
+    public void felhivasLetolto(String cim) {
+        Felhivas keresettFelhivas = felhivasokColl.find((eq("felhivasCim", cim))).first();
+        if (felhivasEllenorzo(keresettFelhivas)) {
+            System.out.println(keresettFelhivas.toString());
+        }else System.out.println("Nincs ilyen felhivas");
+    }
+
+    public void felhivasTorol(String torlendoFelhivas) {
+        Bson filter = eq("felhivasCim", torlendoFelhivas);
+        if (felhivasEllenorzo(felhivasokColl.find(filter).first())){
+            felhivasokColl.deleteOne(filter);
+        }
+        else System.out.println("Nincs ilyen felhívás");
+    }
+
+    private boolean felhivasEllenorzo(Felhivas keresettFelhivas) {
+        if (keresettFelhivas != null) {
+            return true;
+        }
+        return false;
+    }
+
 
     public Felhivas(String felhivasCim) {
         this.felhivasCim = felhivasCim;

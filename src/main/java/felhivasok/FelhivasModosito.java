@@ -3,7 +3,6 @@ package felhivasok;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import okatok.Oktato;
-import okatok.OktatoConnectMongo;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
@@ -15,8 +14,6 @@ import static com.mongodb.client.model.Updates.set;
 public class FelhivasModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Oktato> felhivasok = palyazatDB.getCollection("Felhivasok", Oktato.class);
-
-    OktatoConnectMongo modositando = new OktatoConnectMongo();
 
     public void felhivasUjCim(String cim, String ujCim) {
         Bson filter = eq("felhivasCim", cim);
