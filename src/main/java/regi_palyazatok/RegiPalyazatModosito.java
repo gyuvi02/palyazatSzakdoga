@@ -16,7 +16,7 @@ public class RegiPalyazatModosito {
 
     RegiConnectMongo regiModositando = new RegiConnectMongo();
 
-    public void regiPalyazatModosito(int mezo, String cim, String ujAdat) {
+    public void regiModosito(int mezo, String cim, String ujAdat) {
         String mezoStr;
         switch (mezo) {
             case 0:
@@ -41,6 +41,7 @@ public class RegiPalyazatModosito {
                 mezoStr = "regiCim";
                 break;
         }
+        multiModosito(mezoStr, cim, ujAdat);
     }
     private void multiModosito(String mezo, String cim, String ujAdat) {
         Bson filter = eq("regiCim", cim);
@@ -48,56 +49,45 @@ public class RegiPalyazatModosito {
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    private void regiPalyazatKezdet(String cim, Date ujKezdet) {
+    public void regiPalyazatKezdet(String cim, Date ujKezdet) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("kezdet", ujKezdet);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
-    private void regiPalyazatVeg(String cim, Date ujVeg) {
+    public void regiPalyazatVeg(String cim, Date ujVeg) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("veg", ujVeg);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    private void regiPalyazatKplusF(String cim, boolean ujKplusF) {
+    public void regiPalyazatKplusF(String cim, boolean ujKplusF) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("KplusF", ujKplusF);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    private void regiPalyazatOnero(String cim, Double ujOnero) {
+    public void regiPalyazatOnero(String cim, Double ujOnero) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("onero", ujOnero);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    private void regiPalyazatOsszkoltseg(String cim, Double ujOsszkoltseg) {
+    public void regiPalyazatOsszkoltseg(String cim, Double ujOsszkoltseg) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("tervezettOsszkoltseg", ujOsszkoltseg);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    private void regiPalyazatIgenyelt(String cim, Double ujIgenyelt) {
+    public void regiPalyazatIgenyelt(String cim, Double ujIgenyelt) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("igenyeltTamogatas", ujIgenyelt);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    private void regiPalyazatResztvevok(String cim, RegiPalyazat.Resztvevok ujResztvevok) {
+    public void regiPalyazatResztvevok(String cim, RegiResztvevok ujResztvevok) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("igenyeltTamogatas", ujResztvevok);
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }

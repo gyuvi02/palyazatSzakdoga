@@ -1,5 +1,6 @@
 package regi_palyazatok;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,19 +10,19 @@ public class RegiPalyazat {
     String szerzodesSzam;
     String leiras;
     String felhivasKod;
-    Date kezdet;
-    Date veg;
+    LocalDate kezdet;
+    LocalDate veg;
     Boolean KplusF;
     Double onero;
     Double tervezettOsszkoltseg;
     Double igenyeltTamogatas;
     String megjegyzes;
-    Resztvevok resztvevok;
+    RegiResztvevok resztvevok;
 
     public RegiPalyazat(String regiCim, String DEazonosito, String szerzodesSzam, String leiras,
-                        String felhivasKod, Date kezdet, Date veg, Boolean kplusF, Double onero,
+                        String felhivasKod, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,
                         Double tervezettOsszkoltseg, Double igenyeltTamogatas, String megjegyzes,
-                        Resztvevok resztvevok) {
+                        RegiResztvevok resztvevok) {
         this.regiCim = regiCim;
         this.DEazonosito = DEazonosito;
         this.szerzodesSzam = szerzodesSzam;
@@ -38,13 +39,6 @@ public class RegiPalyazat {
     }
 
     public RegiPalyazat() {
-    }
-
-    protected class Resztvevok {
-        String szakmaiVezeto;
-        String projektmenedzser;
-        String kezelo;
-        ArrayList<String> resztvevoEmberek;
     }
 
     public String getRegiCim() {
@@ -87,19 +81,19 @@ public class RegiPalyazat {
         this.felhivasKod = felhivasKod;
     }
 
-    public Date getKezdet() {
+    public LocalDate getKezdet() {
         return kezdet;
     }
 
-    public void setKezdet(Date kezdet) {
+    public void setKezdet(LocalDate kezdet) {
         this.kezdet = kezdet;
     }
 
-    public Date getVeg() {
+    public LocalDate getVeg() {
         return veg;
     }
 
-    public void setVeg(Date veg) {
+    public void setVeg(LocalDate veg) {
         this.veg = veg;
     }
 
@@ -143,11 +137,11 @@ public class RegiPalyazat {
         this.megjegyzes = megjegyzes;
     }
 
-    public Resztvevok getResztvevok() {
+    public RegiResztvevok getResztvevok() {
         return resztvevok;
     }
 
-    public void setResztvevok(Resztvevok resztvevok) {
+    public void setResztvevok(RegiResztvevok resztvevok) {
         this.resztvevok = resztvevok;
     }
 
