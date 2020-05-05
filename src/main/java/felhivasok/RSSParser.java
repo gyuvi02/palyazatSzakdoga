@@ -1,6 +1,5 @@
 package felhivasok;
 
-import com.mongodb.BasicDBList;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.rometools.rome.feed.synd.SyndEntry;
@@ -11,10 +10,8 @@ import org.bson.Document;
 import palyazatkezelo.MongoAccess;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 public class RSSParser {
 
@@ -23,7 +20,7 @@ public class RSSParser {
 
     static final ArrayList<String> relevansTemak = new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság",
             "közművelődés", "művészet", "oktatás")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
-            //ennek a megvaltoztatatsa a GUI-bol lehetseges
+            //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";
 
@@ -36,10 +33,6 @@ public class RSSParser {
             System.out.println(e.getMessage());
         }
         return feed;
-    }
-
-    public void elsoEllenorzes() {
-
     }
 
     public ArrayList<RssElemek> rssListaKeszito() {
@@ -65,13 +58,13 @@ public class RSSParser {
             }
 
         }
-        //Az RSS-nek nincs azonositoja, nem tdom massal ellenorizni, mint az elso elem cimevel
+        //Az RSS-nek nincs azonositoja, nem tudom massal ellenorizni elozetesen, mint az elso elem cimevel, hogy ezt mar hasznaltam-e
         if (!feedLista.isEmpty() &&  regiLetoltes.find().sort(new Document("_id", -1)).first() != null) { //Ha ures a feedLista, nincs szukseg az ellenorzesre
             RssElemek regiElsoElem = regiLetoltes.find().sort(new Document("_id", -1)).first();            //ha pedig nincs elmentve regi letoltott RSS elem, akkor nem lehetseges
             System.out.println("A regi elso elem cime: " + regiElsoElem.getTitle());
             System.out.println("Mostani feedLista elso elemenek cime: " + feedLista.get(0).getTitle().toString() + "\n");
             System.out.println(regiElsoElem.getTitle().equals(feedLista.get(0).getTitle()));
-            if (regiElsoElem.getTitle().equals(feedLista.get(0).getTitle())) { //ha a ket cim megegyezik, felteszem, hogy meg ugyanaz az RSS
+            if (regiElsoElem.getTitle().equals(feedLista.get(0).getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
                 feedLista.clear(); //uresen kuldjuk tovabb, igy nem tolti le meg egyszer a felhivasokat
                 return feedLista;
             } else {
