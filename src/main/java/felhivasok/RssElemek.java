@@ -20,6 +20,9 @@ public class RssElemek {
 //        this.pubdate = LocalDate.now().format(formatter); //A Rome parser nem tudja kiolvasni a pubdate-et, ezert a parse datumat adtam hozza
     }
 
+    public RssElemek() {
+    }
+
     public String getLink() {
         return link;
     }
