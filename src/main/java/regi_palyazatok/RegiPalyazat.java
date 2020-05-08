@@ -27,11 +27,12 @@ public class RegiPalyazat {
     Double igenyeltTamogatas;
     String megjegyzes;
     RegiResztvevok resztvevok;
+    String regiFazis;
 
     public RegiPalyazat(String regiCim, String DEazonosito, String szerzodesSzam, String leiras,
                         String felhivasKod, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,
                         Double tervezettOsszkoltseg, Double igenyeltTamogatas, String megjegyzes,
-                        RegiResztvevok resztvevok) {
+                        RegiResztvevok resztvevok, String regiFazis) {
         this.regiCim = regiCim;
         this.DEazonosito = DEazonosito;
         this.szerzodesSzam = szerzodesSzam;
@@ -45,6 +46,7 @@ public class RegiPalyazat {
         this.igenyeltTamogatas = igenyeltTamogatas;
         this.megjegyzes = megjegyzes;
         this.resztvevok = resztvevok;
+        this.regiFazis = regiFazis;
     }
 
     public RegiPalyazat() {
@@ -184,6 +186,14 @@ public class RegiPalyazat {
         this.resztvevok = resztvevok;
     }
 
+    public String getRegiFazis() {
+        return regiFazis;
+    }
+
+    public void setRegiFazis(String regiFazis) {
+        this.regiFazis = regiFazis;
+    }
+
     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy. MMMM dd. ");
     @Override
     public String toString() {
@@ -202,6 +212,7 @@ public class RegiPalyazat {
                 "Szakmai vezető: " + resztvevok.szakmaiVezeto + "\n"+
                 "Projektmenedzser: " + resztvevok.projektmenedzser + "\n" +
                 "A pályázat kezelője: " + resztvevok.kezelo + "\n" +
-                "Résztvevő kutatók: " + resztvevok.resztvevoEmberek.toString() + "\n";
+                "Résztvevő kutatók: " + resztvevok.resztvevoEmberek.toString() + "\n" +
+                "A pályázat állapota: " + regiFazis + "\n";
     }
 }

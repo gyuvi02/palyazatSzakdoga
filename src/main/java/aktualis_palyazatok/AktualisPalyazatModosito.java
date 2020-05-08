@@ -15,6 +15,7 @@ public class AktualisPalyazatModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<AktualisPalyazat> aktualisPalyazatokColl = palyazatDB.getCollection("AktualisPalyazatok", AktualisPalyazat.class);
 
+    
     public void aktualisModosito(int mezo, String cim, String ujAdat) {
         String mezoStr;
         switch (mezo) {

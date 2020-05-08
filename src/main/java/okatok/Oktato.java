@@ -43,13 +43,13 @@ public class Oktato {
     MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
 
     public void oktatoFeltolto() {
-        if (oktatoEmailEllenorzes(this.getEmail())) {
+        if (oktatoEmailEllenorzes(this.email)) {
             oktatokColl.insertOne(this);
         }else
             System.out.println("Ezzel az email cimmel mar regisztráltal oktatót");
     }
 
-    private boolean oktatoEmailEllenorzes(String email) { //csak ezt ellenorzom
+    private boolean oktatoEmailEllenorzes(String email) { //itt csak ezt ellenorzom az uj oktato hazzaadasanal, a GUI lehetoseget ad a reszletesebb ellenorzesre
         FindIterable<Oktato> iterable = oktatokColl.find();
         for (Oktato oktato : iterable) {
             if (oktato.email.equals(email)) {
@@ -59,6 +59,8 @@ public class Oktato {
         return true;
     }
 
+//    A vegso valtozatban nem itt vegzem el az ellenorzest kulon-kulon, es egy Oktato objectet adok at
+//    Mivel keves az oktato, nem kizart, hogy legordulo menuvel meg tudom oldani a kivalasztast
     public Oktato oktatoLetolto(String oktato) {
         Oktato keresettOktato = oktatokColl.find(eq("nev", oktato)).first();
         if (keresettOktato == null){
@@ -76,8 +78,6 @@ public class Oktato {
         }
         else System.out.println("Nincs ilyen oktató");
     }
-
-
 
 
     public String getNev() {

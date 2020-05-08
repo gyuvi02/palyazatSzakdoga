@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AktualisResztvevok {
     String szakmaiVezeto;
     String projektmenedzser;
-    String kezelo;
+    String kezelo; //A kezelo nem oktato, o nem szerepel az adatbazisban
     ArrayList<String> resztvevoEmberek;
 
     public AktualisResztvevok(String szakmaiVezeto, String projektmenedzser,
@@ -50,6 +50,7 @@ public class AktualisResztvevok {
     public void setResztvevoEmberek(ArrayList<String> resztvevoEmberek) {
         this.resztvevoEmberek = resztvevoEmberek;
     }
+
     @Override
     public String toString() {
         return  "Szakmai vezető: " + szakmaiVezeto + "\n" +
