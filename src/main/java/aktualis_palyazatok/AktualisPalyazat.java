@@ -2,9 +2,14 @@ package aktualis_palyazatok;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
+import regi_palyazatok.RegiPalyazat;
 
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class AktualisPalyazat {
     String palyazatCim;
@@ -15,12 +20,12 @@ public class AktualisPalyazat {
     Double tervezettOsszkoltseg;
     Double igenyeltTamogatas;
     String megjegyzes;
-    AktualisResztvevok resztvevok;
+    PalyazatiResztvevok resztvevok;
     String aktualisFazis;
 
     public AktualisPalyazat(String palyazatCim, String leiras, String felhivasKod, Boolean kplusF,
                             Double onero, Double tervezettOsszkoltseg, Double igenyeltTamogatas,
-                            String megjegyzes, AktualisResztvevok resztvevok, String aktualisFazis) {
+                            String megjegyzes, PalyazatiResztvevok resztvevok, String aktualisFazis) {
         this.palyazatCim = palyazatCim;
         this.leiras = leiras;
         this.felhivasKod = felhivasKod;
@@ -41,6 +46,31 @@ public class AktualisPalyazat {
 
     public void aktualisPalyazatFeltolto() {
         aktualisPalyazatokColl.insertOne(this);
+    }
+
+    public void aktualisPalyazatTorlo(String palyazatCim) {
+        Bson filter = eq("palyazatCim", palyazatCim);
+        if (aktualisPalyazatEllenorzo(aktualisPalyazatokColl.find(filter).first())){
+            aktualisPalyazatokColl.deleteOne(filter);
+        }
+        else System.out.println("Nincs ilyen pályázat");
+    }
+
+    private boolean aktualisPalyazatEllenorzo(AktualisPalyazat keresettAktualisPalyazat) {
+        if (keresettAktualisPalyazat != null) {
+            return true;
+        }
+        return false;
+    }
+
+    //ennek a metodusnak a segitsegevel a futo palyazatokat nehany adat megadasaval at lehet tenni a regiek koze, es azutan torolni
+    public RegiPalyazat aktualisbolRegi(AktualisPalyazat aktualis, String deAzonosito, String szerzodesSzam, LocalDate kezdet,
+                                LocalDate veg) {
+        RegiPalyazat ujRegi = new RegiPalyazat(aktualis.palyazatCim, deAzonosito, szerzodesSzam, aktualis.leiras,
+                aktualis.felhivasKod, kezdet, veg,  aktualis.KplusF, aktualis.onero, aktualis.tervezettOsszkoltseg,
+                aktualis.igenyeltTamogatas, aktualis.megjegyzes, aktualis.resztvevok, aktualis.aktualisFazis);
+        aktualisPalyazatTorlo(aktualis.palyazatCim);
+        return ujRegi;
     }
 
     public String getPalyazatCim() {
@@ -107,11 +137,11 @@ public class AktualisPalyazat {
         this.megjegyzes = megjegyzes;
     }
 
-    public AktualisResztvevok getResztvevok() {
+    public PalyazatiResztvevok getResztvevok() {
         return resztvevok;
     }
 
-    public void setResztvevok(AktualisResztvevok resztvevok) {
+    public void setResztvevok(PalyazatiResztvevok resztvevok) {
         this.resztvevok = resztvevok;
     }
 

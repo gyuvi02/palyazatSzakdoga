@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class FelhivasParser {
 
-
     public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
         int[] elemek = {9, 11, 13, 17, 19};
         int k = 1;
@@ -31,7 +30,7 @@ public class FelhivasParser {
 
             String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
 
-            ArrayList<Oktato> lehetsegesResztvevok = lehetsegesResztvevok(elem.category);
+            ArrayList<String> lehetsegesResztvevok = lehetsegesResztvevok(elem.category);
 
             Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.link,
                     reszletesLeiras, elem.category, lehetsegesResztvevok);
@@ -68,11 +67,15 @@ public class FelhivasParser {
         return datumStr;
     }
 
-    private ArrayList<Oktato> lehetsegesResztvevok(ArrayList<String> kategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
-        ArrayList<Oktato> resztvevok = new ArrayList<>();
-
-
-
-        return resztvevok;
+    private ArrayList<String> lehetsegesResztvevok(ArrayList<String> kategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
+        Oktato oktato = new Oktato();
+        ArrayList<String> lehetsegesOktatok = new ArrayList<>();
+        for (Oktato iterOktato : oktato.osszesOktato()) {
+            if (kategoriak.retainAll(iterOktato.getPalyazatiTema())) {//ha van kozos elem ay oktato es a felhivas kategoriai kozott
+                lehetsegesOktatok.add(iterOktato.getNev());
+                System.out.println(lehetsegesOktatok.toString()); //csak ellenorzes celjabol
+            }
+        }
+        return lehetsegesOktatok;
     }
 }

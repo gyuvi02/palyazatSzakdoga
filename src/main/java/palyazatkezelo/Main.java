@@ -1,9 +1,9 @@
 package palyazatkezelo;
 
 import aktualis_palyazatok.AktualisPalyazat;
-import aktualis_palyazatok.AktualisResztvevok;
+import aktualis_palyazatok.PalyazatiResztvevok;
 import felhivasok.*;
-import okatok.Oktato;
+import okatok.OktatoModosito;
 import regi_palyazatok.RegiPalyazat;
 import regi_palyazatok.RegiPalyazatModosito;
 import regi_palyazatok.RegiResztvevok;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.ne;
 
 public class Main {
 
@@ -31,17 +30,19 @@ public class Main {
         FelhivasParser felhivasParser = new FelhivasParser();
         RSSParser rssParser = new RSSParser();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
+
+
         RegiPalyazatModosito regiModosito = new RegiPalyazatModosito();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate kezdet = LocalDate.of(2017, 9, 1);
         LocalDate veg = LocalDate.of(2018, 6, 30);
-        RegiResztvevok resztvevok = new RegiResztvevok("Dr. Bocsi Veronika",
+        PalyazatiResztvevok resztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika",
                 "Dr. Szabó Gyula", "Csőke Julianna",
                 new ArrayList<String>(Arrays.asList("Dr. Gortka-Rákó Erzsébet")));
 
 
-        AktualisResztvevok aResztvevok = new AktualisResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
+        PalyazatiResztvevok aResztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
         AktualisPalyazat aktualisPalyazat = new AktualisPalyazat("Roma szakkollégium", "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
                 "NTP-HHTDK-17", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
                 "Beadott");
@@ -73,7 +74,7 @@ public class Main {
 
 //        Oktatoi adatok modositasa:
 //        OktatoModosito oktatoModosito = new OktatoModosito();
-//        oktatoModosito.oktatoUjPalyazati("Dr. Szabó Gyula", new ArrayList(Arrays.asList("ifjúság", "gyermek", "közművelődés", "ösztöndíj")));
+//        oktatoModosito.oktatoUjPalyazati("Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("ifjúság", "gyermek", "közművelődés", "ösztöndíj", "oktatás")));
 //        oktatoModosito.oktatoUjKutatasi("Dr. Szabó Gyula", new ArrayList(Arrays.asList("szociológia", "közgazdaságtudomány", "foglalkoztatáspolitika", "projektmenedzsment")));
 //        oktatoModosito.oktatoUjTanszek("Dr. Szabó Gyula", "Szociálpedagógia");
 //        oktatoModosito.oktatoUjHonlap("Dr. Szabó Gyula", "https://gygyk.unideb.hu/munkatars/3425");

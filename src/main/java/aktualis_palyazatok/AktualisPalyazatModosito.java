@@ -31,6 +31,9 @@ public class AktualisPalyazatModosito {
             case 3:
                 mezoStr = "megjegyzes";
                 break;
+            case 4:
+                mezoStr = "aktualisFazis";
+                break;
             default:
                 mezoStr = "palyazatCim";
                 break;
@@ -72,4 +75,5 @@ public class AktualisPalyazatModosito {
         Bson ujElem = set("resztvevok", ujResztvevok);
         aktualisPalyazatokColl.updateOne(filter, ujElem);
     }
+
 }

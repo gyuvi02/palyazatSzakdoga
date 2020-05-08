@@ -2,7 +2,9 @@ package okatok;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
@@ -79,6 +81,14 @@ public class Oktato {
         else System.out.println("Nincs ilyen oktató");
     }
 
+    public ArrayList<Oktato> osszesOktato() {
+        ArrayList<Oktato> osszesOktato = new ArrayList<>();
+        FindIterable<Oktato> iterOktato = oktatokColl.find();
+        for (Oktato oktato : iterOktato) {
+            osszesOktato.add(oktato);
+        }
+        return osszesOktato;
+    }
 
     public String getNev() {
         return nev;

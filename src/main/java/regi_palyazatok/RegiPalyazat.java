@@ -1,6 +1,6 @@
 package regi_palyazatok;
 
-import aktualis_palyazatok.AktualisPalyazat;
+import aktualis_palyazatok.PalyazatiResztvevok;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
@@ -8,8 +8,6 @@ import palyazatkezelo.MongoAccess;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -26,13 +24,13 @@ public class RegiPalyazat {
     Double tervezettOsszkoltseg;
     Double igenyeltTamogatas;
     String megjegyzes;
-    RegiResztvevok resztvevok;
+    PalyazatiResztvevok resztvevok;
     String regiFazis;
 
     public RegiPalyazat(String regiCim, String DEazonosito, String szerzodesSzam, String leiras,
                         String felhivasKod, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,
                         Double tervezettOsszkoltseg, Double igenyeltTamogatas, String megjegyzes,
-                        RegiResztvevok resztvevok, String regiFazis) {
+                        PalyazatiResztvevok resztvevok, String regiFazis) {
         this.regiCim = regiCim;
         this.DEazonosito = DEazonosito;
         this.szerzodesSzam = szerzodesSzam;
@@ -66,7 +64,7 @@ public class RegiPalyazat {
         }else System.out.println("Nincs ilyen pályázat");
     }
 
-    public void regiPalyazatTorol(String torlendoRegiPalyazat) {
+    public void regiPalyazatTorlo(String torlendoRegiPalyazat) {
         Bson filter = eq("regiCim", torlendoRegiPalyazat);
         if (regiPalyazatEllenorzo(regiPalyazatokColl.find(filter).first())){
             regiPalyazatokColl.deleteOne(filter);
@@ -178,11 +176,11 @@ public class RegiPalyazat {
         this.megjegyzes = megjegyzes;
     }
 
-    public RegiResztvevok getResztvevok() {
+    public PalyazatiResztvevok getResztvevok() {
         return resztvevok;
     }
 
-    public void setResztvevok(RegiResztvevok resztvevok) {
+    public void setResztvevok(PalyazatiResztvevok resztvevok) {
         this.resztvevok = resztvevok;
     }
 
@@ -209,10 +207,10 @@ public class RegiPalyazat {
                 "Tervezett összköltség: " + tervezettOsszkoltseg + "\n" +
                 "Igényelt támogatás: " + igenyeltTamogatas + "\n" +
                 "Megjegyzés: " + megjegyzes + "\n" +
-                "Szakmai vezető: " + resztvevok.szakmaiVezeto + "\n"+
-                "Projektmenedzser: " + resztvevok.projektmenedzser + "\n" +
-                "A pályázat kezelője: " + resztvevok.kezelo + "\n" +
-                "Résztvevő kutatók: " + resztvevok.resztvevoEmberek.toString() + "\n" +
+                "Szakmai vezető: " + resztvevok.getSzakmaiVezeto() + "\n"+
+                "Projektmenedzser: " + resztvevok.getProjektmenedzser() + "\n" +
+                "A pályázat kezelője: " + resztvevok.getKezelo() + "\n" +
+                "Résztvevő kutatók: " + resztvevok.getResztvevoEmberek().toString() + "\n" +
                 "A pályázat állapota: " + regiFazis + "\n";
     }
 }

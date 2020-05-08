@@ -2,21 +2,21 @@ package aktualis_palyazatok;
 
 import java.util.ArrayList;
 
-public class AktualisResztvevok {
+public class PalyazatiResztvevok {
     String szakmaiVezeto;
     String projektmenedzser;
     String kezelo; //A kezelo nem oktato, o nem szerepel az adatbazisban
     ArrayList<String> resztvevoEmberek;
 
-    public AktualisResztvevok(String szakmaiVezeto, String projektmenedzser,
-                              String kezelo, ArrayList<String> resztvevoEmberek) {
+    public PalyazatiResztvevok(String szakmaiVezeto, String projektmenedzser,
+                               String kezelo, ArrayList<String> resztvevoEmberek) {
         this.szakmaiVezeto = szakmaiVezeto;
         this.projektmenedzser = projektmenedzser;
         this.kezelo = kezelo;
         this.resztvevoEmberek = resztvevoEmberek;
     }
 
-    public AktualisResztvevok() {
+    public PalyazatiResztvevok() {
     }
 
     public String getSzakmaiVezeto() {

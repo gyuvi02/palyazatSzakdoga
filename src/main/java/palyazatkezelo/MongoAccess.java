@@ -17,8 +17,6 @@ public class MongoAccess {
     }
 
     public static MongoClient getConnection() {
-//        String connectionString2 = System.getProperty("mongodb.uri");
-
 //        ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
         ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
 //        ConnectionString connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
@@ -26,9 +24,6 @@ public class MongoAccess {
         if (mongoAccess == null) {
             mongoAccess = new MongoAccess();
         }
-
-//        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-//                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),

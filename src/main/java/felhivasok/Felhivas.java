@@ -31,11 +31,11 @@ public class Felhivas {
     @BsonProperty(value = "kategoriak")
     ArrayList<String> kategoriak;
     @BsonProperty(value = "lehetsegesResztvevok")
-    ArrayList<Oktato> lehetsegesResztvevok;
+    ArrayList<String> lehetsegesResztvevok;
 
     public Felhivas(String felhivasCim, String felhivasKiiro, String targymutato, String kiPalyazhat,
                     String beadasiHatarido, String felhivasLink, String reszletesLeiras,
-                    ArrayList<String> kategoriak, ArrayList<Oktato> lehetsegesResztvevok) {
+                    ArrayList<String> kategoriak, ArrayList<String> lehetsegesResztvevok) {
         this.felhivasCim = felhivasCim;
         this.felhivasKiiro = felhivasKiiro;
         this.targymutato = targymutato;
@@ -148,11 +148,11 @@ public class Felhivas {
         this.kategoriak = kategoriak;
     }
 
-    public ArrayList<Oktato> getLehetsegesResztvevok() {
+    public ArrayList<String> getLehetsegesResztvevok() {
         return lehetsegesResztvevok;
     }
 
-    public void setLehetsegesResztvevok(ArrayList<Oktato> lehetsegesResztvevok) {
+    public void setLehetsegesResztvevok(ArrayList<String> lehetsegesResztvevok) {
         this.lehetsegesResztvevok = lehetsegesResztvevok;
     }
 
