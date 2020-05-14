@@ -13,7 +13,8 @@ import java.util.Date;
 
 public class FelhivasParser {
 
-    public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
+    public void felhivasKeszito() throws IOException {
+        ArrayList<RssElemek> feedLista = new RSSParser().rssListaKeszito();
         int[] elemek = {9, 11, 13, 17, 19};
         int k = 1;
 
@@ -27,13 +28,11 @@ public class FelhivasParser {
             }
 
             String date = datumKeszito(adatok[2]);
-
+            System.out.println(elem.getCategory());
             String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
-
-            ArrayList<String> lehetsegesResztvevok = lehetsegesResztvevok(elem.category);
-
-            Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.link,
-                    reszletesLeiras, elem.category, lehetsegesResztvevok);
+            ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory()) ;
+            Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
+                    reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak));
             keszFelhivas.felhivasFeltolto();
         }
     }
@@ -67,11 +66,13 @@ public class FelhivasParser {
         return datumStr;
     }
 
-    private ArrayList<String> lehetsegesResztvevok(ArrayList<String> kategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
+    private ArrayList<String> lehetsegesResztvevok(ArrayList<String> fixKategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
         Oktato oktato = new Oktato();
         ArrayList<String> lehetsegesOktatok = new ArrayList<>();
         for (Oktato iterOktato : oktato.osszesOktato()) {
-            if (kategoriak.retainAll(iterOktato.getPalyazatiTema())) {//ha van kozos elem ay oktato es a felhivas kategoriai kozott
+            ArrayList<String> kategoriak = new ArrayList<>(fixKategoriak);
+            kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan csak a kategoria valtozo a metszetnek felel meg
+            if (!kategoriak.isEmpty()){
                 lehetsegesOktatok.add(iterOktato.getNev());
                 System.out.println(lehetsegesOktatok.toString()); //csak ellenorzes celjabol
             }

@@ -39,7 +39,6 @@ public class RSSParser {
         SyndFeed feed = rssOlvaso();
         ArrayList<RssElemek> feedLista = new ArrayList<>();
         int bejegyzesekSzama = feed.getEntries().size();
-//        int bejegyzesekSzama = 3;
         for (int i = 0; i < bejegyzesekSzama; i++) {
             ArrayList<String> categories = new ArrayList<>();
             SyndEntry bejegyzes = feed.getEntries().get(i);
@@ -47,13 +46,15 @@ public class RSSParser {
             for (int j = 0; j < categorySzama; j++) {
                 categories.add(bejegyzes.getCategories().get(j).getName());
             }
+
             RssElemek elemek = new RssElemek(
                     bejegyzes.getUri(),
                     bejegyzes.getTitle(),
                     bejegyzes.getDescription().getValue(),
                     categories
             );
-            if (rssEllenorzo(elemek)) {     //csak az kerul bele az ArrayListbe, amelyik relevans a kategoria besorolas alapjan
+
+            if (rssEllenorzo(elemek.category)) {     //csak az kerul bele az ArrayListbe, amelyik relevans a kategoria besorolas alapjan
             feedLista.add(elemek);
             }
 
@@ -76,14 +77,13 @@ public class RSSParser {
         return feedLista;
     }
 
-    private boolean rssEllenorzo(RssElemek elemek) {
-        ArrayList<String> elem = elemek.getCategory(); //ket tomb metszetet vizsgalom majd meg
-        if (elem.isEmpty()) {   //igy nem tudjuk eldonteni, hogy milyen palyazat, ezert inkabb letoltjuk
+    private boolean rssEllenorzo(ArrayList kategoriak) {
+        if (kategoriak.isEmpty()) {   //igy nem tudjuk eldonteni, hogy milyen palyazat, ezert inkabb letoltjuk
             return true;
         }
         else
-        elem.retainAll(relevansTemak);
-         return !elem.isEmpty();
+        kategoriak.retainAll(relevansTemak);    //a kategoriak valtozoban a metszet marad
+         return !kategoriak.isEmpty();
 //        return false;
     }
 

@@ -18,8 +18,8 @@ public class MongoAccess {
 
     public static MongoClient getConnection() {
 //        ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
-//        ConnectionString connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
+//        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
 
         if (mongoAccess == null) {
             mongoAccess = new MongoAccess();
