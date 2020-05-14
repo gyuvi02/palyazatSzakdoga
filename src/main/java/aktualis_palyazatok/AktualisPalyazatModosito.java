@@ -4,9 +4,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
-import regi_palyazatok.RegiResztvevok;
-
-import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.set;
@@ -70,7 +67,7 @@ public class AktualisPalyazatModosito {
         aktualisPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    public void aktualisPalyazatResztvevok(String cim, RegiResztvevok ujResztvevok) {
+    public void aktualisPalyazatResztvevok(String cim, PalyazatiResztvevok ujResztvevok) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("resztvevok", ujResztvevok);
         aktualisPalyazatokColl.updateOne(filter, ujElem);

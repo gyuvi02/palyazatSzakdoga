@@ -1,5 +1,6 @@
 package regi_palyazatok;
 
+import aktualis_palyazatok.PalyazatiResztvevok;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
@@ -82,7 +83,7 @@ public class RegiPalyazatModosito {
         regiPalyazatokColl.updateOne(filter, ujElem);
     }
 
-    public void regiPalyazatResztvevok(String cim, RegiResztvevok ujResztvevok) {
+    public void regiPalyazatResztvevok(String cim, PalyazatiResztvevok ujResztvevok) {
         Bson filter = eq("regiCim", cim);
         Bson ujElem = set("resztvevok", ujResztvevok);
         regiPalyazatokColl.updateOne(filter, ujElem);

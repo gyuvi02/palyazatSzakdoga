@@ -2,11 +2,11 @@ package palyazatkezelo;
 
 import aktualis_palyazatok.AktualisPalyazat;
 import aktualis_palyazatok.PalyazatiResztvevok;
-import felhivasok.*;
-import okatok.OktatoModosito;
+import felhivasok.FelhivasModosito;
+import felhivasok.FelhivasParser;
+import felhivasok.RSSParser;
 import regi_palyazatok.RegiPalyazat;
 import regi_palyazatok.RegiPalyazatModosito;
-import regi_palyazatok.RegiResztvevok;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -14,8 +14,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static com.mongodb.client.model.Filters.eq;
 
 public class Main {
 
