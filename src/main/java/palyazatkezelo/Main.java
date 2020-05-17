@@ -60,7 +60,7 @@ public class Main {
 //        regiModosito.regiPalyazatOnero("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", 10000.0);
 
 //        Uj felhivasok letoltese:
-        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito();
 
 //        Felhivasok modositasa:
 //        felhivasModosito.felhivasUjCim("Private Horizons fotópályázat", "Saját horizont");
