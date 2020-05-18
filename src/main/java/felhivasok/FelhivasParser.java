@@ -18,6 +18,10 @@ public class FelhivasParser {
         int[] elemek = {9, 11, 13, 17, 19};
         int k = 1;
 
+        if (feedLista == null) {
+            return;
+        }
+
         for (RssElemek elem : feedLista) {
             System.out.println("Elemek szama: " + k++);
             String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben

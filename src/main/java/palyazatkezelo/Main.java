@@ -42,13 +42,13 @@ public class Main {
 
         PalyazatiResztvevok aResztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
         AktualisPalyazat aktualisPalyazat = new AktualisPalyazat("Roma szakkollégium", "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
-                "NTP-HHTDK-17", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
+                "NTP-HHTDK-17", "2018", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
                 "Beadott");
 //        aktualisPalyazat.aktualisPalyazatFeltolto();
 
         RegiPalyazat regiPalyazat = new RegiPalyazat("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán",
                 "9761", "NTP-HHTDK-17-0064", "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
-                "NTP-HHTDK-17", kezdet, veg, false, 0.0, 1200000.0,
+                "NTP-HHTDK-17", "2017", kezdet, veg, false, 0.0, 1200000.0,
                 1200000.0, "", resztvevok, "Lezárt");
 //        regiPalyazat.regiPalyazatFeltolto();
 
@@ -60,7 +60,6 @@ public class Main {
 //        regiModosito.regiPalyazatOnero("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", 10000.0);
 
 //        Uj felhivasok letoltese:
-//        felhivasParser.felhivasKeszito();
 
 //        Felhivasok modositasa:
 //        felhivasModosito.felhivasUjCim("Private Horizons fotópályázat", "Saját horizont");
@@ -85,5 +84,9 @@ public class Main {
 //                "kocspet@gmail.com", "https://gygyk.unideb.hu/hu/kocsis-peter-csaba-0#overlay-context=munkatars/6270", oPalyazatiTema));
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Dr. Pornói Imre");
+
+
+        felhivasParser.felhivasKeszito();
+
     }
 }

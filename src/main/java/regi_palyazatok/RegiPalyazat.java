@@ -17,6 +17,7 @@ public class RegiPalyazat {
     String szerzodesSzam;
     String leiras;
     String felhivasKod;
+    String beadasEve;
     LocalDate kezdet;
     LocalDate veg;
     Boolean KplusF;
@@ -28,7 +29,7 @@ public class RegiPalyazat {
     String regiFazis;
 
     public RegiPalyazat(String regiCim, String DEazonosito, String szerzodesSzam, String leiras,
-                        String felhivasKod, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,
+                        String felhivasKod, String beadasEve, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,
                         Double tervezettOsszkoltseg, Double igenyeltTamogatas, String megjegyzes,
                         PalyazatiResztvevok resztvevok, String regiFazis) {
         this.regiCim = regiCim;
@@ -36,6 +37,7 @@ public class RegiPalyazat {
         this.szerzodesSzam = szerzodesSzam;
         this.leiras = leiras;
         this.felhivasKod = felhivasKod;
+        this.beadasEve = beadasEve;
         this.kezdet = kezdet;
         this.veg = veg;
         KplusF = kplusF;

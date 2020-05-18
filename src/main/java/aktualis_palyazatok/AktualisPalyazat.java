@@ -15,6 +15,7 @@ public class AktualisPalyazat {
     String palyazatCim;
     String leiras;
     String felhivasKod;
+    String beadasEve;
     Boolean KplusF;
     Double onero;
     Double tervezettOsszkoltseg;
@@ -23,12 +24,14 @@ public class AktualisPalyazat {
     PalyazatiResztvevok resztvevok;
     String aktualisFazis;
 
-    public AktualisPalyazat(String palyazatCim, String leiras, String felhivasKod, Boolean kplusF,
-                            Double onero, Double tervezettOsszkoltseg, Double igenyeltTamogatas,
-                            String megjegyzes, PalyazatiResztvevok resztvevok, String aktualisFazis) {
+    public AktualisPalyazat(String palyazatCim, String leiras, String felhivasKod, String beadasEve,
+                            Boolean kplusF, Double onero, Double tervezettOsszkoltseg,
+                            Double igenyeltTamogatas, String megjegyzes,
+                            PalyazatiResztvevok resztvevok, String aktualisFazis) {
         this.palyazatCim = palyazatCim;
         this.leiras = leiras;
         this.felhivasKod = felhivasKod;
+        this.beadasEve = beadasEve;
         KplusF = kplusF;
         this.onero = onero;
         this.tervezettOsszkoltseg = tervezettOsszkoltseg;
@@ -67,7 +70,7 @@ public class AktualisPalyazat {
     public RegiPalyazat aktualisbolRegi(AktualisPalyazat aktualis, String deAzonosito, String szerzodesSzam, LocalDate kezdet,
                                 LocalDate veg) {
         RegiPalyazat ujRegi = new RegiPalyazat(aktualis.palyazatCim, deAzonosito, szerzodesSzam, aktualis.leiras,
-                aktualis.felhivasKod, kezdet, veg,  aktualis.KplusF, aktualis.onero, aktualis.tervezettOsszkoltseg,
+                aktualis.felhivasKod, aktualis.beadasEve , kezdet, veg,  aktualis.KplusF, aktualis.onero, aktualis.tervezettOsszkoltseg,
                 aktualis.igenyeltTamogatas, aktualis.megjegyzes, aktualis.resztvevok, aktualis.aktualisFazis);
         aktualisPalyazatTorlo(aktualis.palyazatCim);
         return ujRegi;
