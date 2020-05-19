@@ -5,6 +5,7 @@ import aktualis_palyazatok.PalyazatiResztvevok;
 import felhivasok.FelhivasModosito;
 import felhivasok.FelhivasParser;
 import felhivasok.RSSParser;
+import okatok.OktatoLekerdezes;
 import regi_palyazatok.RegiPalyazat;
 import regi_palyazatok.RegiPalyazatModosito;
 
@@ -85,8 +86,15 @@ public class Main {
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Dr. Pornói Imre");
 
+        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+//        System.out.println(oktatoLekerdezes.oktatoListak("összes"));
+//        System.out.println(oktatoLekerdezes.kutatasiTemaKereso("szociális munka"));
+//        System.out.println(oktatoLekerdezes.oktatoKereso("Dr.Szabó Gyula"));
 
-        felhivasParser.felhivasKeszito();
+
+
+
+//        felhivasParser.felhivasKeszito();
 
     }
 }

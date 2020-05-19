@@ -16,17 +16,17 @@ import static com.mongodb.client.model.Filters.eq;
 public class Oktato {
 
     @BsonProperty(value = "nev")    //az elnevezesi szokasok ne keveredjenek
-    String nev;
+    private String nev;
     @BsonProperty(value = "tanszek")
-    String tanszek;
+    private String tanszek;
     @BsonProperty(value = "kutatasiTema")
-    ArrayList<String> kutatasiTema;
+    private ArrayList<String> kutatasiTema;
     @BsonProperty(value = "email")
-    String email;
+    private String email;
     @BsonProperty(value = "honlap")
-    String honlap;
+    private String honlap;
     @BsonProperty(value = "palyazatiTema")
-    ArrayList<String> palyazatiTema;
+    private ArrayList<String> palyazatiTema;
 
     public Oktato(String nev, String tanszek, ArrayList<String> kutatasiTema, String email,
                   String honlap, ArrayList<String> palyazatiTema) {
@@ -81,15 +81,6 @@ public class Oktato {
         else System.out.println("Nincs ilyen oktató");
     }
 
-    public ArrayList<Oktato> osszesOktato() {
-        ArrayList<Oktato> osszesOktato = new ArrayList<>();
-        FindIterable<Oktato> iterOktato = oktatokColl.find();
-        for (Oktato oktato : iterOktato) {
-            osszesOktato.add(oktato);
-        }
-        return osszesOktato;
-    }
-
     public String getNev() {
         return nev;
     }
@@ -141,12 +132,12 @@ public class Oktato {
     @Override
     public String toString() {
         return
-                "Név: " + nev + "\n" +
-                        "Tanszék: " + tanszek + " Tanszék\n" +
-                        "Kutatasi téma: " + kutatasiTema + "\n" +
-                        "Email cím: " + email + "\n" +
-                        "Honlap: " + honlap + "\n" +
-                        "Pályázati témák: " + palyazatiTema;
+                "\nNév: " + nev + "\n" +
+                    "Tanszék: " + tanszek + " Tanszék\n" +
+                    "Kutatasi téma: " + kutatasiTema + "\n" +
+                    "Email cím: " + email + "\n" +
+                    "Honlap: " + honlap + "\n" +
+                    "Pályázati témák: " + palyazatiTema + "\n";
     }
 
 }

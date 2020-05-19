@@ -12,17 +12,17 @@ import java.time.LocalDate;
 import static com.mongodb.client.model.Filters.eq;
 
 public class AktualisPalyazat {
-    String palyazatCim;
-    String leiras;
-    String felhivasKod;
-    String beadasEve;
-    Boolean KplusF;
-    Double onero;
-    Double tervezettOsszkoltseg;
-    Double igenyeltTamogatas;
-    String megjegyzes;
-    PalyazatiResztvevok resztvevok;
-    String aktualisFazis;
+    private String palyazatCim;
+    private String leiras;
+    private String felhivasKod;
+    private String beadasEve;
+    private Boolean KplusF;
+    private Double onero;
+    private Double tervezettOsszkoltseg;
+    private Double igenyeltTamogatas;
+    private String megjegyzes;
+    private PalyazatiResztvevok resztvevok;
+    private String aktualisFazis;
 
     public AktualisPalyazat(String palyazatCim, String leiras, String felhivasKod, String beadasEve,
                             Boolean kplusF, Double onero, Double tervezettOsszkoltseg,

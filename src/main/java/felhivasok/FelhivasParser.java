@@ -1,6 +1,7 @@
 package felhivasok;
 
 import okatok.Oktato;
+import okatok.OktatoLekerdezes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
@@ -71,9 +72,10 @@ public class FelhivasParser {
     }
 
     private ArrayList<String> lehetsegesResztvevok(ArrayList<String> fixKategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
-        Oktato oktato = new Oktato();
+//        Oktato oktato = new Oktato();
+        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
         ArrayList<String> lehetsegesOktatok = new ArrayList<>();
-        for (Oktato iterOktato : oktato.osszesOktato()) {
+        for (Oktato iterOktato :  oktatoLekerdezes.oktatoListak("összes")) {
             ArrayList<String> kategoriak = new ArrayList<>(fixKategoriak);
             kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan csak a kategoria valtozo a metszetnek felel meg
             if (!kategoriak.isEmpty()){

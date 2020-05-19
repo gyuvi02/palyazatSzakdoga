@@ -12,21 +12,21 @@ import java.time.format.DateTimeFormatter;
 import static com.mongodb.client.model.Filters.eq;
 
 public class RegiPalyazat {
-    String regiCim;
-    String DEazonosito;
-    String szerzodesSzam;
-    String leiras;
-    String felhivasKod;
-    String beadasEve;
-    LocalDate kezdet;
-    LocalDate veg;
-    Boolean KplusF;
-    Double onero;
-    Double tervezettOsszkoltseg;
-    Double igenyeltTamogatas;
-    String megjegyzes;
-    PalyazatiResztvevok resztvevok;
-    String regiFazis;
+    private String regiCim;
+    private String DEazonosito;
+    private String szerzodesSzam;
+    private String leiras;
+    private String felhivasKod;
+    private String beadasEve;
+    private LocalDate kezdet;
+    private LocalDate veg;
+    private Boolean KplusF;
+    private Double onero;
+    private Double tervezettOsszkoltseg;
+    private Double igenyeltTamogatas;
+    private String megjegyzes;
+    private PalyazatiResztvevok resztvevok;
+    private String regiFazis;
 
     public RegiPalyazat(String regiCim, String DEazonosito, String szerzodesSzam, String leiras,
                         String felhivasKod, String beadasEve, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,

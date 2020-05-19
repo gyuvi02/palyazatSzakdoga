@@ -15,23 +15,23 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class Felhivas {
     @BsonProperty(value = "felhivasCim")    //az elnevezesi szokasok ne keveredjenek
-    String felhivasCim;
+    private String felhivasCim;
     @BsonProperty(value = "felhivasKiiro")
-    String felhivasKiiro;
+    private String felhivasKiiro;
     @BsonProperty(value = "targymutato")
-    String targymutato;
+    private String targymutato;
     @BsonProperty(value = "kiPalyazhat")
-    String kiPalyazhat;
+    private String kiPalyazhat;
     @BsonProperty(value = "beadasiHatarido")
-    String beadasiHatarido; //nem lehet datum, mert neha pl. annyi szerepel, hogy "folyamatos"
+    private String beadasiHatarido; //nem lehet datum, mert neha pl. annyi szerepel, hogy "folyamatos"
     @BsonProperty(value = "felhivasLink")
-    String felhivasLink;
+    private String felhivasLink;
     @BsonProperty(value = "reszletesLeiras")
-    String reszletesLeiras;
+    private String reszletesLeiras;
     @BsonProperty(value = "kategoriak")
-    ArrayList<String> kategoriak;
+    private ArrayList<String> kategoriak;
     @BsonProperty(value = "lehetsegesResztvevok")
-    ArrayList<String> lehetsegesResztvevok;
+    private ArrayList<String> lehetsegesResztvevok;
 
     public Felhivas(String felhivasCim, String felhivasKiiro, String targymutato, String kiPalyazhat,
                     String beadasiHatarido, String felhivasLink, String reszletesLeiras,
