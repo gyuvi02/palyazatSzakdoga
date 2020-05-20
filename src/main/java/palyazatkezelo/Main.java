@@ -69,7 +69,7 @@ public class Main {
 //        Archivalt palyazatok:
 //        System.out.println(regiPalyazat.toString());
 //        ujRegi.regiPalyazatLetolto("Valami pályázat");
-        regiPalyazat.regiPalyazatLetolto("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
+//        regiPalyazat.regiPalyazatLetolto("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
 //        regiConnectMongo.regiPalyazatFeltolto(regiPalyazat);
 //        regiModosito.regiModosito(1, "Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", "XXXXXXXXX");
 //        regiModosito.regiPalyazatOnero("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", 10000.0);
@@ -100,14 +100,17 @@ public class Main {
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Dr. Pornói Imre");
 
-//        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
 //        System.out.println(oktatoLekerdezes.oktatoListak("összes"));
 //        System.out.println(oktatoLekerdezes.kutatasiTemaKereso("szociális munka"));
 //        System.out.println(oktatoLekerdezes.oktatoKereso("Dr.Szabó Gyula"));
 //        System.out.println(oktatoLekerdezes.kutatasiTemak("Szociológia"));
+//        System.out.println(oktatoLekerdezes.oktatoiAktivitas("Dr. Szabó Gyula", "összes"));
+        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "régi"));
 
 
 
+        //Az uj felhivasok lekerdezese:
 
 //        felhivasParser.felhivasKeszito();
 

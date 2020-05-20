@@ -7,6 +7,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import palyazatkezelo.MongoAccess;
 import palyazatkezelo.Palyazat;
+import regi_palyazatok.RegiLekerdezesek;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -80,31 +81,50 @@ public class OktatoLekerdezes{
     }
 
     //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt egy meghatározott időszakban
-    public ArrayList<String> oktatoiAktivitas(String aktivOktato) {
+    //3 katagoriabol valaszthatunk: "összes", "aktuális", "régi"
+    public ArrayList<String> oktatoiAktivitas(String aktivOktato, String holKeressen) {
+        RegiLekerdezesek regiLekerdezesek = new RegiLekerdezesek();
         AktualisLekerdezesek aktualisLekerdezesek = new AktualisLekerdezesek();
-        ArrayList aktivitas = new ArrayList<>();
+        ArrayList<String> aktivitas = new ArrayList<>();
         HashSet<String> resztvevok = new HashSet<>();
-        for (Palyazat palyazat : aktualisLekerdezesek.rendezettLekerdezes("palyazatCim")) {
-            resztvevok.addAll(palyazat.getResztvevok().getResztvevoEmberek());
-            resztvevok.add(palyazat.getResztvevok().getProjektmenedzser());
-            resztvevok.add(palyazat.getResztvevok().getSzakmaiVezeto());
-            resztvevok.add(palyazat.getResztvevok().getKezelo());
-            if (resztvevok.contains(aktivOktato))
-                aktivitas.add(palyazat.getPalyazatCim());
+
+        if (holKeressen.equals("aktuális") || holKeressen.equals("összes")) {
+            for (Palyazat palyazat : aktualisLekerdezesek.rendezettLekerdezes("palyazatCim")) {
+                if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
+                    aktivitas.add(palyazat.getPalyazatCim());
+            }
         }
-        return aktivitas;
+        if (holKeressen.equals("régi") || holKeressen.equals("összes")) {
+            for (Palyazat palyazat : regiLekerdezesek.rendezettLekerdezes("palyazatCim")) {
+                if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
+                    aktivitas.add(palyazat.getPalyazatCim());
+            }
+        }
+        return aktivitas; //a palyazatok cimet adja vissza egy tombben, ez alapjan lehet visszakeresni
     }
 
+    private HashSet<String> resztvevoKereso(Palyazat palyazat, HashSet<String> resztvevok) {
+        resztvevok.addAll(palyazat.getResztvevok().getResztvevoEmberek());
+        resztvevok.add(palyazat.getResztvevok().getProjektmenedzser());
+        resztvevok.add(palyazat.getResztvevok().getSzakmaiVezeto());
+        resztvevok.add(palyazat.getResztvevok().getKezelo());
+        return resztvevok;
+    }
 
-
-
+    public HashSet<String> tanszekiAktivitas(String tanszek, String holKeressen) {
+        HashSet<String> erintettPalyazatok = new HashSet<>();
+        for (Oktato oktato : oktatoListak(tanszek)) {
+            erintettPalyazatok.addAll(oktatoiAktivitas(oktato.getNev(), holKeressen));
+        }
+        return erintettPalyazatok;
+    }
 
 
     private ArrayList<Oktato> nevRendezo(ArrayList<Oktato> lista) {
         Collections.sort(lista, new Comparator<Oktato>() {
             @Override
             public int compare(Oktato o1, Oktato o2) {
-                return o1.getNev().compareTo(o2.getNev());    //nev alapjan sorba rendeyve
+                return o1.getNev().compareTo(o2.getNev());    //nev alapjan sorba rendezve
             }
         });
         return lista;
