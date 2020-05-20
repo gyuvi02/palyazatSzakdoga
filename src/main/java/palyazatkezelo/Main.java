@@ -45,17 +45,31 @@ public class Main {
         AktualisPalyazat aktualisPalyazat = new AktualisPalyazat("Roma szakkollégium", "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
                 "NTP-HHTDK-17", "2018", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
                 "Beadott");
+        AktualisPalyazat torlendo = new AktualisPalyazat("Torlendo" , "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
+                "NTP-HHTDK-17", "2018", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
+                "Beadott");
+
+//        torlendo.aktualisPalyazatFeltolto();
+//        torlendo.aktualisPalyazatTorlo("Torlendo");
+//        aktualisPalyazat.aktualisPalyazatTorlo();
 //        aktualisPalyazat.aktualisPalyazatFeltolto();
 
+        RegiPalyazat ujRegi = new RegiPalyazat("Valami pályázat");
+
         RegiPalyazat regiPalyazat = new RegiPalyazat("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán",
-                "9761", "NTP-HHTDK-17-0064", "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
-                "NTP-HHTDK-17", "2017", kezdet, veg, false, 0.0, 1200000.0,
-                1200000.0, "", resztvevok, "Lezárt");
+                "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
+                "NTP-HHTDK-17-0064", "2017", false, 0.0, 1200000.0, 1200000.0, "", aResztvevok, "lezárt", "9761", "NTP-HHTDK-17-0064"
+                , kezdet, veg);
+
 //        regiPalyazat.regiPalyazatFeltolto();
+//        ujRegi.regiPalyazatFeltolto();
+//        ujRegi.regiPalyazatTorlo("Valami pályázat");
+//        regiPalyazat.regiPalyazatTorlo("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
 
 //        Archivalt palyazatok:
 //        System.out.println(regiPalyazat.toString());
-//        regiConnectMongo.regiPalyazatLetolto("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
+//        ujRegi.regiPalyazatLetolto("Valami pályázat");
+        regiPalyazat.regiPalyazatLetolto("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
 //        regiConnectMongo.regiPalyazatFeltolto(regiPalyazat);
 //        regiModosito.regiModosito(1, "Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", "XXXXXXXXX");
 //        regiModosito.regiPalyazatOnero("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán", 10000.0);
@@ -86,10 +100,11 @@ public class Main {
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Dr. Pornói Imre");
 
-        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+//        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
 //        System.out.println(oktatoLekerdezes.oktatoListak("összes"));
 //        System.out.println(oktatoLekerdezes.kutatasiTemaKereso("szociális munka"));
 //        System.out.println(oktatoLekerdezes.oktatoKereso("Dr.Szabó Gyula"));
+//        System.out.println(oktatoLekerdezes.kutatasiTemak("Szociológia"));
 
 
 

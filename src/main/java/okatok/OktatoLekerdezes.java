@@ -1,14 +1,18 @@
 package okatok;
 
+import aktualis_palyazatok.AktualisLekerdezesek;
+import aktualis_palyazatok.AktualisPalyazat;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import palyazatkezelo.MongoAccess;
+import palyazatkezelo.Palyazat;
 
 import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.ne;
 
 public class OktatoLekerdezes{
 
@@ -40,11 +44,14 @@ public class OktatoLekerdezes{
     }
 
     //A kar vagy egy tanszék összes kutatási témájának kiíratása (mindegyik csak egyszer szerepeljen)
-    public ArrayList<String> kutatasiTemak(String tanszek) { //meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+    public List<String> kutatasiTemak(String tanszek) { //meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+        HashSet<String> kutTemak = new HashSet<>();
         for (Oktato oktato : oktatoListak("összes")) {
-            oktato.getKutatasiTema()
-//            ArrayList<String> kutTemak = oktatokColl
+            kutTemak.addAll(oktato.getKutatasiTema());  //a HasSetbe kiolvassuk a tombok osszes elemet
         }
+        List<String> rendezettTemak = new ArrayList<String>(kutTemak); //hogy rendezett legyen, kenytelen vagyok listaba attenni
+        Collections.sort(rendezettTemak);
+        return rendezettTemak;
     }
 
     public void kulcsszavasLekerdezes(String kulcsszo) {
@@ -72,6 +79,21 @@ public class OktatoLekerdezes{
         return nevRendezo(oktatoLista);   //Oktato obj-et kuldok vissza, majd ott levalogatom, hogy mit akarok megjeleniteni
     }
 
+    //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt egy meghatározott időszakban
+    public ArrayList<String> oktatoiAktivitas(String aktivOktato) {
+        AktualisLekerdezesek aktualisLekerdezesek = new AktualisLekerdezesek();
+        ArrayList aktivitas = new ArrayList<>();
+        HashSet<String> resztvevok = new HashSet<>();
+        for (Palyazat palyazat : aktualisLekerdezesek.rendezettLekerdezes("palyazatCim")) {
+            resztvevok.addAll(palyazat.getResztvevok().getResztvevoEmberek());
+            resztvevok.add(palyazat.getResztvevok().getProjektmenedzser());
+            resztvevok.add(palyazat.getResztvevok().getSzakmaiVezeto());
+            resztvevok.add(palyazat.getResztvevok().getKezelo());
+            if (resztvevok.contains(aktivOktato))
+                aktivitas.add(palyazat.getPalyazatCim());
+        }
+        return aktivitas;
+    }
 
 
 

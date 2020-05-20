@@ -1,8 +1,10 @@
 package palyazatkezelo;
 
+import java.util.ArrayList;
+
 public interface IPalyazatLekerdezo {
 
-    void rendezettLekerdezes(String rendezesAlapja);
+    ArrayList<Palyazat> rendezettLekerdezes(String rendezesAlapja);
 
     void kulcsszavasKeresesLeirasban(String kulcsszo);
 
@@ -17,6 +19,8 @@ public interface IPalyazatLekerdezo {
     void fazisKereses(String fazis);
 
     void felhivasKodkereses(String kod);
+
+    ArrayList<Palyazat> idorend(ArrayList<Palyazat> palyazat); //ehhez letre kell hozni a Palyazat abstract osztalyt
 
 
 

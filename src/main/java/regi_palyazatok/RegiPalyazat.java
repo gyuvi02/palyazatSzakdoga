@@ -5,48 +5,33 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
+import palyazatkezelo.Palyazat;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static com.mongodb.client.model.Filters.eq;
 
-public class RegiPalyazat {
-    private String regiCim;
+public class RegiPalyazat extends Palyazat {
     private String DEazonosito;
     private String szerzodesSzam;
-    private String leiras;
-    private String felhivasKod;
-    private String beadasEve;
     private LocalDate kezdet;
     private LocalDate veg;
-    private Boolean KplusF;
-    private Double onero;
-    private Double tervezettOsszkoltseg;
-    private Double igenyeltTamogatas;
-    private String megjegyzes;
-    private PalyazatiResztvevok resztvevok;
-    private String regiFazis;
 
-    public RegiPalyazat(String regiCim, String DEazonosito, String szerzodesSzam, String leiras,
-                        String felhivasKod, String beadasEve, LocalDate kezdet, LocalDate veg, Boolean kplusF, Double onero,
-                        Double tervezettOsszkoltseg, Double igenyeltTamogatas, String megjegyzes,
-                        PalyazatiResztvevok resztvevok, String regiFazis) {
-        this.regiCim = regiCim;
+    public RegiPalyazat(String palyazatCim, String leiras, String felhivasKod, String beadasEve, Boolean kplusF,
+                        Double onero, Double tervezettOsszkoltseg, Double igenyeltTamogatas, String megjegyzes,
+                        PalyazatiResztvevok resztvevok, String aktualisFazis, String DEazonosito, String szerzodesSzam,
+                        LocalDate kezdet, LocalDate veg) {
+        super(palyazatCim, leiras, felhivasKod, beadasEve, kplusF, onero, tervezettOsszkoltseg, igenyeltTamogatas,
+                megjegyzes, resztvevok, aktualisFazis);
         this.DEazonosito = DEazonosito;
         this.szerzodesSzam = szerzodesSzam;
-        this.leiras = leiras;
-        this.felhivasKod = felhivasKod;
-        this.beadasEve = beadasEve;
         this.kezdet = kezdet;
         this.veg = veg;
-        KplusF = kplusF;
-        this.onero = onero;
-        this.tervezettOsszkoltseg = tervezettOsszkoltseg;
-        this.igenyeltTamogatas = igenyeltTamogatas;
-        this.megjegyzes = megjegyzes;
-        this.resztvevok = resztvevok;
-        this.regiFazis = regiFazis;
+    }
+
+    public RegiPalyazat(String palyazatCim) {
+        super(palyazatCim);
     }
 
     public RegiPalyazat() {
@@ -56,38 +41,36 @@ public class RegiPalyazat {
     MongoCollection<RegiPalyazat> regiPalyazatokColl = palyazatDB.getCollection("RegiPalyazatok", RegiPalyazat.class);
 
     public void regiPalyazatFeltolto() {
-        regiPalyazatokColl.insertOne(this);
+        Bson filter = eq("palyazatCim", this.getPalyazatCim()); //csak a cimet ellenorzom, nem lehet 2 egyforma cimu palyazat
+        if (regiPalyazatEllenorzo(regiPalyazatokColl.find(filter).first())) {
+            System.out.println("Mar van ilyen palyazat");
+        } else {
+            regiPalyazatokColl.insertOne(this);
+        }
     }
 
     public void regiPalyazatLetolto(String cim) {
-        RegiPalyazat keresettRegiPalyazat = regiPalyazatokColl.find((eq("regiCim", cim))).first();
+        RegiPalyazat keresettRegiPalyazat = regiPalyazatokColl.find((eq("palyazatCim", cim))).first();
         if (regiPalyazatEllenorzo(keresettRegiPalyazat)) {
-            System.out.println(keresettRegiPalyazat.toString());
+            try {
+                System.out.println(keresettRegiPalyazat.toString());
+            } catch (NullPointerException e) {
+                System.out.println(e.fillInStackTrace());
+            }
         }else System.out.println("Nincs ilyen pályázat");
     }
 
     public void regiPalyazatTorlo(String torlendoRegiPalyazat) {
-        Bson filter = eq("regiCim", torlendoRegiPalyazat);
+        Bson filter = eq("palyazatCim", torlendoRegiPalyazat);
         if (regiPalyazatEllenorzo(regiPalyazatokColl.find(filter).first())){
             regiPalyazatokColl.deleteOne(filter);
         }
         else System.out.println("Nincs ilyen pályázat");
-
     }
 
     private boolean regiPalyazatEllenorzo(RegiPalyazat keresettRegiPalyazat) {
-        if (keresettRegiPalyazat != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public String getRegiCim() {
-        return regiCim;
-    }
-
-    public void setRegiCim(String regiCim) {
-        this.regiCim = regiCim;
+        System.out.println(keresettRegiPalyazat != null);
+        return keresettRegiPalyazat != null;
     }
 
     public String getDEazonosito() {
@@ -106,22 +89,6 @@ public class RegiPalyazat {
         this.szerzodesSzam = szerzodesSzam;
     }
 
-    public String getLeiras() {
-        return leiras;
-    }
-
-    public void setLeiras(String leiras) {
-        this.leiras = leiras;
-    }
-
-    public String getFelhivasKod() {
-        return felhivasKod;
-    }
-
-    public void setFelhivasKod(String felhivasKod) {
-        this.felhivasKod = felhivasKod;
-    }
-
     public LocalDate getKezdet() {
         return kezdet;
     }
@@ -138,81 +105,12 @@ public class RegiPalyazat {
         this.veg = veg;
     }
 
-    public Boolean getKplusF() {
-        return KplusF;
-    }
-
-    public void setKplusF(Boolean kplusF) {
-        KplusF = kplusF;
-    }
-
-    public Double getOnero() {
-        return onero;
-    }
-
-    public void setOnero(Double onero) {
-        this.onero = onero;
-    }
-
-    public Double getTervezettOsszkoltseg() {
-        return tervezettOsszkoltseg;
-    }
-
-    public void setTervezettOsszkoltseg(Double tervezettOsszkoltseg) {
-        this.tervezettOsszkoltseg = tervezettOsszkoltseg;
-    }
-
-    public Double getIgenyeltTamogatas() {
-        return igenyeltTamogatas;
-    }
-
-    public void setIgenyeltTamogatas(Double igenyeltTamogatas) {
-        this.igenyeltTamogatas = igenyeltTamogatas;
-    }
-
-    public String getMegjegyzes() {
-        return megjegyzes;
-    }
-
-    public void setMegjegyzes(String megjegyzes) {
-        this.megjegyzes = megjegyzes;
-    }
-
-    public PalyazatiResztvevok getResztvevok() {
-        return resztvevok;
-    }
-
-    public void setResztvevok(PalyazatiResztvevok resztvevok) {
-        this.resztvevok = resztvevok;
-    }
-
-    public String getRegiFazis() {
-        return regiFazis;
-    }
-
-    public void setRegiFazis(String regiFazis) {
-        this.regiFazis = regiFazis;
-    }
-
     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy. MMMM dd. ");
     @Override
     public String toString() {
-        return "Pályázat címe: " + regiCim + "\n" +
-                "Egyetemi azonosító: " + DEazonosito + "\n" +
-                "Szerződés száma: " + szerzodesSzam + "\n" +
-                "Leírás: " + leiras + "\n" +
-                "Felhíváskód: " + felhivasKod + "\n" +
-                "Pályázat kezdete: " + kezdet.format(formatters) + "\n" +
-                "Pályázat vége: " + veg.format(formatters) + "\n" +
-                "K+F: " + KplusF + "\n" +
-                "Önerő: " + onero + "\n" +
-                "Tervezett összköltség: " + tervezettOsszkoltseg + "\n" +
-                "Igényelt támogatás: " + igenyeltTamogatas + "\n" +
-                "Megjegyzés: " + megjegyzes + "\n" +
-                "Szakmai vezető: " + resztvevok.getSzakmaiVezeto() + "\n"+
-                "Projektmenedzser: " + resztvevok.getProjektmenedzser() + "\n" +
-                "A pályázat kezelője: " + resztvevok.getKezelo() + "\n" +
-                "Résztvevő kutatók: " + resztvevok.getResztvevoEmberek().toString() + "\n" +
-                "A pályázat állapota: " + regiFazis + "\n";
+        return super.toString() + "Egyetemi azoosító: " + getDEazonosito() + "\n" +
+                "Szerződésszám: " + getSzerzodesSzam() + "\n" +
+                "A pályázat kezdete: " + getKezdet().format(formatters) + "\n" + //a datumok is NullPointer Exception-t adnak
+                "A pályázat vége: " + getVeg().format(formatters) + "\n";
     }
 }

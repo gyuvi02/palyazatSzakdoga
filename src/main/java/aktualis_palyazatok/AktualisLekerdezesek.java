@@ -1,45 +1,35 @@
 package aktualis_palyazatok;
 
-import palyazatkezelo.IPalyazatLekerdezo;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import palyazatkezelo.MongoAccess;
+import palyazatkezelo.Palyazat;
+import palyazatkezelo.PalyazatLekerdezo;
 
-public class AktualisLekerdezesek implements IPalyazatLekerdezo {
-    @Override
-    public void rendezettLekerdezes(String rendezesAlapja) {
+import java.util.ArrayList;
 
+public class AktualisLekerdezesek{
+
+    public AktualisLekerdezesek() {
     }
 
-    @Override
-    public void kulcsszavasKeresesLeirasban(String kulcsszo) {
+    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    MongoCollection<AktualisPalyazat> aktualisPalyazatokColl = palyazatDB.getCollection("AktualisPalyazatok", AktualisPalyazat.class);
 
+    public ArrayList<Palyazat> rendezettLekerdezes(String rendezesAlapja) { //lehetne ugy, hogy valaszthassunk, az aktualis, a regi vagy az osszes palyazaton belul
+        ArrayList<AktualisPalyazat> palyazatLista = new ArrayList<>();
+        FindIterable<AktualisPalyazat> iterPalyazat = aktualisPalyazatokColl.find();
+        for (AktualisPalyazat aktualisPalyazat : iterPalyazat) {
+            palyazatLista.add(aktualisPalyazat);
+        }
+        return null;
     }
 
-    @Override
-    public void szemelyKereses(String nev, String kategoria) {
 
-    }
+//    @Override
+//    public ArrayList<AktualisPalyazat> rendezettLekerdezes(String rendezesAlapja) {
+//        return super.rendezettLekerdezes(rendezesAlapja);
+//    }
 
-    @Override
-    public void projektKezdoevKereses(int kezdoEv) {
-
-    }
-
-    @Override
-    public void kPluszFe(boolean kPluszF) {
-
-    }
-
-    @Override
-    public void igenyeltTamogtasKereses(double min, double max) {
-
-    }
-
-    @Override
-    public void fazisKereses(String fazis) {
-
-    }
-
-    @Override
-    public void felhivasKodkereses(String kod) {
-
-    }
 }

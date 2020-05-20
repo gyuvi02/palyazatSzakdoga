@@ -2,14 +2,13 @@ package okatok;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -97,7 +96,7 @@ public class Oktato {
         this.tanszek = tanszek;
     }
 
-    public ArrayList<String> getKutatasiTema() {
+    public Collection<? extends String> getKutatasiTema() {
         return kutatasiTema;
     }
 
