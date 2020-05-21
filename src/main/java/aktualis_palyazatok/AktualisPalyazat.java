@@ -40,6 +40,11 @@ public class AktualisPalyazat extends Palyazat {
         }
     }
 
+    public void aktualisPalyazatokLetolto(String cim) {
+        AktualisPalyazat keresettPalyazat = aktualisPalyazatokColl.find((eq("palyazatCim", cim))).first();
+            System.out.println(keresettPalyazat.toString());
+    }
+
     public void aktualisPalyazatTorlo(String palyazatcim) {
         Bson filter = eq("palyazatCim", palyazatcim); //Mivel a cim egyedi, ezt ellenorzom torlesnel is
         if (palyazatEllenorzo(aktualisPalyazatokColl.find(filter).first())){

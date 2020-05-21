@@ -44,13 +44,13 @@ public class FelhivasLekerdezes {
     }
 
     public ArrayList<String> palyazatiKategoriaAlapjan(String kategoria) {
-        ArrayList<String> kategoriaLista = new ArrayList<>();
+        HashSet<String> kategoriaTalalat = new HashSet<>(); //ha tobbszor is szerepel az adatbazisban, akkor is csak egyszer kapjuk vissza
         FindIterable<Felhivas> iterable = felhivasokColl.find(eq("kategoriak", kategoria));
         MongoCursor<Felhivas> cursor = iterable.iterator();
         while (cursor.hasNext()) {
-            kategoriaLista.add(cursor.next().getFelhivasCim());
+            kategoriaTalalat.add(cursor.next().getFelhivasCim());
         }
-        return kategoriaLista;
+        return new ArrayList<>(kategoriaTalalat);
     }
 
     public ArrayList<String> kulcsszavakFelhivas(String kulcsszo) {

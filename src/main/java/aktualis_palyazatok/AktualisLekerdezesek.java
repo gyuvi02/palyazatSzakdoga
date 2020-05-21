@@ -1,12 +1,20 @@
 package aktualis_palyazatok;
 
+import com.github.davidmoten.guavamini.Lists;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.*;
+import felhivasok.Felhivas;
 import palyazatkezelo.MongoAccess;
 import palyazatkezelo.Palyazat;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.ne;
 
 public class AktualisLekerdezesek{
 
@@ -23,6 +31,16 @@ public class AktualisLekerdezesek{
             palyazatLista.add(aktualisPalyazat);
         }
         return palyazatLista;
+    }
+
+    public ArrayList<String> melyikEvbenKezdodott(String evszam) {
+        HashSet<String> palyazatlista = new HashSet<>();
+        FindIterable<AktualisPalyazat> iterable = aktualisPalyazatokColl.find(eq("beadasEve", evszam));
+        MongoCursor<AktualisPalyazat> cursor = iterable.iterator();
+        while (cursor.hasNext()) {
+            palyazatlista.add(cursor.next().getPalyazatCim());
+        }
+        return new ArrayList<>(palyazatlista);
     }
 
 

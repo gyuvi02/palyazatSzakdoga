@@ -1,5 +1,6 @@
 package palyazatkezelo;
 
+import aktualis_palyazatok.AktualisLekerdezesek;
 import aktualis_palyazatok.AktualisPalyazat;
 import aktualis_palyazatok.PalyazatiResztvevok;
 import com.mongodb.client.model.Indexes;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
 
@@ -114,11 +116,14 @@ public class Main {
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //
-//        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("gyermek, ifjúság"));
+//        felhivasListabolObject(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás"));
 
 //        kereses kulcsszavak segitsegevel:
-        System.out.println(felhivasLekerdezes.kulcsszavakFelhivas("tehetséges"));
+//        felhivasListabolObject(felhivasLekerdezes.kulcsszavakFelhivas("egyetem, főiskola"));
 
+        AktualisLekerdezesek aktualisLekerdezesek = new AktualisLekerdezesek();
+//        palyazatListabolObject(aktualisLekerdezesek.melyikEvbenKezdodott("2018"));
+//         palyazatListabolObject(aktualisLekerdezesek.melyikEvbenKezdodott("2018"));
 
         //osszetett indexek letrehozasa
         //        felhivasokColl.createIndexes(Lists.newArrayList(
@@ -129,6 +134,7 @@ public class Main {
 //                )));
 
 
+
         //indexek torlese
         //felhivasokColl.dropIndex("reszletesLeiras_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
 
@@ -136,8 +142,21 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-//        felhivasParser.felhivasKeszito();
+        felhivasParser.felhivasKeszito();
 
     }
 
+    public static void felhivasListabolObject(List<String> lista) {
+        Felhivas felhivas = new Felhivas();
+        for (String cim : lista) {
+            felhivas.felhivasLetolto(cim);
+        }
+    }
+
+    public static void palyazatListabolObject(List<String> lista) {
+        AktualisPalyazat aktualisPalyazat = new AktualisPalyazat();
+        for (String cim : lista) {
+            aktualisPalyazat.aktualisPalyazatokLetolto(cim);
+        }
+    }
 }
