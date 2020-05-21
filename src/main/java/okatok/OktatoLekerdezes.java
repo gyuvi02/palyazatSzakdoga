@@ -23,7 +23,8 @@ public class OktatoLekerdezes{
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
 
-    //A kar összes oktatójának vagy egy tanszékhez tartozó oktatók lekérdezése – ennek igazából nincs túl sok gyakorlati jelentősége
+    //A kar összes oktatójának vagy egy tanszékhez tartozó oktatók lekérdezése – ennek igazából nincs túl sok gyakorlati jelentősége,
+    // de a tobbi metodus felhasznalja a lekerdezesekhez
     public ArrayList<Oktato> oktatoListak(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
         ArrayList<Oktato> oktatoLista = new ArrayList<>();
         FindIterable<Oktato> iterOktato = oktatokColl.find();
@@ -70,14 +71,14 @@ public class OktatoLekerdezes{
         return nevRendezo(oktatoLista);   //Oktato obj-eket kuldok vissza, majd ott levalogatom, hogy mit akarok megjeleniteni
     }
     //Az oktatók pályázati témái alapján – ezekből nincs túl sok, legördülő menüvel megoldható
-    public ArrayList<Oktato> palyazatiTemaKereso(String tema) { //Ez ugyanaz, mint az elozo, ha parameterben at tudnam adni a field nevet, akkor egy is eleg lenne
-        ArrayList<Oktato> oktatoLista = new ArrayList<>();      //viszont csak olyan megoldast talaltam, ahol public mezot kellene hasznalnom az osztalyban, ezert marad igy
+    public ArrayList<String> palyazatiTemaKereso(String tema) { //Ez ugyanaz, mint az elozo, ha parameterben at tudnam adni a field nevet, akkor egy is eleg lenne
+        ArrayList<String> oktatoLista = new ArrayList<>();      //viszont csak olyan megoldast talaltam, ahol public mezot kellene hasznalnom az osztalyban, ezert marad igy
         for (Oktato oktato : oktatoListak("összes")) {
             if (oktato.getPalyazatiTema().contains(tema)) {
-                oktatoLista.add(oktato);
+                oktatoLista.add(oktato.getNev());
             }
         }
-        return nevRendezo(oktatoLista);   //Oktato obj-et kuldok vissza, majd ott levalogatom, hogy mit akarok megjeleniteni
+        return oktatoLista;   //Oktato obj-et kuldok vissza, majd ott levalogatom, hogy mit akarok megjeleniteni
     }
 
     //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt egy meghatározott időszakban
@@ -119,14 +120,8 @@ public class OktatoLekerdezes{
         return erintettPalyazatok;
     }
 
-
     private ArrayList<Oktato> nevRendezo(ArrayList<Oktato> lista) {
-        Collections.sort(lista, new Comparator<Oktato>() {
-            @Override
-            public int compare(Oktato o1, Oktato o2) {
-                return o1.getNev().compareTo(o2.getNev());    //nev alapjan sorba rendezve
-            }
-        });
+        Collections.sort(lista, Comparator.comparing(Oktato::getNev)); //nev alapjan rendezve kuldi vissza
         return lista;
     }
 }

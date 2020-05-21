@@ -2,9 +2,7 @@ package palyazatkezelo;
 
 import aktualis_palyazatok.AktualisPalyazat;
 import aktualis_palyazatok.PalyazatiResztvevok;
-import felhivasok.FelhivasModosito;
-import felhivasok.FelhivasParser;
-import felhivasok.RSSParser;
+import felhivasok.*;
 import okatok.OktatoLekerdezes;
 import regi_palyazatok.RegiPalyazat;
 import regi_palyazatok.RegiPalyazatModosito;
@@ -15,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class Main {
 
@@ -100,19 +99,29 @@ public class Main {
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Dr. Pornói Imre");
 
-        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+//        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
 //        System.out.println(oktatoLekerdezes.oktatoListak("összes"));
 //        System.out.println(oktatoLekerdezes.kutatasiTemaKereso("szociális munka"));
 //        System.out.println(oktatoLekerdezes.oktatoKereso("Dr.Szabó Gyula"));
 //        System.out.println(oktatoLekerdezes.kutatasiTemak("Szociológia"));
 //        System.out.println(oktatoLekerdezes.oktatoiAktivitas("Dr. Szabó Gyula", "összes"));
-        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "régi"));
+//        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "régi"));
+
+        FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
+//        System.out.println(felhivasLekerdezes.felhivasListak());
+//        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
+//        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
+//            System.out.println(felhivas.getBeadasiHatarido());
+//        }
+
+//        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("gyermek, ifjúság"));
 
 
 
         //Az uj felhivasok lekerdezese:
 
-//        felhivasParser.felhivasKeszito();
+        felhivasParser.felhivasKeszito();
 
     }
+
 }

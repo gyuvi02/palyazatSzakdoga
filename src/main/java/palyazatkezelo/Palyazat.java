@@ -13,7 +13,7 @@ public abstract class Palyazat {
     private Double igenyeltTamogatas;
     private String megjegyzes;
     private PalyazatiResztvevok resztvevok;
-    private String aktualisFazis;
+    private String aktualisFazis; //ez lehet elkezdett, beadott, lezart, elfogadott
 
     public Palyazat(String palyazatCim, String leiras, String felhivasKod, String beadasEve,
                     Boolean kplusF, Double onero, Double tervezettOsszkoltseg,
