@@ -2,6 +2,7 @@ package palyazatkezelo;
 
 import aktualis_palyazatok.AktualisPalyazat;
 import aktualis_palyazatok.PalyazatiResztvevok;
+import com.mongodb.client.model.Indexes;
 import felhivasok.*;
 import okatok.OktatoLekerdezes;
 import regi_palyazatok.RegiPalyazat;
@@ -112,15 +113,30 @@ public class Main {
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
-//        }
-
+//
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("gyermek, ifjúság"));
+
+//        kereses kulcsszavak segitsegevel:
+        System.out.println(felhivasLekerdezes.kulcsszavakFelhivas("tehetséges"));
+
+
+        //osszetett indexek letrehozasa
+        //        felhivasokColl.createIndexes(Lists.newArrayList(
+//                new IndexModel(Indexes.ascending("_id"),
+//                        new IndexOptions().unique(false)),
+//                new IndexModel(Indexes.compoundIndex(Indexes.text("kategoriak")),
+//                        new IndexOptions().defaultLanguage("hu")
+//                )));
+
+
+        //indexek torlese
+        //felhivasokColl.dropIndex("reszletesLeiras_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
 
 
 
         //Az uj felhivasok lekerdezese:
 
-        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito();
 
     }
 

@@ -1,19 +1,21 @@
 package felhivasok;
 
+import com.github.davidmoten.guavamini.Lists;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.text;
+
+import com.mongodb.client.model.*;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 
 public class FelhivasLekerdezes {
 
@@ -49,9 +51,29 @@ public class FelhivasLekerdezes {
             kategoriaLista.add(cursor.next().getFelhivasCim());
         }
         return kategoriaLista;
+    }
 
+    public ArrayList<String> kulcsszavakFelhivas(String kulcsszo) {
+//        felhivasokColl.createIndexes(Lists.newArrayList(
+//                new IndexModel(Indexes.ascending("_id"),
+//                        new IndexOptions().unique(false)
+//                ),
+//                new IndexModel(Indexes.compoundIndex(Indexes.text("kategoriak"), Indexes.text("reszletesLeiras"),
+//                        Indexes.text("kiPalyazhat"), Indexes.text("targymutato")),
+//                        new IndexOptions().defaultLanguage("hu")
+//                )));
+
+        HashSet<String> kulcsszoTalalat = new HashSet<>(); //ha tobbszor is szerepel az adatbazisban, akkor is csak egyszer kapjuk vissza
+        FindIterable<Felhivas> iterable = felhivasokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu")));
+        for (Felhivas felhivas : iterable) {
+            kulcsszoTalalat.add(felhivas.getFelhivasCim());
+        }
+        System.out.println(kulcsszoTalalat.size());
+        //        felhivasokColl.dropIndex("kategoriak_text_reszletesLeiras_text_kiPalyazhat_text_targymutato_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
+        return new ArrayList<>(kulcsszoTalalat);
 
     }
+
 
 
     private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){
