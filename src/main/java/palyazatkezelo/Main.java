@@ -1,13 +1,8 @@
 package palyazatkezelo;
 
-import aktualis_palyazatok.AktualisLekerdezesek;
-import aktualis_palyazatok.AktualisPalyazat;
-import aktualis_palyazatok.PalyazatiResztvevok;
-import com.mongodb.client.model.Indexes;
 import felhivasok.*;
-import okatok.OktatoLekerdezes;
-import regi_palyazatok.RegiPalyazat;
-import regi_palyazatok.RegiPalyazatModosito;
+import palyazatok.Palyazat;
+import palyazatok.PalyazatLekerdezesek;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -32,9 +26,6 @@ public class Main {
         RSSParser rssParser = new RSSParser();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
 
-
-        RegiPalyazatModosito regiModosito = new RegiPalyazatModosito();
-
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate kezdet = LocalDate.of(2017, 9, 1);
         LocalDate veg = LocalDate.of(2018, 6, 30);
@@ -44,29 +35,12 @@ public class Main {
 
 
         PalyazatiResztvevok aResztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
-        AktualisPalyazat aktualisPalyazat = new AktualisPalyazat("Roma szakkollégium", "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
-                "NTP-HHTDK-17", "2018", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
-                "Beadott");
-        AktualisPalyazat torlendo = new AktualisPalyazat("Torlendo" , "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
-                "NTP-HHTDK-17", "2018", false, 0.0, 13840000.0, 13840000.0, "", aResztvevok,
-                "Beadott");
 
 //        torlendo.aktualisPalyazatFeltolto();
 //        torlendo.aktualisPalyazatTorlo("Torlendo");
 //        aktualisPalyazat.aktualisPalyazatTorlo();
 //        aktualisPalyazat.aktualisPalyazatFeltolto();
 
-        RegiPalyazat ujRegi = new RegiPalyazat("Valami pályázat");
-
-        RegiPalyazat regiPalyazat = new RegiPalyazat("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán",
-                "A tehetséggondozó pályázat fő célja, hogy előkészítse a diákjaink sikeresebb OTDK szereplését, és formális keretek között, illetve magasabb színvonalon valósítsa meg a tehetséggondozással kapcsolatos feladatokat. Felkészítse a diákokat a tudományos munkára, megismertesse velük a tudományos karrier lehetséges állomásait, és mérsékelje azokat az induló hátrányokat, amelyekkel a hallgatóink a magasabb presztízsű egyetemi karokhoz képest rendelkeznek",
-                "NTP-HHTDK-17-0064", "2017", false, 0.0, 1200000.0, 1200000.0, "", aResztvevok, "lezárt", "9761", "NTP-HHTDK-17-0064"
-                , kezdet, veg);
-
-//        regiPalyazat.regiPalyazatFeltolto();
-//        ujRegi.regiPalyazatFeltolto();
-//        ujRegi.regiPalyazatTorlo("Valami pályázat");
-//        regiPalyazat.regiPalyazatTorlo("Komplex tehetségfejlesztés a Debreceni Egyetem Gyermeknevelési és Felnőttképzési Karán");
 
 //        Archivalt palyazatok:
 //        System.out.println(regiPalyazat.toString());
@@ -121,10 +95,6 @@ public class Main {
 //        kereses kulcsszavak segitsegevel:
 //        felhivasListabolObject(felhivasLekerdezes.kulcsszavakFelhivas("egyetem, főiskola"));
 
-        AktualisLekerdezesek aktualisLekerdezesek = new AktualisLekerdezesek();
-//        palyazatListabolObject(aktualisLekerdezesek.melyikEvbenKezdodott("2018"));
-//         palyazatListabolObject(aktualisLekerdezesek.melyikEvbenKezdodott("2018"));
-
         //osszetett indexek letrehozasa
         //        felhivasokColl.createIndexes(Lists.newArrayList(
 //                new IndexModel(Indexes.ascending("_id"),
@@ -133,7 +103,17 @@ public class Main {
 //                        new IndexOptions().defaultLanguage("hu")
 //                )));
 
+        Palyazat palyazat = new Palyazat();
+//        Palyazat probaPalyazat = new Palyazat("Ez csak egy proba", "elkezdett");
+//        probaPalyazat.PalyazatFeltolto();
+//        System.out.println(palyazat.PalyazatLetolto("Ez csak egy proba"));
+//        System.out.println(palyazat.osszesPalyazat());
+//        System.out.println(palyazatListabolObject(palyazat.menedzserKereso("Dr. Szabó Gyula")));
 
+        PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
+//        System.out.println(palyazatListabolObject(palyazatLekerdezesek.menedzserKereso("Dr. Szabó Gyula")));
+//        System.out.println(palyazatLekerdezesek.osszesPalyazat());
+        System.out.println(palyazatLekerdezesek.rendezettLekerdezes("Ez csak egy proba"));
 
         //indexek torlese
         //felhivasokColl.dropIndex("reszletesLeiras_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
@@ -142,7 +122,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito();
 
     }
 
@@ -153,10 +133,12 @@ public class Main {
         }
     }
 
-    public static void palyazatListabolObject(List<String> lista) {
-        AktualisPalyazat aktualisPalyazat = new AktualisPalyazat();
+    public static ArrayList<Palyazat> palyazatListabolObject(List<String> lista) {
+        ArrayList<Palyazat> palyazatLista = new ArrayList<>();
+        Palyazat palyazat = new Palyazat();
         for (String cim : lista) {
-            aktualisPalyazat.aktualisPalyazatokLetolto(cim);
+            palyazatLista.add(palyazat.PalyazatLetolto(cim));
         }
+        return palyazatLista;
     }
 }

@@ -1,19 +1,15 @@
 package okatok;
 
-import aktualis_palyazatok.AktualisLekerdezesek;
-import aktualis_palyazatok.AktualisPalyazat;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import palyazatkezelo.MongoAccess;
-import palyazatkezelo.Palyazat;
-import regi_palyazatok.RegiLekerdezesek;
+import palyazatok.Palyazat;
+import palyazatok.PalyazatLekerdezesek;
 
-import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.ne;
 
 public class OktatoLekerdezes{
 
@@ -82,21 +78,34 @@ public class OktatoLekerdezes{
     }
 
     //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt egy meghatározott időszakban
-    //3 katagoriabol valaszthatunk: "összes", "aktuális", "régi"
+    //3 katagoriabol valaszthatunk: "összes", "aktuális" (elkezdett es beadott), "régi" (lezart es elfogadott), "sikertelen" (elutasitott)
     public ArrayList<String> oktatoiAktivitas(String aktivOktato, String holKeressen) {
-        RegiLekerdezesek regiLekerdezesek = new RegiLekerdezesek();
-        AktualisLekerdezesek aktualisLekerdezesek = new AktualisLekerdezesek();
+        PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
         ArrayList<String> aktivitas = new ArrayList<>();
         HashSet<String> resztvevok = new HashSet<>();
 
         if (holKeressen.equals("aktuális") || holKeressen.equals("összes")) {
-            for (Palyazat palyazat : aktualisLekerdezesek.rendezettLekerdezes("palyazatCim")) {
+            for (Palyazat palyazat : palyazatLekerdezesek.fazisLekerdezes("elkezdett")) {
+                if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
+                    aktivitas.add(palyazat.getPalyazatCim());
+            }
+            for (Palyazat palyazat : palyazatLekerdezesek.fazisLekerdezes("beadott")) {
                 if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
                     aktivitas.add(palyazat.getPalyazatCim());
             }
         }
         if (holKeressen.equals("régi") || holKeressen.equals("összes")) {
-            for (Palyazat palyazat : regiLekerdezesek.rendezettLekerdezes("palyazatCim")) {
+            for (Palyazat palyazat : palyazatLekerdezesek.fazisLekerdezes("lezart")) {
+                if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
+                    aktivitas.add(palyazat.getPalyazatCim());
+            }
+            for (Palyazat palyazat : palyazatLekerdezesek.fazisLekerdezes("elfogadott")) {
+                if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
+                    aktivitas.add(palyazat.getPalyazatCim());
+            }
+        }
+        if (holKeressen.equals("sikertelen") || holKeressen.equals("összes")) {
+            for (Palyazat palyazat : palyazatLekerdezesek.fazisLekerdezes("elutasitott")) {
                 if (resztvevoKereso(palyazat, resztvevok).contains(aktivOktato))
                     aktivitas.add(palyazat.getPalyazatCim());
             }
@@ -112,6 +121,7 @@ public class OktatoLekerdezes{
         return resztvevok;
     }
 
+    //tanszeki szinten osszegzi az egyes oktatok aktivitasat
     public HashSet<String> tanszekiAktivitas(String tanszek, String holKeressen) {
         HashSet<String> erintettPalyazatok = new HashSet<>();
         for (Oktato oktato : oktatoListak(tanszek)) {

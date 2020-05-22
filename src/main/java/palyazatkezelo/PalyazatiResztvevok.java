@@ -1,12 +1,12 @@
-package aktualis_palyazatok;
+package palyazatkezelo;
 
 import java.util.ArrayList;
 
 public class PalyazatiResztvevok {
-    String szakmaiVezeto;
-    String projektmenedzser;
-    String kezelo; //A kezelo nem oktato, o nem szerepel az adatbazisban
-    ArrayList<String> resztvevoEmberek;
+    private String szakmaiVezeto;
+    private String projektmenedzser;
+    private String kezelo; //A kezelo nem oktato, o nem szerepel az adatbazisban
+    private ArrayList<String> resztvevoEmberek;
 
     public PalyazatiResztvevok(String szakmaiVezeto, String projektmenedzser,
                                String kezelo, ArrayList<String> resztvevoEmberek) {

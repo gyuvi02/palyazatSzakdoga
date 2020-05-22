@@ -2,14 +2,11 @@ package felhivasok;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import okatok.Oktato;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
-import regi_palyazatok.RegiPalyazat;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 

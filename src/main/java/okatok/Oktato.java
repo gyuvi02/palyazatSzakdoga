@@ -72,8 +72,8 @@ public class Oktato {
             return keresettOktato;
     }
 
-    public void oktatoTorol(String torlendoOktato) {
-        Bson filter = eq("nev", torlendoOktato);
+    public void oktatoTorol(String email) {
+        Bson filter = eq("email", email);
         if (oktatokColl.find(filter).first() != null){
             System.out.println(oktatokColl.deleteOne(filter));
         }
