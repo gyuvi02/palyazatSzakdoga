@@ -1,17 +1,20 @@
 package palyazatkezelo;
 
 import felhivasok.*;
+import okatok.OktatoModosito;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatLekerdezesek;
 import palyazatok.PalyazatModosito;
 import palyazatok.PalyazatiResztvevok;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -19,9 +22,9 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
 //        MongoAccess.closeDatabase();
 //        Oktato oktato = new Oktato();
-//        Oktato oktato = new Oktato("Dr. Pornói Imre", "Szociálpedagógia",
-//                new ArrayList<String>(Arrays.asList("pedagógií","módszertan")), "pornoi.imre@ped.unideb.hu",
-//                "https://gygyk.unideb.hu/hu/node/292#overlay-context=", new ArrayList<String>(Arrays.asList("gyermek", "ifjúság")));
+//        Oktato oktato = new Oktato("Dr. Szabó Gyula", "Szociálpedagógia",
+//                new ArrayList<String>(Arrays.asList("projektmenedzsment", "közgazdaságtan","módszertan")), "szabogy@ped.unideb.hu",
+//                "valami", new ArrayList<String>(Arrays.asList("gyermek", "ifjúság")));
 //        oktato.oktatoFeltolto();
 
         FelhivasParser felhivasParser = new FelhivasParser();
@@ -63,8 +66,11 @@ public class Main {
 //                oktatok.oktatoLetolto("Dr. Balázs-Földi Emese"))));
 
 //        Oktatoi adatok modositasa:
-//        OktatoModosito oktatoModosito = new OktatoModosito();
-//        oktatoModosito.oktatoUjPalyazati("Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("ifjúság", "gyermek", "közművelődés", "ösztöndíj", "oktatás")));
+        OktatoModosito oktatoModosito = new OktatoModosito();
+//        oktatoModosito.eltavolitTombbol("kutatasiTema", "Dr. Szabó Gyula", "gyermek");
+//        oktatoModosito.tombModosito(true, "palyazatiTema", "Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("valami", "masvalami", "megvalami")));
+        oktatoModosito.tombModosito(false, "palyazatiTema", "Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("valami", "masvalami", "megvalami")));
+//        oktatoModosito.tombFrissito("kutatasiTema","Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("ifjúság", "gyermek", "közművelődés", "ösztöndíj", "oktatás")));
 //        oktatoModosito.oktatoUjKutatasi("Dr. Szabó Gyula", new ArrayList(Arrays.asList("szociológia", "közgazdaságtudomány", "foglalkoztatáspolitika", "projektmenedzsment")));
 //        oktatoModosito.oktatoUjTanszek("Dr. Szabó Gyula", "Szociálpedagógia");
 //        oktatoModosito.oktatoUjHonlap("Dr. Szabó Gyula", "https://gygyk.unideb.hu/munkatars/3425");
@@ -91,7 +97,12 @@ public class Main {
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
-//
+//        }
+//        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        String dateString = "2020-06-11";
+//        Date ujDatum = sdf.parse(dateString);
+//        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum));
+
 //        felhivasListabolObject(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás"));
 
 //        kereses kulcsszavak segitsegevel:
@@ -124,12 +135,13 @@ public class Main {
 //        palyazatModosito.pozicioTorol("Most mar stimmel", "kezelo", "Dr. Szabó Gyula");
 
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
-        System.out.println(palyazatListabolObject(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki")));
+//        System.out.println(palyazatListabolObject(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki")));
 //        System.out.println(palyazatListabolObject(palyazatLekerdezesek.szakertoKereso("Ujabb valaki")));
 //        System.out.println(palyazatLekerdezesek.osszesPalyazat());
 //        System.out.println(palyazatLekerdezesek.rendezettLekerdezes("Ez csak egy proba"));
 //        System.out.println(palyazatLekerdezesek.melyikEvbenKezdodott("2018"));
-
+//        System.out.println(palyazatLekerdezesek.kPlusFFelhivasok());
+//        System.out.println(palyazatLekerdezesek.oneroNelkul());
 
 
 //        palyazatModosito.pozicioHozzaad("Ez csak egy proba", "resztvevoEmberek", "valaki");

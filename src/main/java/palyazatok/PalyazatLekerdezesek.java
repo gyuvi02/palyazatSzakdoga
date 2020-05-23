@@ -4,6 +4,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import felhivasok.Felhivas;
 import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
@@ -64,5 +65,28 @@ public class PalyazatLekerdezesek {
         }
         return new ArrayList<>(palyazatlista);
     }
+    //levalogatja a K+F palyazatokat
+    public ArrayList<String> kPlusFFelhivasok() {
+        ArrayList<String> felhivasLista = new ArrayList<>();
+        FindIterable<Palyazat> iterable = palyazatokColl.find(eq("KplusF", true));
+        MongoCursor<Palyazat> cursor = iterable.iterator();
+        while (cursor.hasNext()) {
+            felhivasLista.add(cursor.next().getPalyazatCim());
+        }
+        return felhivasLista;
+    }
+    //levalogatja azokat a p;lyazatokat, ahol nem kellett onero
+    public ArrayList<String> oneroNelkul() {
+        ArrayList<String> felhivasLista = new ArrayList<>();
+        FindIterable<Palyazat> iterable = palyazatokColl.find(eq("onero", 0));
+        MongoCursor<Palyazat> cursor = iterable.iterator();
+        while (cursor.hasNext()) {
+            felhivasLista.add(cursor.next().getPalyazatCim());
+        }
+        return felhivasLista;
+    }
+
+
+
 
 }

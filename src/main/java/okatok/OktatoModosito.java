@@ -7,8 +7,9 @@ import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
 
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Updates.set;
+import static com.mongodb.client.model.Updates.setOnInsert;
 
 public class OktatoModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
@@ -38,17 +39,31 @@ public class OktatoModosito {
         oktatokColl.updateOne(filter, ujElem);
     }
 
-    public void oktatoUjKutatasi(String nev, ArrayList<String> ujKutatasi) {
+    public void tombFrissito(String mezoNev, String nev, ArrayList<String> ujTomb) {
         Bson filter = eq("nev", nev);
-        Bson ujElem = set("kutatasiTema", ujKutatasi);
+        Bson ujElem = set(mezoNev, ujTomb);
         oktatokColl.updateOne(filter, ujElem);
     }
 
-    public void oktatoUjPalyazati(String nev, ArrayList<String> ujPalyazati) {
-        Bson filter = eq("nev", nev);
-        Bson ujElem = set("palyazatiTema", ujPalyazati);
-        oktatokColl.updateOne(filter, ujElem);
+    //ha a boolean true, akkor hozzadunk, ha false, akkor torlunk a tombbol
+    //tombben adjuk at a temakat, hogy egyszerre tobbet is tudjunk
+    public void tombModosito(boolean hozzaad, String tomb, String nev, ArrayList<String > modositando) {//a tomb csak kutatasiTema vagy palyazatiTema lehet csak (legordulo menu)
+        Oktato oktato = new Oktato();
+        ArrayList<String> kutatasi;
+        if (tomb.equals("kutatasiTema")) {
+            kutatasi = oktato.oktatoLetolto(nev).getKutatasiTema();
+        }else{
+            kutatasi = oktato.oktatoLetolto(nev).getPalyazatiTema();
+        }
+        if (hozzaad) {
+            kutatasi.addAll(modositando);
+        } else {
+            kutatasi.removeAll(modositando);
+        }
+        tombFrissito(tomb, nev, kutatasi);
     }
+
+
 
 
 

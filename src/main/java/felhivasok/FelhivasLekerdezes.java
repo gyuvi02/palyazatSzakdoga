@@ -5,8 +5,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.text;
 
 import com.mongodb.client.model.*;
 import org.bson.Document;
@@ -15,7 +13,10 @@ import palyazatkezelo.MongoAccess;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
+
+import static com.mongodb.client.model.Filters.*;
 
 public class FelhivasLekerdezes {
 
@@ -24,12 +25,14 @@ public class FelhivasLekerdezes {
 
     //Az osszes felhivast visszaadja, a tobbi metodus hasznalja a lekerdezesekhez
     public ArrayList<Felhivas> felhivasListak() {
+        ArrayList<String> felhivasCimLista = new ArrayList<String>();
         ArrayList<Felhivas> felhivasLista = new ArrayList<>();
         FindIterable<Felhivas> iterFelhivas = felhivasokColl.find();
         for (Felhivas felhivas : iterFelhivas) {
-                felhivasLista.add(felhivas);
+            felhivasLista.add(felhivas);
+            felhivasCimLista.add(felhivas.getFelhivasCim());
         }
-//        return hataridoRendezes(felhivasLista);
+//        return felhivasCimLista;
         return hataridoRendezes(felhivasLista);
     }
 
@@ -71,10 +74,7 @@ public class FelhivasLekerdezes {
         System.out.println(kulcsszoTalalat.size());
         //        felhivasokColl.dropIndex("kategoriak_text_reszletesLeiras_text_kiPalyazhat_text_targymutato_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
         return new ArrayList<>(kulcsszoTalalat);
-
     }
-
-
 
     private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -89,6 +89,18 @@ public class FelhivasLekerdezes {
         });
         return lista;
     }
+    //az atkuldott datum utani beadasi hatarideju felhivasok listaja
+    public ArrayList<String> kesobbiHataridok(Date datum) {
+        ArrayList<Felhivas> felhivasLista = felhivasListak();
+        ArrayList<String> korabbiFelhivasok = new ArrayList<>();
+        for (Felhivas felhivas : felhivasLista) {
+            if (datum.before(parseDate(felhivas.getBeadasiHatarido()))){
+                korabbiFelhivasok.add(felhivas.getBeadasiHatarido());
+            }
+        }
+        return korabbiFelhivasok;
+    }
+
 
     private static Date parseDate(String date) {
         try {

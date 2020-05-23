@@ -8,7 +8,6 @@ import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -96,7 +95,7 @@ public class Oktato {
         this.tanszek = tanszek;
     }
 
-    public Collection<? extends String> getKutatasiTema() {
+    public ArrayList<String> getKutatasiTema() {
         return kutatasiTema;
     }
 

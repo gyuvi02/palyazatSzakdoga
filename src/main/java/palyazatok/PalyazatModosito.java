@@ -80,7 +80,7 @@ public class PalyazatModosito {
         Bson ujElem = null;
         ArrayList<String> resztvevoEmberek= palyazat.PalyazatLetolto(cim).getResztvevok().getResztvevoEmberek();
         if (resztvevoEmberek.contains(nev)) {
-            System.out.println("Mar szerepel a szakertok kozott");
+            System.out.println("Mar szerepel a szakertok kozott ");
             return false;
         }
         Bson filter = eq("palyazatCim", cim);
