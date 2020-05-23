@@ -1,6 +1,5 @@
 package palyazatok;
 
-import palyazatkezelo.PalyazatiResztvevok;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -78,7 +77,6 @@ public class Palyazat {
 
     public Palyazat PalyazatLetolto(String palyazatCim) {
         return palyazatokColl.find((eq("palyazatCim", palyazatCim))).first(); //Ha ureset kuld vissza, akkor nem leteik a palyazat
-
     }
 
     public void PalyazatTorlo(String palyazatcim) {
@@ -107,7 +105,7 @@ public class Palyazat {
         return palyazatLista;
     }
 
-    private boolean palyazatEllenorzo(Palyazat keresettPalyazat) {
+    public boolean palyazatEllenorzo(Palyazat keresettPalyazat) {
         return keresettPalyazat != null;
     }
 
@@ -247,7 +245,7 @@ public class Palyazat {
                 "A pályázat kezdete: " + getKezdet().format(formatters) + "\n" + //a datumok is NullPointer Exception-t adnak
                 "A pályázat vége: " + getVeg().format(formatters) + "\n" +
                 "Szakmai vezető: " + getResztvevok().getSzakmaiVezeto() + "\n"+     //ha nincs megadva, akkor NullPointerException lesz
-                "Projektmenedzser: " + getResztvevok().getSzakmaiVezeto() + "\n" +
+                "Projektmenedzser: " + getResztvevok().getProjektmenedzser() + "\n" +
                 "A pályázat kezelője: " + getResztvevok().getKezelo() + "\n" +
                 "Résztvevő kutatók: " + getResztvevok().getResztvevoEmberek().toString() + "\n\n"
                  ;

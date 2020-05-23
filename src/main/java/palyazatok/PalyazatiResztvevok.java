@@ -1,6 +1,13 @@
-package palyazatkezelo;
+package palyazatok;
+
+import org.bson.BsonType;
+import org.bson.conversions.Bson;
+import palyazatok.Palyazat;
 
 import java.util.ArrayList;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 
 public class PalyazatiResztvevok {
     private String szakmaiVezeto;
@@ -18,6 +25,8 @@ public class PalyazatiResztvevok {
 
     public PalyazatiResztvevok() {
     }
+
+
 
     public String getSzakmaiVezeto() {
         return szakmaiVezeto;
@@ -53,10 +62,10 @@ public class PalyazatiResztvevok {
 
     @Override
     public String toString() {
-        return  "Szakmai vezető: " + szakmaiVezeto + "\n" +
-                "Projektmenedzser: " + projektmenedzser + "\n" +
-                "Kezelő: " + kezelo + "\n" +
-                "Résztvevők: " + resztvevoEmberek + "\n";
+        return  "Szakmai vezető: " + getSzakmaiVezeto() + "\n" +
+                "Projektmenedzser: " + getProjektmenedzser() + "\n" +
+                "Kezelő: " + getKezelo() + "\n" +
+                "Résztvevők: " + getResztvevoEmberek() + "\n";
     }
 
 }

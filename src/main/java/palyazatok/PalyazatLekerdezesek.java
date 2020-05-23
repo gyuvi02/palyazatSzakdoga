@@ -36,10 +36,10 @@ public class PalyazatLekerdezesek {
         }
         return palyazatLista;
     }
-
-    public ArrayList<String> menedzserKereso(String menedzser) {
+    //barmilyen resztvevo szerepben keres
+    public ArrayList<String> resztvevoKereso(String pozicio, String nev) {
         ArrayList<String> palyazatLista = new ArrayList<>();
-        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find(eq("resztvevok.projektmenedzser", menedzser));
+        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find(eq("resztvevok." + pozicio, nev));
         for (Palyazat palyazat : iterPalyazat) {
             palyazatLista.add(palyazat.getPalyazatCim());
         }

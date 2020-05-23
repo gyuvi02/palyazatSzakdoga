@@ -3,6 +3,8 @@ package palyazatkezelo;
 import felhivasok.*;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatLekerdezesek;
+import palyazatok.PalyazatModosito;
+import palyazatok.PalyazatiResztvevok;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -104,16 +106,35 @@ public class Main {
 //                )));
 
         Palyazat palyazat = new Palyazat();
-//        Palyazat probaPalyazat = new Palyazat("Ez csak egy proba", "elkezdett");
+//        Palyazat probaPalyazat = new Palyazat("Valami nem stimmel", "elkezdett");
 //        probaPalyazat.PalyazatFeltolto();
-//        System.out.println(palyazat.PalyazatLetolto("Ez csak egy proba"));
+//        System.out.println(palyazat.PalyazatLetolto("Valami nem stimmel"));
 //        System.out.println(palyazat.osszesPalyazat());
 //        System.out.println(palyazatListabolObject(palyazat.menedzserKereso("Dr. Szabó Gyula")));
 
+        PalyazatModosito palyazatModosito = new PalyazatModosito();
+//        palyazatModosito.kplusFModosito("Valami nem stimmel", true);
+//        palyazatModosito.oneroModosito("Valami nem stimmel", 0.0);
+//        palyazatModosito.igenyeltOsszegModosito("Valami nem stimmel", 98000000.0);
+//        palyazatModosito.adatModosito(0,"Valami nem stimmel", "Most mar stimmel");
+//        palyazatModosito.pozicioHozzaad("Most mar stimmel", "resztvevoEmberek", "Ujabb valaki");
+//        palyazatModosito.pozicioTorol("Valami nem stimmel", "resztvevoEmberek", "Ujabb valaki");
+//        palyazatModosito.pozicioHozzaad("Most mar stimmel", "projektmenedzser", "Dr. Pornói Imre");
+//        palyazatModosito.pozicioHozzaad("Most mar stimmel", "szakmaiVezeto", "Dr. Szabó Gyula");
+//        palyazatModosito.pozicioTorol("Most mar stimmel", "kezelo", "Dr. Szabó Gyula");
+
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
-//        System.out.println(palyazatListabolObject(palyazatLekerdezesek.menedzserKereso("Dr. Szabó Gyula")));
+        System.out.println(palyazatListabolObject(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki")));
+//        System.out.println(palyazatListabolObject(palyazatLekerdezesek.szakertoKereso("Ujabb valaki")));
 //        System.out.println(palyazatLekerdezesek.osszesPalyazat());
-        System.out.println(palyazatLekerdezesek.rendezettLekerdezes("Ez csak egy proba"));
+//        System.out.println(palyazatLekerdezesek.rendezettLekerdezes("Ez csak egy proba"));
+//        System.out.println(palyazatLekerdezesek.melyikEvbenKezdodott("2018"));
+
+
+
+//        palyazatModosito.pozicioHozzaad("Ez csak egy proba", "resztvevoEmberek", "valaki");
+
+
 
         //indexek torlese
         //felhivasokColl.dropIndex("reszletesLeiras_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
