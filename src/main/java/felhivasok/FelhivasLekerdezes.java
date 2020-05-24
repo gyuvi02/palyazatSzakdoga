@@ -11,6 +11,8 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
+import javax.swing.text.Caret;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -23,57 +25,23 @@ public class FelhivasLekerdezes {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
 
-    //Az osszes felhivast visszaadja, a tobbi metodus hasznalja a lekerdezesekhez
+    //Az osszes felhivast visszaadja
     public ArrayList<Felhivas> felhivasListak() {
-        ArrayList<String> felhivasCimLista = new ArrayList<String>();
-        ArrayList<Felhivas> felhivasLista = new ArrayList<>();
-        FindIterable<Felhivas> iterFelhivas = felhivasokColl.find();
-        for (Felhivas felhivas : iterFelhivas) {
-            felhivasLista.add(felhivas);
-            felhivasCimLista.add(felhivas.getFelhivasCim());
-        }
-//        return felhivasCimLista;
-        return hataridoRendezes(felhivasLista);
+        return felhivasokColl.find().into(new ArrayList<>());
     }
 
-    public ArrayList<String> kiiroLekerdezes(String kiiro) {
-        ArrayList<String> kiiroLista = new ArrayList<>();
-        FindIterable<Felhivas> iterable = felhivasokColl.find(eq("felhivasKiiro", kiiro));
-        MongoCursor<Felhivas> cursor = iterable.iterator();
-        while (cursor.hasNext()) {
-            kiiroLista.add(cursor.next().getFelhivasCim());
-        }
-        return kiiroLista;
+    //visszaadja a keresett kiirohoz tartozo osszes felhivast
+    public ArrayList<Felhivas> kiiroLekerdezes(String kiiro) {
+        return felhivasokColl.find(eq("felhivasKiiro", kiiro)).into(new ArrayList<>());
     }
 
-    public ArrayList<String> palyazatiKategoriaAlapjan(String kategoria) {
-        HashSet<String> kategoriaTalalat = new HashSet<>(); //ha tobbszor is szerepel az adatbazisban, akkor is csak egyszer kapjuk vissza
-        FindIterable<Felhivas> iterable = felhivasokColl.find(eq("kategoriak", kategoria));
-        MongoCursor<Felhivas> cursor = iterable.iterator();
-        while (cursor.hasNext()) {
-            kategoriaTalalat.add(cursor.next().getFelhivasCim());
-        }
-        return new ArrayList<>(kategoriaTalalat);
+    //az osszes felhivas, amelyben szerepel az adott kategoria
+    public ArrayList<Felhivas> palyazatiKategoriaAlapjan(String kategoria) {
+        return felhivasokColl.find(eq("kategoriak", kategoria)).into(new ArrayList<>());
     }
 
-    public ArrayList<String> kulcsszavakFelhivas(String kulcsszo) {
-//        felhivasokColl.createIndexes(Lists.newArrayList(
-//                new IndexModel(Indexes.ascending("_id"),
-//                        new IndexOptions().unique(false)
-//                ),
-//                new IndexModel(Indexes.compoundIndex(Indexes.text("kategoriak"), Indexes.text("reszletesLeiras"),
-//                        Indexes.text("kiPalyazhat"), Indexes.text("targymutato")),
-//                        new IndexOptions().defaultLanguage("hu")
-//                )));
-
-        HashSet<String> kulcsszoTalalat = new HashSet<>(); //ha tobbszor is szerepel az adatbazisban, akkor is csak egyszer kapjuk vissza
-        FindIterable<Felhivas> iterable = felhivasokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu")));
-        for (Felhivas felhivas : iterable) {
-            kulcsszoTalalat.add(felhivas.getFelhivasCim());
-        }
-        System.out.println(kulcsszoTalalat.size());
-        //        felhivasokColl.dropIndex("kategoriak_text_reszletesLeiras_text_kiPalyazhat_text_targymutato_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
-        return new ArrayList<>(kulcsszoTalalat);
+    public ArrayList<Felhivas> kulcsszavakFelhivas(String kulcsszo) {
+        return felhivasokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).into(new ArrayList<>());
     }
 
     private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){
@@ -89,13 +57,13 @@ public class FelhivasLekerdezes {
         });
         return lista;
     }
-    //az atkuldott datum utani beadasi hatarideju felhivasok listaja
-    public ArrayList<String> kesobbiHataridok(Date datum) {
-        ArrayList<Felhivas> felhivasLista = felhivasListak();
-        ArrayList<String> korabbiFelhivasok = new ArrayList<>();
+    //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni
+    public ArrayList<Felhivas> kesobbiHataridok(Date datum) {
+        ArrayList<Felhivas> felhivasLista = felhivasokColl.find().into(new ArrayList<>());
+        ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
         for (Felhivas felhivas : felhivasLista) {
             if (datum.before(parseDate(felhivas.getBeadasiHatarido()))){
-                korabbiFelhivasok.add(felhivas.getBeadasiHatarido());
+                korabbiFelhivasok.add(felhivas);
             }
         }
         return korabbiFelhivasok;

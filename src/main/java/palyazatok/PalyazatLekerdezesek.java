@@ -1,5 +1,6 @@
 package palyazatok;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -7,10 +8,13 @@ import com.mongodb.client.MongoDatabase;
 import felhivasok.Felhivas;
 import palyazatkezelo.MongoAccess;
 
+import javax.swing.text.Document;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 
 public class PalyazatLekerdezesek {
 
@@ -19,13 +23,8 @@ public class PalyazatLekerdezesek {
 
 
 //levalogatja a megadott fazisban levo palyazatok cimet
-    public ArrayList<Palyazat> fazisLekerdezes(String rendezesAlapja) {
-        ArrayList<Palyazat> palyazatLista = new ArrayList<Palyazat>();
-        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find(eq("aktualisFazis", rendezesAlapja));
-        for (Palyazat palyazat : iterPalyazat) {
-            palyazatLista.add(palyazat);
-        }
-        return palyazatLista;
+    public ArrayList<Palyazat> fazisLekerdezes(String fazis) {
+        return palyazatokColl.find(eq("aktualisFazis", fazis)).into(new ArrayList<>());
     }
 
     //ezt most nem tudom pontosan, mire akaratm hasznalni, de valamire jo lesz
@@ -37,53 +36,47 @@ public class PalyazatLekerdezesek {
         }
         return palyazatLista;
     }
-    //barmilyen resztvevo szerepben keres
-    public ArrayList<String> resztvevoKereso(String pozicio, String nev) {
-        ArrayList<String> palyazatLista = new ArrayList<>();
-        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find(eq("resztvevok." + pozicio, nev));
-        for (Palyazat palyazat : iterPalyazat) {
-            palyazatLista.add(palyazat.getPalyazatCim());
+    //minden resztvevo szerepben kulon kereshetunk vele, parameterkent adjuk at, ha barmelyikben mezoben keresunk, akkor "osszes"
+    public ArrayList<Palyazat> resztvevoKereso(String pozicio, String nev) {
+        if (pozicio.equals("összes")) {
+            return palyazatokColl.find(or(eq("resztvevok.kezelo", nev), eq("resztvevok.projektmenedzser", nev),
+                    eq("resztvevok.szakmaiVezeto", nev), eq("resztvevok.resztvevoEmberek", nev)))
+                    .into(new ArrayList<>());
         }
-        return palyazatLista;
+        return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).into(new ArrayList<>());
     }
 
-    public ArrayList<String> osszesPalyazat() {
+    //viszaadja az osszes palyazatot
+    public ArrayList<Palyazat> osszesPalyazat() {
         ArrayList<String> palyazatLista = new ArrayList<>();
-        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find();
-        for (Palyazat palyazat : iterPalyazat) {
-            palyazatLista.add(palyazat.getPalyazatCim());
-        }
-        return palyazatLista;
+        return palyazatokColl.find().into(new ArrayList<>());
     }
 
-    public ArrayList<String> melyikEvbenKezdodott(String evszam) {
-        HashSet<String> palyazatlista = new HashSet<>();
-        FindIterable<Palyazat> iterable = palyazatokColl.find(eq("beadasEve", evszam));
-        MongoCursor<Palyazat> cursor = iterable.iterator();
-        while (cursor.hasNext()) {
-            palyazatlista.add(cursor.next().getPalyazatCim());
-        }
-        return new ArrayList<>(palyazatlista);
+    //levalogatja azokat a palyazatokat, amelyek az adott evben kezdodtek
+    public ArrayList<Palyazat> melyikEvbenKezdodott(String evszam) {
+        return palyazatokColl.find(eq("beadasEve", evszam)).into(new ArrayList<>());
     }
+
     //levalogatja a K+F palyazatokat
-    public ArrayList<String> kPlusFFelhivasok() {
-        ArrayList<String> felhivasLista = new ArrayList<>();
-        FindIterable<Palyazat> iterable = palyazatokColl.find(eq("KplusF", true));
-        MongoCursor<Palyazat> cursor = iterable.iterator();
-        while (cursor.hasNext()) {
-            felhivasLista.add(cursor.next().getPalyazatCim());
-        }
-        return felhivasLista;
+    public ArrayList<Palyazat> kPlusFFelhivasok() {
+        return palyazatokColl.find(eq("KplusF", true)).into(new ArrayList<>());
     }
-    //levalogatja azokat a p;lyazatokat, ahol nem kellett onero
-    public ArrayList<String> oneroNelkul() {
+
+    //levalogatja azokat a palyazatokat, ahol nem kellett onero
+    public ArrayList<Palyazat> oneroNelkul() {
+        return palyazatokColl.find(eq("onero", 0)).into(new ArrayList<>());
+    }
+
+    public ArrayList<String> kezdoEvPeriodus(LocalDate min, LocalDate max) {
         ArrayList<String> felhivasLista = new ArrayList<>();
-        FindIterable<Palyazat> iterable = palyazatokColl.find(eq("onero", 0));
+        FindIterable<Palyazat> iterable = palyazatokColl.find(gte("kezdet", min));
         MongoCursor<Palyazat> cursor = iterable.iterator();
         while (cursor.hasNext()) {
+
             felhivasLista.add(cursor.next().getPalyazatCim());
         }
         return felhivasLista;
+
     }
 
 

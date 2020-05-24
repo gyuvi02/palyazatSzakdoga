@@ -1,6 +1,7 @@
 package palyazatkezelo;
 
 import felhivasok.*;
+import okatok.OktatoLekerdezes;
 import okatok.OktatoModosito;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatLekerdezesek;
@@ -84,13 +85,14 @@ public class Main {
 //        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
 //        oktatok.oktatoTorol("Dr. Pornói Imre");
 
-//        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
-//        System.out.println(oktatoLekerdezes.oktatoListak("összes"));
+        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+//        System.out.println(oktatoLekerdezes.oktatoListak("Szociálpedagógia"));
 //        System.out.println(oktatoLekerdezes.kutatasiTemaKereso("szociális munka"));
-//        System.out.println(oktatoLekerdezes.oktatoKereso("Dr.Szabó Gyula"));
-//        System.out.println(oktatoLekerdezes.kutatasiTemak("Szociológia"));
+//        System.out.println(oktatoLekerdezes.palyazatiTemaKereso("ifjúság"));
+//        System.out.println(oktatoLekerdezes.oktatoKereso("Dr. Szabó Gyula"));
+//        System.out.println(oktatoLekerdezes.kutatasiTemak("Szociálpedagógia"));
 //        System.out.println(oktatoLekerdezes.oktatoiAktivitas("Dr. Szabó Gyula", "összes"));
-//        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "régi"));
+//        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "aktuális"));
 
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
 //        System.out.println(felhivasLekerdezes.felhivasListak());
@@ -103,10 +105,10 @@ public class Main {
 //        Date ujDatum = sdf.parse(dateString);
 //        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum));
 
-//        felhivasListabolObject(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás"));
+//        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
 
 //        kereses kulcsszavak segitsegevel:
-//        felhivasListabolObject(felhivasLekerdezes.kulcsszavakFelhivas("egyetem, főiskola"));
+//        System.out.println(felhivasLekerdezes.kulcsszavakFelhivas("egyetem főiskola").size());
 
         //osszetett indexek letrehozasa
         //        felhivasokColl.createIndexes(Lists.newArrayList(
@@ -135,8 +137,9 @@ public class Main {
 //        palyazatModosito.pozicioTorol("Most mar stimmel", "kezelo", "Dr. Szabó Gyula");
 
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
-//        System.out.println(palyazatListabolObject(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki")));
-//        System.out.println(palyazatListabolObject(palyazatLekerdezesek.szakertoKereso("Ujabb valaki")));
+//        System.out.println(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki"));
+//        System.out.println(palyazatLekerdezesek.resztvevoKereso("projektmenedzser", "Dr. Pornói Imre"));
+//        System.out.println(palyazatLekerdezesek.resztvevoKereso("összes", "Dr. Szabó Gyula"));
 //        System.out.println(palyazatLekerdezesek.osszesPalyazat());
 //        System.out.println(palyazatLekerdezesek.rendezettLekerdezes("Ez csak egy proba"));
 //        System.out.println(palyazatLekerdezesek.melyikEvbenKezdodott("2018"));
