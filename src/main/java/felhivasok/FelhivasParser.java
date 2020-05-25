@@ -1,11 +1,15 @@
 package felhivasok;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
+import palyazatkezelo.MongoAccess;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -14,7 +18,11 @@ import java.util.Date;
 
 public class FelhivasParser {
 
+    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    MongoCollection<LegutobbiFelhivasok> legutobbiColl = palyazatDB.getCollection("LegutobbiFelhivasok", LegutobbiFelhivasok.class);
+
     public void felhivasKeszito() throws IOException {
+        ArrayList<String> legutobbiFelhivasok = new ArrayList<>();
         ArrayList<RssElemek> feedLista = new RSSParser().rssListaKeszito();
         int[] elemek = {9, 11, 13, 17, 19};
         int k = 1;
@@ -38,8 +46,16 @@ public class FelhivasParser {
             ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory()) ;
             Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
                     reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak));
+            legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
             keszFelhivas.felhivasFeltolto();
         }
+        LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
+        legutobbiColl.insertOne(legutobbi);
+    }
+
+    //visszaadja a legutobbi RSS-bol letoltott felhivasok cimet
+    public ArrayList<String> legutobbiFelhivasok() {
+        return legutobbiColl.find().sort(new BasicDBObject("_id", -1)).first().getLegutobbi();
     }
 
     private static String leirasParser(String html) {  //ez megoldja, hogy a <br> tageket atalakitsuk \n jelekke, es jol tagolja a szoveget

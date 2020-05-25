@@ -6,12 +6,13 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.TextSearchOptions;
 import palyazatkezelo.MongoAccess;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.or;
 
 public class FelhivasLekerdezes {
 
@@ -40,8 +41,8 @@ public class FelhivasLekerdezes {
     private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         lista.sort((o1, o2) -> {
-                Date date1 = parseDate(o1.getBeadasiHatarido());
-                Date date2 = parseDate(o2.getBeadasiHatarido());
+                LocalDate date1 = parseDate(o1.getBeadasiHatarido());
+                LocalDate date2 = parseDate(o2.getBeadasiHatarido());
             if (date1 != null) {
                 return date1.compareTo(date2);
             } else {
@@ -50,12 +51,23 @@ public class FelhivasLekerdezes {
         });
         return lista;
     }
+
+//    ket hettel a beadasi hatarido lejarta utan automatikusan torlodnek a felhivasok
+//    ezt a metodust a programbol valo kilepeskor futtatjuk le
+    public void automatikusTorles() {
+        LocalDate hatarido = LocalDate.now().minusDays(14);
+        for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
+            if (hatarido.isAfter(parseDate(felhivas.getBeadasiHatarido()))){
+                System.out.println(felhivasokColl.deleteOne(eq("felhivasCim", felhivas.getFelhivasCim())));
+            }
+        }
+    }
+
     //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
-    public ArrayList<Felhivas> kesobbiHataridok(Date datum) {
-        ArrayList<Felhivas> felhivasLista = felhivasokColl.find().into(new ArrayList<>());
+    public ArrayList<Felhivas> kesobbiHataridok(LocalDate datum) {
         ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
-        for (Felhivas felhivas : felhivasLista) {
-            if (datum.before(parseDate(felhivas.getBeadasiHatarido()))){
+        for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
+            if (datum.isBefore(parseDate(felhivas.getBeadasiHatarido()))){
                 korabbiFelhivasok.add(felhivas);
             }
         }
@@ -63,10 +75,11 @@ public class FelhivasLekerdezes {
     }
 
 
-    private static Date parseDate(String date) {
+    private static LocalDate parseDate(String date) {
         try {
-            return new SimpleDateFormat("yyyy. MMMM dd.").parse(date);
-        } catch (ParseException e) {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy. MMMM dd.");
+            return LocalDate.parse(date, inputFormat);
+        } catch (Exception e) {
             return null;
         }
     }

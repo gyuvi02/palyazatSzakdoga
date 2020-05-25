@@ -70,6 +70,7 @@ public class Felhivas {
     }
 
 
+
     public Felhivas(String felhivasCim) {
         this.felhivasCim = felhivasCim;
     }

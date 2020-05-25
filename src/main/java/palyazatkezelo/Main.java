@@ -110,13 +110,13 @@ public class Main {
 
 //        System.out.println(felhivasLekerdezes.felhivasListak());
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
+//        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //        }
-//        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        String dateString = "2020-06-11";
-//        Date ujDatum = sdf.parse(dateString);
-//        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum));
+//        LocalDate ujDatum = LocalDate.of(2020,6, 30);
+//        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum).size());
+//        felhivasLekerdezes.automatikusTorles();
 
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
 
