@@ -1,5 +1,9 @@
 package palyazatkezelo;
 
+import com.github.davidmoten.guavamini.Lists;
+import com.mongodb.client.model.IndexModel;
+import com.mongodb.client.model.IndexOptions;
+import com.mongodb.client.model.Indexes;
 import felhivasok.*;
 import okatok.OktatoLekerdezes;
 import okatok.OktatoModosito;
@@ -70,7 +74,7 @@ public class Main {
         OktatoModosito oktatoModosito = new OktatoModosito();
 //        oktatoModosito.eltavolitTombbol("kutatasiTema", "Dr. Szabó Gyula", "gyermek");
 //        oktatoModosito.tombModosito(true, "palyazatiTema", "Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("valami", "masvalami", "megvalami")));
-        oktatoModosito.tombModosito(false, "palyazatiTema", "Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("valami", "masvalami", "megvalami")));
+//        oktatoModosito.tombModosito(false, "palyazatiTema", "Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("valami", "masvalami", "megvalami")));
 //        oktatoModosito.tombFrissito("kutatasiTema","Dr. Szabó Gyula", new ArrayList<String>(Arrays.asList("ifjúság", "gyermek", "közművelődés", "ösztöndíj", "oktatás")));
 //        oktatoModosito.oktatoUjKutatasi("Dr. Szabó Gyula", new ArrayList(Arrays.asList("szociológia", "közgazdaságtudomány", "foglalkoztatáspolitika", "projektmenedzsment")));
 //        oktatoModosito.oktatoUjTanszek("Dr. Szabó Gyula", "Szociálpedagógia");
@@ -90,9 +94,11 @@ public class Main {
 //        System.out.println(oktatoLekerdezes.kutatasiTemaKereso("szociális munka"));
 //        System.out.println(oktatoLekerdezes.palyazatiTemaKereso("ifjúság"));
 //        System.out.println(oktatoLekerdezes.oktatoKereso("Dr. Szabó Gyula"));
-//        System.out.println(oktatoLekerdezes.kutatasiTemak("Szociálpedagógia"));
+//        System.out.println(oktatoLekerdezes.kutatasiTemak("összes"));
 //        System.out.println(oktatoLekerdezes.oktatoiAktivitas("Dr. Szabó Gyula", "összes"));
-//        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "aktuális"));
+//        System.out.println(oktatoLekerdezes.oktatoiAktivitas("Dr. Bocsi Veronika", "regi"));
+//        System.out.println(oktatoLekerdezes.tanszekiAktivitas("Szociálpedagógia", "összes"));
+//        oktatoLekerdezes.kutatasiTemak("Szociálpedagógia");
 
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
 //        System.out.println(felhivasLekerdezes.felhivasListak());
@@ -110,7 +116,7 @@ public class Main {
 //        kereses kulcsszavak segitsegevel:
 //        System.out.println(felhivasLekerdezes.kulcsszavakFelhivas("egyetem főiskola").size());
 
-        //osszetett indexek letrehozasa
+        //osszetett indexek letrehozasa - Felhivasok
         //        felhivasokColl.createIndexes(Lists.newArrayList(
 //                new IndexModel(Indexes.ascending("_id"),
 //                        new IndexOptions().unique(false)),
@@ -118,8 +124,18 @@ public class Main {
 //                        new IndexOptions().defaultLanguage("hu")
 //                )));
 
+        //osszetett indexek letrehozasa - Palyazatok
+//        palyazatokColl.createIndexes(Lists.newArrayList(
+//                new IndexModel(Indexes.ascending("_id"),
+//                        new IndexOptions().unique(false)),
+//                new IndexModel(Indexes.compoundIndex(Indexes.text("palyazatCim"),
+//                        Indexes.text("leiras"), Indexes.text("megjegyzes")),
+//                        new IndexOptions().defaultLanguage("hu")
+//                )));
+
+
         Palyazat palyazat = new Palyazat();
-//        Palyazat probaPalyazat = new Palyazat("Valami nem stimmel", "elkezdett");
+//        Palyazat probaPalyazat = new Palyazat("Kitalált Tehetség pályázat", "elkezdett");
 //        probaPalyazat.PalyazatFeltolto();
 //        System.out.println(palyazat.PalyazatLetolto("Valami nem stimmel"));
 //        System.out.println(palyazat.osszesPalyazat());
@@ -129,12 +145,18 @@ public class Main {
 //        palyazatModosito.kplusFModosito("Valami nem stimmel", true);
 //        palyazatModosito.oneroModosito("Valami nem stimmel", 0.0);
 //        palyazatModosito.igenyeltOsszegModosito("Valami nem stimmel", 98000000.0);
-//        palyazatModosito.adatModosito(0,"Valami nem stimmel", "Most mar stimmel");
-//        palyazatModosito.pozicioHozzaad("Most mar stimmel", "resztvevoEmberek", "Ujabb valaki");
-//        palyazatModosito.pozicioTorol("Valami nem stimmel", "resztvevoEmberek", "Ujabb valaki");
-//        palyazatModosito.pozicioHozzaad("Most mar stimmel", "projektmenedzser", "Dr. Pornói Imre");
-//        palyazatModosito.pozicioHozzaad("Most mar stimmel", "szakmaiVezeto", "Dr. Szabó Gyula");
-//        palyazatModosito.pozicioTorol("Most mar stimmel", "kezelo", "Dr. Szabó Gyula");
+//        palyazatModosito.adatModosito(0,"Most mar stimmel", "Kitalált Tehetség pályázat");
+//        palyazatModosito.adatModosito(2,"Kitalált Tehetség pályázat", "Főiskolai és egyetemi hallgatók számára kiírt, tehetséggondozás");
+//        palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "resztvevoEmberek", "Ujabb valaki");
+//        palyazatModosito.pozicioTorol("Kitalált Tehetség pályázat", "resztvevoEmberek", "Ujabb valaki");
+//        palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "projektmenedzser", "Dr. Pornói Imre");
+//        palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "szakmaiVezeto", "Dr. Szabó Gyula");
+//        palyazatModosito.pozicioTorol("Kitalált Tehetség pályázat", "kezelo", "Dr. Szabó Gyula");
+//        palyazatModosito.kezdetModosito("Kitalált Tehetség pályázat", kezdet);
+//        palyazatModosito.vegModosito("Kitalált Tehetség pályázat", veg);
+//        palyazatModosito.osszkoltsegModosito("Kitalált Tehetség pályázat", 1200000.0)
+//        palyazatModosito.pozicioHozzaad("Ez csak egy proba", "resztvevoEmberek", "valaki");
+
 
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
 //        System.out.println(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki"));
@@ -145,9 +167,12 @@ public class Main {
 //        System.out.println(palyazatLekerdezesek.melyikEvbenKezdodott("2018"));
 //        System.out.println(palyazatLekerdezesek.kPlusFFelhivasok());
 //        System.out.println(palyazatLekerdezesek.oneroNelkul());
+//        System.out.println(palyazatLekerdezesek.kulcsszavakPalyazat("egyetemi"));
+        LocalDate ujKezdet = LocalDate.of(2017, 8, 1);
+        LocalDate ujVeg = LocalDate.of(2017, 9, 30);
+//        System.out.println(palyazatLekerdezesek.kezdoEvPeriodus(ujKezdet, ujVeg));
+//        System.out.println(palyazatLekerdezesek.osszegHatarok("onero", 0.0, 1200001.0));
 
-
-//        palyazatModosito.pozicioHozzaad("Ez csak egy proba", "resztvevoEmberek", "valaki");
 
 
 

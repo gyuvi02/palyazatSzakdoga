@@ -1,24 +1,17 @@
 package felhivasok;
 
-import com.github.davidmoten.guavamini.Lists;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-
-import com.mongodb.client.model.*;
-import org.bson.Document;
-import org.bson.conversions.Bson;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.TextSearchOptions;
 import palyazatkezelo.MongoAccess;
 
-import javax.swing.text.Caret;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
 
 public class FelhivasLekerdezes {
 
@@ -57,7 +50,7 @@ public class FelhivasLekerdezes {
         });
         return lista;
     }
-    //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni
+    //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
     public ArrayList<Felhivas> kesobbiHataridok(Date datum) {
         ArrayList<Felhivas> felhivasLista = felhivasokColl.find().into(new ArrayList<>());
         ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();

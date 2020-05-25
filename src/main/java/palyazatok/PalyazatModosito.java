@@ -5,6 +5,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,13 +37,13 @@ public class PalyazatModosito {
         palyazatokColl.updateOne(filter, ujElem);
     }
 
-    public void kezdetModosito(String cim, Date ujKezdet) {
+    public void kezdetModosito(String cim, LocalDate ujKezdet) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("kezdet", ujKezdet);
         palyazatokColl.updateOne(filter, ujElem);
     }
 
-    public void vegModosito(String cim, Date ujVeg) {
+    public void vegModosito(String cim, LocalDate ujVeg) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("veg", ujVeg);
         palyazatokColl.updateOne(filter, ujElem);

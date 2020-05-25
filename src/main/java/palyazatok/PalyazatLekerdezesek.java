@@ -1,20 +1,19 @@
 package palyazatok;
 
-import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import felhivasok.Felhivas;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.TextSearchOptions;
 import palyazatkezelo.MongoAccess;
 
-import javax.swing.text.Document;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
+import java.util.Arrays;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.or;
 
 public class PalyazatLekerdezesek {
 
@@ -67,19 +66,36 @@ public class PalyazatLekerdezesek {
         return palyazatokColl.find(eq("onero", 0)).into(new ArrayList<>());
     }
 
-    public ArrayList<String> kezdoEvPeriodus(LocalDate min, LocalDate max) {
-        ArrayList<String> felhivasLista = new ArrayList<>();
-        FindIterable<Palyazat> iterable = palyazatokColl.find(gte("kezdet", min));
-        MongoCursor<Palyazat> cursor = iterable.iterator();
-        while (cursor.hasNext()) {
-
-            felhivasLista.add(cursor.next().getPalyazatCim());
-        }
-        return felhivasLista;
+    //min es max - a ket datum kozott kezdodott palyazatokat adja vissza
+    public ArrayList<Palyazat> kezdoEvPeriodus(LocalDate min, LocalDate max) {
+        return palyazatokColl.aggregate(Arrays.asList(
+                Aggregates.match(Filters.gte("kezdet", min)),
+                Aggregates.match(Filters.lte("kezdet", max)))).into(new ArrayList<>());
 
     }
 
+    //min es max - a ket datum kozott kezdodott palyazatokat adja vissza
+    public ArrayList<Palyazat> vegeEvPeriodus(LocalDate min, LocalDate max) {
+        return palyazatokColl.aggregate(Arrays.asList(
+                Aggregates.match(Filters.gte("veg", min)),
+                Aggregates.match(Filters.lte("veg", max))))
+                .into(new ArrayList<>());
 
+    }
 
+    //3 adatbol lehet valasztani (onero, igenyeltTamogatas, tervezettOsszkoltseg - legordulo menu)
+    //a ket megadott osszeg koze eso palyazatokat adja vissza
+    public ArrayList<Palyazat> osszegHatarok(String kategoria, double min, double max) {
+        return palyazatokColl.aggregate(Arrays.asList(
+                Aggregates.match(Filters.gte(kategoria, min)),
+                Aggregates.match(Filters.lte(kategoria, max))))
+                .into(new ArrayList<>());
+    }
+
+    //kulcsszavak alapjan keres a palyazat cimeben, a leirasban es a megjegyzesekben
+    public ArrayList<Palyazat> kulcsszavakPalyazat(String kulcsszo) {
+        return palyazatokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).into(new ArrayList<>());
+    }
 
 }
+

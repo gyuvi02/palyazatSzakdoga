@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class RSSParser {
 
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-        MongoCollection<RssElemek> regiLetoltes = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
+    MongoCollection<RssElemek> regiLetoltes = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
 
     static final ArrayList<String> relevansTemak = new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság",
             "közművelődés", "művészet", "oktatás")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
