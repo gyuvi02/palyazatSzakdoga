@@ -54,19 +54,12 @@ public class Felhivas {
         felhivasokColl.insertOne(this);
     }
 
-    public void felhivasLetolto(String cim) {
-        Felhivas keresettFelhivas = felhivasokColl.find((eq("felhivasCim", cim))).first();
-        if (felhivasEllenorzo(keresettFelhivas)) {
-            System.out.println(keresettFelhivas.toString());
-        }else System.out.println("Nincs ilyen felhivas");
+    public ArrayList<Felhivas> felhivasLetolto(String cim) {
+        return felhivasokColl.find((eq("felhivasCim", cim))).into(new ArrayList<>()); //ha ures tombot ad vissza, akkor nem letezik
     }
 
-    public void felhivasTorol(String torlendoFelhivas) {
-        Bson filter = eq("felhivasCim", torlendoFelhivas);
-        if (felhivasEllenorzo(felhivasokColl.find(filter).first())){
-            felhivasokColl.deleteOne(filter);
-        }
-        else System.out.println("Nincs ilyen felhívás");
+    public long felhivasTorol(String torlendoFelhivas) {
+        return felhivasokColl.deleteOne(eq("felhivasCim", torlendoFelhivas)).getDeletedCount(); //ha a visszadott ertek 0, akkor nem tortent semmi
     }
 
     private boolean felhivasEllenorzo(Felhivas keresettFelhivas) {

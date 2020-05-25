@@ -7,7 +7,6 @@ import palyazatkezelo.MongoAccess;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.set;
@@ -16,7 +15,7 @@ public class PalyazatModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 
-    public void adatModosito(int mezo, String cim, String ujAdat) {
+    public long adatModosito(int mezo, String cim, String ujAdat) {
         String mezoStr = switch (mezo) {
             case 0 -> "palyazatCim";
             case 1 -> "aktualisFazis";
@@ -29,92 +28,87 @@ public class PalyazatModosito {
 
             default -> "regiCim";
         };
-        multiModosito(mezoStr, cim, ujAdat);
+        return multiModosito(mezoStr, cim, ujAdat);
     }
-    private void multiModosito(String mezo, String cim, String ujAdat) {
+    private long multiModosito(String mezo, String cim, String ujAdat) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set(mezo, ujAdat);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public void kezdetModosito(String cim, LocalDate ujKezdet) {
+    public long kezdetModosito(String cim, LocalDate ujKezdet) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("kezdet", ujKezdet);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public void vegModosito(String cim, LocalDate ujVeg) {
+    public long vegModosito(String cim, LocalDate ujVeg) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("veg", ujVeg);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public void kplusFModosito(String cim, boolean ujKplusF) {
+    public long kplusFModosito(String cim, boolean ujKplusF) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("KplusF", ujKplusF);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public void oneroModosito(String cim, Double ujOnero) {
+    public long oneroModosito(String cim, Double ujOnero) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("onero", ujOnero);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public void osszkoltsegModosito(String cim, Double ujOsszkoltseg) {
+    public long osszkoltsegModosito(String cim, Double ujOsszkoltseg) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("tervezettOsszkoltseg", ujOsszkoltseg);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public void igenyeltOsszegModosito(String cim, Double ujIgenyelt) {
+    public long igenyeltOsszegModosito(String cim, Double ujIgenyelt) {
         Bson filter = eq("palyazatCim", cim);
         Bson ujElem = set("igenyeltTamogatas", ujIgenyelt);
-        palyazatokColl.updateOne(filter, ujElem);
+        return palyazatokColl.updateOne(filter, ujElem).getModifiedCount();
     }
 
-    public boolean pozicioHozzaad(String cim, String pozicio, String nev) {
-        Palyazat palyazat = new Palyazat();
-        if (!palyazat.palyazatEllenorzo(palyazat.PalyazatLetolto(cim))) {
-            return false;
+    public long pozicioHozzaad(String cim, String pozicio, String nev) {
+        Bson filter = eq("palyazatCim", cim);
+        if (palyazatokColl.find(filter).into(new ArrayList<>()).size() == 0){
+            System.out.println("Nincs ilyen palyazat");
+            return 0;
         }
-        Bson ujElem = null;
-        ArrayList<String> resztvevoEmberek= palyazat.PalyazatLetolto(cim).getResztvevok().getResztvevoEmberek();
-        if (resztvevoEmberek.contains(nev)) {
+        Palyazat palyazat = palyazatokColl.find(filter).first();
+        if (palyazat.getResztvevok().getResztvevoEmberek().contains(nev)) {
             System.out.println("Mar szerepel a szakertok kozott ");
-            return false;
+            return 0;
         }
-        Bson filter = eq("palyazatCim", cim);
         if (pozicio.equals("resztvevoEmberek")) {
-            resztvevoEmberek.add(nev);
-            ujElem = set("resztvevok.resztvevoEmberek", resztvevoEmberek);
+            palyazat.getResztvevok().getResztvevoEmberek().add(nev);
+            return palyazatokColl.updateOne(filter, set("resztvevok.resztvevoEmberek", palyazat.getResztvevok().getResztvevoEmberek())).getModifiedCount();
         } else {
-            ujElem = set("resztvevok." + pozicio, nev);
+            return palyazatokColl.updateOne(filter, set("resztvevok." + pozicio, nev)).getModifiedCount();
         }
-        palyazatokColl.updateOne(filter, ujElem);
-        return true;
     }
-    public boolean pozicioTorol(String cim, String pozicio, String nev) {
-        Palyazat palyazat = new Palyazat();
-        if (!palyazat.palyazatEllenorzo(palyazat.PalyazatLetolto(cim))) {//ellenorzom, hogy letezik-e a palyazat, kulonben kivetelt dob
-            System.out.println("nincs ilyen palyazat");
-            return false;
-        }
-        Bson ujElem = null;
-        ArrayList<String> resztvevoEmberek= palyazat.PalyazatLetolto(cim).getResztvevok().getResztvevoEmberek();
+
+    public long pozicioTorol(String cim, String pozicio, String nev) {
         Bson filter = eq("palyazatCim", cim);
+        if (palyazatokColl.find(filter).into(new ArrayList<>()).size() == 0){
+            System.out.println("Nincs ilyen palyazat");
+            return 0;
+        }
+        Palyazat palyazat = palyazatokColl.find(filter).first();
         if (pozicio.equals("resztvevoEmberek")) {
+            ArrayList<String> resztvevoEmberek = palyazat.getResztvevok().getResztvevoEmberek();
             if (resztvevoEmberek.contains(nev)) {
                 resztvevoEmberek.remove(nev);
-                ujElem = set("resztvevok.resztvevoEmberek", resztvevoEmberek);
+                return palyazatokColl.updateOne(filter, set("resztvevok.resztvevoEmberek", resztvevoEmberek)).getModifiedCount();
             } else {
-                return false;
+                return 0;
             }
         } else {
-            ujElem = set("resztvevok." + pozicio, "");
+           return palyazatokColl.updateOne(filter, set("resztvevok." + pozicio, "")).getModifiedCount();
         }
-        palyazatokColl.updateOne(filter, ujElem);
-        return true;
     }
 
 

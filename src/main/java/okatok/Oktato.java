@@ -1,10 +1,8 @@
 package okatok;
 
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.pojo.annotations.BsonProperty;
-import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
@@ -36,6 +34,7 @@ public class Oktato {
         this.palyazatiTema = palyazatiTema;
     }
 
+
     public Oktato() {
     }
 
@@ -43,40 +42,24 @@ public class Oktato {
     MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
 
     public void oktatoFeltolto() {
-        if (oktatoEmailEllenorzes(this.email)) {
+        if (oktatoEmailEllenorzes(this.email) != 0) {
             oktatokColl.insertOne(this);
         }else
             System.out.println("Ezzel az email cimmel mar regisztráltal oktatót");
     }
 
-    private boolean oktatoEmailEllenorzes(String email) { //itt csak ezt ellenorzom az uj oktato hazzaadasanal, a GUI lehetoseget ad a reszletesebb ellenorzesre
-        FindIterable<Oktato> iterable = oktatokColl.find();
-        for (Oktato oktato : iterable) {
-            if (oktato.email.equals(email)) {
-                return false;
-            }
-        }
-        return true;
+    public int oktatoEmailEllenorzes(String email) { //itt csak ezt ellenorzom az uj oktato hazzaadasanal, a GUI lehetoseget ad a reszletesebb ellenorzesre
+        return oktatokColl.find(eq("email", email)).into(new ArrayList<>()).size(); //ha 0, akkor nincs ilyen email
     }
 
 //    A vegso valtozatban nem itt vegzem el az ellenorzest kulon-kulon, es egy Oktato objectet adok at
 //    Mivel keves az oktato, nem kizart, hogy legordulo menuvel meg tudom oldani a kivalasztast
     public Oktato oktatoLetolto(String oktato) {
-        Oktato keresettOktato = oktatokColl.find(eq("nev", oktato)).first();
-        if (keresettOktato == null){
-            System.out.println("Nincs ilyen oktató");
-            return null;
-        }
-        else
-            return keresettOktato;
+        return oktatokColl.find(eq("nev", oktato)).first(); //ha null a visszakapott ertek, akkor nem letezik
     }
 
-    public void oktatoTorol(String email) {
-        Bson filter = eq("email", email);
-        if (oktatokColl.find(filter).first() != null){
-            System.out.println(oktatokColl.deleteOne(filter));
-        }
-        else System.out.println("Nincs ilyen oktató");
+    public long oktatoTorol(String email) {
+        return oktatokColl.deleteOne(eq("email", email)).getDeletedCount(); //ha a visszadott ertek 0, akkor nem tortent semmi
     }
 
     public String getNev() {

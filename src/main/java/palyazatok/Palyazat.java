@@ -3,14 +3,13 @@ package palyazatok;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
 
 //csak a teszteleskor adok hozza teljes palyazatot
 public class Palyazat {
@@ -67,8 +66,7 @@ public class Palyazat {
 
 
     public void PalyazatFeltolto() {
-        Bson filter = eq("palyazatCim", this.getPalyazatCim()); //csak a cimet ellenorzom, nem lehet 2 egyforma cimu palyazat
-        if (palyazatEllenorzo(palyazatokColl.find(filter).first())) {
+        if (palyazatEllenorzo(this.getPalyazatCim()) != 0 ) {//csak a cimet ellenorzom, nem lehet 2 egyforma cimu palyazat
             System.out.println("Mar van ilyen palyazat");
         } else {
             palyazatokColl.insertOne(this);
@@ -80,11 +78,10 @@ public class Palyazat {
     }
 
     public void PalyazatTorlo(String palyazatcim) {
-        Bson filter = eq("palyazatCim", palyazatcim); //Mivel a cim egyedi, ezt ellenorzom torlesnel is
-        if (palyazatEllenorzo(palyazatokColl.find(filter).first())){
-            palyazatokColl.deleteOne(filter);
-        }
-        else System.out.println("Nincs ilyen pályázat");
+//        if (palyazatEllenorzo(palyazatokColl.find(eq("palyazatCim", palyazatcim)).first().getPalyazatCim()) != 0){ //Mivel a cim egyedi, ezt ellenorzom torlesnel is
+        System.out.println(palyazatokColl.deleteOne(eq("palyazatCim", palyazatcim)));
+//        }
+//        else System.out.println("Nincs ilyen pályázat");
     }
 
     public ArrayList<String> osszesPalyazat() {
@@ -105,8 +102,8 @@ public class Palyazat {
         return palyazatLista;
     }
 
-    public boolean palyazatEllenorzo(Palyazat keresettPalyazat) {
-        return keresettPalyazat != null;
+    public int palyazatEllenorzo(String cim) {
+        return palyazatokColl.find(eq("palyazatCim", cim)).into(new ArrayList<>()).size(); //ha 0, akkor nincs ilyen email
     }
 
 

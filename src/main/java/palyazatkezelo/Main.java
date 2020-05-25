@@ -5,6 +5,7 @@ import com.mongodb.client.model.IndexModel;
 import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.Indexes;
 import felhivasok.*;
+import okatok.Oktato;
 import okatok.OktatoLekerdezes;
 import okatok.OktatoModosito;
 import palyazatok.Palyazat;
@@ -26,7 +27,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
 //        MongoAccess.closeDatabase();
-//        Oktato oktato = new Oktato();
+        Felhivas felhivas = new Felhivas();
+        Oktato oktato = new Oktato();
 //        Oktato oktato = new Oktato("Dr. Szabó Gyula", "Szociálpedagógia",
 //                new ArrayList<String>(Arrays.asList("projektmenedzsment", "közgazdaságtan","módszertan")), "szabogy@ped.unideb.hu",
 //                "valami", new ArrayList<String>(Arrays.asList("gyermek", "ifjúság")));
@@ -69,6 +71,7 @@ public class Main {
 //        felhivasModosito.felhivasUjResztvevok("Saját horizont",
 //                new ArrayList<Oktato>(Arrays.asList(oktatok.oktatoLetolto("Dr. Szabó Gyula"),
 //                oktatok.oktatoLetolto("Dr. Balázs-Földi Emese"))));
+//        System.out.println(felhivas.felhivasLetolto("EcoSim Open verseny").size());
 
 //        Oktatoi adatok modositasa:
         OktatoModosito oktatoModosito = new OktatoModosito();
@@ -80,6 +83,9 @@ public class Main {
 //        oktatoModosito.oktatoUjTanszek("Dr. Szabó Gyula", "Szociálpedagógia");
 //        oktatoModosito.oktatoUjHonlap("Dr. Szabó Gyula", "https://gygyk.unideb.hu/munkatars/3425");
 //        oktatoModosito.oktatoUjEmail("Dr. Szabó Gyula", "szabogy@ped.unideb.hu");
+//        System.out.println(oktato.oktatoLetolto("Dr. Szabó Gyul"));
+//        System.out.println(oktato.oktatoTorol("sss"));
+//        System.out.println(oktato.oktatoEmailEllenorzes("nemletezo"));
 
 //        ArrayList<String> oKutatasiTema = new ArrayList<>(Arrays.asList("projektmenedzsment", "pályázatírás",
 //                "szociális munka", "cigányság", "ifjúság"));
@@ -101,6 +107,7 @@ public class Main {
 //        oktatoLekerdezes.kutatasiTemak("Szociálpedagógia");
 
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
+
 //        System.out.println(felhivasLekerdezes.felhivasListak());
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
@@ -135,27 +142,27 @@ public class Main {
 
 
         Palyazat palyazat = new Palyazat();
-//        Palyazat probaPalyazat = new Palyazat("Kitalált Tehetség pályázat", "elkezdett");
+        Palyazat probaPalyazat = new Palyazat("Kitalált Tehetség pályázat", "elkezdett");
 //        probaPalyazat.PalyazatFeltolto();
 //        System.out.println(palyazat.PalyazatLetolto("Valami nem stimmel"));
 //        System.out.println(palyazat.osszesPalyazat());
 //        System.out.println(palyazatListabolObject(palyazat.menedzserKereso("Dr. Szabó Gyula")));
 
         PalyazatModosito palyazatModosito = new PalyazatModosito();
-//        palyazatModosito.kplusFModosito("Valami nem stimmel", true);
-//        palyazatModosito.oneroModosito("Valami nem stimmel", 0.0);
-//        palyazatModosito.igenyeltOsszegModosito("Valami nem stimmel", 98000000.0);
+//        palyazatModosito.kplusFModosito("Kitalált Tehetség pályázat", false);
+//        palyazatModosito.oneroModosito("Kitalált Tehetség pályázat", 0.0);
+//        System.out.println(palyazatModosito.igenyeltOsszegModosito("Kitalált Tehetség pályázat", 98000000.0));
 //        palyazatModosito.adatModosito(0,"Most mar stimmel", "Kitalált Tehetség pályázat");
-//        palyazatModosito.adatModosito(2,"Kitalált Tehetség pályázat", "Főiskolai és egyetemi hallgatók számára kiírt, tehetséggondozás");
-//        palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "resztvevoEmberek", "Ujabb valaki");
-//        palyazatModosito.pozicioTorol("Kitalált Tehetség pályázat", "resztvevoEmberek", "Ujabb valaki");
-//        palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "projektmenedzser", "Dr. Pornói Imre");
-//        palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "szakmaiVezeto", "Dr. Szabó Gyula");
-//        palyazatModosito.pozicioTorol("Kitalált Tehetség pályázat", "kezelo", "Dr. Szabó Gyula");
-//        palyazatModosito.kezdetModosito("Kitalált Tehetség pályázat", kezdet);
-//        palyazatModosito.vegModosito("Kitalált Tehetség pályázat", veg);
-//        palyazatModosito.osszkoltsegModosito("Kitalált Tehetség pályázat", 1200000.0)
-//        palyazatModosito.pozicioHozzaad("Ez csak egy proba", "resztvevoEmberek", "valaki");
+//        System.out.println(palyazatModosito.adatModosito(2,"Kitalált Tehetség pályázat", "Főiskolai és egyetemi hallgatók számára kiírt, tehetséggondozás"));
+//        System.out.println(palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "resztvevoEmberek", "Ujabb valaki"));
+//        System.out.println(palyazatModosito.pozicioTorol("Kitalált Tehetség pályázat", "resztvevoEmberek", "Ujabb valaki"));
+//        System.out.println(palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "projektmenedzser", "Dr. Pornói Imre"));
+//        System.out.println(palyazatModosito.pozicioHozzaad("Kitalált Tehetség pályázat", "szakmaiVezeto", "Dr. Szabó Gyula"));
+//        System.out.println(palyazatModosito.pozicioTorol("Kitalált Tehetség pályázat", "kezelo", "Dr. Szabó Gyula"));
+//        System.out.println(palyazatModosito.kezdetModosito("Kitalált Tehetség pályázat", kezdet));
+//        System.out.println(palyazatModosito.vegModosito("Kitalált Tehetség pályázat", veg));
+//        System.out.println(palyazatModosito.osszkoltsegModosito("Kitalált Tehetség pályázat", 1200000.0));
+//        System.out.println(palyazatModosito.pozicioHozzaad("Ez csak egy proba", "resztvevoEmberek", "valaki"));
 
 
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
