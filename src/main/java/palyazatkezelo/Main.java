@@ -116,7 +116,6 @@ public class Main {
 //        }
 //        LocalDate ujDatum = LocalDate.of(2020,6, 30);
 //        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum).size());
-//        felhivasLekerdezes.automatikusTorles();
 
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
 
@@ -191,6 +190,7 @@ public class Main {
         //Az uj felhivasok lekerdezese:
 
 //        felhivasParser.felhivasKeszito();
+        felhivasLekerdezes.automatikusTorles();
 
     }
 
