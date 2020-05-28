@@ -3,7 +3,6 @@ package felhivasok;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.pojo.annotations.BsonProperty;
-import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;

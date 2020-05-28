@@ -38,6 +38,11 @@ public class Main {
         RSSParser rssParser = new RSSParser();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
 
+        //a legutobb letoltott felhivasok reszletes lekerdezese
+        for (String cim : felhivasParser.legutobbiFelhivasok()) {
+            System.out.println(felhivas.felhivasLetolto(cim));
+        }
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate kezdet = LocalDate.of(2017, 9, 1);
         LocalDate veg = LocalDate.of(2018, 6, 30);
@@ -190,10 +195,11 @@ public class Main {
         //Az uj felhivasok lekerdezese:
 
 //        felhivasParser.felhivasKeszito();
-        felhivasLekerdezes.automatikusTorles();
+//        felhivasLekerdezes.automatikusTorles();
 
     }
 
+    //eredetileg String tomboket adtak vissza a metodusok, ezekeknek az atalakitasahoz kellett, de a MongoDB-ben egyszerubb dokumentumokat visszakapni a lekerdezesekkel
     public static void felhivasListabolObject(List<String> lista) {
         Felhivas felhivas = new Felhivas();
         for (String cim : lista) {
