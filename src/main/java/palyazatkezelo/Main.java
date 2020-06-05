@@ -27,7 +27,11 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
 //        MongoAccess.closeDatabase();
-        Felhivas felhivas = new Felhivas();
+//        Felhivas felhivas = new Felhivas("Ez itt egy felhivas", "Magyar Tudomanyos Akademia", "tudomanyos palyazat", "mindenki",
+//                "06/05/2020", "http://www.pafi.hu/_pafi/palyazat.nsf/767f6c3e957e6df9c12572e7004a1842/e95f3a94e56ed0b9c12585610062ed1e?OpenDocument",
+//                "Ez lenne itt a reszletes leiras", new ArrayList<>(Arrays.asList("dij", "tudomany")),
+//                new ArrayList<>(Arrays.asList("Dr. Szabó Gyula")), LocalDate.of(2020, 5, 1));
+//        felhivas.felhivasFeltolto();
         Oktato oktato = new Oktato();
 //        Oktato oktato = new Oktato("Dr. Szabó Gyula", "Szociálpedagógia",
 //                new ArrayList<String>(Arrays.asList("projektmenedzsment", "közgazdaságtan","módszertan")), "szabogy@ped.unideb.hu",
@@ -113,6 +117,7 @@ public class Main {
 
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
 
+//        felhivasLekerdezes.egyszerimodositas();
 //        System.out.println(felhivasLekerdezes.felhivasListak());
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
@@ -194,7 +199,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito();
 //        felhivasLekerdezes.automatikusTorles();
 
     }

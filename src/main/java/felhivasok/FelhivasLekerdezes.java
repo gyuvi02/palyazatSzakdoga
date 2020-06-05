@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.or;
 import static com.mongodb.client.model.Filters.lte;
 
 public class FelhivasLekerdezes {
@@ -59,6 +58,15 @@ public class FelhivasLekerdezes {
         felhivasokColl.deleteMany(lte("torles", LocalDate.now()));
     }
 
+    //ez a modosito utolag adta hozza a beadasi hataridobol kiszamitott torlesi idopontot a regi felhivasokhoz
+    //updateMany kell, mert vannak egyforma cimu palyazatok
+//    public void egyszerimodositas() {
+//        for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
+//        felhivasokColl.updateMany(eq("felhivasCim", felhivas.getFelhivasCim()),
+//                new Document("$set", new Document("torles", parseDate(felhivas.getBeadasiHatarido()).plusDays(14))));
+//        }
+//    }
+
     //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
     public ArrayList<Felhivas> kesobbiHataridok(LocalDate datum) {
         ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
@@ -76,7 +84,8 @@ public class FelhivasLekerdezes {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy. MMMM dd.");
             return LocalDate.parse(date, inputFormat);
         } catch (Exception e) {
-            return null;
+            return LocalDate.of(2030, 12, 31);
+//            return null; //majd ez alapjan torlunk lte felhasznalasaval, inkabb egy kesobbi datumot adok meg
         }
     }
 

@@ -6,6 +6,7 @@ import okatok.Oktato;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -39,4 +40,9 @@ public class FelhivasModosito {
         felhivasok.updateOne(filter, ujElem);
     }
 
+    public void felhivasUjTorles(String cim, LocalDate ujDatum) {
+        Bson filter = eq("felhivasCim", cim);
+        Bson ujElem = set("torles", ujDatum);
+        felhivasok.updateOne(filter, ujElem);
+    }
 }
