@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.or;
+import static com.mongodb.client.model.Filters.lte;
 
 public class FelhivasLekerdezes {
 
@@ -52,15 +53,10 @@ public class FelhivasLekerdezes {
         return lista;
     }
 
-//    ket hettel a beadasi hatarido lejarta utan automatikusan torlodnek a felhivasok
-//    ezt a metodust a programbol valo kilepeskor futtatjuk le
+//    A felhivas dokumentumokban torles neven tarolt datumot nezzuk vegig
+//    ha ez kevesebb, mint a mai datum, akkor toroljuk az adatbazisbol
     public void automatikusTorles() {
-        LocalDate hatarido = LocalDate.now().minusDays(14);
-        for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
-            if (hatarido.isAfter(parseDate(felhivas.getBeadasiHatarido()))){
-                System.out.println(felhivasokColl.deleteOne(eq("felhivasCim", felhivas.getFelhivasCim())));
-            }
-        }
+        felhivasokColl.deleteMany(lte("torles", LocalDate.now()));
     }
 
     //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
@@ -75,7 +71,7 @@ public class FelhivasLekerdezes {
     }
 
 
-    private static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) {
         try {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy. MMMM dd.");
             return LocalDate.parse(date, inputFormat);

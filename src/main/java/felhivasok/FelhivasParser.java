@@ -13,6 +13,7 @@ import palyazatkezelo.MongoAccess;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -41,11 +42,12 @@ public class FelhivasParser {
             }
 
             String date = datumKeszito(adatok[2]);
-            System.out.println(elem.getCategory());
+//            System.out.println(elem.getCategory());
             String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
             ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory()) ;
             Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
-                    reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak));
+                    reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak),
+                    torlesSzamolo(date));
             legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
             keszFelhivas.felhivasFeltolto();
         }
@@ -85,6 +87,10 @@ public class FelhivasParser {
             datumStr = get2; //ha pl. "folyamatosan" szerepel a szovegben
         }
         return datumStr;
+    }
+    //itt szamoljuk ki, mikor torolheto a felhivas, es ez bekerul minden dokumentumba
+    private LocalDate torlesSzamolo(String datum) {
+        return FelhivasLekerdezes.parseDate(datum).plusDays(14);
     }
 
     private ArrayList<String> lehetsegesResztvevok(ArrayList<String> fixKategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal

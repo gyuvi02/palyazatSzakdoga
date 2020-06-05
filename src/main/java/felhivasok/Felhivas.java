@@ -5,6 +5,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import palyazatkezelo.MongoAccess;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
@@ -28,10 +29,12 @@ public class Felhivas {
     private ArrayList<String> kategoriak;
     @BsonProperty(value = "lehetsegesResztvevok")
     private ArrayList<String> lehetsegesResztvevok;
+    @BsonProperty(value = "torles")
+    private LocalDate torles;
 
     public Felhivas(String felhivasCim, String felhivasKiiro, String targymutato, String kiPalyazhat,
                     String beadasiHatarido, String felhivasLink, String reszletesLeiras,
-                    ArrayList<String> kategoriak, ArrayList<String> lehetsegesResztvevok) {
+                    ArrayList<String> kategoriak, ArrayList<String> lehetsegesResztvevok, LocalDate torles ) {
         this.felhivasCim = felhivasCim;
         this.felhivasKiiro = felhivasKiiro;
         this.targymutato = targymutato;
@@ -41,6 +44,7 @@ public class Felhivas {
         this.reszletesLeiras = reszletesLeiras;
         this.kategoriak = kategoriak;
         this.lehetsegesResztvevok = lehetsegesResztvevok;
+        this.torles = torles;
     }
 
     public Felhivas() {
@@ -144,6 +148,14 @@ public class Felhivas {
 
     public void setLehetsegesResztvevok(ArrayList<String> lehetsegesResztvevok) {
         this.lehetsegesResztvevok = lehetsegesResztvevok;
+    }
+
+    public LocalDate getTorles() {
+        return torles;
+    }
+
+    public void setTorles(LocalDate torles) {
+        this.torles = torles;
     }
 
     @Override

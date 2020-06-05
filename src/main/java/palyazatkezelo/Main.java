@@ -39,9 +39,9 @@ public class Main {
         FelhivasModosito felhivasModosito = new FelhivasModosito();
 
         //a legutobb letoltott felhivasok reszletes lekerdezese
-        for (String cim : felhivasParser.legutobbiFelhivasok()) {
-            System.out.println(felhivas.felhivasLetolto(cim));
-        }
+//        for (String cim : felhivasParser.legutobbiFelhivasok()) {
+//            System.out.println(felhivas.felhivasLetolto(cim));
+//        }
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate kezdet = LocalDate.of(2017, 9, 1);
@@ -119,7 +119,7 @@ public class Main {
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //        }
-//        LocalDate ujDatum = LocalDate.of(2020,6, 30);
+//        LocalDate ujDatum = LocalDate.of(2020,6, 4);
 //        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum).size());
 
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
@@ -194,7 +194,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-//        felhivasParser.felhivasKeszito();
+        felhivasParser.felhivasKeszito();
 //        felhivasLekerdezes.automatikusTorles();
 
     }
