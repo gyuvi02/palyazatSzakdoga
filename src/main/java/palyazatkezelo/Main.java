@@ -50,9 +50,9 @@ public class Main {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         LocalDate kezdet = LocalDate.of(2017, 9, 1);
         LocalDate veg = LocalDate.of(2018, 6, 30);
-        PalyazatiResztvevok resztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika",
-                "Dr. Szabó Gyula", "Csőke Julianna",
-                new ArrayList<String>(Arrays.asList("Dr. Gortka-Rákó Erzsébet")));
+//        PalyazatiResztvevok resztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika",
+//                "Dr. Szabó Gyula", "Csőke Julianna",
+//                new ArrayList<String>(Arrays.asList("Dr. Gortka-Rákó Erzsébet")));
 
 
         PalyazatiResztvevok aResztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
@@ -199,7 +199,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-//        felhivasParser.felhivasKeszito();
+        felhivasParser.felhivasKeszito();
 //        felhivasLekerdezes.automatikusTorles();
 
     }

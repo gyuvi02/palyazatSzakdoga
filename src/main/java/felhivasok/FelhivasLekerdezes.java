@@ -55,7 +55,7 @@ public class FelhivasLekerdezes {
 //    A felhivas dokumentumokban torles neven tarolt datumot nezzuk vegig
 //    ha ez kevesebb, mint a mai datum, akkor toroljuk az adatbazisbol
     public void automatikusTorles() {
-        felhivasokColl.deleteMany(lte("torles", LocalDate.now()));
+        System.out.println(felhivasokColl.deleteMany(lte("torles", LocalDate.now())));
     }
 
     //ez a modosito utolag adta hozza a beadasi hataridobol kiszamitott torlesi idopontot a regi felhivasokhoz

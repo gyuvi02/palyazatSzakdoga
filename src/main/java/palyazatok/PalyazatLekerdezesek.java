@@ -74,7 +74,7 @@ public class PalyazatLekerdezesek {
 
     }
 
-    //min es max - a ket datum kozott kezdodott palyazatokat adja vissza
+    //min es max - a ket datum kozott befejezodott palyazatokat adja vissza
     public ArrayList<Palyazat> vegeEvPeriodus(LocalDate min, LocalDate max) {
         return palyazatokColl.aggregate(Arrays.asList(
                 Aggregates.match(Filters.gte("veg", min)),

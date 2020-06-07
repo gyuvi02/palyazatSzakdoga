@@ -26,7 +26,7 @@ public class MongoAccess {
             connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
         } catch (MongoConfigurationException e) {
             System.out.println("Problema a kapcsolattal");
-            return null;
+            //
         }
 
         if (mongoAccess == null) {
