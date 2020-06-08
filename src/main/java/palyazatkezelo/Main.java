@@ -124,13 +124,13 @@ public class Main {
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //        }
-//        LocalDate ujDatum = LocalDate.of(2020,6, 4);
+//        LocalDate ujDatum = LocalDate.of(2020,5, 27 );
 //        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum).size());
 
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
 
 //        kereses kulcsszavak segitsegevel:
-//        System.out.println(felhivasLekerdezes.kulcsszavakFelhivas("egyetem főiskola").size());
+//        System.out.println(felhivasLekerdezes.kulcsszavakFelhivas("ifjúság").size());
 
         //osszetett indexek letrehozasa - Felhivasok
         //        felhivasokColl.createIndexes(Lists.newArrayList(
@@ -148,10 +148,12 @@ public class Main {
 //                        Indexes.text("leiras"), Indexes.text("megjegyzes")),
 //                        new IndexOptions().defaultLanguage("hu")
 //                )));
+//        felhivasLekerdezes.cursorTest();
+
 
 
         Palyazat palyazat = new Palyazat();
-        Palyazat probaPalyazat = new Palyazat("Kitalált Tehetség pályázat", "elkezdett");
+//        Palyazat probaPalyazat = new Palyazat("Kitalált Tehetség pályázat", "elkezdett");
 //        probaPalyazat.PalyazatFeltolto();
 //        System.out.println(palyazat.PalyazatLetolto("Valami nem stimmel"));
 //        System.out.println(palyazat.osszesPalyazat());
@@ -190,8 +192,6 @@ public class Main {
 //        System.out.println(palyazatLekerdezesek.osszegHatarok("onero", 0.0, 1200001.0));
 
 
-
-
         //indexek torlese
         //felhivasokColl.dropIndex("reszletesLeiras_text"); //az index nevet a createIndex altal visszaadott string mondja meg, a field neve + _text
 
@@ -199,7 +199,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito();
 //        felhivasLekerdezes.automatikusTorles();
 
     }

@@ -6,13 +6,13 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.TextSearchOptions;
 import palyazatkezelo.MongoAccess;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.lte;
+import static com.mongodb.client.model.Filters.*;
 
 public class FelhivasLekerdezes {
 
@@ -86,6 +86,13 @@ public class FelhivasLekerdezes {
         } catch (Exception e) {
             return LocalDate.of(2030, 12, 31);
 //            return null; //majd ez alapjan torlunk lte felhasznalasaval, inkabb egy kesobbi datumot adok meg
+        }
+    }
+
+    public void cursorTest() {
+        ArrayList<Felhivas> object = felhivasokColl.find(eq("felhivasKiiro", "Emberi Erőforrások Minisztériuma")).limit(2).into(new ArrayList<>());
+        for (Felhivas felhivas : object) {
+            System.out.println(felhivas.getFelhivasCim());
         }
     }
 
