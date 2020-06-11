@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="500" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: lavender; -fx-border-width: 3; -fx-border-color: darkgreen" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.kezdooldalController">
+   <bottom>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Új pályázati felhívások ellenőrzése" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Label>
+   </bottom>
+   <right>
+      <ImageView fitHeight="298.0" fitWidth="309.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets right="20.0" />
+         </BorderPane.margin>
+         <image>
+            <Image url="@images/egyetemlogo.png" />
+         </image>
+      </ImageView>
+   </right>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="116.0" minHeight="10.0" prefHeight="83.99999237060547" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="191.00000762939453" minHeight="10.0" prefHeight="191.00000762939453" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Komplex pályázatkezelő program " textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Century Gothic" size="31.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Gyermeknevelési és Gyógypedagógiai Kar" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pályázati felhívások"
+                          textAlignment="CENTER" onAction="#felhivasFooldalra">
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="60.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Kari pályázatok" onAction="#palyazatFooldalra">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Oktatók" onAction="#oktatoFooldalra">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Kilépés" textAlignment="CENTER" onAction="#menuKilepes">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="60.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Century Gothic" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="120.0" />
+               </padding>
+            </VBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

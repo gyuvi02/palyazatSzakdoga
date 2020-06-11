@@ -176,6 +176,7 @@ public class Main {
 
 
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
+        System.out.println(palyazatLekerdezesek.fazisLekerdezes("elkezdett"));
 //        System.out.println(palyazatLekerdezesek.resztvevoKereso("resztvevoEmberek","Ujabb valaki"));
 //        System.out.println(palyazatLekerdezesek.resztvevoKereso("projektmenedzser", "Dr. Pornói Imre"));
 //        System.out.println(palyazatLekerdezesek.resztvevoKereso("összes", "Dr. Szabó Gyula"));
@@ -198,7 +199,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito();
 //        felhivasLekerdezes.automatikusTorles();
 
     }
