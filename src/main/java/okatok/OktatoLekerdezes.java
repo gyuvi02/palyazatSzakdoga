@@ -105,10 +105,13 @@ public class OktatoLekerdezes{
     }
 
     //tanszeki szinten osszegzi az egyes oktatok aktivitasat
-    public HashSet<Palyazat> tanszekiAktivitas(String tanszek, String holKeressen) {
-        HashSet<Palyazat> erintettPalyazatok = new HashSet<>();
+    public HashSet<String> tanszekiAktivitas(String tanszek, String holKeressen) {
+            HashSet<String> erintettPalyazatok = new HashSet<>();
         for (Oktato oktato : oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>())) {
-            erintettPalyazatok.addAll(oktatoiAktivitas(oktato.getNev(), holKeressen));
+            ArrayList<Palyazat> oktatoPalyazatai = oktatoiAktivitas(oktato.getNev(), holKeressen);
+            for (Palyazat palyazat : oktatoPalyazatai) {
+                erintettPalyazatok.add(palyazat.getPalyazatCim());
+            }
         }
         return erintettPalyazatok;
     }

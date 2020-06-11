@@ -21,7 +21,7 @@ public class RSSParser {
     MongoCollection<RssElemek> regiLetoltes = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
 
     static final ArrayList<String> relevansTemak = new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság",
-            "közművelődés", "művészet", "oktatás")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
+            "közművelődés", "művészet", "oktatás", "sport")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
             //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";

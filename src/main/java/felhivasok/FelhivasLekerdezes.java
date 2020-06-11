@@ -89,11 +89,4 @@ public class FelhivasLekerdezes {
         }
     }
 
-    public void cursorTest() {
-        ArrayList<Felhivas> object = felhivasokColl.find(eq("felhivasKiiro", "Emberi Erőforrások Minisztériuma")).limit(2).into(new ArrayList<>());
-        for (Felhivas felhivas : object) {
-            System.out.println(felhivas.getFelhivasCim());
-        }
-    }
-
 }

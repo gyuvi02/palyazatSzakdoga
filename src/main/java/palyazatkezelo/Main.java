@@ -101,8 +101,8 @@ public class Main {
 //        ArrayList<String> oPalyazatiTema = new ArrayList<>(Arrays.asList("ifjúság", "média"));
 ////        oktatok.oktatoFeltolto(new Oktato("Kocsis Péter Csaba", "Szociálpedagógia",oKutatasiTema,
 //                "kocspet@gmail.com", "https://gygyk.unideb.hu/hu/kocsis-peter-csaba-0#overlay-context=munkatars/6270", oPalyazatiTema));
-//        System.out.println(oktatok.oktatoLetolto("Dr. Szabó Gyula"));
-//        oktatok.oktatoTorol("Dr. Pornói Imre");
+//        System.out.println(oktato.oktatoLetolto("Dr. Szabó Gyula"));
+//        oktato.oktatoTorol("Dr. Pornói Imre");
 
         OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
 //        System.out.println(oktatoLekerdezes.oktatoListak("Szociálpedagógia"));
@@ -124,7 +124,7 @@ public class Main {
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //        }
-//        LocalDate ujDatum = LocalDate.of(2020,5, 27 );
+//        LocalDate ujDatum = LocalDate.of(2020,5, 28 );
 //        System.out.println(felhivasLekerdezes.kesobbiHataridok(ujDatum).size());
 
 //        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
@@ -148,7 +148,6 @@ public class Main {
 //                        Indexes.text("leiras"), Indexes.text("megjegyzes")),
 //                        new IndexOptions().defaultLanguage("hu")
 //                )));
-//        felhivasLekerdezes.cursorTest();
 
 
 
@@ -199,7 +198,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-//        felhivasParser.felhivasKeszito();
+        felhivasParser.felhivasKeszito();
 //        felhivasLekerdezes.automatikusTorles();
 
     }
