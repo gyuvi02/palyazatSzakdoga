@@ -12,7 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="500" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: lavender; -fx-border-width: 3; -fx-border-color: darkgreen" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.kezdooldalController">
+<BorderPane maxHeight="500" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: lavender;
+            -fx-border-width: 3; -fx-border-color: darkgreen" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.kezdooldalController">
    <bottom>
       <Label alignment="CENTER" contentDisplay="CENTER" text="Új pályázati felhívások ellenőrzése" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <opaqueInsets>
