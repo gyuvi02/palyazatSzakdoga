@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="500" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: lavender;
-            -fx-border-width: 3; -fx-border-color: darkgreen" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.kezdooldalController">
+<BorderPane maxHeight="500" maxWidth="800" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" stylesheets="@foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.kezdooldalController">
    <bottom>
       <Label alignment="CENTER" contentDisplay="CENTER" text="Új pályázati felhívások ellenőrzése" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <opaqueInsets>
@@ -56,7 +47,7 @@
                   <Insets top="10.0" />
                </padding>
                <font>
-                  <Font name="Century Gothic" size="31.0" />
+                  <Font name="Century Gothic Bold" size="31.0" />
                </font>
             </Label>
             <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Gyermeknevelési és Gyógypedagógiai Kar" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
@@ -64,13 +55,12 @@
                   <Insets top="60.0" />
                </GridPane.margin>
                <font>
-                  <Font name="Century Gothic" size="24.0" />
+                  <Font name="Century Gothic Bold" size="24.0" />
                </font>
             </Label>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pályázati felhívások"
-                          textAlignment="CENTER" onAction="#felhivasFooldalra">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#felhivasFooldalra" text="Pályázati felhívások" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="15.0" top="60.0" />
                      </VBox.margin>
@@ -78,7 +68,7 @@
                         <Font name="Century Gothic" size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Kari pályázatok" onAction="#palyazatFooldalra">
+                  <Button mnemonicParsing="false" onAction="#palyazatFooldalra" text="Kari pályázatok">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -86,7 +76,7 @@
                         <Font name="Century Gothic" size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Oktatók" onAction="#oktatoFooldalra">
+                  <Button mnemonicParsing="false" onAction="#oktatoFooldalra" text="Oktatók">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -94,7 +84,7 @@
                         <Font name="Century Gothic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Kilépés" textAlignment="CENTER" onAction="#menuKilepes">
+                  <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#menuKilepes" text="Kilépés" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="10.0" top="60.0" />
                      </VBox.margin>

@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: lavender; -fx-border-width: 3; -fx-border-color: darkgreen"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.gyula.oktatoFooldalController">
+<BorderPane prefHeight="600.0" prefWidth="950.0" stylesheets="@foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.oktatoFooldalController">
    <bottom>
       <HBox alignment="CENTER">
       <Button fx:id="visszaOktatokrol" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#visszaKezdooldalra" text="Vissza a főoldalra" BorderPane.alignment="CENTER">

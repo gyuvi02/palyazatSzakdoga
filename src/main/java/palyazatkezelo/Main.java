@@ -120,7 +120,6 @@ public class Main {
 //        felhivasLekerdezes.egyszerimodositas();
 //        System.out.println(felhivasLekerdezes.felhivasListak());
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
-//        System.out.println(felhivasLekerdezes.palyazatiKategoriaAlapjan("oktatás").size());
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //        }
