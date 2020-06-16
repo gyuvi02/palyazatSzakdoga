@@ -198,7 +198,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-//        felhivasParser.felhivasKeszito();
+//        felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
 //        felhivasLekerdezes.automatikusTorles();
 
     }

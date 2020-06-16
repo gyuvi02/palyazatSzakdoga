@@ -8,19 +8,51 @@
 
 .button{
     -fx-font-size: 19;
-    -fx-background-color: darkgreen  /*#D3E5F1,*/
-    /*linear-gradient(#fafdfe, #e8f5fc),*/
-    /*linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);*/
+    -fx-font-family: Bahnschrift;
+    -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
     -fx-background-insets: 0,1,2;
-    -fx-background-radius:10;
+    -fx-background-radius:8;
     -fx-padding: 3 20 3 20;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 7,0,0,3 );
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7,0,0,3 );
 }
 
 .button:hover{
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
+}
+
+.label:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+  }
+
+.tooltip {
+    -fx-show-delay: 300ms;
+}
+
+.combo-box {
+    -fx-font-size: 18;
+    -fx-font-family: Bahnschrift;
+    -fx-background-color: darkgreen
+    linear-gradient(#52f227, #e8f5fc),
+    linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius:8;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7,0,0,3 );
+}
+
+.menu-button {
+    -fx-font-size: 18;
+    -fx-font-family: Bahnschrift;
+    -fx-background-color: darkgreen
+    linear-gradient(#52f227, #e8f5fc),
+    linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius:8;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7,0,0,3 );
 }

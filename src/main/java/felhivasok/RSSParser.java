@@ -9,8 +9,6 @@ import com.rometools.rome.io.XmlReader;
 import org.bson.Document;
 import palyazatkezelo.MongoAccess;
 
-import javax.net.ssl.SSLException;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,10 +16,10 @@ import java.util.Arrays;
 public class RSSParser {
 
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<RssElemek> regiLetoltes = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
+    MongoCollection<RssElemek> regiLetoltesColl = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
 
     static final ArrayList<String> relevansTemak = new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság",
-            "közművelődés", "művészet", "oktatás", "sport")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
+            "közművelődés", "művészet", "oktatás", "sport", "kutatás-fejlesztés")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
             //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";
@@ -65,20 +63,20 @@ public class RSSParser {
 
             }
             if (elozoRSSEllenorzes(feedLista)) {
-                regiLetoltes.insertOne(feedLista.get(0));
+                regiLetoltesColl.insertOne(feedLista.get(0));
                 return feedLista;
             } else {
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("Hiba az RSS beolvasas soran");
+            System.out.println("Hiba az RSS beolvasas soran\n" + e.getMessage());
             return null;
         }
     }
     //Az RSS-nek nincs azonositoja, nem tudom massal ellenorizni elozetesen, mint az elso elem cimevel, hogy ezt mar hasznaltam-e
     private boolean elozoRSSEllenorzes(ArrayList<RssElemek> feedLista) {
-        if (!feedLista.isEmpty() && regiLetoltes.find().sort(new Document("_id", -1)).first() != null) { //Ha ures a feedLista, nincs szukseg az ellenorzesre
-            RssElemek regiElsoElem = regiLetoltes.find().sort(new Document("_id", -1)).first();            //ha pedig nincs elmentve regi letoltott RSS elem, akkor nem lehetseges
+        if (!feedLista.isEmpty() && regiLetoltesColl.find().sort(new Document("_id", -1)).first() != null) { //Ha ures a feedLista, nincs szukseg az ellenorzesre
+            RssElemek regiElsoElem = regiLetoltesColl.find().sort(new Document("_id", -1)).first();            //ha pedig nincs elmentve regi letoltott RSS elem, akkor nem lehetseges
             System.out.println("A regi elso elem cime: " + regiElsoElem.getTitle());
             System.out.println("Mostani feedLista elso elemenek cime: " + feedLista.get(0).getTitle().toString() + "\n");
             System.out.println(regiElsoElem.getTitle().equals(feedLista.get(0).getTitle()));
@@ -86,11 +84,16 @@ public class RSSParser {
                 feedLista.clear(); //uresen kuldjuk tovabb, igy nem tolti le meg egyszer a felhivasokat
                 return false;
             } else {
-                regiLetoltes.insertOne(feedLista.get(0));
+                regiLetoltesColl.insertOne(feedLista.get(0));
                 return true;
             }
         }
         return true;
+    }
+
+    //Letoltesi hiba eseten ezzel szurunk be egy ures dokumentumot, hogy ne vegye mar letoltottnek a hibat okozo RSS-t
+    public void ureBeszuras() {
+        regiLetoltesColl.insertOne(new RssElemek("", "a", "", new ArrayList<>()));
     }
 
     private boolean rssEllenorzo(ArrayList<String > kategoriak) {

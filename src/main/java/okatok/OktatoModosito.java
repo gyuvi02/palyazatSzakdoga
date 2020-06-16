@@ -47,7 +47,7 @@ public class OktatoModosito {
 
     //ha a boolean true, akkor hozzadunk, ha false, akkor torlunk a tombbol
     //tombben adjuk at a temakat, hogy egyszerre tobbet is tudjunk
-    public void tombModosito(boolean hozzaad, String tomb, String nev, ArrayList<String > modositando) {//a tomb csak kutatasiTema vagy palyazatiTema lehet csak (legordulo menu)
+    public void tombModosito(boolean hozzaad, String tomb, String nev, ArrayList<String > modositando) {//a tomb csak kutatasiTema vagy palyazatiTema lehet (legordulo menu)
         Oktato oktato = new Oktato();
         ArrayList<String> kutatasi;
         if (tomb.equals("kutatasiTema")) {

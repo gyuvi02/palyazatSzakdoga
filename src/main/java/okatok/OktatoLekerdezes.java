@@ -81,7 +81,7 @@ public class OktatoLekerdezes{
         return aktivitas;
     }
 
-    //ezzel kerdzzuk le egy palyazat osszes resztvevojet
+    //ezzel kerdezzuk le egy palyazat osszes resztvevojet
     private HashSet<String> resztvevoHash(Palyazat palyazat) {
         HashSet<String> resztvevok = new HashSet<>();
         resztvevok.add(palyazat.getResztvevok().getProjektmenedzser());

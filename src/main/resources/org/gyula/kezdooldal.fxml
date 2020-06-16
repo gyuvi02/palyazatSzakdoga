@@ -68,7 +68,7 @@
                         <Font name="Century Gothic" size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#palyazatFooldalra" text="Kari pályázatok">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#palyazatFooldalra" text="Kari pályázatok" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -76,7 +76,7 @@
                         <Font name="Century Gothic" size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#oktatoFooldalra" text="Oktatók">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#oktatoFooldalra" text="Oktatók" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

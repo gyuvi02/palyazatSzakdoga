@@ -2,6 +2,7 @@ package felhivasok;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LegutobbiFelhivasok {
     private ArrayList<String> legutobbi;

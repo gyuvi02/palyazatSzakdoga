@@ -5,6 +5,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class FelhivasParser {
@@ -22,9 +24,9 @@ public class FelhivasParser {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<LegutobbiFelhivasok> legutobbiColl = palyazatDB.getCollection("LegutobbiFelhivasok", LegutobbiFelhivasok.class);
 
-    public void felhivasKeszito() throws IOException {
+    public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
         ArrayList<String> legutobbiFelhivasok = new ArrayList<>();
-        ArrayList<RssElemek> feedLista = new RSSParser().rssListaKeszito();
+//         feedLista = new RSSParser().rssListaKeszito();
         int[] elemek = {9, 11, 13, 17, 19};
         int k = 1;
 
@@ -32,24 +34,32 @@ public class FelhivasParser {
             return;
         }
 
-        for (RssElemek elem : feedLista) {
-            System.out.println("Elemek szama: " + k++);
-            String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
-            Document doc = Jsoup.connect(elem.link).get();
-            Elements alapAdatok = doc.select("td");
-            for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
-                adatok[i] = alapAdatok.get(elemek[i]).text();
-            }
+        try {
+            for (RssElemek elem : feedLista) {
+                System.out.println("Elemek szama: " + k++);
+                String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
+                Document doc = Jsoup.connect(elem.link).get();
+                Elements alapAdatok = doc.select("td");
+                for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
+                    adatok[i] = alapAdatok.get(elemek[i]).text();
+                }
 
-            String date = datumKeszito(adatok[2]);
+                String date = datumKeszito(adatok[2]);
 //            System.out.println(elem.getCategory());
-            String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
-            ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory()) ;
-            Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
-                    reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak),
-                    torlesSzamolo(date));
-            legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
-            keszFelhivas.felhivasFeltolto();
+                String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
+                ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory());
+                Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
+                        reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak),
+                        torlesSzamolo(date));
+                legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
+                keszFelhivas.felhivasFeltolto();
+            }
+            //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a
+            //kovetkezo elemmel folytatjuk, ehhez toroljuk az aktualis elemet, es ujra futtatjuk a metodust
+        } catch (HttpStatusException e) {
+            System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
+            feedLista.remove(0);
+            felhivasKeszito(feedLista);
         }
         LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
         legutobbiColl.insertOne(legutobbi);
