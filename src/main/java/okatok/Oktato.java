@@ -28,10 +28,10 @@ public class Oktato {
                   String honlap, ArrayList<String> palyazatiTema) {
         this.nev = nev;
         this.tanszek = tanszek;
-        this.kutatasiTema = kutatasiTema;
+        this.kutatasiTema = new ArrayList<>();
         this.email = email;
         this.honlap = honlap;
-        this.palyazatiTema = palyazatiTema;
+        this.palyazatiTema = new ArrayList<>();
     }
 
 
@@ -41,11 +41,13 @@ public class Oktato {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
 
-    public void oktatoFeltolto() {
-        if (oktatoEmailEllenorzes(this.email) != 0) {
-            oktatokColl.insertOne(this);
-        }else
+    public boolean oktatoFeltolto() {
+        if (oktatoEmailEllenorzes(this.getEmail()) != 0) {
             System.out.println("Ezzel az email cimmel mar regisztráltal oktatót");
+            return false;
+        }else
+            oktatokColl.insertOne(this);
+        return true;
     }
 
     public int oktatoEmailEllenorzes(String email) { //itt csak ezt ellenorzom az uj oktato hazzaadasanal, a GUI lehetoseget ad a reszletesebb ellenorzesre

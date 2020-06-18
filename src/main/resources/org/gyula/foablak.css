@@ -24,10 +24,10 @@
     -fx-scale-y: 1.05;
 }
 
-.label:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-  }
+/*.label:hover {*/
+/*    -fx-scale-x: 1.05;*/
+/*    -fx-scale-y: 1.05;*/
+/*  }*/
 
 .tooltip {
     -fx-show-delay: 300ms;
@@ -56,3 +56,17 @@
     -fx-text-fill: black;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7,0,0,3 );
 }
+.menu-item {
+    -fx-font-size: 15;
+    -fx-font-family: Bahnschrift;
+}
+
+.text-field {
+    -fx-background-radius:8;
+}
+
+.list-view {
+    -fx-font-size: 15;
+    -fx-font-family: Bahnschrift;
+}
+

@@ -31,6 +31,14 @@ public class OktatoLekerdezes{
         return oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>());
     }
 
+    public ArrayList<String> oktatoNevek(String tanszek) {
+        ArrayList<String> oktatok = new ArrayList<>();
+        for (Oktato oktato : oktatoListak(tanszek)) {
+            oktatok.add(oktato.getNev());
+        }
+        return oktatok;
+    }
+
     //Egyes oktatók adatlapjának lekérése
     public ArrayList<Oktato> oktatoKereso(String oktato) {
         return oktatokColl.find(eq("nev", oktato)).into(new ArrayList<>());
