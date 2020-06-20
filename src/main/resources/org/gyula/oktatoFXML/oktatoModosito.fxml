@@ -61,7 +61,7 @@
                   <Insets bottom="30.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <MenuButton mnemonicParsing="false" text="MenuButton" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <MenuButton maxHeight="-Infinity" mnemonicParsing="false" text="MenuButton" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
                 <MenuItem mnemonicParsing="false" text="Action 2" />

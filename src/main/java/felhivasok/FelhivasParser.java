@@ -33,6 +33,7 @@ public class FelhivasParser {
         if (feedLista == null) {
             return;
         }
+        ArrayList<RssElemek> aktualizaltFeedLista = new ArrayList<RssElemek>(feedLista); //egy valoban uj lista kell, hogy ne hasson vissza az egyik torlese a masikra
 
         try {
             for (RssElemek elem : feedLista) {
@@ -53,13 +54,15 @@ public class FelhivasParser {
                         torlesSzamolo(date));
                 legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
                 keszFelhivas.felhivasFeltolto();
+                aktualizaltFeedLista.remove(0); // kitoroljuk, hogy a catch jol mukodjon szukseg eseten, ha nincs kivetel, erre nem lesz szukseg
             }
             //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a
-            //kovetkezo elemmel folytatjuk, ehhez toroljuk az aktualis elemet, es ujra futtatjuk a metodust
+            //kovetkezo elemmel folytatjuk, ehhez toroljuk az aktualis elemet, es ujra futtatjuk a metodust, de ez csak akkor jo,
+            // ha a tomb elso eleme a hibas, ezert toroljuk fentebb mindig az aktualis elemet
         } catch (HttpStatusException e) {
             System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
-            feedLista.remove(0);
-            felhivasKeszito(feedLista);
+            aktualizaltFeedLista.remove(0);
+            felhivasKeszito(aktualizaltFeedLista); //a folyamatosan torolt listaval hivjuk meg ujra, ebben mar csak azok vannak, amelyeket meg nem olvastunk be
         }
         LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
         legutobbiColl.insertOne(legutobbi);

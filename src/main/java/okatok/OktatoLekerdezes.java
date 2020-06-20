@@ -26,9 +26,9 @@ public class OktatoLekerdezes{
     //de mas metodusok felhasznalhatjak
     public ArrayList<Oktato> oktatoListak(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
         if (tanszek.equals("összes")) {
-            return oktatokColl.find().into(new ArrayList<>());
+            return nevRendezo(oktatokColl.find().into(new ArrayList<>()));
         }
-        return oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>());
+        return nevRendezo(oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>()));
     }
 
     public ArrayList<String> oktatoNevek(String tanszek) {

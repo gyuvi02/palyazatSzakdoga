@@ -1,9 +1,10 @@
-package org.gyula;
+package controller;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.gyula.App;
 
 public class palyazatFooldalController {
 

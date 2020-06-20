@@ -6,6 +6,30 @@
     -fx-border-color: darkgreen
 }
 
+#focim {
+    -fx-font-family: Bahnschrift;
+    -fx-font-size: 34;
+}
+
+#adatMegtekintes {
+    -fx-font-size: 32;
+    -fx-font-family: Bahnschrift;
+}
+
+#adatModositas {
+    -fx-font-size: 32;
+    -fx-font-family: Bahnschrift;
+}
+#alcim {
+    -fx-font-size: 29;
+    -fx-font-family: Bahnschrift;
+}
+
+.label {
+    -fx-font-family: Bahnschrift;
+    -fx-font-size: 18;
+}
+
 .button{
     -fx-font-size: 19;
     -fx-font-family: Bahnschrift;
@@ -46,8 +70,8 @@
 }
 
 .menu-button {
-    -fx-font-size: 18;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 11;
+    -fx-font-family: "Bahnschrift";
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
@@ -56,9 +80,10 @@
     -fx-text-fill: black;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7,0,0,3 );
 }
-.menu-item {
-    -fx-font-size: 15;
+
+.menu-item .label   {
     -fx-font-family: Bahnschrift;
+    -fx-font-size: 15;
 }
 
 .text-field {

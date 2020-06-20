@@ -14,17 +14,17 @@ public class kezdooldalController {
 
     @FXML
     private void felhivasFooldalra() throws IOException {
-        App.setRoot("felhivasFooldal");
+        App.setRoot("/org/gyula/felhivasFXML/felhivasFooldal");
     }
 
     @FXML
     private void palyazatFooldalra() throws IOException {
-        App.setRoot("palyazatFooldal");
+        App.setRoot("/org/gyula/palyazatFXML/palyazatFooldal");
     }
 
     @FXML
     private void oktatoFooldalra() throws IOException {
-        App.setRoot("oktatoFooldal");
+        App.setRoot("/org/gyula/oktatoFXML/oktatoFooldal");
     }
 
     @FXML

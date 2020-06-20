@@ -83,6 +83,7 @@ public class RSSParser {
             if (regiElsoElem.getTitle().equals(feedLista.get(0).getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
                 feedLista.clear(); //uresen kuldjuk tovabb, igy nem tolti le meg egyszer a felhivasokat
                 return false;
+
             } else {
                 regiLetoltesColl.insertOne(feedLista.get(0));
                 return true;

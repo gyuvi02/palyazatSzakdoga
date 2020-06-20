@@ -1,4 +1,4 @@
-package org.gyula;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +9,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import okatok.OktatoLekerdezes;
+import org.gyula.App;
 
 
 import java.io.IOException;
@@ -46,7 +47,14 @@ public class oktatoFooldalController {
 
     @FXML
     private void ujOktato() throws IOException {
-        App.setRoot("ujOktato");
+//        App.setRoot("/org/gyula/oktatoFXML/ujOktato");
+        Stage dialog = new Stage();
+        dialog.setTitle("Új oktató hozzáadása");
+        Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/ujOktato"));
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(scene);
+        dialog.show();
+
     }
 
     @FXML

@@ -1,8 +1,9 @@
-package org.gyula;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.gyula.App;
 
 import java.io.IOException;
 

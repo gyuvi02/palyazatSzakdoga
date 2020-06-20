@@ -1,7 +1,6 @@
 .root{
-    -fx-font-family: Century Gothic;
+    -fx-font-family: Bahnschrift;
     -fx-font-size: 14;
-    -fx-font-weight: bold;
     -fx-background-color: #e6fff0;
     -fx-border-width: 3;
     -fx-border-color: darkgreen
