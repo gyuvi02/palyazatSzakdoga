@@ -32,6 +32,7 @@ public class OktatoLekerdezes{
         return nevRendezo(oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>()));
     }
 
+    //Az egyes tanszekekhez tartozo oktatok neve, ez az emberek kivalasztasanal hasznos
     public ArrayList<String> oktatoNevsor(String tanszek) {
         ArrayList<String> nevsor = new ArrayList<>();
         for (Oktato oktato : oktatoListak(tanszek)) {
@@ -40,18 +41,10 @@ public class OktatoLekerdezes{
         return nevsor;
     }
 
-    public ArrayList<String> oktatoNevek(String tanszek) {
-        ArrayList<String> oktatok = new ArrayList<>();
-        for (Oktato oktato : oktatoListak(tanszek)) {
-            oktatok.add(oktato.getNev());
-        }
-        return oktatok;
-    }
-
-    //Egyes oktatók adatlapjának lekérése
-    public ArrayList<Oktato> oktatoKereso(String oktato) {
-        return oktatokColl.find(eq("nev", oktato)).into(new ArrayList<>());
-    }
+//    //Egyes oktatók adatlapjának lekérése
+//    public ArrayList<Oktato> oktatoKereso(String oktato) {
+//        return oktatokColl.find(eq("nev", oktato)).into(new ArrayList<>());
+//    }
 
     //A kar vagy egy tanszék összes kutatási témájának kiíratása (mindegyik csak egyszer szerepeljen)
     public ArrayList<String> kutatasiTemak(String tanszek) { //meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes

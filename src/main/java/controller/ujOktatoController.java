@@ -36,6 +36,7 @@ public class ujOktatoController {
         App.setRoot("/org/gyula/oktatoFXML/oktatoFooldal");
     }
 
+
     @FXML
     private void uresMezo() {
         boolean disableButtons = oNev.getText().trim().isEmpty() || oEmail.getText().trim().isEmpty();
@@ -55,7 +56,7 @@ public class ujOktatoController {
             dialogPane.getStylesheets().add(getClass().getResource("/org/gyula/dialogCSS.css").toExternalForm());
             dialogPane.getStyleClass().add("/org/gyula/dialogCSS.css");
             alert.showAndWait();
-            visszaOktatooldalra();
+            kilep();
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Hibás email");

@@ -47,7 +47,7 @@
                   <Insets top="30.0" />
                </padding>
             </Label>
-            <Label fx:id="adatModositas" text="Oktatói adatok módosítása" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="adatModositas" alignment="CENTER" contentDisplay="CENTER" text="Oktatói adatok módosítása" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <padding>
                   <Insets top="30.0" />
                </padding>
@@ -58,7 +58,8 @@
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Részletes adatok" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button fx:id="oktatoReszlet" mnemonicParsing="false" text="Részletes oktatói adatok" GridPane.halignment="CENTER"
+                    GridPane.rowIndex="3" GridPane.valignment="CENTER" onAction="#oktatoSzerkezto">
                 <tooltip> <Tooltip text="Az egyes oktatók részletes adatainak megtekintése" /> </tooltip>
                 <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
@@ -70,7 +71,8 @@
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-             <ComboBox minHeight="-Infinity" prefHeight="38.0" prefWidth="210.0" stylesheets="@../foablak.css" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+             <ComboBox minHeight="-Infinity" prefHeight="38.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                       GridPane.valignment="CENTER">
                  <GridPane.margin>
                      <Insets bottom="20.0" top="20.0" />
                  </GridPane.margin>
@@ -87,7 +89,10 @@
                      <String fx:value="Szociálpedagógia" />
                  </value>
              </ComboBox>
-            <MenuButton alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" maxWidth="-Infinity" minHeight="-Infinity" mnemonicParsing="false" popupSide="TOP" prefHeight="35.0" prefWidth="200.0" styleClass="label" stylesheets="@../foablak.css" text="Válasszon tanszéket" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <MenuButton alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" maxWidth="-Infinity" minHeight="-Infinity"
+                        mnemonicParsing="false" popupSide="TOP" prefHeight="35.0" prefWidth="200.0" styleClass="label"
+                        text="Válasszon tanszéket" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER"
+                        GridPane.rowIndex="6" GridPane.valignment="CENTER">
                 <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóit akarja látni" /> </tooltip>
                 <items>
                 <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="Gyermeknevelési" />
@@ -104,23 +109,28 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </MenuButton>
-            <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Line>
-            <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.valignment="CENTER">
+            <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1"
+                  GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="-225.0" top="-80.0" />
                </GridPane.margin>
             </Line>
-            <Button mnemonicParsing="false" onMouseClicked="#ujOktato" text="Új oktató hozzáadása" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onMouseClicked="#ujOktato" text="Új oktató hozzáadása" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="oktatoSzerkeszto" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" text="Oktató törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoSzerkeszto" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató szerkesztése"
+                    GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató törlése" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </center>

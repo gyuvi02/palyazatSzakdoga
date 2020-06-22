@@ -55,8 +55,9 @@ public class oktatoKutatasiModositoController {
 
     @FXML
     private void hozzaad() {
-        aktualisLista.add(ujElem.getText());
+        aktualisLista.add(ujElem.getText().toLowerCase());
         kutatasiLista.getItems().setAll(aktualisLista);
+        ujElem.clear();
     }
 
     @FXML

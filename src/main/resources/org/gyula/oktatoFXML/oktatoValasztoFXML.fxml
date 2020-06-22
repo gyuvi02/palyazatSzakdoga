@@ -4,17 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
+<VBox prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css"
+      xmlns="http://javafx.com/javafx/10.0.2-internal"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoValasztoController">
    <children>
       <ListView fx:id="oktatoNevek" prefHeight="434.0" prefWidth="393.0" />
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="400.0">
          <children>
-            <Button mnemonicParsing="false" text="Kiválaszt" HBox.hgrow="ALWAYS" onAction="#nevValaszto">
+            <Button fx:id="nevValasztoSzerkeszt" mnemonicParsing="false" text="Kiválaszt" HBox.hgrow="ALWAYS" onAction="#nevValaszto">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></Button>
-            <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Bezár" textAlignment="CENTER" onAction="#kilep">
+            <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Bezár" textAlignment="CENTER"
+                    onAction="#kilep">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin></Button>

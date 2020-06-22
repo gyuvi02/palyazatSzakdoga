@@ -16,13 +16,20 @@ import java.io.IOException;
 
 public class oktatoFooldalController {
     @FXML
-    Button visszaOktatokrol;
+    String fx;
+    String title;
 
     @FXML
-    Button kilepesGomb;
+    private Button oktatoReszlet;
 
     @FXML
-    Button oktatoSzerkeszto;
+    private Button kilepesGomb;
+
+    @FXML
+    private Button oktatoSzerkeszto;
+
+    @FXML
+    private Button oktatoTorles;
 
     @FXML
     MenuButton oktatoTanszek;
@@ -58,10 +65,20 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void oktatoSzerkezto() throws IOException {
+    private void oktatoSzerkezto(ActionEvent event) throws IOException {
+        if (event.getSource().equals(oktatoSzerkeszto)) {
+            fx = "oktatoValasztoFXML";
+            title = "szerkesztésre";
+        } else if (event.getSource().equals(oktatoTorles)) {
+            fx = "oktatoValasztoTorlesFXML";
+            title = "törlésre";
+        } else if (event.getSource().equals(oktatoReszlet)) {
+            fx = "oktatoValasztoReszletekFXML";
+            title = "megtekintésre";
+        }
         Stage dialog = new Stage();
-        dialog.setTitle("Oktató kiválasztása");
-        Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/oktatoValasztoFXML"));
+        dialog.setTitle("Oktató kiválasztása " + title);
+        Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/" + fx));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(scene);
         dialog.show();

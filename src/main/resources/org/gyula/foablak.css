@@ -97,3 +97,15 @@
     -fx-font-family: Bahnschrift;
 }
 
+.text-area {
+    text-area-background: blue ;
+    -fx-font-size: 16;
+    -fx-font-family: Bahnschrift;
+    -fx-display-caret: false;
+}
+
+#reszletekFigyelmeztetes {
+    -fx-font-size: 12;
+    -fx-font-family: Bahnschrift;
+}
+
