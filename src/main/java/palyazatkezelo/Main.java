@@ -8,10 +8,7 @@ import felhivasok.*;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
 import okatok.OktatoModosito;
-import palyazatok.Palyazat;
-import palyazatok.PalyazatLekerdezesek;
-import palyazatok.PalyazatModosito;
-import palyazatok.PalyazatiResztvevok;
+import palyazatok.*;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -41,6 +38,12 @@ public class Main {
         FelhivasParser felhivasParser = new FelhivasParser();
         RSSParser rssParser = new RSSParser();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
+
+//        PalyazatiTemak palyazatiTemak = new PalyazatiTemak(new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság", "kapcsolatok",
+//                "közművelődés", "kutatás-fejlesztés", "művészet", "oktatás", "ösztöndíj", "sport", "szociális")));
+//        palyazatiTemak.temafeltolt();
+        PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
+//        System.out.println(palyazatiTemak.temaLetolt());
 
         //a legutobb letoltott felhivasok reszletes lekerdezese
 //        for (String cim : felhivasParser.legutobbiFelhivasok()) {
@@ -198,7 +201,7 @@ public class Main {
 
         //Az uj felhivasok lekerdezese:
 
-        felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
+//        felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
 //        felhivasLekerdezes.automatikusTorles();
 
     }

@@ -7,13 +7,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane minHeight="350.0" minWidth="500.0" prefHeight="350.0" prefWidth="500.0" stylesheets="@../foablak.css"
-            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.ujOktatoController">
+<BorderPane minHeight="350.0" minWidth="500.0" prefHeight="350.0" prefWidth="500.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ujOktatoController">
    <bottom>
        <HBox alignment="CENTER">
-           <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#visszaOktatooldalra" text="Mégsem"
-                   BorderPane.alignment="CENTER" onMouseClicked="#kilep">
+           <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#visszaOktatooldalra" onMouseClicked="#kilep" text="Mégsem" BorderPane.alignment="CENTER">
                <font>
                    <Font name="Century Gothic" size="17.0" />
                </font>
@@ -63,18 +60,19 @@
                </GridPane.margin></Label>
             <TextField fx:id="oNev" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
             <TextField fx:id="oEmail" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="oTanszek" maxWidth="-Infinity" prefWidth="250.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <ComboBox fx:id="oTanszek" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Szociálpedagógia" />
-                        <String fx:value="Társadalomtudományi" />
                         <String fx:value="Gyermeknevelési" />
-                        <String fx:value="IKKA" />
                         <String fx:value="Szociálpedagógia" />
+                        <String fx:value="Gyógypedagógiai" />
+                        <String fx:value="IKKA" />
+                        <String fx:value="Társadalomtudományi" />
+                        <String fx:value="Művészetnevelési és Sport" />
                     </FXCollections>
                 </items>
                 <value>
-                    <String fx:value="Szociálpedagógia" />
+                    <String fx:value="Gyermeknevelési" />
                 </value>
                <GridPane.margin>
                   <Insets />

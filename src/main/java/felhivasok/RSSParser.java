@@ -8,6 +8,7 @@ import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.bson.Document;
 import palyazatkezelo.MongoAccess;
+import palyazatok.PalyazatiTemak;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ public class RSSParser {
 
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<RssElemek> regiLetoltesColl = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
+    MongoCollection<ArrayList> temaColl = palyazatDB.getCollection("Temak", ArrayList.class);
 
-    static final ArrayList<String> relevansTemak = new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság",
-            "közművelődés", "művészet", "oktatás", "sport", "kutatás-fejlesztés")); //csak ezeket a kategoriakat akarjuk tenylegesen letolteni
-            //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
+    ArrayList<String> relevansTemak = new PalyazatiTemak().temaLetolt(); //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
+
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";
 

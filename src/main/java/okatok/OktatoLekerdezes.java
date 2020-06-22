@@ -2,6 +2,7 @@ package okatok;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 import palyazatok.Palyazat;
 
@@ -29,6 +30,14 @@ public class OktatoLekerdezes{
             return nevRendezo(oktatokColl.find().into(new ArrayList<>()));
         }
         return nevRendezo(oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>()));
+    }
+
+    public ArrayList<String> oktatoNevsor(String tanszek) {
+        ArrayList<String> nevsor = new ArrayList<>();
+        for (Oktato oktato : oktatoListak(tanszek)) {
+            nevsor.add(oktato.getNev());
+        }
+        return nevsor;
     }
 
     public ArrayList<String> oktatoNevek(String tanszek) {

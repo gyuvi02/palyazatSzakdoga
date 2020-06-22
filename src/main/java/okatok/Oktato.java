@@ -3,11 +3,13 @@ package okatok;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 
 public class Oktato {
 
@@ -48,6 +50,12 @@ public class Oktato {
         }else
             oktatokColl.insertOne(this);
         return true;
+    }
+
+    public void oktatoFrissites() {
+        Bson filter = eq("nev", this.getNev());
+        Bson ujElem = (Bson) this;
+        oktatokColl.findOneAndUpdate(filter, ujElem);
     }
 
     public int oktatoEmailEllenorzes(String email) { //itt csak ezt ellenorzom az uj oktato hazzaadasanal, a GUI lehetoseget ad a reszletesebb ellenorzesre

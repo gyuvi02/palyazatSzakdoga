@@ -10,7 +10,7 @@
       <ListView fx:id="oktatoNevek" prefHeight="434.0" prefWidth="393.0" />
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="400.0">
          <children>
-            <Button mnemonicParsing="false" text="Kiválaszt" HBox.hgrow="ALWAYS" onMouseClicked="#nevValaszto">
+            <Button mnemonicParsing="false" text="Kiválaszt" HBox.hgrow="ALWAYS" onAction="#nevValaszto">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></Button>

@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import palyazatkezelo.MongoAccess;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.getIcons().add(new Image("/udlogo.png"));
         stage.show();
+        MongoAccess.getConnection();
     }
 
     public static void setRoot(String fxml) throws IOException {

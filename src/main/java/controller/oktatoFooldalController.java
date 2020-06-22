@@ -42,7 +42,7 @@ public class oktatoFooldalController {
     private void tanszekLekerdezes(ActionEvent event) {
         MenuItem source = (MenuItem) event.getSource();
         OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
-        System.out.println(oktatoLekerdezes.oktatoListak(source.getText()));
+        System.out.println(oktatoLekerdezes.oktatoNevsor(source.getText()));
     }
 
     @FXML

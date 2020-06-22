@@ -31,7 +31,7 @@
 }
 
 .button{
-    -fx-font-size: 19;
+    -fx-font-size: 17;
     -fx-font-family: Bahnschrift;
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
@@ -88,6 +88,8 @@
 
 .text-field {
     -fx-background-radius:8;
+    -fx-font-family: Bahnschrift;
+    -fx-font-size: 15;
 }
 
 .list-view {

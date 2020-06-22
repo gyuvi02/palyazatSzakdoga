@@ -1,10 +1,15 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,7 +25,7 @@ public class oktatoValasztoController {
     Oktato kivalasztottOktato = new Oktato();
 
     @FXML
-    ListView oktatoNevek;
+    ListView<String> oktatoNevek;
 
     @FXML
     Button kilepesGomb;
@@ -38,17 +43,22 @@ public class oktatoValasztoController {
     }
 
     @FXML
-    public void nevValaszto() throws IOException {
+    public void nevValaszto(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoModosito.fxml"));
+        Parent oktatoValasztoParent = loader.load();
+
+        Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
+
+        oktatoModositoController controller = loader.getController();
+        controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0).toString()));
+
         kilep();
-        oktatoModositoController modosito = new oktatoModositoController();
-        modosito.oktatoAtado((Oktato) kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0).toString()));
-
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Pályázatkezelő program");
-        stage.setScene(new Scene(App.loadFXML("/org/gyula/oktatoFXML/oktatoModosito")));
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Oktatói adatok módosítása");
+        stage.setScene(oktatoValasztoScene);
         stage.show();
-
     }
 
 
