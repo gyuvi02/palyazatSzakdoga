@@ -166,9 +166,11 @@ public class Felhivas {
                 "Ki pályázhat: " + kiPalyazhat + "\n" +
                 "Beadási határidő: " + beadasiHatarido + "\n" +
                 "Link: " + felhivasLink + "\n" +
-                "Részletes leírás: " + reszletesLeiras + "\n" +
-                "Kategóriák: " + kategoriak + "\n" +
-                "Lehetséges résztvevők: " + lehetsegesResztvevok + "\n";
+                "Részletes leírás: " + reszletesLeiras + "\n"
+//                +
+//                "Kategóriák: " + String.join(", ", kategoriak) + "\n" +
+//                "Lehetséges résztvevők: " + String.join(", ", lehetsegesResztvevok) + "\n\n"
+                ;
     }
 }
 

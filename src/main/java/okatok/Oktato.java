@@ -125,10 +125,10 @@ public class Oktato {
         return
                 "\nNév: " + nev + "\n" +
                     "Tanszék: " + tanszek + " Tanszék\n" +
-                    "Kutatasi téma: " + kutatasiTema + "\n" +
+                    "Kutatasi téma: " + String.join(", ", kutatasiTema) + "\n" +
                     "Email cím: " + email + "\n" +
                     "Honlap: " + honlap + "\n" +
-                    "Pályázati témák: " + palyazatiTema + "\n";
+                    "Pályázati témák: " + String.join(", ", palyazatiTema) + "\n";
     }
 
 }

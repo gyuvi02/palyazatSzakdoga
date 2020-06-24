@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
@@ -52,14 +49,7 @@
                   <Insets top="30.0" />
                </padding>
             </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Oktatók listája" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                <tooltip> <Tooltip text="Az összes oktató listája, akik jelenleg szerepelnek az adatbázisban" /> </tooltip>
-               <GridPane.margin>
-                  <Insets bottom="20.0" top="20.0" />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="oktatoReszlet" mnemonicParsing="false" text="Részletes oktatói adatok" GridPane.halignment="CENTER"
-                    GridPane.rowIndex="3" GridPane.valignment="CENTER" onAction="#oktatoSzerkezto">
+            <Button fx:id="oktatoReszlet" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Részletes oktatói adatok" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                 <tooltip> <Tooltip text="Az egyes oktatók részletes adatainak megtekintése" /> </tooltip>
                 <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
@@ -71,66 +61,47 @@
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-             <ComboBox minHeight="-Infinity" prefHeight="38.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="4"
-                       GridPane.valignment="CENTER">
-                 <GridPane.margin>
-                     <Insets bottom="20.0" top="20.0" />
-                 </GridPane.margin>
-                 <items>
-                     <FXCollections fx:factory="observableArrayList">
-                         <String fx:value="Szociálpedagógia" />
-                         <String fx:value="Szociálpedagógia" />
-                         <String fx:value="Szociálpedagógia" />
-                         <String fx:value="Szociálpedagógia" />
-                         <String fx:value="Szociálpedagógia" />
-                     </FXCollections>
-                 </items>
-                 <value>
-                     <String fx:value="Szociálpedagógia" />
-                 </value>
-             </ComboBox>
-            <MenuButton alignment="CENTER" contentDisplay="CENTER" graphicTextGap="2.0" maxWidth="-Infinity" minHeight="-Infinity"
-                        mnemonicParsing="false" popupSide="TOP" prefHeight="35.0" prefWidth="200.0" styleClass="label"
-                        text="Válasszon tanszéket" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER"
-                        GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóit akarja látni" /> </tooltip>
-                <items>
-                <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="Gyermeknevelési" />
-                <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="Szociálpedagógia" />
-                <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="Gyógypedagógiai" />
-                <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="IKKA" />
-                <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="Társadalomtudományi" />
-                <MenuItem mnemonicParsing="false" onAction="#tanszekLekerdezes" text="Művészetnevelési és Sport" />
-              </items>
-               <GridPane.margin>
-                  <Insets bottom="20.0" top="20.0" />
-               </GridPane.margin>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </MenuButton>
-            <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER"
-                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Line>
-            <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1"
-                  GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.valignment="CENTER">
+            <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="-225.0" top="-80.0" />
                </GridPane.margin>
             </Line>
-            <Button mnemonicParsing="false" onMouseClicked="#ujOktato" text="Új oktató hozzáadása" GridPane.columnIndex="1"
-                    GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onMouseClicked="#ujOktato" text="Új oktató hozzáadása" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="oktatoSzerkeszto" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató szerkesztése"
-                    GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató törlése" GridPane.columnIndex="1"
-                    GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoSzerkeszto" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki kutatási témák" GridPane.rowIndex="3">
+                <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak kutatási témáit akarja látni" /> </tooltip>
+                <items>
+                    <MenuItem fx:id="1" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Minden tanszék" />
+                    <MenuItem fx:id="2" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyermeknevelési" />
+                    <MenuItem fx:id="3" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Szociálpedagógia" />
+                    <MenuItem fx:id="4" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyógypedagógiai" />
+                    <MenuItem fx:id="5" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="IKKA" />
+                    <MenuItem fx:id="6" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Társadalomtudományi" />
+                    <MenuItem fx:id="7" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Művészetnevelési és Sport" />
+                </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki pályázati témák" GridPane.rowIndex="4">
+                <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak pályázati témáit akarja látni" /> </tooltip>
+                <items>
+                    <MenuItem fx:id="8" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Minden tanszék" />
+                    <MenuItem fx:id="9" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyermeknevelési" />
+                    <MenuItem fx:id="10" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Szociálpedagógia" />
+                    <MenuItem fx:id="11" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyógypedagógiai" />
+                    <MenuItem fx:id="12" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="IKKA" />
+                    <MenuItem fx:id="13" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Társadalomtudományi" />
+                    <MenuItem fx:id="14" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Művészetnevelési és Sport" />
+                </items>
+            </MenuButton>
          </children>
       </GridPane>
    </center>

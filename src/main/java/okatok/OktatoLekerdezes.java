@@ -1,18 +1,17 @@
 package okatok;
 
+import com.mongodb.Function;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 import palyazatok.Palyazat;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
+import java.util.*;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.or;
+import static com.mongodb.client.model.Projections.*;
 
 public class OktatoLekerdezes{
 
@@ -25,50 +24,56 @@ public class OktatoLekerdezes{
 
     //A kar összes oktatójának vagy egy tanszékhez tartozó oktatók lekérdezése – ennek igazából nincs túl sok gyakorlati jelentősége,
     //de mas metodusok felhasznalhatjak
-    public ArrayList<Oktato> oktatoListak(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+    public ArrayList<String> oktatoNevsor(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
         if (tanszek.equals("összes")) {
-            return nevRendezo(oktatokColl.find().into(new ArrayList<>()));
+            return nevRendezo(oktatokColl.find().projection((fields(include("nev"), //a projection hasznalata nem lenne feltetlenul szukseges, csak kiserletkent szerepel itt, hatha gyorsabb lesz a lekerdezes
+                    excludeId()))).map(Oktato::getNev).into(new ArrayList<>()));
         }
-        return nevRendezo(oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>()));
+        return nevRendezo(oktatokColl.find(eq("tanszek", tanszek)).projection((fields(include("nev"),
+                excludeId()))).map(Oktato::getNev).into(new ArrayList<>()));
     }
 
-    //Az egyes tanszekekhez tartozo oktatok neve, ez az emberek kivalasztasanal hasznos
-    public ArrayList<String> oktatoNevsor(String tanszek) {
-        ArrayList<String> nevsor = new ArrayList<>();
-        for (Oktato oktato : oktatoListak(tanszek)) {
-            nevsor.add(oktato.getNev());
+    //Ha nem csak a nevekre van szukseg, hanem a teljes dokumentumra
+    public ArrayList<Oktato> oktatoTeljesDok(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+        if (tanszek.equals("Minden tanszék")) {
+            return oktatokColl.find().into(new ArrayList<>());
         }
-        return nevsor;
+        return oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>());
     }
-
-//    //Egyes oktatók adatlapjának lekérése
-//    public ArrayList<Oktato> oktatoKereso(String oktato) {
-//        return oktatokColl.find(eq("nev", oktato)).into(new ArrayList<>());
-//    }
 
     //A kar vagy egy tanszék összes kutatási témájának kiíratása (mindegyik csak egyszer szerepeljen)
-    public ArrayList<String> kutatasiTemak(String tanszek) { //meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+    //Az atadottTomb tartalmazza, hogy kutatasi vagy palyazati temakban keresunk
+    public ArrayList<String> kutatasiTemak(String tanszek, String atadottTomb) { //meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+        Function<Oktato, ArrayList<String>> valami;
+        if (atadottTomb.equals("kutatas")) {
+            valami = Oktato::getKutatasiTema;
+        } else {
+            valami = Oktato::getPalyazatiTema;
+        }
+        ArrayList<ArrayList<String>> kutatasokTomb;
         HashSet<String> kutTemak = new HashSet<>();
-        for (Oktato oktato : oktatoListak(tanszek)) {
-            kutTemak.addAll(oktato.getKutatasiTema());  //a HasSetbe kiolvassuk a tombok osszes elemet
+        if (tanszek.equals("Minden tanszék")) {
+            kutatasokTomb = oktatokColl.find()
+                    .map(valami).into(new ArrayList<>());
+        } else {
+            kutatasokTomb = oktatokColl.find(eq("tanszek", tanszek))
+                    .map(valami).into(new ArrayList<>());
+        }
+        for (ArrayList<String> tombok : kutatasokTomb) {
+            kutTemak.addAll(tombok);
         }
         ArrayList<String> rendezettTemak = new ArrayList<String>(kutTemak); //hogy rendezett legyen, kenytelen vagyok listaba attenni
         Collections.sort(rendezettTemak);
         return rendezettTemak;
     }
 
-    //Kutatási témák alapján keresés az oktatók között
-    public ArrayList<Oktato> kutatasiTemaKereso(String tema) { //a tomb csak kutatasiTema vagy palyazatiTema lehet
-        return oktatokColl.find(eq("kutatasiTema", tema)).into(new ArrayList<>());
-    }
-
     //Az oktatók pályázati témái alapján – ezekből nincs túl sok, legördülő menüvel megoldható
-    public ArrayList<Oktato> palyazatiTemaKereso(String tema) {
-        return oktatokColl.find(eq("palyazatiTema", tema)).into(new ArrayList<>());
+    public ArrayList<String> palyazatiTemaKereso(String tema) {
+        return oktatokColl.find(eq("palyazatiTema", tema)).map(Oktato::getNev).into(new ArrayList<>());
     }
 
-    //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, mindegy, hogy milyen szerepben
-    //4 katagoriabol valaszthatunk: "összes", "aktuális" (elkezdett es beadott), "regi" (lezart es elfogadott), "sikertelen" (elutasitott)
+//    Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, mindegy, hogy milyen szerepben
+//    4 katagoriabol valaszthatunk: "összes", "aktuális" (elkezdett es beadott), "regi" (lezart es elfogadott), "sikertelen" (elutasitott)
     public ArrayList<Palyazat> oktatoiAktivitas(String aktivOktato, String holKeressen) {
         ArrayList<Palyazat> aktivitas = new ArrayList<>();
         ArrayList<Palyazat> palyazatLista = new ArrayList<>();
@@ -103,7 +108,7 @@ public class OktatoLekerdezes{
 
     //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, feladat szerint keresve
     public ArrayList<Palyazat> oktatoiAktivitasSzerepek(String aktivOktato, String szerep) {
-        if (szerep.equals("összes")) {
+        if (szerep.equals("barmelyik")) {
             return palyazatokColl.find(or(eq("resztvevok.kezelo", aktivOktato),
                     (eq("resztvevok.projektmenedzser", aktivOktato)),
                     (eq("resztvevok.szakmaiVezeto", aktivOktato)),
@@ -115,19 +120,27 @@ public class OktatoLekerdezes{
     }
 
     //tanszeki szinten osszegzi az egyes oktatok aktivitasat
-    public HashSet<String> tanszekiAktivitas(String tanszek, String holKeressen) {
+    public ArrayList<String> tanszekiAktivitas(String tanszek, String holKeressen) {
             HashSet<String> erintettPalyazatok = new HashSet<>();
         for (Oktato oktato : oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>())) {
-            ArrayList<Palyazat> oktatoPalyazatai = oktatoiAktivitas(oktato.getNev(), holKeressen);
+            ArrayList<Palyazat> oktatoPalyazatai = oktatoiAktivitas(oktato.getNev(), holKeressen); //az oktatoiAktivitast nem hasznalom masra, meg lehetne irni egyszerubben
             for (Palyazat palyazat : oktatoPalyazatai) {
                 erintettPalyazatok.add(palyazat.getPalyazatCim());
             }
         }
-        return erintettPalyazatok;
+        ArrayList<String> rendezettPalyazatok = new ArrayList<String>(erintettPalyazatok); //hogy rendezett legyen, kenytelen vagyok listaba attenni
+        Collections.sort(rendezettPalyazatok);
+
+        return rendezettPalyazatok;
     }
 
-    private ArrayList<Oktato> nevRendezo(ArrayList<Oktato> lista) {
-        lista.sort(Comparator.comparing(Oktato::getNev)); //nev alapjan rendezve kuldi vissza
+//    private ArrayList<Oktato> nevRendezo(ArrayList<Oktato> lista) {
+//        lista.sort(Comparator.comparing(Oktato::getNev)); //nev alapjan rendezve kuldi vissza
+//        return lista;
+//    }
+
+    private ArrayList<String> nevRendezo(ArrayList<String> lista) {
+        lista.sort(Comparator.comparing(String::trim)); //nev alapjan rendezve kuldi vissza
         return lista;
     }
 }

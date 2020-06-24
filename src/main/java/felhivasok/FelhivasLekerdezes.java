@@ -1,18 +1,24 @@
 package felhivasok;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.TextSearchOptions;
 import palyazatkezelo.MongoAccess;
 
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.lte;
+import static com.mongodb.client.model.Projections.*;
 
 public class FelhivasLekerdezes {
 
@@ -22,6 +28,11 @@ public class FelhivasLekerdezes {
     //Az osszes felhivast visszaadja
     public ArrayList<Felhivas> felhivasListak() {
         return felhivasokColl.find().into(new ArrayList<>());
+    }
+
+    public HashSet<String>  felhivasCimekHash() {
+        return felhivasokColl.find().projection((fields(include("felhivasCim"),
+                excludeId()))).map(Felhivas::getFelhivasCim).into(new HashSet<>());
     }
 
     //visszaadja a keresett kiirohoz tartozo osszes felhivast
@@ -68,6 +79,7 @@ public class FelhivasLekerdezes {
 //    }
 
     //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
+    //a torles mezo bevezetesevel annak a hasznalata egyszerubb
     public ArrayList<Felhivas> kesobbiHataridok(LocalDate datum) {
         ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
         for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
@@ -84,8 +96,8 @@ public class FelhivasLekerdezes {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy. MMMM dd.");
             return LocalDate.parse(date, inputFormat);
         } catch (Exception e) {
-            return LocalDate.of(2030, 12, 31);
-//            return null; //majd ez alapjan torlunk lte felhasznalasaval, inkabb egy kesobbi datumot adok meg
+//            return LocalDate.of(2025, 12, 31);
+            return LocalDate.now().plusDays(365 * 5);//inkabb nem egy fix datumot adunk at, hanem 5 evvel kesobbi datumot
         }
     }
 

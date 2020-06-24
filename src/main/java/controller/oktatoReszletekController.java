@@ -26,7 +26,6 @@ public class oktatoReszletekController {
         kivalasztott = oktato;
         reszletek.setText(kivalasztott.toString());
         reszletek.setWrapText(true);
-
     }
 
 

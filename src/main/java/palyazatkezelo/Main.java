@@ -121,8 +121,12 @@ public class Main {
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
 
 //        felhivasLekerdezes.egyszerimodositas();
-//        System.out.println(felhivasLekerdezes.felhivasListak());
+//        System.out.println(felhivasLekerdezes.felhivasListak().size());
+//        System.out.println(felhivasLekerdezes.felhivasCimekHash().size());
 //        System.out.println(felhivasLekerdezes.kiiroLekerdezes("Emberi Erőforrás Támogatáskezelő"));
+//        for (Felhivas felhivas : felhivasLekerdezes.kiiroLekerdezes("MVM Magyar Villamos Művek Zrt.")) {
+//            System.out.println(felhivas.toString());
+//        }
 //        for (Felhivas felhivas : felhivasLekerdezes.felhivasListak()) {
 //            System.out.println(felhivas.getBeadasiHatarido());
 //        }
@@ -202,7 +206,7 @@ public class Main {
         //Az uj felhivasok lekerdezese:
 
 //        felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
-        felhivasLekerdezes.automatikusTorles();
+//        felhivasLekerdezes.automatikusTorles();
 
     }
 

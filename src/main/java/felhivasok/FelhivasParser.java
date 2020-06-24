@@ -110,7 +110,7 @@ public class FelhivasParser {
 //        Oktato oktato = new Oktato();
         OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
         ArrayList<String> lehetsegesOktatok = new ArrayList<>();
-        for (Oktato iterOktato :  oktatoLekerdezes.oktatoListak("összes")) {
+        for (Oktato iterOktato :  oktatoLekerdezes.oktatoTeljesDok("összes")) {
             ArrayList<String> kategoriak = new ArrayList<>(fixKategoriak);
             kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan csak a kategoria valtozo a metszetnek felel meg
             if (!kategoriak.isEmpty()){

@@ -7,13 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
-import okatok.OktatoModosito;
-import org.gyula.App;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -43,7 +39,6 @@ public class oktatoValasztoController {
     public void initialize() {
         oktatoNevek.getItems().setAll(oktatoLekerdezes.oktatoNevsor("összes"));
         oktatoNevek.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
     }
 
     @FXML
