@@ -5,14 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="950.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoFooldalController">
+<BorderPane prefHeight="600.0" prefWidth="950.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoFooldalController">
    <bottom>
       <HBox alignment="CENTER">
-      <Button fx:id="visszaOktatokrol" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#visszaKezdooldalra" text="Vissza a főoldalra" BorderPane.alignment="CENTER">
+      <Button fx:id="visszaOktatokrol" alignment="CENTER_RIGHT" onAction="#visszaKezdooldalra" text="Vissza a főoldalra"
+              BorderPane.alignment="CENTER">
             <HBox.margin>
                <Insets right="200.0" />
             </HBox.margin></Button>
-      <Button fx:id="kilepesGomb" contentDisplay="CENTER" mnemonicParsing="false" onAction="#menuKilepes" text="Kilépés" textAlignment="CENTER">
+      <Button fx:id="kilepesGomb" contentDisplay="CENTER" onAction="#menuKilepes" text="Kilépés" textAlignment="CENTER">
       </Button>
          <BorderPane.margin>
             <Insets bottom="10.0" />
@@ -28,12 +30,13 @@
         <rowConstraints>
           <RowConstraints vgrow="SOMETIMES" />
           <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="85.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="125.33333333333331" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="133.33333333333331" minHeight="10.0" prefHeight="85.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="25.0" minHeight="5.0" prefHeight="5.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="71.33333333333333" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="81.66666666666666" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="125.33333333333331" minHeight="10.0" prefHeight="80.66666666666666" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="126.0" minHeight="10.0" prefHeight="78.33333333333331" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="133.33333333333331" minHeight="10.0" prefHeight="66.33333333333331" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="133.33333333333331" minHeight="10.0" prefHeight="87.66666666666669" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="25.0" minHeight="5.0" prefHeight="14.333333333333371" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
             <Label fx:id="adatMegtekintes" alignment="CENTER" contentDisplay="CENTER" stylesheets="@../foablak.css" text="Oktatói adatok megtekintése" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -44,40 +47,48 @@
                   <Insets top="30.0" />
                </padding>
             </Label>
-            <Label fx:id="adatModositas" alignment="CENTER" contentDisplay="CENTER" text="Oktatói adatok módosítása" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="adatModositas" alignment="CENTER" contentDisplay="CENTER" text="Oktatói adatok módosítása"
+                   textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <padding>
                   <Insets top="30.0" />
                </padding>
             </Label>
-            <Button fx:id="oktatoReszlet" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Részletes oktatói adatok" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="oktatoReszlet" onAction="#oktatoSzerkezto" text="Részletes oktatói adatok"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                 <tooltip> <Tooltip text="Az egyes oktatók részletes adatainak megtekintése" /> </tooltip>
                 <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0" mnemonicParsing="false" text="Tanszékek" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                <tooltip> <Tooltip text="Az egyes tanszékek oktatóinak listája" /> </tooltip>
+            <Button fx:id="oktatoAktivitas" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0"
+                    text="Oktatók pályázati aktivitása" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                <tooltip> <Tooltip text="Pályázatok, amelyekben az oktató részt vett" /> </tooltip>
                 <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                  GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Line>
-            <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.valignment="CENTER">
+            <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1"
+                  GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="-225.0" top="-80.0" />
                </GridPane.margin>
             </Line>
-            <Button mnemonicParsing="false" onMouseClicked="#ujOktato" text="Új oktató hozzáadása" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button onMouseClicked="#ujOktato" text="Új oktató hozzáadása" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                    GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="oktatoSzerkeszto" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoSzerkeszto"  onAction="#oktatoSzerkezto" text="Oktató szerkesztése" GridPane.columnIndex="1"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató törlése"
+                    GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki kutatási témák" GridPane.rowIndex="3">
                 <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak kutatási témáit akarja látni" /> </tooltip>
                 <items>
@@ -90,7 +101,7 @@
                     <MenuItem fx:id="7" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Művészetnevelési és Sport" />
                 </items>
             </MenuButton>
-            <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki pályázati témák" GridPane.rowIndex="4">
+            <MenuButton text="Tanszéki pályázati témák" GridPane.rowIndex="4">
                 <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak pályázati témáit akarja látni" /> </tooltip>
                 <items>
                     <MenuItem fx:id="8" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Minden tanszék" />
@@ -102,6 +113,7 @@
                     <MenuItem fx:id="14" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Művészetnevelési és Sport" />
                 </items>
             </MenuButton>
+            <Button fx:id="tanszekAktivitas" mnemonicParsing="false" text="Tanszékek pályázati aktivitása" GridPane.rowIndex="6" />
          </children>
       </GridPane>
    </center>

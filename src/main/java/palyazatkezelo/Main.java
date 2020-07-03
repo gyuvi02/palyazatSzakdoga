@@ -41,8 +41,12 @@ public class Main {
 
 //        PalyazatiTemak palyazatiTemak = new PalyazatiTemak(new ArrayList<>(Arrays.asList("gyermek", "gyermek, ifjúság", "ifjúság", "kapcsolatok",
 //                "közművelődés", "kutatás-fejlesztés", "művészet", "oktatás", "ösztöndíj", "sport", "szociális")));
-//        palyazatiTemak.temafeltolt();
-        PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
+//        PalyazatiTemak pafiTemak = new PalyazatiTemak(new ArrayList<>(Arrays.asList("építés", "felújítás", "gyermek", "gyermek, ifjúság", "ifjúság", "informatika",
+//                "kapcsolatok", "közművelődés", "kutatás-fejlesztés", "média", "mezőgazdaság", "működési támogatás", "művészet", "oktatás",
+//                "ösztöndíj", "sport", "szociális", "táborok", "településfejlesztés", "vállalkozásfejlesztés")));
+//        pafiTemak.pafiTemafeltolt(); //a PafiTemak colection elso dokumentumanak feltoltese
+//        palyazatiTemak.temafeltolt(); //ezzel egyszer toltottem fel a szerintem fontos temakat
+//        PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
 //        System.out.println(palyazatiTemak.temaLetolt());
 
         //a legutobb letoltott felhivasok reszletes lekerdezese

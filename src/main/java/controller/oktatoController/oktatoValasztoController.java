@@ -1,5 +1,7 @@
-package controller;
+package controller.oktatoController;
 
+import controller.oktatoController.oktatoModositoController;
+import controller.oktatoController.oktatoReszletekController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

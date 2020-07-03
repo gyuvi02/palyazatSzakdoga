@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane minHeight="350.0" minWidth="500.0" prefHeight="350.0" prefWidth="500.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ujOktatoController">
+<BorderPane minHeight="350.0" minWidth="500.0" prefHeight="350.0" prefWidth="500.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.ujOktatoController">
    <bottom>
        <HBox alignment="CENTER">
            <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#visszaOktatooldalra" onMouseClicked="#kilep" text="Mégsem" BorderPane.alignment="CENTER">

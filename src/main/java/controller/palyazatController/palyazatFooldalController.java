@@ -1,4 +1,4 @@
-package controller;
+package controller.palyazatController;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

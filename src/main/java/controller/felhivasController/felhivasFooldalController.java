@@ -1,4 +1,4 @@
-package controller;
+package controller.felhivasController;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package controller;
+package controller.oktatoController;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,7 +22,9 @@ public class OktatoPalyazatiModositoController {
     Oktato aktualisOktato = new Oktato();
     ArrayList<String> aktualisLista = new ArrayList<>();
     PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
-    ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.temaLetolt());
+//    ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.temaLetolt()); //igy csak a kari temak kozul lehet valasztani, de inkabb az osszes pafi.hu temabol lehessen
+    ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.pafiTemaLetolt()); //igy a maradek az osszes lehetseges pafi temat tartalmazza
+
 
     @FXML
     private Button kilepesGomb;
@@ -92,6 +94,7 @@ public class OktatoPalyazatiModositoController {
     private void mentes() {
         OktatoModosito modosito = new OktatoModosito();
         modosito.tombFrissito("palyazatiTema", aktualisOktato.getNev(), aktualisLista );
+        //itt kellene ellenorizni, hogy adtunk-e hozza olyan temat, amik eddig nem szerepelt a kari temak listajaban, es ha igen, akkor azt frissiteni
         mentesDialog();
         kilep();
     }

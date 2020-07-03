@@ -11,7 +11,7 @@
 <BorderPane prefHeight="600.0" prefWidth="950.0"
             stylesheets="@../foablak.css"
             xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.palyazatFooldalController">
+            fx:controller="controller.palyazatController.palyazatFooldalController">
     <bottom>
         <HBox alignment="CENTER">
             <Button fx:id="visszaPalyazatrol" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#visszaKezdooldalra" text="Vissza a főoldalra" BorderPane.alignment="CENTER">

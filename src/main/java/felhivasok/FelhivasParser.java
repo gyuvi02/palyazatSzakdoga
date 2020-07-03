@@ -27,7 +27,7 @@ public class FelhivasParser {
     public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
         ArrayList<String> legutobbiFelhivasok = new ArrayList<>();
 //         feedLista = new RSSParser().rssListaKeszito();
-        int[] elemek = {9, 11, 13, 17, 19};
+        int[] elemek = {9, 11, 13, 17, 19}; //ezeken a helyeken talalhatok a nekem fontos informaciok a letrehozott feed elemekben
         int k = 1;
 
         if (feedLista == null) {
@@ -107,12 +107,11 @@ public class FelhivasParser {
     }
 
     private ArrayList<String> lehetsegesResztvevok(ArrayList<String> fixKategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
-//        Oktato oktato = new Oktato();
         OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
         ArrayList<String> lehetsegesOktatok = new ArrayList<>();
         for (Oktato iterOktato :  oktatoLekerdezes.oktatoTeljesDok("összes")) {
             ArrayList<String> kategoriak = new ArrayList<>(fixKategoriak);
-            kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan csak a kategoria valtozo a metszetnek felel meg
+            kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan a kategoria valtozo a metszetnek felel meg
             if (!kategoriak.isEmpty()){
                 lehetsegesOktatok.add(iterOktato.getNev());
                 System.out.println(lehetsegesOktatok.toString()); //csak ellenorzes celjabol

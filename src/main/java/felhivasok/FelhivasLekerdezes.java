@@ -79,7 +79,8 @@ public class FelhivasLekerdezes {
 //    }
 
     //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
-    //a torles mezo bevezetesevel annak a hasznalata egyszerubb
+    //a torles mezo bevezetesevel annak a hasznalata egyszerubb, csak kivonok 2 hetet a torles datumabol, es az a hatarido
+    //bar a szoveges hataridoknel egy kitalalt beadasi hatarido jon igy ki
     public ArrayList<Felhivas> kesobbiHataridok(LocalDate datum) {
         ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
         for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {

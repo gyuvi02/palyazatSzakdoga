@@ -1,4 +1,4 @@
-package controller;
+package controller.oktatoController;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <VBox prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css"
       xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoTanszekiKutatasokController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoTanszekiKutatasokController">
     <children>
         <ListView fx:id="kutatasiLista" prefHeight="434.0" prefWidth="393.0" />
         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="400.0">
