@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import okatok.Oktato;
+import okatok.OktatoLekerdezes;
 import okatok.OktatoModosito;
 import palyazatok.PalyazatiTemak;
 
@@ -24,6 +25,8 @@ public class OktatoPalyazatiModositoController {
     PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
 //    ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.temaLetolt()); //igy csak a kari temak kozul lehet valasztani, de inkabb az osszes pafi.hu temabol lehessen
     ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.pafiTemaLetolt()); //igy a maradek az osszes lehetseges pafi temat tartalmazza
+    ArrayList<String> relevansTemak = new PalyazatiTemak().temaLetolt(); //az eppen aktualis kari kutatasi temak letoltese
+
 
 
     @FXML
@@ -50,8 +53,7 @@ public class OktatoPalyazatiModositoController {
     @FXML
     public void pTemaTranszfer(Oktato oktato) {
         aktualisOktato = oktato;
-        aktualisLista = new ArrayList<>(oktato.getPalyazatiTema());
-//        oktatoLista.getItems().setAll(aktualisLista);
+        aktualisLista = new ArrayList<>(oktato.oktatoLetolto(oktato.getNev()).getPalyazatiTema());//itt nem a peldanybol kell kiolvasni, hanem az adatbazisbol
         oktatoNev.setText(oktato.getNev() + "\n pályázati témái");
         oktatoLista.getItems().setAll(aktualisLista);
         maradek.removeAll(aktualisLista);
@@ -94,7 +96,10 @@ public class OktatoPalyazatiModositoController {
     private void mentes() {
         OktatoModosito modosito = new OktatoModosito();
         modosito.tombFrissito("palyazatiTema", aktualisOktato.getNev(), aktualisLista );
-        //itt kellene ellenorizni, hogy adtunk-e hozza olyan temat, amik eddig nem szerepelt a kari temak listajaban, es ha igen, akkor azt frissiteni
+        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+        PalyazatiTemak ujTemaLista = new PalyazatiTemak();
+        ujTemaLista.setTemak(oktatoLekerdezes.kutatasiTemak("Minden tanszék", "palyazat"));//itt kerem le az osszes tanszek palyazati temait
+        ujTemaLista.temafeltolt(); //ezzel feltoltjuk a Temak collectoionbe az aktualis listat, ezt hasznalja majd az RSS parser
         mentesDialog();
         kilep();
     }
@@ -103,7 +108,7 @@ public class OktatoPalyazatiModositoController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mentés");
         alert.setHeaderText(aktualisOktato.getNev() );
-        alert.setContentText("pályázati témáit elmentettem");
+        alert.setContentText("pályázati témáit elmentettük");
         alert.getDialogPane().getScene().getStylesheets().add("org/gyula/dialogCSS.css");
         alert.showAndWait();
     }

@@ -66,7 +66,7 @@ public class oktatoFooldalController {
         dialog.show();
     }
 
-    //A palyazati es kutatasi temakat kozos oldalon irjuk ki, ehhez meg kell vizsgalni, melik gombot nyomtuk meg
+    //A palyazati es kutatasi temakat kozos oldalon irjuk ki, ehhez meg kell vizsgalni, melyik gombot nyomtuk meg
     @FXML
     private void tanszekiKutatasok(ActionEvent event) throws IOException {
         String tomb;

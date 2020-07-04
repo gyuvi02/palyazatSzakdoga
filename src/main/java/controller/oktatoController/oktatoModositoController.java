@@ -40,6 +40,7 @@ public class oktatoModositoController {
 
     public void initialize() {
 
+
     }
 
     public void adatTranszfer(Oktato oktato) {

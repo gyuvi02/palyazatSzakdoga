@@ -36,7 +36,8 @@ public class oktatoKutatasiModositoController {
     @FXML
     public void kTemaTranszfer(Oktato oktato) {
         aktualisOktato = oktato;
-        aktualisLista = new ArrayList<String>(oktato.getKutatasiTema());
+//        aktualisLista = new ArrayList<String>(oktato.getKutatasiTema());
+        aktualisLista = new ArrayList<>(oktato.oktatoLetolto(oktato.getNev()).getKutatasiTema());
         kutatasiLista.getItems().setAll(aktualisLista);
         nev.setText(oktato.getNev());
     }
@@ -72,7 +73,7 @@ public class oktatoKutatasiModositoController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mentés");
         alert.setHeaderText(aktualisOktato.getNev() );
-        alert.setContentText("kutatási témáit elmentettem");
+        alert.setContentText("kutatási témáit elmentettük");
         alert.getDialogPane().getScene().getStylesheets().add("org/gyula/dialogCSS.css");
         alert.showAndWait();
     }

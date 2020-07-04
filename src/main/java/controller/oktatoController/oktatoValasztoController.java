@@ -5,10 +5,12 @@ import controller.oktatoController.oktatoReszletekController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
@@ -64,6 +66,7 @@ public class oktatoValasztoController {
 //            kilep();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatói adatok módosítása");
+            stage.setX(300.0);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.setScene(oktatoValasztoScene);
             stage.show();
 
