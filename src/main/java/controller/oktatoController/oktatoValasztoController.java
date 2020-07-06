@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class oktatoValasztoController {
+
     OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
     Oktato kivalasztottOktato = new Oktato();
 
@@ -30,6 +31,9 @@ public class oktatoValasztoController {
 
     @FXML
     private Button nevValasztoReszletek;
+
+    @FXML
+    public Button nevValasztoAktvitas;
 
     @FXML
     private ListView<String> oktatoNevek;
@@ -66,7 +70,7 @@ public class oktatoValasztoController {
 //            kilep();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatói adatok módosítása");
-            stage.setX(300.0);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
+            stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.setScene(oktatoValasztoScene);
             stage.show();
 
@@ -83,7 +87,23 @@ public class oktatoValasztoController {
 //            kilep();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Részletes oktatói adatok");
+            stage.setX(370.0);
             stage.setScene(oktatoValasztoScene);
+            stage.show();
+
+        } else if (event.getSource().equals(nevValasztoAktvitas)) {
+            loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoAktivitas.fxml"));
+            Parent oktatoValasztoParent = loader.load();
+            Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
+
+            oktatoAktivitasController controller = loader.getController();
+            controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
+
+//            kilep();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Oktatók pályázati aktivitása");
+            stage.setScene(oktatoValasztoScene);
+            stage.setX(350);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.show();
 
         }

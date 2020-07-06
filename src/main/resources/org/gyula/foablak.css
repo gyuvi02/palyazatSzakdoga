@@ -104,6 +104,10 @@
     -fx-display-caret: false;
 }
 
+.tooltip {
+    -fx-font-size: 16;
+}
+
 #reszletekFigyelmeztetes {
     -fx-font-size: 12;
     -fx-font-family: Bahnschrift;

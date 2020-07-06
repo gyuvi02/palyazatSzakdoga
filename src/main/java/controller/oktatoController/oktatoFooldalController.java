@@ -35,7 +35,16 @@ public class oktatoFooldalController {
     private Button oktatoTorles;
 
     @FXML
-    MenuButton menuKutatas;
+    private Button oktatoAktivitas;
+
+    @FXML
+    private MenuButton menuKutatas;
+
+    @FXML
+    private Button oktatoPalyazat;
+
+    @FXML
+    private Button oktatoFelhivas;
 
     @FXML
     private void visszaKezdooldalra() throws IOException {
@@ -90,7 +99,7 @@ public class oktatoFooldalController {
         controller.adatTranszfer(source.getText(), tomb);
 
         Stage stage = new Stage();
-        stage.setTitle("Kutatási kérdések");
+        stage.setTitle("Tanszéki témakörök");
         stage.setScene(oktatoValasztoScene);
         stage.show();
     }
@@ -99,14 +108,20 @@ public class oktatoFooldalController {
     private void oktatoSzerkezto(ActionEvent event) throws IOException {
         if (event.getSource().equals(oktatoSzerkeszto)) {
             fx = "oktatoValasztoFXML";
-            title = "szerkesztésre";
+            title = " - szerkesztés";
         } else if (event.getSource().equals(oktatoTorles)) {
             fx = "oktatoValasztoTorlesFXML";
-            title = "törlésre";
+            title = " - törlés";
         } else if (event.getSource().equals(oktatoReszlet)) {
             fx = "oktatoValasztoReszletekFXML";
-            title = "megtekintésre";
+            title = " - adatok megtekintése";
+        } else if (event.getSource().equals(oktatoAktivitas)) {
+            fx = "oktatoValasztoAktivitasFXML";
+            title = " - pályázati részvétel";
+        } else if (event.getSource().equals(oktatoFelhivas)) {
+            //
         }
+
         Stage dialog = new Stage();
         dialog.setTitle("Oktató kiválasztása " + title);
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/" + fx));
@@ -116,9 +131,35 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private String  oktatoValaszto()  throws IOException {
-        App.setRoot("org/gyula/oktatoFXML/oktatoValasztoFXML.fxml");
-        return "";
+    private void tanszekAktivitas(ActionEvent event) throws IOException {
+        MenuItem source = (MenuItem) event.getSource();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoTanszekiAktivitas.fxml"));
+        Parent oktatoValasztoParent = loader.load();
+        Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
+        oktatoTanszekiAktivitasController controller = loader.getController();
+        controller.adatTranszfer(source.getText());
+
+        Stage stage = new Stage();
+        stage.setTitle("Tanszéki pályázatok");
+        stage.setScene(oktatoValasztoScene);
+        stage.show();
     }
+
+    @FXML
+    private void oktatoPalyazatTema() throws IOException {
+        Stage dialog = new Stage();
+        dialog.setTitle("Keresés pályázati téma alapján");
+        Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/oktatoPalyazatiTema"));
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(scene);
+        dialog.showAndWait();
+    }
+
+//    @FXML
+//    private String  oktatoValaszto()  throws IOException {
+//        App.setRoot("org/gyula/oktatoFXML/oktatoValasztoFXML.fxml");
+//        return "";
+//    }
 
 }

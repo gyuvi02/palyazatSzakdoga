@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 import palyazatok.Palyazat;
+import palyazatok.PalyazatiResztvevok;
 
 import java.util.*;
 
@@ -72,72 +73,65 @@ public class OktatoLekerdezes{
         return oktatokColl.find(eq("palyazatiTema", tema)).map(Oktato::getNev).into(new ArrayList<>());
     }
 
-//    Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, mindegy, hogy milyen szerepben
-//    4 katagoriabol valaszthatunk: "összes", "aktuális" (elkezdett es beadott), "regi" (lezart es elfogadott), "sikertelen" (elutasitott)
-    public ArrayList<Palyazat> oktatoiAktivitas(String aktivOktato, String holKeressen) {
-        ArrayList<Palyazat> aktivitas = new ArrayList<>();
-        ArrayList<Palyazat> palyazatLista = new ArrayList<>();
-        if (holKeressen.equals("aktualis") || holKeressen.equals("összes")) {
-            palyazatLista.addAll(palyazatokColl.find(or(eq("aktualisFazis", "elkezdett"), //a palyazatListaba csak azokat a palyazatokat gyujtjuk ossze, amelyek megfelelnek a feltetelnek
-                    (eq("aktualisFazis", "beadott")))).into(new ArrayList<>()));
-        }
-        if (holKeressen.equals("regi") || holKeressen.equals("összes")) {
-            palyazatLista.addAll(palyazatokColl.find(or(eq("aktualisFazis", "lezart"),
-                    (eq("aktualisFazis", "elfogadott")))).into(new ArrayList<>()));
-        }
-        if (holKeressen.equals("aktuális") || holKeressen.equals("összes")) {
-            palyazatLista.addAll(palyazatokColl.find(eq("aktualisFazis", "elutasitott")).into(new ArrayList<>()));
-        }
-        for (Palyazat palyazat : palyazatLista) {
-            if (resztvevoHash(palyazat).contains(aktivOktato)) { //ha a resztvevok kozott szerepel a keresett oktato, akkor hozzaadjuk
-                aktivitas.add(palyazat);
-            }
-        }
-        return aktivitas;
-    }
-
-    //ezzel kerdezzuk le egy palyazat osszes resztvevojet
-    private HashSet<String> resztvevoHash(Palyazat palyazat) {
-        HashSet<String> resztvevok = new HashSet<>();
-        resztvevok.add(palyazat.getResztvevok().getProjektmenedzser());
-        resztvevok.add(palyazat.getResztvevok().getSzakmaiVezeto());
-        resztvevok.add(palyazat.getResztvevok().getKezelo());
-        resztvevok.addAll(palyazat.getResztvevok().getResztvevoEmberek());
-        return resztvevok;
-    }
-
-    //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, feladat szerint keresve
-    public ArrayList<Palyazat> oktatoiAktivitasSzerepek(String aktivOktato, String szerep) {
-        if (szerep.equals("barmelyik")) {
-            return palyazatokColl.find(or(eq("resztvevok.kezelo", aktivOktato),
-                    (eq("resztvevok.projektmenedzser", aktivOktato)),
-                    (eq("resztvevok.szakmaiVezeto", aktivOktato)),
-                    (eq("resztvevok.resztvevoEmberek", aktivOktato))))
-                    .into(new ArrayList<>());
-        } else {
-            return palyazatokColl.find(eq("resztvevok." + szerep, aktivOktato)).into(new ArrayList<>());
-        }
-    }
-
-    //tanszeki szinten osszegzi az egyes oktatok aktivitasat
-    public ArrayList<String> tanszekiAktivitas(String tanszek, String holKeressen) {
-            HashSet<String> erintettPalyazatok = new HashSet<>();
-        for (Oktato oktato : oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>())) {
-            ArrayList<Palyazat> oktatoPalyazatai = oktatoiAktivitas(oktato.getNev(), holKeressen); //az oktatoiAktivitast nem hasznalom masra, meg lehetne irni egyszerubben
-            for (Palyazat palyazat : oktatoPalyazatai) {
-                erintettPalyazatok.add(palyazat.getPalyazatCim());
-            }
-        }
-        ArrayList<String> rendezettPalyazatok = new ArrayList<String>(erintettPalyazatok); //hogy rendezett legyen, kenytelen vagyok listaba attenni
-        Collections.sort(rendezettPalyazatok);
-
-        return rendezettPalyazatok;
-    }
-
-//    private ArrayList<Oktato> nevRendezo(ArrayList<Oktato> lista) {
-//        lista.sort(Comparator.comparing(Oktato::getNev)); //nev alapjan rendezve kuldi vissza
-//        return lista;
+    //feleslegesen bonyolitja, ha a palyazati kategoriakban is akarunk keresni, nincs gyakorlati jelentosege
+    //helyette hasznaljuk a PalyazatLekerdezes osztalyban az oktatoAktivitasCimek metodust
+////    Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, mindegy, hogy milyen szerepben
+////    4 katagoriabol valaszthatunk: "összes", "aktuális" (elkezdett es beadott), "regi" (lezart es elfogadott), "sikertelen" (elutasitott)
+//    public ArrayList<Palyazat> oktatoiAktivitas(String aktivOktato, String holKeressen) {
+//        ArrayList<Palyazat> aktivitas = new ArrayList<>();
+//        ArrayList<Palyazat> palyazatLista = new ArrayList<>();
+//        if (holKeressen.equals("aktualis") || holKeressen.equals("összes")) {
+//            palyazatLista.addAll(palyazatokColl.find(or(eq("aktualisFazis", "elkezdett"), //a palyazatListaba csak azokat a palyazatokat gyujtjuk ossze, amelyek megfelelnek a feltetelnek
+//                    (eq("aktualisFazis", "beadott")))).into(new ArrayList<>()));
+//        }
+//        if (holKeressen.equals("regi") || holKeressen.equals("összes")) {
+//            palyazatLista.addAll(palyazatokColl.find(or(eq("aktualisFazis", "lezart"),
+//                    (eq("aktualisFazis", "elfogadott")))).into(new ArrayList<>()));
+//        }
+//        if (holKeressen.equals("aktuális") || holKeressen.equals("összes")) {
+//            palyazatLista.addAll(palyazatokColl.find(eq("aktualisFazis", "elutasitott")).into(new ArrayList<>()));
+//        }
+//        for (Palyazat palyazat : palyazatLista) {
+//            if (resztvevoHash(palyazat).contains(aktivOktato)) { //ha a resztvevok kozott szerepel a keresett oktato, akkor hozzaadjuk
+//                aktivitas.add(palyazat);
+//            }
+//        }
+//        return aktivitas;
 //    }
+
+
+//     Erre a valosagban nincs szukseg
+//    //Az egyes oktatók pályázati aktivitása – hány pályázatban vettek részt, feladat szerint keresve
+//    public ArrayList<Palyazat> oktatoiAktivitasSzerepek(String aktivOktato, String szerep) {
+//        if (szerep.equals("barmelyik")) {
+//            return palyazatokColl.find(or(eq("resztvevok.kezelo", aktivOktato),
+//                    (eq("resztvevok.projektmenedzser", aktivOktato)),
+//                    (eq("resztvevok.szakmaiVezeto", aktivOktato)),
+//                    (eq("resztvevok.resztvevoEmberek", aktivOktato))))
+//                    .into(new ArrayList<>());
+//        } else {
+//            return palyazatokColl.find(eq("resztvevok." + szerep, aktivOktato)).into(new ArrayList<>());
+//        }
+//    }
+
+
+    //felesleges a palyazati kategoriakat szetvalasztani, ezt helyettesiti a PalyazatLekerdezes osztaly tanszekiAktivitasCimek metodusa
+//    //tanszeki szinten osszegzi az egyes oktatok aktivitasat
+//    public ArrayList<String> tanszekiAktivitas(String tanszek, String holKeressen) {
+//        //elso korben a tanszek oktatoit kerdezzuk le a egy tombbe, ezutan hasznaljuk az oktatoAktivitasCimek metodust minden neven
+//        oktatoNevsor(tanszek);
+//            HashSet<String> erintettPalyazatok = new HashSet<>();
+//        for (Oktato oktato : oktatokColl.find(eq("tanszek", tanszek)).into(new ArrayList<>())) {
+//            ArrayList<Palyazat> oktatoPalyazatai = oktatoiAktivitas(oktato.getNev(), holKeressen); //az oktatoiAktivitast nem hasznalom masra, meg lehetne irni egyszerubben
+//            for (Palyazat palyazat : oktatoPalyazatai) {
+//                erintettPalyazatok.add(palyazat.getPalyazatCim());
+//            }
+//        }
+//        ArrayList<String> rendezettPalyazatok = new ArrayList<String>(erintettPalyazatok); //hogy rendezett legyen, kenytelen vagyok listaba attenni
+//        Collections.sort(rendezettPalyazatok);
+//        return rendezettPalyazatok;
+//    }
+
 
     private ArrayList<String> nevRendezo(ArrayList<String> lista) {
         lista.sort(Comparator.comparing(String::trim)); //nev alapjan rendezve kuldi vissza

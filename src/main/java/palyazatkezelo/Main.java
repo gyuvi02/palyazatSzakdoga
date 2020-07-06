@@ -124,6 +124,7 @@ public class Main {
 
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
 
+//        System.out.println(felhivasLekerdezes.resztvevokAlapjan("Dr. Szabó Gyula"));
 //        felhivasLekerdezes.egyszerimodositas();
 //        System.out.println(felhivasLekerdezes.felhivasListak().size());
 //        System.out.println(felhivasLekerdezes.felhivasCimekHash().size());
@@ -200,6 +201,7 @@ public class Main {
         LocalDate ujVeg = LocalDate.of(2017, 9, 30);
 //        System.out.println(palyazatLekerdezesek.kezdoEvPeriodus(ujKezdet, ujVeg));
 //        System.out.println(palyazatLekerdezesek.osszegHatarok("onero", 0.0, 1200001.0));
+//        System.out.println(palyazatLekerdezesek.resztvevoHash("Kitalált Tehetség pályázat"));
 
 
         //indexek torlese

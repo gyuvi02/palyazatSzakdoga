@@ -235,8 +235,8 @@ public class Palyazat {
                 "Felhíváskód: " + getFelhivasKod() + "\n" +
                 "K+F: " + getKplusF() + "\n" +
                 "Önerő: " + getOnero() + "\n" +
-                "Tervezett összköltség: " + getTervezettOsszkoltseg() + "\n" +
-                "Igényelt támogatás: " + getIgenyeltTamogatas() + "\n" +
+                "Tervezett összköltség: " + getTervezettOsszkoltseg() + " Ft\n" +
+                "Igényelt támogatás: " + getIgenyeltTamogatas() + " Ft\n" +
                 "Megjegyzés: " + getMegjegyzes() + "\n" +
                 "Szerződésszám: " + getSzerzodesSzam() + "\n" +
                 "A pályázat kezdete: " + getKezdet().format(formatters) + "\n" + //a datumok is NullPointer Exception-t adnak
@@ -244,7 +244,7 @@ public class Palyazat {
                 "Szakmai vezető: " + getResztvevok().getSzakmaiVezeto() + "\n"+     //ha nincs megadva, akkor NullPointerException lesz
                 "Projektmenedzser: " + getResztvevok().getProjektmenedzser() + "\n" +
                 "A pályázat kezelője: " + getResztvevok().getKezelo() + "\n" +
-                "Résztvevő kutatók: " + getResztvevok().getResztvevoEmberek().toString() + "\n\n"
+                "Résztvevő kutatók: " + String.join(", ", getResztvevok().getResztvevoEmberek())  + "\n"
                  ;
     }
 

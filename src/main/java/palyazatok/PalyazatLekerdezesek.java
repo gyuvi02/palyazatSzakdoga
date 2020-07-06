@@ -7,14 +7,16 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.TextSearchOptions;
+import okatok.OktatoLekerdezes;
 import palyazatkezelo.MongoAccess;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.or;
+import static com.mongodb.client.model.Filters.*;
 
 public class PalyazatLekerdezesek {
 
@@ -45,6 +47,16 @@ public class PalyazatLekerdezesek {
         }
         return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).into(new ArrayList<>());
     }
+
+    public ArrayList<String> resztvevoKeresoCim(String pozicio, String nev) {
+        if (pozicio.equals("összes")) {
+            return palyazatokColl.find(or(eq("resztvevok.kezelo", nev), eq("resztvevok.projektmenedzser", nev),
+                    eq("resztvevok.szakmaiVezeto", nev), eq("resztvevok.resztvevoEmberek", nev))).map(Palyazat::getPalyazatCim)
+                    .into(new ArrayList<>());
+        }
+        return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).map(Palyazat::getPalyazatCim) .into(new ArrayList<>());
+    }
+
 
     //viszaadja az osszes palyazatot
     public ArrayList<Palyazat> osszesPalyazat() {
@@ -97,6 +109,46 @@ public class PalyazatLekerdezesek {
     public ArrayList<Palyazat> kulcsszavakPalyazat(String kulcsszo) {
         return palyazatokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).into(new ArrayList<>());
     }
+
+    //megsem akarom szetvalasztani a kategoriakat, akkor eleg ennyi a resztvevok megkeresesehez
+    public ArrayList<String> oktatoAktivitasCimek(String aktivOktato) {
+        return palyazatokColl.find(or(eq("resztvevok.kezelo", aktivOktato),
+                (eq("resztvevok.projektmenedzser", aktivOktato)),
+                (eq("resztvevok.szakmaiVezeto", aktivOktato)),
+                (eq("resztvevok.resztvevoEmberek", aktivOktato))))
+                .map(Palyazat::getPalyazatCim).into(new ArrayList<>());
+    }
+
+    //elso korben az oktatoLekerdezes segitsegevel a tanszek oktatoit, azutan ezen a listan hasznaljuk az oktatoAktivitasCimek metodust
+    public ArrayList<String> tanszekiAktivitasCimek(String tanszek) {
+        HashSet<String> palyazatok = new HashSet<>();
+        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
+        for (String oktato : oktatoLekerdezes.oktatoNevsor(tanszek)) {
+            palyazatok.addAll(oktatoAktivitasCimek(oktato));
+        }
+        ArrayList<String> rendezettPalyazatok = new ArrayList<>(palyazatok);
+        return nevRendezo(rendezettPalyazatok);
+    }
+
+    //ezzel kerdezzuk le egy palyazat osszes resztvevojet
+    public ArrayList<String> resztvevoHash(String palyazat) {
+        PalyazatiResztvevok palyazatiResztvevok = palyazatokColl.find(eq("palyazatCim", palyazat))
+                .map(Palyazat::getResztvevok).first();
+        HashSet<String> resztvevok = new HashSet<>();
+        resztvevok.add(palyazatiResztvevok.getKezelo());
+        resztvevok.add(palyazatiResztvevok.getProjektmenedzser());
+        resztvevok.add(palyazatiResztvevok.getSzakmaiVezeto());
+        resztvevok.addAll(palyazatiResztvevok.getResztvevoEmberek());
+        ArrayList<String> rendezettNevek = new ArrayList<>(resztvevok);
+        return nevRendezo(rendezettNevek);
+    }
+
+    private ArrayList<String> nevRendezo(ArrayList<String> lista) {
+        lista.sort(Comparator.comparing(String::trim)); //nev alapjan rendezve kuldi vissza
+        return lista;
+    }
+
+
 
 }
 

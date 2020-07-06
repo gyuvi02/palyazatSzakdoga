@@ -13,11 +13,11 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.lte;
+import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Projections.*;
 
 public class FelhivasLekerdezes {
@@ -43,6 +43,13 @@ public class FelhivasLekerdezes {
     //az osszes felhivas, amelyben szerepel az adott kategoria
     public ArrayList<Felhivas> palyazatiKategoriaAlapjan(String kategoria) {
         return felhivasokColl.find(eq("kategoriak", kategoria)).into(new ArrayList<>());
+    }
+
+    //az osszes felhivas, amelyben erintett lehet a megadott oktato
+    public ArrayList<String> resztvevokAlapjan(String nev) {
+       ArrayList<String> rendezettFelhivasok = new ArrayList<>
+           (felhivasokColl.find(eq("lehetsegesResztvevok", nev)).map(Felhivas::getFelhivasCim).into(new HashSet<>()));
+        return nevRendezo(rendezettFelhivasok);
     }
 
     public ArrayList<Felhivas> kulcsszavakFelhivas(String kulcsszo) {
@@ -101,5 +108,8 @@ public class FelhivasLekerdezes {
             return LocalDate.now().plusDays(365 * 5);//inkabb nem egy fix datumot adunk at, hanem 5 evvel kesobbi datumot
         }
     }
-
+    private ArrayList<String> nevRendezo(ArrayList<String> lista) {
+        lista.sort(Comparator.comparing(String::trim)); //nev alapjan rendezve kuldi vissza
+        return lista;
+    }
 }
