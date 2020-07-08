@@ -68,7 +68,7 @@ public class OktatoLekerdezes{
         return rendezettTemak;
     }
 
-    //Az oktatók pályázati témái alapján – ezekből nincs túl sok, legördülő menüvel megoldható
+    //Az oktatók pályázati témái alapján leválogatva – ezekből nincs túl sok, legördülő menüvel megoldható
     public ArrayList<String> palyazatiTemaKereso(String tema) {
         return oktatokColl.find(eq("palyazatiTema", tema)).map(Oktato::getNev).into(new ArrayList<>());
     }

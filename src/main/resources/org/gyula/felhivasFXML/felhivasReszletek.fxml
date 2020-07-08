@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="450.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasReszletekController">
+    <children>
+        <HBox maxWidth="-Infinity" prefHeight="100.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </HBox>
+        <TextArea fx:id="reszletek" prefHeight="515.0" prefWidth="683.0" stylesheets="@../foablak.css" wrapText="true">
+            <VBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" />
+            </VBox.margin></TextArea>
+        <BorderPane maxHeight="-Infinity" prefHeight="53.0" prefWidth="602.0">
+         <top>
+                <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="15.0" top="5.0" />
+                    </BorderPane.margin></Button>
+         </top>
+        </BorderPane>
+    </children>
+
+
+</VBox>

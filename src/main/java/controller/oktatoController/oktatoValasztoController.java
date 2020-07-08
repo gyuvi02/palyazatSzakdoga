@@ -47,6 +47,7 @@ public class oktatoValasztoController {
     public void initialize() {
         oktatoNevek.getItems().setAll(oktatoLekerdezes.oktatoNevsor("összes"));
         oktatoNevek.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        oktatoNevek.getSelectionModel().select(0);
     }
 
     @FXML
@@ -57,7 +58,7 @@ public class oktatoValasztoController {
 
     @FXML
     public void nevValaszto(ActionEvent event) throws IOException {
-        kivalasztottOktato = kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0));
+//        kivalasztottOktato = kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0));
         FXMLLoader loader = new FXMLLoader();
         if (event.getSource().equals(nevValasztoSzerkeszt)) {
             loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoModosito.fxml"));

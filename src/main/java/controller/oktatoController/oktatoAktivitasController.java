@@ -50,7 +50,6 @@ public class oktatoAktivitasController {
     @FXML
     private void nincsValasztas() {
         boolean disableButtons = aktivitasLista.getSelectionModel().isEmpty();
-        System.out.println(disableButtons);
         palyazatReszletek.setDisable(disableButtons);
     }
 

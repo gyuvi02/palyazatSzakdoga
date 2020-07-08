@@ -18,7 +18,6 @@ import java.io.IOException;
 public class oktatoFooldalController {
     String tanszek;
 
-    @FXML
     String fx;
     String title;
 
@@ -29,7 +28,7 @@ public class oktatoFooldalController {
     private Button kilepesGomb;
 
     @FXML
-    private Button oktatoSzerkeszto;
+    private Button oktatoSzerk;
 
     @FXML
     private Button oktatoTorles;
@@ -105,9 +104,9 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void oktatoSzerkezto(ActionEvent event) throws IOException {
-        if (event.getSource().equals(oktatoSzerkeszto)) {
-            fx = "oktatoValasztoFXML";
+    private void oktatoSzerkeszto(ActionEvent event) throws IOException {
+        if (event.getSource().equals(oktatoSzerk)) {
+            fx = "oktatoValasztoSzerkesztFXML";
             title = " - szerkesztés";
         } else if (event.getSource().equals(oktatoTorles)) {
             fx = "oktatoValasztoTorlesFXML";
@@ -118,8 +117,6 @@ public class oktatoFooldalController {
         } else if (event.getSource().equals(oktatoAktivitas)) {
             fx = "oktatoValasztoAktivitasFXML";
             title = " - pályázati részvétel";
-        } else if (event.getSource().equals(oktatoFelhivas)) {
-            //
         }
 
         Stage dialog = new Stage();
@@ -149,16 +146,16 @@ public class oktatoFooldalController {
     @FXML
     private void oktatoPalyazatTema() throws IOException {
         Stage dialog = new Stage();
-        dialog.setTitle("Keresés pályázati téma alapján");
+        dialog.setTitle("Keresés kari pályázati témák alapján");
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/oktatoPalyazatiTema"));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(scene);
-        dialog.showAndWait();
+        dialog.show();
     }
 
 //    @FXML
 //    private String  oktatoValaszto()  throws IOException {
-//        App.setRoot("org/gyula/oktatoFXML/oktatoValasztoFXML.fxml");
+//        App.setRoot("org/gyula/oktatoFXML/oktatoValasztoSzerkesztFXML.fxml");
 //        return "";
 //    }
 

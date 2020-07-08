@@ -113,3 +113,18 @@
     -fx-font-family: Bahnschrift;
 }
 
+.list-cell:odd {
+    -fx-cell-hover-color: #579e3f;
+    -fx-background-color: white;
+}
+
+.list-cell:even {
+    -fx-cell-hover-color: #579e3f;
+    -fx-background-color: #e6fff0;
+}
+
+.list-cell:selected {
+    -fx-text-fill: black;
+    -fx-background-color: #61d94e;
+}
+

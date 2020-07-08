@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoListaController">
+   <children>
+      <ListView fx:id="nevLista" prefHeight="448.0" prefWidth="493.0" />
+       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="400.0">
+           <children>
+               <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#kilep" text="Bezár" textAlignment="CENTER">
+                   <HBox.margin>
+                       <Insets left="20.0" top="10.0" />
+                   </HBox.margin></Button>
+           </children>
+           <VBox.margin>
+               <Insets top="-10.0" />
+           </VBox.margin>
+       </HBox>
+   </children>
+</VBox>

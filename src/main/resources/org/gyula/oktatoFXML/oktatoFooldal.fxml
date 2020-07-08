@@ -51,13 +51,13 @@
                   <Insets top="30.0" />
                </padding>
             </Label>
-            <Button fx:id="oktatoReszlet" onAction="#oktatoSzerkezto" text="Részletes oktatói adatok" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button fx:id="oktatoReszlet" onAction="#oktatoSzerkeszto" text="Részletes oktatói adatok" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                 <tooltip> <Tooltip text="Az egyes oktatók részletes adatainak megtekintése" /> </tooltip>
                 <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="oktatoAktivitas" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0" onAction="#oktatoSzerkezto" text="Oktatók pályázati aktivitása" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Button fx:id="oktatoAktivitas" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0" onAction="#oktatoSzerkeszto" text="Oktatók pályázati aktivitása" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                 <tooltip> <Tooltip text="Pályázatok, amelyekben az oktató részt vett" /> </tooltip>
                 <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
@@ -78,8 +78,8 @@
                   <Insets bottom="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="oktatoSzerkeszto" onAction="#oktatoSzerkezto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkezto" text="Oktató törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoSzerk" onAction="#oktatoSzerkeszto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkeszto" text="Oktató törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki kutatási témák" GridPane.rowIndex="3">
                 <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak kutatási témáit akarja látni" /> </tooltip>
                 <items>
@@ -116,7 +116,7 @@
                      <MenuItem mnemonicParsing="false" onAction="#tanszekAktivitas" text="Művészetnevelési és Sport" />
                  </items>
              </MenuButton>
-             <Button fx:id="oktatoFelhivas" onAction="#oktatoSzerkezto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+<!--             <Button fx:id="oktatoFelhivas" onAction="#oktatoSzerkeszto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />-->
             <Button fx:id="oktatoPalyazat" mnemonicParsing="false" text="Keresés pályázati témára" GridPane.rowIndex="7"
                 onMouseClicked="#oktatoPalyazatTema">
                 <tooltip> <Tooltip text="Oktatók, akiket érint egy adott pályázati téma"/>
