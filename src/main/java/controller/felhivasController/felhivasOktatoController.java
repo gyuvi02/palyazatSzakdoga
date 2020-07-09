@@ -47,7 +47,7 @@ public class felhivasOktatoController {
         Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
 
         felhivasOktatoPalyazatiTemaController controller = loader.getController();
-        controller.adatTranszfer(oktatoNevek.getSelectionModel().getSelectedItems().get(0));
+        controller.adatLegutobbi();
 
 //            kilep();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

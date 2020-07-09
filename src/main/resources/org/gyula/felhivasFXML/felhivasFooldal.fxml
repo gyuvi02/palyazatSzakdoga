@@ -41,14 +41,38 @@
                <Insets left="-225.0" top="-80.0" />
             </GridPane.margin>
          </Line>
-          <Button fx:id="felhivasOktato" onAction="#oktatoValaszto" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0"
-                  text="Felhívások oktatók szerint" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+          <Button fx:id="felhivasOktato" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0" onAction="#oktatoValaszto" text="Felhívások oktatók szerint" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
               <tooltip> <Tooltip text="Felhívások, amelyek az oktató pályázati témáihoz kapcsolódnak" /> </tooltip>
               <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
               </GridPane.margin>
           </Button>
-         <columnConstraints>
+         <Button fx:id="felhivaslegutobbi" alignment="CENTER" mnemonicParsing="false" onAction="#legutobbiFelhivas" text="A legutóbbi felhívások" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+          <Button fx:id="kategoriaLekersezed" alignment="CENTER" mnemonicParsing="false" onAction="#ketegoriaKereses" text="Keresés pályázati kategória alapján" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+            <children>
+               <Label alignment="CENTER" contentDisplay="CENTER" text="Keresés a felhívások között keresőkifejezés segítségével" textAlignment="CENTER" />
+               <HBox alignment="CENTER" prefHeight="66.0" prefWidth="469.0">
+                  <children>
+                     <TextField maxWidth="-Infinity" prefColumnCount="1" prefWidth="200.0" promptText="Csak pontos kifejezésre keres">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font size="11.0" />
+                        </font>
+                     </TextField>
+                     <Button mnemonicParsing="false" text="Keresés">
+                        <padding>
+                           <Insets left="10.0" />
+                        </padding>
+                     </Button>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+
+          <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="578.0" minWidth="10.0" prefWidth="469.3333333333333" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="561.0" minWidth="10.0" prefWidth="473.99999999999994" />
         </columnConstraints>

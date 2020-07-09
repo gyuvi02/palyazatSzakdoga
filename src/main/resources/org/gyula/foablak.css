@@ -89,7 +89,7 @@
 .text-field {
     -fx-background-radius:8;
     -fx-font-family: Bahnschrift;
-    -fx-font-size: 15;
+    -fx-font-size: 14;
 }
 
 .list-view {
@@ -125,6 +125,16 @@
 
 .list-cell:selected {
     -fx-text-fill: black;
-    -fx-background-color: #61d94e;
+    -fx-background-color: #6fd94e;
+}
+
+.hyperlink {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+#pafiLink {
+    -fx-font-size: 18;
+    -fx-font-family: Bahnschrift;
 }
 

@@ -35,14 +35,14 @@ public class FelhivasLekerdezes {
                 excludeId()))).map(Felhivas::getFelhivasCim).into(new HashSet<>());
     }
 
-    //visszaadja a keresett kiirohoz tartozo osszes felhivast
-    public ArrayList<Felhivas> kiiroLekerdezes(String kiiro) {
-        return felhivasokColl.find(eq("felhivasKiiro", kiiro)).into(new ArrayList<>());
-    }
+//    //visszaadja a keresett kiirohoz tartozo osszes felhivast - a gyakorlatban nincs jelentosege
+//    public ArrayList<Felhivas> kiiroLekerdezes(String kiiro) {
+//        return felhivasokColl.find(eq("felhivasKiiro", kiiro)).into(new ArrayList<>());
+//    }
 
     //az osszes felhivas, amelyben szerepel az adott kategoria
-    public ArrayList<Felhivas> palyazatiKategoriaAlapjan(String kategoria) {
-        return felhivasokColl.find(eq("kategoriak", kategoria)).into(new ArrayList<>());
+    public ArrayList<String> palyazatiKategoriaAlapjan(String kategoria) {
+        return felhivasokColl.find(eq("kategoriak", kategoria)).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
     }
 
     //az osszes felhivas, amelyben erintett lehet a megadott oktato
