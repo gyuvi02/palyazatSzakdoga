@@ -58,7 +58,7 @@
 }
 
 .combo-box {
-    -fx-font-size: 18;
+    -fx-font-size: 17;
     -fx-font-family: Bahnschrift;
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
@@ -137,4 +137,25 @@
     -fx-font-size: 18;
     -fx-font-family: Bahnschrift;
 }
+
+.combo-box .list-cell:selected {
+    -fx-background-color: darkgreen
+    linear-gradient(#52f227, #e8f5fc),
+    linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius:8;
+    -fx-text-fill: black;
+    /*-fx-effect: dropshadow( gaussian , rgba(0,0,0,0.8) , 7,0,0,3 );*/
+
+}
+
+.combo-box .list-cell:hover {
+    -fx-border-width: 0;
+    -fx-text-fill: black;
+    -fx-background-color: darkgreen
+    linear-gradient(#52f227, #e8f5fc),
+    linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
+
+}
+
 

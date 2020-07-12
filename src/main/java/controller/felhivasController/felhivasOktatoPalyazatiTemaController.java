@@ -45,6 +45,17 @@ public class felhivasOktatoPalyazatiTemaController {
         felhivasLista.getSelectionModel().select(0);
     }
 
+    public void kulcsszoKereso(String kereso) {
+        ArrayList<String> lista = felhivasLekerdezes.kulcsszavakFelhivas(kereso);
+        if (lista.isEmpty()) {
+            felhivasLista.getItems().setAll("Nem találtam a keresőkifejezésnek megfelelő felhívást");
+            felhivasValaszto.setDisable(true);
+        } else {
+            felhivasLista.getItems().setAll(lista);
+            felhivasLista.getSelectionModel().select(0);
+        }
+    }
+
     @FXML
     public void adatKategoria(String kategoria) {
         ArrayList<String> lista = felhivasLekerdezes.palyazatiKategoriaAlapjan(kategoria);
@@ -56,6 +67,13 @@ public class felhivasOktatoPalyazatiTemaController {
             felhivasLista.getSelectionModel().select(0);
         }
     }
+
+    @FXML
+    public void osszesFelhivas() {
+        felhivasLista.getItems().setAll(felhivasLekerdezes.felhivasListak());
+        felhivasLista.getSelectionModel().select(0);
+    }
+
     @FXML
     private void felhivasValaszto(ActionEvent event) throws IOException {
         String kivalasztottFelhivas = felhivasLista.getSelectionModel().getSelectedItem().toString();

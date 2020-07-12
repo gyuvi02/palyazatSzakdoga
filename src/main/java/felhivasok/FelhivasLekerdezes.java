@@ -7,6 +7,7 @@ import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.TextSearchOptions;
+import org.bson.Document;
 import palyazatkezelo.MongoAccess;
 
 import java.text.SimpleDateFormat;
@@ -25,9 +26,17 @@ public class FelhivasLekerdezes {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
 
-    //Az osszes felhivast visszaadja
-    public ArrayList<Felhivas> felhivasListak() {
-        return felhivasokColl.find().into(new ArrayList<>());
+    //Az osszes felhivas cimet visszaadja
+    public ArrayList<String> felhivasListak() {
+        return felhivasokColl.find().map(Felhivas::getFelhivasCim).into(new ArrayList<>());
+    }
+
+    public ArrayList<String> felhivasListaLimited(int oldalszam, int limit) {
+        return nevRendezo(felhivasokColl.find().skip(oldalszam*limit).limit(limit).map(Felhivas::getFelhivasCim).into(new ArrayList<>()));
+    }
+
+    public long felhivasokSzama() {
+        return felhivasokColl.countDocuments();
     }
 
     public HashSet<String>  felhivasCimekHash() {
@@ -52,21 +61,27 @@ public class FelhivasLekerdezes {
         return nevRendezo(rendezettFelhivasok);
     }
 
-    public ArrayList<Felhivas> kulcsszavakFelhivas(String kulcsszo) {
-        return felhivasokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).into(new ArrayList<>());
+    public ArrayList<String> kulcsszavakFelhivas(String kulcsszo) {
+        return felhivasokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
     }
 
-    private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        lista.sort((o1, o2) -> {
-                LocalDate date1 = parseDate(o1.getBeadasiHatarido());
-                LocalDate date2 = parseDate(o2.getBeadasiHatarido());
-            if (date1 != null) {
-                return date1.compareTo(date2);
-            } else {
-                return 1;
-            }
-        });
+    private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){ //egyszerubb, ha a torles datum alapjan csinaljuk
+        lista.sort(((o1, o2) -> {
+            LocalDate date1 = o1.getTorles();
+            LocalDate date2 = o2.getTorles();
+            return date1.compareTo(date2);
+        }));
+
+//        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+//        lista.sort((o1, o2) -> {
+//                LocalDate date1 = parseDate(o1.getBeadasiHatarido());
+//                LocalDate date2 = parseDate(o2.getBeadasiHatarido());
+//            if (date1 != null) {
+//                return date1.compareTo(date2);
+//            } else {
+//                return 1;
+//            }
+//        });
         return lista;
     }
 

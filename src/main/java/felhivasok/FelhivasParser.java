@@ -22,12 +22,12 @@ import java.util.Date;
 public class FelhivasParser {
 
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<LegutobbiFelhivasok> legutobbiColl = palyazatDB.getCollection("LegutobbiFelhivasok", LegutobbiFelhivasok.class);
+
+    int[] elemek = {9, 11, 13, 17, 19}; //ezeken a helyeken talalhatok a nekem fontos informaciok a letrehozott feed elemekben
 
     public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
         ArrayList<String> legutobbiFelhivasok = new ArrayList<>();
 //         feedLista = new RSSParser().rssListaKeszito();
-        int[] elemek = {9, 11, 13, 17, 19}; //ezeken a helyeken talalhatok a nekem fontos informaciok a letrehozott feed elemekben
         int k = 1;
 
         if (feedLista == null) {
@@ -52,8 +52,11 @@ public class FelhivasParser {
                 Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
                         reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak),
                         torlesSzamolo(date));
-                legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
-                keszFelhivas.felhivasFeltolto();
+                //itt ellenorzom a link alapjan, hogy mar van-e ilyen felhivas, ha nem (true), akkor feltoltom
+                if (linkOsszevetes(keszFelhivas)) {
+                    keszFelhivas.felhivasFeltolto();
+                    legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
+                }
                 aktualizaltFeedLista.remove(0); // kitoroljuk, hogy a catch jol mukodjon szukseg eseten, ha nincs kivetel, erre nem lesz szukseg
             }
             //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a
@@ -64,13 +67,39 @@ public class FelhivasParser {
             aktualizaltFeedLista.remove(0);
             felhivasKeszito(aktualizaltFeedLista); //a folyamatosan torolt listaval hivjuk meg ujra, ebben mar csak azok vannak, amelyeket meg nem olvastunk be
         }
+
         LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
-        legutobbiColl.insertOne(legutobbi);
+        legutobbi.legutobbiListaFeltoltes();
     }
 
-    //visszaadja a legutobbi RSS-bol letoltott felhivasok cimet
-    public ArrayList<String> legutobbiFelhivasok() {
-        return legutobbiColl.find().sort(new BasicDBObject("_id", -1)).first().getLegutobbi();
+    //ha kozvetlenul adunk meg egy pafi.hu linket, mivel a palyazati kategoriak az RSS-ben vannak, itt nekunk kell megadni
+    public boolean felhivasLinkbol(String link, ArrayList<String> palyazatiKategoriak) throws IOException {
+        try {
+            String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
+            Document doc = Jsoup.connect(link).get();
+            Elements alapAdatok = doc.select("td");
+            for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
+                adatok[i] = alapAdatok.get(elemek[i]).text();
+            }
+            String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
+            ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(palyazatiKategoriak);
+
+            String date = datumKeszito(adatok[2]);
+
+            Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, link,
+                    reszletesLeiras, palyazatiKategoriak, lehetsegesResztvevok(ellenorizendoKategoriak),
+                    torlesSzamolo(date));
+
+            if (linkOsszevetes(keszFelhivas)) {
+                keszFelhivas.felhivasFeltolto();
+                return true;
+            }
+
+        } catch (HttpStatusException | IllegalArgumentException e) {
+            System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
+            return false;
+        }
+        return false;
     }
 
     private static String leirasParser(String html) {  //ez megoldja, hogy a <br> tageket atalakitsuk \n jelekke, es jol tagolja a szoveget
@@ -119,4 +148,18 @@ public class FelhivasParser {
         }
         return lehetsegesOktatok;
     }
+
+    private boolean linkOsszevetes(Felhivas ellenorizendo) {
+        Felhivas felhivasLista = new Felhivas();
+        ArrayList<Felhivas> osszehasonlitoLista = felhivasLista.felhivasLetolto(ellenorizendo.getFelhivasCim()); //csak azokkal a felhivasokkal vetjuk ossze, amelyeknek azonos a cime
+        if (!osszehasonlitoLista.isEmpty()) { //ha ures, akkor NullPointer lenne, de akkor nem is kell ellemoriznem
+            for (Felhivas felhivas : osszehasonlitoLista) {
+                if (felhivas.getFelhivasLink().equals(ellenorizendo.getFelhivasLink())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

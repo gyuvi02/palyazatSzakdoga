@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.ne;
 
 public class Felhivas {
     @BsonProperty(value = "felhivasCim")    //az elnevezesi szokasok ne keveredjenek
@@ -61,7 +62,15 @@ public class Felhivas {
         return felhivasokColl.find((eq("felhivasCim", cim))).into(new ArrayList<>()); //ha ures tombot ad vissza, akkor nem letezik
     }
 
+    //ellenoriznem kell, hogy a legutobbiFelhivasok collection-bol is kitoroljuk a torolt felhivast
     public long felhivasTorol(String torlendoFelhivas) {
+        LegutobbiFelhivasok legutobbiFelhivasok = new LegutobbiFelhivasok().legutobbiTeljes(); //letoltjuk az aktualis dokumentkumot
+        ArrayList<String> lista = legutobbiFelhivasok.legutobbiLekerdezes(); //a dokumentumbol kivesszuk a listat
+        if (lista.contains(torlendoFelhivas)) {
+            lista.remove(torlendoFelhivas);
+            legutobbiFelhivasok.setLegutobbi(lista); //az uj listat hozzaadjuk a regi dokumentumhoz
+            legutobbiFelhivasok.legutobbiListaFeltoltes(); //es visszatoltjuk a modositott dokumentumot
+        }
         return felhivasokColl.deleteOne(eq("felhivasCim", torlendoFelhivas)).getDeletedCount(); //ha a visszadott ertek 0, akkor nem tortent semmi
     }
 

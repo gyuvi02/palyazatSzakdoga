@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="550.0" prefWidth="600.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasPafiLinkController">
+   <Label text="Ezen az oldalon a pafi.hu oldalról származó link segítségével adhatunk hozzá egy pályázati felhívást az adatbázisunkhoz.  A pályázati kategóriákat nekünk kell kiválasztani az alábbi listából." textAlignment="CENTER" wrapText="true" />
+   <HBox alignment="CENTER" prefHeight="325.0" prefWidth="593.0">
+      <children>
+         <ListView fx:id="teljesLista" prefHeight="325.0" prefWidth="220.0">
+            <HBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </HBox.margin></ListView>
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Button fx:id="hozzaad" onMouseClicked="#pluszTema" mnemonicParsing="false" text="&gt;&gt;">
+                  <VBox.margin>
+                     <Insets bottom="20.0" />
+                  </VBox.margin>
+               </Button>
+               <Button fx:id="elvesz" onMouseClicked="#minuszTema" mnemonicParsing="false" text="&lt;&lt;">
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
+               </Button>
+            </children>
+         </VBox>
+         <ListView fx:id="kivalasztottLista" prefHeight="200.0" prefWidth="220.0">
+            <HBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </HBox.margin>
+         </ListView>
+      </children></HBox>
+   <HBox alignment="CENTER" prefHeight="49.0" prefWidth="593.0">
+      <children>
+         <Label text="A felhívás linkjét másolja ide:">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Label>
+         <TextField fx:id="cim" onKeyReleased="#uresMezo" prefHeight="30.0" prefWidth="341.0" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="46.0" prefWidth="593.0">
+      <children>
+         <Button fx:id="feltoltes" onMouseClicked="#feltoltes" mnemonicParsing="false" text="Feltöltés">
+            <HBox.margin>
+               <Insets right="150.0" />
+            </HBox.margin>
+         </Button>
+          <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" contentDisplay="TOP" mnemonicParsing="false" onAction="#kilep" text="Mégse" textAlignment="CENTER">
+    </Button>
+      </children>
+   </HBox>
+
+</VBox>

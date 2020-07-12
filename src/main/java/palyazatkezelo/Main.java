@@ -36,6 +36,9 @@ public class Main {
 //        oktato.oktatoFeltolto();
 
         FelhivasParser felhivasParser = new FelhivasParser();
+
+//        felhivasParser.felhivasLinkbol("hibasURL", new ArrayList<>());
+
         RSSParser rssParser = new RSSParser();
         FelhivasModosito felhivasModosito = new FelhivasModosito();
 
@@ -62,7 +65,10 @@ public class Main {
 //                new ArrayList<String>(Arrays.asList("Dr. Gortka-Rákó Erzsébet")));
 
 
-        PalyazatiResztvevok aResztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
+//        PalyazatiResztvevok aResztvevok = new PalyazatiResztvevok("Dr. Bocsi Veronika", "Dr. Szabó Gyula", "", new ArrayList<>(Arrays.asList("Dr. Nemes Magdolna", "Dr. Gortka-Rákó Erzsébet")));
+
+        Felhivas felhivas = new Felhivas();
+//        felhivas.felhivasTorol("Pályázat média szervezeteknek");
 
 //        torlendo.aktualisPalyazatFeltolto();
 //        torlendo.aktualisPalyazatTorlo("Torlendo");
@@ -123,6 +129,8 @@ public class Main {
 //        oktatoLekerdezes.kutatasiTemak("Szociálpedagógia");
 
         FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
+
+        felhivasLekerdezes.felhivasokSzama();
 
 //        System.out.println(felhivasLekerdezes.resztvevokAlapjan("Dr. Szabó Gyula"));
 //        felhivasLekerdezes.egyszerimodositas();

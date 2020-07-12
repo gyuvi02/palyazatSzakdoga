@@ -35,14 +35,12 @@
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font></Label>
-            <Button fx:id="hozzaad" mnemonicParsing="false" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                    GridPane.rowIndex="1" GridPane.valignment="BOTTOM" onMouseClicked="#pluszTema">
+            <Button fx:id="hozzaad" mnemonicParsing="false" onMouseClicked="#pluszTema" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="elvesz" mnemonicParsing="false" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                    GridPane.rowIndex="2" GridPane.valignment="TOP" onMouseClicked="#minuszTema">
+            <Button fx:id="elvesz" mnemonicParsing="false" onMouseClicked="#minuszTema" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="10.0" />
                </GridPane.margin>
@@ -55,9 +53,9 @@
     <bottom>
         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="694.0" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" text="Mentés" onMouseClicked="#mentes">
+                <Button mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
                     <HBox.margin>
-                        <Insets right="20.0" />
+                        <Insets right="100.0" />
                     </HBox.margin>
                 </Button>
                 <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégse">

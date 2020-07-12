@@ -24,8 +24,16 @@ public class LegutobbiFelhivasok {
     public LegutobbiFelhivasok() {
     }
 
+    public LegutobbiFelhivasok legutobbiTeljes() {
+        return legutobbikColl.find().sort(new Document("_id", -1)).first();
+    }
+
     public ArrayList<String> legutobbiLekerdezes() {
         return legutobbikColl.find().sort(new Document("_id", -1)).map(LegutobbiFelhivasok::getLegutobbi).first();
+    }
+
+    public void legutobbiListaFeltoltes() {
+        legutobbikColl.insertOne(this);
     }
 
     public ArrayList<String> getLegutobbi() {

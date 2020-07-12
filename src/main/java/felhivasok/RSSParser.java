@@ -21,6 +21,7 @@ public class RSSParser {
     MongoCollection<ArrayList> temaColl = palyazatDB.getCollection("Temak", ArrayList.class);
 
     ArrayList<String> relevansTemak = new PalyazatiTemak().temaLetolt(); //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
+        // - vegul nem kezzel allithato lett, hanem automatikusan, az oktatok palyazati temaibol rakja ossze a listat
 
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";

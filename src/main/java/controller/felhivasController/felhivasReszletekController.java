@@ -38,6 +38,7 @@ public class felhivasReszletekController {
         reszletek.setWrapText(true);
         felhivasLink = lista.get(0).getFelhivasLink();
         hyperlink.setText(lista.get(0).getFelhivasCim());
+        reszletek.setWrapText(true);
 
     }
 

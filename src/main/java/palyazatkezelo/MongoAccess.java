@@ -26,25 +26,29 @@ public class MongoAccess {
             connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
         } catch (MongoConfigurationException e) {
             System.out.println("Problema a kapcsolattal");
-            //
+            //meghivok egy figyelmezteto ablakot
         }
 
         if (mongoAccess == null) {
                 mongoAccess = new MongoAccess();
             }
 
+        try {
             CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
             CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                     pojoCodecRegistry);
-
             MongoClientSettings clientSettings = MongoClientSettings.builder()
                     .applyConnectionString(connectionString)
                     .codecRegistry(codecRegistry)
                     .build();
 
 
-        return MongoClients.create(clientSettings);
+            return MongoClients.create(clientSettings);
 
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return null;
+        }
     }
 
     public static void closeDatabase() {
