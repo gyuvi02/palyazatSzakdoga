@@ -152,11 +152,4 @@ public class oktatoFooldalController {
         dialog.setScene(scene);
         dialog.show();
     }
-
-//    @FXML
-//    private String  oktatoValaszto()  throws IOException {
-//        App.setRoot("org/gyula/oktatoFXML/oktatoValasztoSzerkesztFXML.fxml");
-//        return "";
-//    }
-
 }

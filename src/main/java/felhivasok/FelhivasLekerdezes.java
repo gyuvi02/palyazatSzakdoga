@@ -32,7 +32,15 @@ public class FelhivasLekerdezes {
     }
 
     public ArrayList<String> felhivasListaLimited(int oldalszam, int limit) {
+        ArrayList<String> cimLista = new ArrayList<>();
         return nevRendezo(felhivasokColl.find().skip(oldalszam*limit).limit(limit).map(Felhivas::getFelhivasCim).into(new ArrayList<>()));
+        //Ha az egyes adagokat beadasi hatarido szerint akarjuk felsorolni, az egy kicsit bonyolultabb:
+//       ArrayList<Felhivas> felhivasLista = hataridoRendezes(felhivasokColl.find().skip(oldalszam*limit).limit(limit).into(new ArrayList<>()));
+//        for (Felhivas felhivas : felhivasLista) {
+//            cimLista.add(felhivas.getFelhivasCim());
+//        }
+//        return cimLista;
+        //bar valoszinuleg gyorsabb lenne, ha csak egy LocalDate tombot kerseznek le, es azt kuldenem at sorbarendezesre, de nincs gyakorlati jelentosege
     }
 
     public long felhivasokSzama() {
@@ -103,14 +111,15 @@ public class FelhivasLekerdezes {
     //az atkuldott datum utani beadasi hatarideju felhivasok listaja, azert ilyen bonyolult, mert nem tudom datumkent tarolni az elofordulo szovegek miatt
     //a torles mezo bevezetesevel annak a hasznalata egyszerubb, csak kivonok 2 hetet a torles datumabol, es az a hatarido
     //bar a szoveges hataridoknel egy kitalalt beadasi hatarido jon igy ki
-    public ArrayList<Felhivas> kesobbiHataridok(LocalDate datum) {
-        ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
-        for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
-            if (datum.isBefore(parseDate(felhivas.getBeadasiHatarido()))){
-                korabbiFelhivasok.add(felhivas);
-            }
-        }
-        return korabbiFelhivasok;
+    public ArrayList<String> kesobbiHataridok(LocalDate datum) {
+        return felhivasokColl.find(gte("torles", datum.minusDays(14))).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
+
+//        ArrayList<Felhivas> korabbiFelhivasok = new ArrayList<>();
+//        for (Felhivas felhivas : felhivasokColl.find().into(new ArrayList<>())) {
+//            if (datum.isBefore(parseDate(felhivas.getBeadasiHatarido()))){
+//                korabbiFelhivasok.add(felhivas);
+//            }
+//        }
     }
 
 

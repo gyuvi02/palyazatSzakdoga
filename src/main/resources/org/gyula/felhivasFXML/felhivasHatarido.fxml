@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="300.0" prefWidth="600.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasHataridoController">
+   <Label text="Label" textAlignment="CENTER" wrapText="true" />
+   <HBox alignment="CENTER" prefHeight="245.0" prefWidth="593.0">
+      <children>
+         <Label text="A határidő megadása">
+            <HBox.margin>
+               <Insets right="20.0" />
+            </HBox.margin>
+         </Label>
+         <DatePicker fx:id="hataridoGomb"  />
+      </children></HBox>
+
+    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="400.0">
+        <VBox.margin>
+            <Insets top="-10.0" />
+        </VBox.margin>
+        <Button fx:id="kereses" onAction="#hataridoKereso"  mnemonicParsing="false" text="Keresés" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets right="20.0" />
+            </HBox.margin>
+        </Button>
+        <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER">
+            <HBox.margin>
+                <Insets left="20.0" />
+            </HBox.margin>
+        </Button>
+    </HBox>
+
+
+</VBox>

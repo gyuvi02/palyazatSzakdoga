@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class felhivasOktatoPalyazatiTemaController {
@@ -66,6 +67,12 @@ public class felhivasOktatoPalyazatiTemaController {
             felhivasLista.getItems().setAll(lista);
             felhivasLista.getSelectionModel().select(0);
         }
+    }
+
+    @FXML
+    public void adatDatum(LocalDate datum) {
+        felhivasLista.getItems().setAll(felhivasLekerdezes.kesobbiHataridok(datum));
+
     }
 
     @FXML

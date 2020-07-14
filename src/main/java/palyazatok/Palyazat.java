@@ -50,12 +50,12 @@ public class Palyazat {
         this.veg = veg;
     }
     //Alapbol ezzel hozzuk letre, a tobbi mezot utolag adjuk hozza
-    public Palyazat(String palyazatCim, String aktualisFazis) {
+    public Palyazat(String palyazatCim, String aktualisFazis, String szakmaiVezeto) {
         this.palyazatCim = palyazatCim;
         this.aktualisFazis = aktualisFazis;
         this.kezdet = LocalDate.now();
         this.veg = LocalDate.now();
-        this.resztvevok = new PalyazatiResztvevok("", "", "", new ArrayList<String>()); //ezt a NullPointerException elkerulese miatt adjuk hozza
+        this.resztvevok = new PalyazatiResztvevok(szakmaiVezeto, "", "", new ArrayList<String>()); //ezt a NullPointerException elkerulese miatt adjuk hozza
     }
 
     public Palyazat() {
@@ -65,11 +65,13 @@ public class Palyazat {
     MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 
 
-    public void PalyazatFeltolto() {
+    public boolean PalyazatFeltolto() {
         if (palyazatEllenorzo(this.getPalyazatCim()) != 0 ) {//csak a cimet ellenorzom, nem lehet 2 egyforma cimu palyazat
             System.out.println("Mar van ilyen palyazat");
+            return false;
         } else {
             palyazatokColl.insertOne(this);
+            return true;
         }
     }
 

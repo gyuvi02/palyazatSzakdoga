@@ -47,16 +47,14 @@ public class felhivasOktatoController {
         Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
 
         felhivasOktatoPalyazatiTemaController controller = loader.getController();
-        controller.adatLegutobbi();
+        controller.adatTranszfer(oktatoNevek.getSelectionModel().getSelectedItem());
 
 //            kilep();
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//        Stage stage = new Stage();
+//        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         stage.setTitle("Felhívások "  + oktatoNevek.getSelectionModel().getSelectedItems().get(0) + " számára");
         stage.setScene(oktatoValasztoScene);
         stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.show();
-
-
     }
 }

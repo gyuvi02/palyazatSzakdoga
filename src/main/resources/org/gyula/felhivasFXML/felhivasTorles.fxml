@@ -19,12 +19,12 @@
             <Insets left="5.0" right="40.0" />
          </HBox.margin>
       </Button>
-        <Button fx:id="felhivasValaszto" mnemonicParsing="false" onAction="#felhivasValaszto" text="Kiválaszt" HBox.hgrow="ALWAYS">
+        <Button fx:id="felhivasValaszto" mnemonicParsing="false" onAction="#felhivasValaszto" text="Részletek" HBox.hgrow="ALWAYS">
             <HBox.margin>
                 <Insets right="40.0" />
             </HBox.margin>
         </Button>
-      <Button fx:id="torlesGomb" onMouseClicked="#felhivasTorles" mnemonicParsing="false" text="Törlés" />
+      <Button fx:id="torlesGomb" mnemonicParsing="false" onMouseClicked="#felhivasTorles" text="Törlés" />
         <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER">
             <HBox.margin>
                 <Insets left="40.0" />

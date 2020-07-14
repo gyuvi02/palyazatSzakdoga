@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import palyazatok.PalyazatiTemak;
 
@@ -56,12 +57,12 @@ public class oktatoPalyazatiTemaController {
 
         oktatoListaController controller = loader.getController();
         controller.adatTranszfer(temaLista.getSelectionModel().getSelectedItems().get(0));
-
-//            kilep();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Oktatók a választott pályázati témával");
 //        stage.setX(370.0);
         stage.setScene(oktatoValasztoScene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
 
     }

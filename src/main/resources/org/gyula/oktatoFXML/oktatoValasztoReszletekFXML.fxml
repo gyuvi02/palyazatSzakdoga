@@ -4,10 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoValasztoController">
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoValasztoController">
     <children>
-        <ListView fx:id="oktatoNevek" prefHeight="434.0" prefWidth="393.0" />
+        <ListView fx:id="oktatoNevek" prefHeight="434.0" prefWidth="393.0">
+         <VBox.margin>
+            <Insets left="5.0" right="5.0" top="5.0" />
+         </VBox.margin></ListView>
         <HBox alignment="CENTER" prefHeight="70.0" prefWidth="400.0">
             <children>
                 <Button fx:id="nevValasztoReszletek" mnemonicParsing="false" onAction="#nevValaszto" text="Kiválaszt" HBox.hgrow="ALWAYS">

@@ -46,6 +46,9 @@ public class felhivasFooldalController {
     private Button torles;
 
     @FXML
+    private Button hatarido;
+
+    @FXML
     private void initialize() {
         kulcsKereso.setDisable(true);
     }
@@ -147,8 +150,22 @@ public class felhivasFooldalController {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasTorlesScene);
         dialog.show();
-
     }
+
+    @FXML
+    public void hataridoValaszto() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasHatarido.fxml"));
+        Parent felhivasHataridoParent = loader.load();
+        Scene felhivasHataridoScene = new Scene(felhivasHataridoParent);
+        felhivasHataridoController controller = loader.getController();
+        Stage dialog = new Stage();
+        dialog.setTitle("Felhívások törlése");
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setScene(felhivasHataridoScene);
+        dialog.show();
+    }
+
 
     @FXML
     private void visszaKezdooldalra() throws IOException {

@@ -67,18 +67,18 @@
                   </Button>
               </HBox>
           </VBox>
-         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-            <children>
-               <Label text="Felhívás hozzáadása pafi.hu link megadásával">
-                  <VBox.margin>
-                     <Insets bottom="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Button fx:id="linkMegadas" mnemonicParsing="false" onMouseClicked="#linkAblakhoz" text="Link megadása" />
-            </children>
-         </VBox>
-         <Button fx:id="torles"  onAction="#felhivasTorles" mnemonicParsing="false" text="Felhívások törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                 GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1"
+                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+              <Label text="Felhívás hozzáadása pafi.hu link megadásával">
+                 <VBox.margin>
+                     <Insets bottom="10.0"/>
+                 </VBox.margin>
+              </Label>
+              <Button fx:id="linkMegadas" mnemonicParsing="false" onMouseClicked="#linkAblakhoz" text="Link megadása"/>
+          </VBox>
+         <Button fx:id="torles" mnemonicParsing="false" onAction="#felhivasTorles" text="Felhívások törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+         <Button fx:id="hatarido" onMouseClicked="#hataridoValaszto" mnemonicParsing="false" text="Felhívások határidő szerint"
+                 GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
           <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="578.0" minWidth="10.0" prefWidth="469.3333333333333" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="561.0" minWidth="10.0" prefWidth="473.99999999999994" />

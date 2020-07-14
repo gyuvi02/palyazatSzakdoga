@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import okatok.Oktato;
@@ -67,12 +68,12 @@ public class oktatoValasztoController {
 
             oktatoModositoController controller = loader.getController();
             controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
-
-//            kilep();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
+//            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatói adatok módosítása");
             stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.setScene(oktatoValasztoScene);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
         } else if (event.getSource().equals(nevValasztoTorol)) {
@@ -84,11 +85,11 @@ public class oktatoValasztoController {
 
             oktatoReszletekController controller = loader.getController();
             controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
-
-//            kilep();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
+//            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Részletes oktatói adatok");
             stage.setX(370.0);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(oktatoValasztoScene);
             stage.show();
 
@@ -98,12 +99,12 @@ public class oktatoValasztoController {
             Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
 
             oktatoAktivitasController controller = loader.getController();
-            controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
-
-//            kilep();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            controller.adatTranszfer(oktatoNevek.getSelectionModel().getSelectedItem());
+            Stage stage = new Stage();
+//            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatók pályázati aktivitása");
             stage.setScene(oktatoValasztoScene);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setX(350);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.show();
 

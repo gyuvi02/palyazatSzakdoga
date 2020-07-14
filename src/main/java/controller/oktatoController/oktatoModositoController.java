@@ -93,6 +93,7 @@ public class oktatoModositoController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Kutatási témák módosítása");
         stage.setScene(oktatoKutatasiScene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
 
@@ -111,6 +112,7 @@ public class oktatoModositoController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Pályázati témák módosítása");
         stage.setScene(oktatoPalyazatiScene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
 }

@@ -155,6 +155,16 @@
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
+}
+
+.date-picker {
+    /*-fx-background-insets: 1 0 1 1;*/
+    /*-fx-background-radius: 2 0 0 2;*/
+    -fx-background-color: #e6fff0
+    linear-gradient(#52f227, #e8f5fc),
+    linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
+    -fx-font-family: Century Gothic;
+    -fx-font-size: 12;
 
 }
 

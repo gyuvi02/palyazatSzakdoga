@@ -45,7 +45,6 @@ public class felhivasTorlesController {
         felhivasLista.getItems().setAll(felhivasLekerdezes.felhivasListaLimited(oldalszam, sorokSzama));
         felhivasLista.getSelectionModel().select(0);
         elozo.setDisable(true);
-
     }
 
     @FXML

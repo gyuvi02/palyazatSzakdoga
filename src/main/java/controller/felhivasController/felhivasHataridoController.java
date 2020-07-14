@@ -6,36 +6,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
-import palyazatok.PalyazatiTemak;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
-public class felhivasPalyazatiTemaListaController {
-    PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
+public class felhivasHataridoController {
 
     @FXML
-    private ListView kategoriaLista;
+    private DatePicker hataridoGomb;
 
     @FXML
     private Button kilepesGomb;
 
     @FXML
-    private Button felhivasValaszto;
+    private Button kereses;
 
     @FXML
-    public void initialize() {
-        kategoriaLista.getItems().setAll(palyazatiTemak.temaLetolt());
-        felhivasValaszto.setDisable(true);
-        kategoriaLista.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-    }
-
-    @FXML
-    private void nincsValasztas() {
-        boolean disableButtons = kategoriaLista.getSelectionModel().isEmpty();
-        felhivasValaszto.setDisable(disableButtons);
+    private void initialize() {
+        hataridoGomb.setValue(LocalDate.now());
     }
 
     @FXML
@@ -45,21 +35,21 @@ public class felhivasPalyazatiTemaListaController {
     }
 
     @FXML
-    private void kategoriaValaszto(ActionEvent event) throws IOException {
-        String kivalasztottKategoria = kategoriaLista.getSelectionModel().getSelectedItem().toString();
+    private void hataridoKereso() throws IOException {
+//        String kivalasztottKategoria = kategoriaLista.getSelectionModel().getSelectedItem().toString();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasOktatoPalyazatiTema.fxml"));
         Parent kategoriaValasztoParent = loader.load();
         Scene kategoriaValasztoScene = new Scene(kategoriaValasztoParent);
         felhivasOktatoPalyazatiTemaController controller = loader.getController();
-        controller.adatKategoria(kivalasztottKategoria);
+        controller.adatDatum(hataridoGomb.getValue());
 //        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
-        stage.setTitle("A kategóriába tarozó felhívások - " + kivalasztottKategoria );
+        stage.setTitle("Az megfelelő felhívások");
 //        stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.setScene(kategoriaValasztoScene);
         stage.show();
-    }
 
+    }
 
 }

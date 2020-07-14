@@ -80,7 +80,7 @@
             </Button>
             <Button fx:id="oktatoSzerk" onAction="#oktatoSzerkeszto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Button fx:id="oktatoTorles" mnemonicParsing="false" onAction="#oktatoSzerkeszto" text="Oktató törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki kutatási témák" GridPane.rowIndex="3">
+            <MenuButton mnemonicParsing="false" text="Tanszéki kutatási témák" GridPane.rowIndex="3">
                 <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak kutatási témáit akarja látni" /> </tooltip>
                 <items>
                     <MenuItem fx:id="1" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Minden tanszék" />
@@ -95,13 +95,13 @@
             <MenuButton text="Tanszéki pályázati témák" GridPane.rowIndex="4">
                 <tooltip> <Tooltip text="Válassza ki, melyik tanszék oktatóinak pályázati témáit akarja látni" /> </tooltip>
                 <items>
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Minden tanszék" />
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyermeknevelési" />
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Szociálpedagógia" />
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyógypedagógiai" />
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="IKKA" />
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Társadalomtudományi" />
-                    <MenuItem mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Művészetnevelési és Sport" />
+                    <MenuItem fx:id="8" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Minden tanszék" />
+                    <MenuItem fx:id="9" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyermeknevelési" />
+                    <MenuItem fx:id="10" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Szociálpedagógia" />
+                    <MenuItem fx:id="11" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Gyógypedagógiai" />
+                    <MenuItem fx:id="12" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="IKKA" />
+                    <MenuItem fx:id="13" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Társadalomtudományi" />
+                    <MenuItem fx:id="14" mnemonicParsing="false" onAction="#tanszekiKutatasok" text="Művészetnevelési és Sport" />
                 </items>
             </MenuButton>
              <MenuButton mnemonicParsing="false" stylesheets="@../foablak.css" text="Tanszéki pályázati aktivitás" GridPane.rowIndex="6">
