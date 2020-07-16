@@ -49,20 +49,19 @@
         </GridPane>
     </center>
 
-
     <bottom>
         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="694.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
-                    <HBox.margin>
-                        <Insets right="100.0" />
-                    </HBox.margin>
-                </Button>
-                <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégse">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></Button>
-            </children></HBox>
+            <Button mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
+                <HBox.margin>
+                    <Insets right="100.0"/>
+                </HBox.margin>
+            </Button>
+            <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégse">
+                <HBox.margin>
+                    <Insets left="20.0"/>
+                </HBox.margin>
+            </Button>
+        </HBox>
     </bottom>
 
 </BorderPane>

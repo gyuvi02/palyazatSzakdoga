@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,7 +37,6 @@ public class felhivasHataridoController {
 
     @FXML
     private void hataridoKereso() throws IOException {
-//        String kivalasztottKategoria = kategoriaLista.getSelectionModel().getSelectedItem().toString();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasOktatoPalyazatiTema.fxml"));
         Parent kategoriaValasztoParent = loader.load();
@@ -46,7 +46,7 @@ public class felhivasHataridoController {
 //        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         stage.setTitle("Az megfelelő felhívások");
-//        stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(kategoriaValasztoScene);
         stage.show();
 

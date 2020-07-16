@@ -3,6 +3,8 @@ package palyazatok;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import palyazatkezelo.MongoAccess;
 
 import java.time.LocalDate;
@@ -10,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.set;
 
 //csak a teszteleskor adok hozza teljes palyazatot
 public class Palyazat {
@@ -18,7 +21,7 @@ public class Palyazat {
     private String leiras;
     private String felhivasKod;
     private String beadasEve;
-    private Boolean KplusF;
+    private String KplusF;
     private Double onero;
     private Double tervezettOsszkoltseg;
     private Double igenyeltTamogatas;
@@ -30,7 +33,7 @@ public class Palyazat {
     private LocalDate veg;
 
     public Palyazat(String palyazatCim, String aktualisFazis, String leiras, String felhivasKod, String beadasEve,
-                    Boolean kplusF, Double onero, Double tervezettOsszkoltseg, Double igenyeltTamogatas,
+                    String kplusF, Double onero, Double tervezettOsszkoltseg, Double igenyeltTamogatas,
                     String megjegyzes, PalyazatiResztvevok resztvevok, String DEazonosito, String szerzodesSzam,
                     LocalDate kezdet, LocalDate veg) {
         this.palyazatCim = palyazatCim;
@@ -38,7 +41,7 @@ public class Palyazat {
         this.leiras = leiras;
         this.felhivasKod = felhivasKod;
         this.beadasEve = beadasEve;
-        KplusF = kplusF;
+        this.KplusF = kplusF;
         this.onero = onero;
         this.tervezettOsszkoltseg = tervezettOsszkoltseg;
         this.igenyeltTamogatas = igenyeltTamogatas;
@@ -50,19 +53,24 @@ public class Palyazat {
         this.veg = veg;
     }
     //Alapbol ezzel hozzuk letre, a tobbi mezot utolag adjuk hozza
-    public Palyazat(String palyazatCim, String aktualisFazis, String szakmaiVezeto) {
+    public Palyazat(String palyazatCim, String aktualisFazis, String szakmaiVezeto, Double onero, Double tervezettOsszkoltseg,
+                    Double igenyeltTamogatas) {
         this.palyazatCim = palyazatCim;
         this.aktualisFazis = aktualisFazis;
         this.kezdet = LocalDate.now();
         this.veg = LocalDate.now();
         this.resztvevok = new PalyazatiResztvevok(szakmaiVezeto, "", "", new ArrayList<String>()); //ezt a NullPointerException elkerulese miatt adjuk hozza
+        this.onero = onero;
+        this.tervezettOsszkoltseg = tervezettOsszkoltseg;
+        this.igenyeltTamogatas = igenyeltTamogatas;
+
     }
 
     public Palyazat() {
     }
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
+    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 
 
     public boolean PalyazatFeltolto() {
@@ -79,11 +87,17 @@ public class Palyazat {
         return palyazatokColl.find((eq("palyazatCim", palyazatCim))).first(); //Ha ureset kuld vissza, akkor nem leteik a palyazat
     }
 
-    public void PalyazatTorlo(String palyazatcim) {
-//        if (palyazatEllenorzo(palyazatokColl.find(eq("palyazatCim", palyazatcim)).first().getPalyazatCim()) != 0){ //Mivel a cim egyedi, ezt ellenorzom torlesnel is
+
+    public  void PalyazatTorlo(String palyazatcim) {
         System.out.println(palyazatokColl.deleteOne(eq("palyazatCim", palyazatcim)));
-//        }
-//        else System.out.println("Nincs ilyen pályázat");
+    }
+
+    public void PalyazatFrissito() {
+        palyazatokColl.replaceOne(eq("palyazatCim", this.getPalyazatCim()), this);
+    }
+
+    public static ArrayList<String> PalyazatokListaja() {
+        return palyazatokColl.find().map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
 
     public ArrayList<String> osszesPalyazat() {
@@ -103,6 +117,14 @@ public class Palyazat {
         }
         return palyazatLista;
     }
+
+    public void resztvevoFrissito(String palyazatCim, ArrayList<String> ujLista) {
+        Bson filter = eq("palyazatCim", palyazatCim);
+        Bson ujElem = set("resztvevok.resztvevoEmberek", ujLista);
+        palyazatokColl.updateOne(filter, ujElem);
+    }
+
+
 
     public int palyazatEllenorzo(String cim) {
         return palyazatokColl.find(eq("palyazatCim", cim)).into(new ArrayList<>()).size(); //ha 0, akkor nincs ilyen email
@@ -141,11 +163,11 @@ public class Palyazat {
         this.beadasEve = beadasEve;
     }
 
-    public Boolean getKplusF() {
+    public String getKplusF() {
         return KplusF;
     }
 
-    public void setKplusF(Boolean kplusF) {
+    public void setKplusF(String kplusF) {
         KplusF = kplusF;
     }
 

@@ -28,6 +28,7 @@ public class PalyazatiResztvevok {
 
 
 
+
     public String getSzakmaiVezeto() {
         return szakmaiVezeto;
     }

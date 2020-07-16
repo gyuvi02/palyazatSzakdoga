@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import okatok.Oktato;
 import palyazatok.Palyazat;
@@ -65,8 +66,8 @@ public class oktatoAktivitasController {
         Stage stage = new Stage();
 //        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Oktatói adatok módosítása");
-        stage.setX(370);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.setScene(oktatoValasztoScene);
+//        stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
 

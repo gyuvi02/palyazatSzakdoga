@@ -66,6 +66,7 @@ public class OktatoPalyazatiModositoController {
         Stage ablak = (Stage) kilepesGomb.getScene().getWindow();
         ablak.close();
     }
+
     @FXML
     private void pluszTema() {
         if (!teljesLista.getSelectionModel().getSelectedItems().isEmpty() && !maradek.isEmpty()) {

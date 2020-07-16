@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import palyazatok.PalyazatiTemak;
 
@@ -56,10 +58,10 @@ public class felhivasPalyazatiTemaListaController {
 //        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         stage.setTitle("A kategóriába tarozó felhívások - " + kivalasztottKategoria );
-//        stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.setScene(kategoriaValasztoScene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }
-
 
 }

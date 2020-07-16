@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkeszto2Controller">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="63.0" prefWidth="594.0" BorderPane.alignment="CENTER">
+         <Button fx:id="kettoEgy" mnemonicParsing="false" onAction="#masodikScene" text="Előző">
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" top="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="mentes2" mnemonicParsing="false" onMouseClicked="#palyazatMentes" text="Mentés">
+            <HBox.margin>
+               <Insets bottom="10.0" left="100.0" top="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
+            <HBox.margin>
+               <Insets bottom="10.0" left="30.0" top="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="kettoHarom" alignment="CENTER" mnemonicParsing="false" onAction="#masodikScene" text="Következő">
+            <HBox.margin>
+               <Insets bottom="10.0" left="100.0" right="10.0" top="20.0" />
+            </HBox.margin>
+         </Button>
+      </HBox>
+   </bottom>
+   <center>
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="253.33333333333334" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.33333333333337" minWidth="10.0" prefWidth="441.33333333333337" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Tervezett összköltség (forint):" GridPane.halignment="RIGHT">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="osszkoltsegField" onKeyReleased="#uresMezo" promptText="Ide csak számokat írjon!" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+               <GridPane.margin>
+                  <Insets left="10.0" right="100.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Önerő (forint):" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="oneroField" onKeyReleased="#uresMezo" promptText="Ide csak számokat írjon!" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" right="100.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Igényelt támogatás (forint):" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="tamogatasField" onKeyReleased="#uresMezo" promptText="Ide csak számokat írjon!" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" right="100.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="A pályázat egyetemi azonosítója:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="azonositoField" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" right="100.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="A szerződés száma:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="szerzodesszamField" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" right="100.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Megjegyzés" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <TextArea fx:id="megjegyzesArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+               </GridPane.margin>
+            </TextArea>
+         </children>
+      </GridPane>
+   </center>
+
+
+</BorderPane>

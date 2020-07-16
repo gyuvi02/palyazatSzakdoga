@@ -44,8 +44,9 @@ public class ujPalyazatController {
     }
 
     @FXML
-    private void hozzaad() throws IOException{
-        Palyazat ujPalyazat = new Palyazat(palyazatCim.getText(), fazisGomb.getValue().toString(), szakmaiVezeto.getText());
+    private void hozzaad(){
+        Palyazat ujPalyazat = new Palyazat(palyazatCim.getText(), fazisGomb.getValue().toString(), szakmaiVezeto.getText(),
+                                0.0, 0.0, 0.0);
         if (ujPalyazat.PalyazatFeltolto()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Megerősítés");

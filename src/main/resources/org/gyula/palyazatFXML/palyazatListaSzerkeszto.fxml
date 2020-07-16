@@ -7,9 +7,11 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<VBox maxWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css"
-      xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.palyazatController.palyazatListaController">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.palyazatController.palyazatListaController"
+      prefHeight="500.0" prefWidth="400.0"
+      stylesheets="@../foablak.css">
     <ListView fx:id="palyazatLista" prefHeight="448.0" prefWidth="493.0">
         <VBox.margin>
             <Insets left="5.0" right="5.0" top="5.0"/>
@@ -19,7 +21,7 @@
         <VBox.margin>
             <Insets top="-10.0"/>
         </VBox.margin>
-        <Button fx:id="torles" onAction="#palyazatKivalaszto" mnemonicParsing="false" text="Törlés"
+        <Button fx:id="kivalsztSzerkesztesre" onAction="#palyazatKivalaszto" mnemonicParsing="false" text="Kiválaszt"
                 textAlignment="CENTER">
             <HBox.margin>
                 <Insets right="20.0" top="10.0"/>

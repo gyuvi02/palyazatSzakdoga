@@ -3,10 +3,12 @@ package controller.felhivasController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.gyula.App;
@@ -71,6 +73,7 @@ public class felhivasFooldalController {
         Scene scene = new Scene(App.loadFXML("/org/gyula/felhivasFXML/" + fx));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(scene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 
@@ -90,6 +93,7 @@ public class felhivasFooldalController {
         dialog.setTitle(title);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasValasztoScene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 
@@ -105,6 +109,7 @@ public class felhivasFooldalController {
         dialog.setTitle("A pályázati kategóriák");
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasValasztoScene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 
@@ -121,6 +126,7 @@ public class felhivasFooldalController {
         dialog.setTitle("A keresés eredménye");
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasValasztoScene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 
@@ -135,6 +141,7 @@ public class felhivasFooldalController {
         dialog.setTitle("Új felhívás hozzáadása");
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasPafiScene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 
@@ -149,6 +156,7 @@ public class felhivasFooldalController {
         dialog.setTitle("Felhívások törlése");
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasTorlesScene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 
@@ -163,6 +171,7 @@ public class felhivasFooldalController {
         dialog.setTitle("Felhívások törlése");
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasHataridoScene);
+        dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
 

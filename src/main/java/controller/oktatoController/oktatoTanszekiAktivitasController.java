@@ -67,7 +67,7 @@ public class oktatoTanszekiAktivitasController {
         Stage stage = new Stage();
 //        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Oktatói adatok módosítása");
-        stage.setX(370);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
+//        stage.setX(370);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.setScene(oktatoValasztoScene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

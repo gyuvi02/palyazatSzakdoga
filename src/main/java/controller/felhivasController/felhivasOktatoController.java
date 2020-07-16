@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
@@ -45,16 +47,13 @@ public class felhivasOktatoController {
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasOktatoPalyazatiTema.fxml"));
         Parent oktatoValasztoParent = loader.load();
         Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
-
         felhivasOktatoPalyazatiTemaController controller = loader.getController();
         controller.adatTranszfer(oktatoNevek.getSelectionModel().getSelectedItem());
-
-//            kilep();
-//        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//        Stage stage = new Stage();
         stage.setTitle("Felhívások "  + oktatoNevek.getSelectionModel().getSelectedItems().get(0) + " számára");
         stage.setScene(oktatoValasztoScene);
-        stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
+        stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
         stage.show();
     }
 }

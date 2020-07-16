@@ -48,15 +48,19 @@ public class PalyazatLekerdezesek {
         return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).into(new ArrayList<>());
     }
 
-    public ArrayList<String> resztvevoKeresoCim(String pozicio, String nev) {
+    public ArrayList<String>  resztvevoKeresoCim(String pozicio, String nev) {
         if (pozicio.equals("összes")) {
             return palyazatokColl.find(or(eq("resztvevok.kezelo", nev), eq("resztvevok.projektmenedzser", nev),
                     eq("resztvevok.szakmaiVezeto", nev), eq("resztvevok.resztvevoEmberek", nev))).map(Palyazat::getPalyazatCim)
                     .into(new ArrayList<>());
         }
-        return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).map(Palyazat::getPalyazatCim) .into(new ArrayList<>());
+        return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
 
+    public ArrayList<String> osszesResztvevo(String palyazatCim) {//csak a resztvevok, a menedzser es a tobbiek nem
+        return palyazatokColl.find(eq("palyazatCim", palyazatCim))
+                .map(Palyazat::getResztvevok).into(new ArrayList<>()).get(0).getResztvevoEmberek();
+    }
 
     //viszaadja az osszes palyazatot
     public ArrayList<Palyazat> osszesPalyazat() {

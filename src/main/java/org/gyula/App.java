@@ -20,7 +20,7 @@ public class App extends Application {
         stage.setTitle("Pályázatkezelő program");
         scene = new Scene(loadFXML("kezdooldal"));
         stage.setScene(scene);
-        stage.getIcons().add(new Image("/udlogo.png"));
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
         MongoAccess.getConnection();
     }
