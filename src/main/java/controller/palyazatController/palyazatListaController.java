@@ -1,7 +1,5 @@
 package controller.palyazatController;
 
-import controller.felhivasController.felhivasOktatoPalyazatiTemaController;
-import controller.felhivasController.felhivasReszletekController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import palyazatok.Palyazat;
@@ -33,7 +32,10 @@ public class palyazatListaController {
     private Button torles;
 
     @FXML
-    private Button kivalsztSzerkesztesre;
+    private Button kivalasztSzerkesztesre;
+
+    @FXML
+    private Button kivalasztReszletekre;
 
     @FXML
     private void initialize() {
@@ -50,13 +52,12 @@ public class palyazatListaController {
     @FXML
     private void palyazatKivalaszto(ActionEvent event) throws IOException {
         Palyazat kivalasztottPalyazat = palyazat.PalyazatLetolto(palyazatLista.getSelectionModel().getSelectedItem());
-
+        FXMLLoader loader = new FXMLLoader();
         if (event.getSource().equals(torles)) {
             megerositesDialog();
             kilep();
         }
-        if (event.getSource().equals(kivalsztSzerkesztesre)) {
-            FXMLLoader loader = new FXMLLoader();
+        if (event.getSource().equals(kivalasztSzerkesztesre)) {
             loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatSzerkeszto.fxml"));
             Parent palyazatValasztoParent = loader.load();
             Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);
@@ -67,6 +68,19 @@ public class palyazatListaController {
             stage.setTitle("A pályázat szerkesztése");
             stage.setScene(palyazatValasztoScene);
             stage.setX((Screen.getPrimary().getBounds().getMaxX() - palyazatValasztoScene.getWidth())/2);
+            stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
+            stage.show();
+        }
+        if (event.getSource().equals(kivalasztReszletekre)) {
+            loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatReszletek.fxml"));
+            Parent palyazatValasztoParent = loader.load();
+            Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);
+            palyazatReszletekController controller = loader.getController();
+            controller.adatTranszfer(kivalasztottPalyazat);
+            Stage stage = new Stage();
+            stage.setTitle("A pályázat szerkesztése");
+            stage.setScene(palyazatValasztoScene);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
         }

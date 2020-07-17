@@ -5,9 +5,12 @@ import com.mongodb.client.model.IndexModel;
 import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.Indexes;
 import felhivasok.*;
+import javafx.stage.Screen;
 import okatok.Oktato;
 import okatok.OktatoLekerdezes;
 import okatok.OktatoModosito;
+import org.gyula.App;
+import org.gyula.kezdooldalController;
 import palyazatok.*;
 
 import java.io.IOException;
@@ -21,6 +24,16 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
+
+    final static double NAGYX = 0.7;
+    final static double KOZEPESX = 0.5;
+    final static double KICSIX = 0.4;
+    final static double NAGYY = 0.6;
+    final static double KOZEPESY = 0.4;
+    final static double KICSIY = 0.3;
+
+//    public static final double NAGYX = Screen.getPrimary().getBounds().getMaxX()*0.4;
+
 
     public static void main(String[] args) throws IOException, ParseException {
 //        MongoAccess.closeDatabase();

@@ -4,31 +4,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkeszto3Controller">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkeszto3Controller">
     <bottom>
         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="594.0" BorderPane.alignment="CENTER">
             <Button fx:id="haromKetto" mnemonicParsing="false" onAction="#harmadikScene" text="Előző">
                 <HBox.margin>
-                    <Insets bottom="10.0" left="-10.0" right="110.0" top="20.0" />
+                    <Insets bottom="20.0" left="10.0" top="10.0" />
                 </HBox.margin>
             </Button>
             <Button fx:id="mentes3" mnemonicParsing="false" onMouseClicked="#palyazatMentes" text="Mentés">
                 <HBox.margin>
-                    <Insets bottom="10.0" top="20.0" />
+                    <Insets bottom="20.0" left="200.0" top="10.0" />
                 </HBox.margin>
             </Button>
             <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
                 <HBox.margin>
-                    <Insets bottom="10.0" left="30.0" right="200.0" top="20.0" />
+                    <Insets bottom="20.0" left="200.0" right="10.0" top="10.0" />
                 </HBox.margin>
             </Button>
         </HBox>
     </bottom>
     <center>
-        <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <GridPane alignment="CENTER" prefHeight="720.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="219.66666666666666" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="488.0" minWidth="10.0" prefWidth="475.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="425.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="869.0" minWidth="10.0" prefWidth="869.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -44,7 +44,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="kezeloField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="236.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+            <TextField fx:id="kezeloField" maxWidth="-Infinity" prefHeight="47.0" prefWidth="361.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                <GridPane.margin>
                   <Insets left="20.0" right="100.0" />
                </GridPane.margin>
@@ -84,9 +84,9 @@
                </GridPane.margin>
             </DatePicker>
              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                 <ComboBox fx:id="menedzserCombo" onAction="#egyebKivalasztott" prefHeight="38.0" prefWidth="229.0">
+                 <ComboBox fx:id="menedzserCombo" onAction="#egyebKivalasztott" prefHeight="38.0" prefWidth="400.0">
                     <HBox.margin>
-                        <Insets left="-20.0" />
+                        <Insets left="-100.0" />
                     </HBox.margin>
                  </ComboBox>
                  <TextField fx:id="menedzserField" visible="false">
@@ -96,9 +96,9 @@
                  </TextField>
              </HBox>
              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                 <ComboBox fx:id="szakmaiCombo" onAction="#egyebKivalasztott" prefHeight="38.0" prefWidth="229.0">
+                 <ComboBox fx:id="szakmaiCombo" onAction="#egyebKivalasztott" prefHeight="50.0" prefWidth="400.0">
                     <HBox.margin>
-                        <Insets left="-20.0" />
+                        <Insets left="-100.0" />
                     </HBox.margin>
                  </ComboBox>
                  <TextField fx:id="szakmaiField" visible="false">

@@ -4,24 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="500.0" prefWidth="400.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoPalyazatiTemaController">
-    <ListView fx:id="temaLista" onMouseClicked="#nincsValasztas" prefHeight="439.0" prefWidth="383.0">
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="500.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoPalyazatiTemaController">
+    <ListView fx:id="temaLista" maxWidth="-Infinity" onMouseClicked="#nincsValasztas" prefHeight="620.0" prefWidth="500.0">
       <VBox.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin></ListView>
-    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="400.0">
+    <HBox alignment="CENTER" prefHeight="58.0" prefWidth="494.0">
         <children>
-            <Button fx:id="temaValaszto" mnemonicParsing="false" onAction="#temaValaszto" text="Kiválaszt" HBox.hgrow="ALWAYS">
+            <Button fx:id="temaValaszto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#temaValaszto" prefHeight="40.0" prefWidth="150.0" text="Kiválaszt" HBox.hgrow="ALWAYS">
                 <HBox.margin>
-                    <Insets right="20.0" />
+                    <Insets />
                 </HBox.margin></Button>
-            <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#kilep" text="Bezár" textAlignment="CENTER">
+            <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" prefWidth="150.0" text="Bezár" textAlignment="CENTER">
                 <HBox.margin>
-                    <Insets left="20.0" />
+                    <Insets left="50.0" />
                 </HBox.margin></Button>
         </children>
         <VBox.margin>
-            <Insets top="-10.0" />
+            <Insets />
         </VBox.margin>
     </HBox>
 

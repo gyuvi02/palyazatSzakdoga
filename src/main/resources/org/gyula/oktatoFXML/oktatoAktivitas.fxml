@@ -4,26 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@../foablak.css"
-      xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.oktatoController.oktatoAktivitasController">
-    <ListView fx:id="aktivitasLista" maxWidth="-Infinity" prefHeight="452.0" prefWidth="580.0" onMouseClicked="#nincsValasztas">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoAktivitasController">
+    <ListView fx:id="aktivitasLista" maxWidth="-Infinity" onMouseClicked="#nincsValasztas" prefHeight="533.0" prefWidth="900.0">
       <VBox.margin>
-         <Insets top="10.0" />
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin></ListView>
-   <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="55.0" prefWidth="580">
+   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="19.0" prefWidth="900.0">
       <children>
-          <Button fx:id="palyazatReszletek" mnemonicParsing="false" onAction="#nevValaszto" text="Részletek" HBox.hgrow="ALWAYS">
+          <Button fx:id="palyazatReszletek" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nevValaszto" prefHeight="40.0" prefWidth="165.0" text="Részletek" textAlignment="CENTER" HBox.hgrow="ALWAYS">
               <HBox.margin>
-                  <Insets right="20.0" />
+                  <Insets />
               </HBox.margin></Button>
-          <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER">
+          <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="165.0" text="Bezár" textAlignment="CENTER">
               <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="100.0" />
               </HBox.margin></Button>
       </children>
       <VBox.margin>
-         <Insets left="180.0" top="10.0" />
+         <Insets bottom="20.0" top="10.0" />
       </VBox.margin>
    </HBox>
 </VBox>

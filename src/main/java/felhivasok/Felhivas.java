@@ -167,17 +167,17 @@ public class Felhivas {
         this.torles = torles;
     }
 
-    public String toStingHelyett(ArrayList<Felhivas> felhivas) {
+    public static String toStingHelyettFelhivas(ArrayList<Felhivas> felhivas) {
         StringBuilder str = new StringBuilder();
         for (Felhivas hivas : felhivas) {
-            str.append("A felhívás címe: ").append(hivas.getFelhivasCim()).append("\n")
-                    .append("Kiíró: ").append(hivas.getFelhivasKiiro()).append("\n")
-                    .append("Tárgymutato: ").append(hivas.getTargymutato()).append("\n")
-                    .append("Ki pályázhat: ").append(hivas.getKiPalyazhat()).append("\n")
-                    .append("Beadási határidő: ").append(hivas.getBeadasiHatarido()).append("\n")
-                    .append("Link: ").append(hivas.getFelhivasLink()).append("\n")
+            str.append("A felhívás címe: ").append(hivas.getFelhivasCim()).append("\n\n")
+                    .append("Kiíró: ").append(hivas.getFelhivasKiiro()).append("\n\n")
+                    .append("Tárgymutato: ").append(hivas.getTargymutato()).append("\n\n")
+                    .append("Ki pályázhat: ").append(hivas.getKiPalyazhat()).append("\n\n")
+                    .append("Beadási határidő: ").append(hivas.getBeadasiHatarido()).append("\n\n")
+                    .append("Link: ").append(hivas.getFelhivasLink()).append("\n\n")
                     .append("Részletes leírás: ").append(hivas.getReszletesLeiras()).append("\n\n")
-                    .append("Kategóriák: ").append(String.join(", ", hivas.getKategoriak())).append("\n")
+                    .append("Kategóriák: ").append(String.join(", ", hivas.getKategoriak())).append("\n\n")
                     .append("Lehetséges résztvevők a karon: ").append(String.join(", ", hivas.getLehetsegesResztvevok())).append("\n\n")
                     .append("--------------------------------------------------------------------").append("\n\n")
             ;
@@ -185,19 +185,19 @@ public class Felhivas {
         return str.toString();
     }
 
-    @Override
-    public String toString() {      //StringBuilder? hogy szebb legyen
-        return  "A felhívás címe: " + felhivasCim + "\n" +
-                "Kiíró: " + felhivasKiiro + "\n" +
-                "Tárgymutato: " + targymutato + "\n" +
-                "Ki pályázhat: " + kiPalyazhat + "\n" +
-                "Beadási határidő: " + beadasiHatarido + "\n" +
-                "Link: " + felhivasLink + "\n" +
-                "Részletes leírás: " + reszletesLeiras + "\n\n"
-                +
-                "Kategóriák: " + String.join(", ", kategoriak) + "\n\n" +
-                "Lehetséges résztvevők a karon: " + String.join(", ", lehetsegesResztvevok) + "\n\n\n\n"
-                ;
-    }
+//    @Override
+//    public String toString() {      //StringBuilder? hogy szebb legyen
+//        return  "A felhívás címe: " + felhivasCim + "\n" +
+//                "Kiíró: " + felhivasKiiro + "\n" +
+//                "Tárgymutato: " + targymutato + "\n" +
+//                "Ki pályázhat: " + kiPalyazhat + "\n" +
+//                "Beadási határidő: " + beadasiHatarido + "\n" +
+//                "Link: " + felhivasLink + "\n" +
+//                "Részletes leírás: " + reszletesLeiras + "\n\n"
+//                +
+//                "Kategóriák: " + String.join(", ", kategoriak) + "\n\n" +
+//                "Lehetséges résztvevők a karon: " + String.join(", ", lehetsegesResztvevok) + "\n\n\n\n"
+//                ;
+//    }
 }
 

@@ -6,120 +6,116 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkesztoController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkesztoController">
     <bottom>
-        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="594.0" BorderPane.alignment="CENTER">
-            <Button fx:id="mentes1" mnemonicParsing="false" text="Mentés" onMouseClicked="#palyazatMentes">
+        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
+            <Button fx:id="mentes1" mnemonicParsing="false" onMouseClicked="#palyazatMentes" text="Mentés">
                 <HBox.margin>
-                    <Insets bottom="10.0" left="180.0" top="20.0" />
+                    <Insets bottom="20.0" left="10.0" top="10.0" />
                 </HBox.margin>
             </Button>
             <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
                 <HBox.margin>
-                    <Insets bottom="10.0" left="30.0" top="20.0" />
+                    <Insets bottom="20.0" left="200.0" top="10.0" />
                 </HBox.margin>
             </Button>
             <Button fx:id="egyKetto" alignment="CENTER" mnemonicParsing="false" onAction="#elsoScene" text="Következő">
                 <HBox.margin>
-                    <Insets bottom="10.0" left="100.0" right="10.0" top="20.0" />
+                    <Insets bottom="20.0" left="200.0" right="10.0" top="10.0" />
                 </HBox.margin>
             </Button>
         </HBox>
     </bottom>
    <center>
-       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+       <GridPane alignment="CENTER" prefHeight="720.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
            <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.0" minWidth="10.0" prefWidth="254.00001525878906"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="451.9999694824219" minWidth="10.0"
-                                  prefWidth="439.99998474121094"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.0" minWidth="10.0" prefWidth="552.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="741.0" minWidth="10.0" prefWidth="741.0" />
            </columnConstraints>
            <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
            <Label text="A pályázat címe:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
               <GridPane.margin>
-                  <Insets right="10.0"/>
+                  <Insets right="10.0" />
               </GridPane.margin>
            </Label>
            <TextField fx:id="cimField" GridPane.columnIndex="1" GridPane.halignment="LEFT">
               <GridPane.margin>
-                  <Insets left="10.0" right="30.0"/>
+                  <Insets left="10.0" right="30.0" />
               </GridPane.margin>
            </TextField>
-           <Label text="A pályázat jelenlegi fázisa:" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
-                  GridPane.valignment="CENTER">
+           <Label text="A pályázat jelenlegi fázisa:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
               <GridPane.margin>
-                  <Insets right="10.0"/>
+                  <Insets right="10.0" />
               </GridPane.margin>
            </Label>
-           <ComboBox fx:id="fazisModosito" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0"
-                     prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+           <ComboBox fx:id="fazisModosito" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="314.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <items>
                    <FXCollections fx:factory="observableArrayList">
-                       <String fx:value="Megkezdett"/>
-                       <String fx:value="Beadott"/>
-                       <String fx:value="Elutasított"/>
-                       <String fx:value="Elfogadott"/>
-                       <String fx:value="Lezárt"/>
+                       <String fx:value="Megkezdett" />
+                       <String fx:value="Beadott" />
+                       <String fx:value="Elutasított" />
+                       <String fx:value="Elfogadott" />
+                       <String fx:value="Lezárt" />
                    </FXCollections>
                </items>
                <value>
-                   <String fx:value="Válasszon fázist"/>
+                   <String fx:value="Válasszon fázist" />
                </value>
              <GridPane.margin>
-                 <Insets left="10.0"/>
+                 <Insets left="10.0" />
              </GridPane.margin>
            </ComboBox>
            <Label text="Leírás:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
               <GridPane.margin>
-                  <Insets right="10.0"/>
+                  <Insets right="10.0" />
               </GridPane.margin>
            </Label>
-           <TextArea fx:id="leirasArea" prefHeight="86.0" prefWidth="420.0" GridPane.columnIndex="1"
-                     GridPane.halignment="LEFT" GridPane.rowIndex="2">
+           <TextArea fx:id="leirasArea" prefHeight="86.0" prefWidth="420.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
               <GridPane.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
               </GridPane.margin>
            </TextArea>
            <Label text="Felhíváskód:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
               <padding>
-                  <Insets right="10.0"/>
+                  <Insets right="10.0" />
               </padding>
            </Label>
            <TextField fx:id="kodField" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3">
               <GridPane.margin>
-                  <Insets left="10.0" right="30.0"/>
+                  <Insets left="10.0" right="30.0" />
               </GridPane.margin>
            </TextField>
            <Label text="A pályázat beadásának éve:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
               <GridPane.margin>
-                  <Insets right="10.0"/>
+                  <Insets right="10.0" />
               </GridPane.margin>
            </Label>
-           <TextField fx:id="beadasField" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+           <TextField fx:id="beadasField" prefHeight="47.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
               <GridPane.margin>
-                  <Insets left="10.0" right="200.0"/>
+                  <Insets left="10.0" right="300.0" />
               </GridPane.margin>
            </TextField>
            <Label text="K+F pályázat?" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
               <GridPane.margin>
-                  <Insets right="10.0"/>
+                  <Insets right="10.0" />
               </GridPane.margin>
            </Label>
-           <ComboBox fx:id="kfBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+           <ComboBox fx:id="kfBox" prefHeight="50.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <items>
                    <FXCollections fx:factory="observableArrayList">
-                       <String fx:value="Igen"/>
-                       <String fx:value="Nem"/>
+                       <String fx:value="Igen" />
+                       <String fx:value="Nem" />
                    </FXCollections>
                </items>
                <GridPane.margin>
-                   <Insets left="10.0"/>
+                   <Insets left="10.0" />
               </GridPane.margin>
            </ComboBox>
 

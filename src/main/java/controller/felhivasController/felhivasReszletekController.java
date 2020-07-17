@@ -31,10 +31,9 @@ public class felhivasReszletekController {
 
     @FXML
     public void adatTranszfer(String felhivas) {
-        Felhivas hivas = new Felhivas();
         ArrayList<Felhivas> lista = new Felhivas().felhivasLetolto(felhivas);
         reszletek.setText(lista.size() + " felhívást találtam ezzel a címmel:\n\n" +
-                hivas.toStingHelyett(lista));
+                Felhivas.toStingHelyettFelhivas(lista));
         reszletek.setWrapText(true);
         felhivasLink = lista.get(0).getFelhivasLink();
         hyperlink.setText(lista.get(0).getFelhivasCim());

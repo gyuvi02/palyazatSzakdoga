@@ -4,37 +4,43 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="500.0" prefWidth="720.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasTorlesController">
-    <ListView fx:id="felhivasLista" prefHeight="434.0" prefWidth="393.0">
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasTorlesController">
+    <ListView fx:id="felhivasLista" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0">
 
         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets left="10.0" right="10.0" top="10.0" />
         </VBox.margin></ListView>
-    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="400.0">
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
         <VBox.margin>
-            <Insets top="-10.0" />
+            <Insets />
         </VBox.margin>
-      <Button fx:id="elozo" mnemonicParsing="false" onAction="#lepteto" text="&lt;&lt; Előző">
+      <Button fx:id="elozo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#lepteto" prefWidth="220.0" text="&lt;&lt; Előző">
          <HBox.margin>
-            <Insets left="5.0" right="40.0" />
+            <Insets />
          </HBox.margin>
       </Button>
-        <Button fx:id="felhivasValaszto" mnemonicParsing="false" onAction="#felhivasValaszto" text="Részletek" HBox.hgrow="ALWAYS">
-            <HBox.margin>
-                <Insets right="40.0" />
-            </HBox.margin>
-        </Button>
-      <Button fx:id="torlesGomb" mnemonicParsing="false" onMouseClicked="#felhivasTorles" text="Törlés" />
-        <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER">
+        <Button fx:id="felhivasValaszto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#felhivasValaszto" prefWidth="160.0" text="Részletek" HBox.hgrow="ALWAYS">
             <HBox.margin>
                 <Insets left="40.0" />
             </HBox.margin>
         </Button>
-      <Button fx:id="kovetkezo" mnemonicParsing="false" onAction="#lepteto" text="Következő &gt;&gt;">
+      <Button fx:id="torlesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#felhivasTorles" prefWidth="160.0" text="Törlés">
          <HBox.margin>
-            <Insets left="40.0" right="5.0" />
+            <Insets left="30.0" />
+         </HBox.margin></Button>
+        <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="160.0" text="Mégse" textAlignment="CENTER">
+            <HBox.margin>
+                <Insets left="30.0" />
+            </HBox.margin>
+        </Button>
+      <Button fx:id="kovetkezo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#lepteto" prefHeight="40.0" prefWidth="220.0" text="Következő &gt;&gt;">
+         <HBox.margin>
+            <Insets left="40.0" />
          </HBox.margin>
       </Button>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
     </HBox>
 
 

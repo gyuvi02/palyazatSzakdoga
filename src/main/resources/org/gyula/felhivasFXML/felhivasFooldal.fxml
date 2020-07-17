@@ -6,9 +6,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="950.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasFooldalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasFooldalController">
    <bottom>
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1294.0" BorderPane.alignment="CENTER">
          <Button fx:id="visszaFelhivasrol" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#visszaKezdooldalra" text="Vissza a főoldalra" BorderPane.alignment="CENTER">
             <font>
                <Font name="Century Gothic" size="17.0" />
@@ -17,12 +17,15 @@
                <Insets />
             </opaqueInsets>
             <HBox.margin>
-               <Insets right="200.0" />
+               <Insets bottom="20.0" right="220.0" />
             </HBox.margin></Button>
          <Button fx:id="kilepesGomb" contentDisplay="CENTER" mnemonicParsing="false" onAction="#menuKilepes" text="Kilépés" textAlignment="CENTER">
             <font>
                <Font name="Century Gothic" size="17.0" />
             </font>
+            <HBox.margin>
+               <Insets bottom="20.0" right="100.0" />
+            </HBox.margin>
          </Button>
          <BorderPane.margin>
             <Insets bottom="10.0" />
@@ -31,28 +34,31 @@
    </bottom>
    <center>
       <GridPane prefWidth="944.0" BorderPane.alignment="CENTER">
-         <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+         <Line endX="910.0" scaleX="1.2" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
             <GridPane.margin>
                <Insets bottom="20.0" />
             </GridPane.margin>
          </Line>
-         <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+         <Line endX="400.0" rotate="90.0" scaleX="1.4" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
             <GridPane.margin>
-               <Insets left="-225.0" top="-80.0" />
+               <Insets left="-225.0" />
             </GridPane.margin>
          </Line>
-          <Button fx:id="felhivasOktato" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0" onAction="#oktatoValaszto" text="Keresés oktatók szerint" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+          <Button fx:id="felhivasOktato" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="125.0" onAction="#oktatoValaszto" prefWidth="380.0" text="Keresés oktatók szerint" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
               <tooltip> <Tooltip text="Felhívások, amelyek az oktató pályázati témáihoz kapcsolódnak" /> </tooltip>
               <GridPane.margin>
                   <Insets bottom="20.0" top="20.0" />
               </GridPane.margin>
           </Button>
-         <Button fx:id="felhivaslegutobbi" alignment="CENTER" mnemonicParsing="false" onAction="#legutobbiFelhivas" text="A legutóbbi felhívások" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-          <Button fx:id="kategoriaLekerdezes" alignment="CENTER" mnemonicParsing="false" onAction="#kategoriaKereses" text="Keresés pályázati kategória alapján" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+         <Button fx:id="felhivaslegutobbi" alignment="CENTER" mnemonicParsing="false" onAction="#legutobbiFelhivas" prefWidth="380.0" text="A legutóbbi felhívások" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+          <Button fx:id="kategoriaLekerdezes" alignment="CENTER" mnemonicParsing="false" onAction="#kategoriaKereses" text="Keresés pályázati kategória alapján" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
-              <Label alignment="CENTER" contentDisplay="CENTER" text="Keresés a felhívások között keresőkifejezés segítségével" textAlignment="CENTER" />
+              <Label alignment="CENTER" contentDisplay="CENTER" text="Keresés a felhívások között keresőkifejezés segítségével" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin></Label>
               <HBox alignment="CENTER" prefHeight="66.0" prefWidth="469.0">
-                  <TextField fx:id="kulcsszo" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefColumnCount="1" prefWidth="200.0" promptText="Csak pontos kifejezésre keres">
+                  <TextField fx:id="kulcsszo" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefColumnCount="1" prefHeight="45.0" prefWidth="380.0" promptText="Csak pontos kifejezésre keres">
                       <HBox.margin>
                           <Insets right="10.0" />
                       </HBox.margin>
@@ -67,21 +73,24 @@
                   </Button>
               </HBox>
           </VBox>
-          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1"
-                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
               <Label text="Felhívás hozzáadása pafi.hu link megadásával">
                  <VBox.margin>
-                     <Insets bottom="10.0"/>
+                     <Insets bottom="20.0" />
                  </VBox.margin>
+               <font>
+                  <Font size="31.0" />
+               </font>
               </Label>
-              <Button fx:id="linkMegadas" mnemonicParsing="false" onMouseClicked="#linkAblakhoz" text="Link megadása"/>
+              <Button fx:id="linkMegadas" maxWidth="380.0" mnemonicParsing="false" onMouseClicked="#linkAblakhoz" text="Link megadása" />
           </VBox>
-         <Button fx:id="torles" mnemonicParsing="false" onAction="#felhivasTorles" text="Felhívások törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-         <Button fx:id="hatarido" onMouseClicked="#hataridoValaszto" mnemonicParsing="false" text="Felhívások határidő szerint"
-                 GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+         <Button fx:id="torles" mnemonicParsing="false" onAction="#felhivasTorles" prefWidth="380.0" text="Felhívások törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+         <Button fx:id="hatarido" mnemonicParsing="false" onMouseClicked="#hataridoValaszto" prefWidth="380.0" text="Felhívások határidő szerint" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+             <tooltip> <Tooltip text="A felhívások beadási határideje alapján kereshetünk" /> </tooltip>
+         </Button>
           <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="578.0" minWidth="10.0" prefWidth="469.3333333333333" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="561.0" minWidth="10.0" prefWidth="473.99999999999994" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="661.0" minWidth="10.0" prefWidth="606.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="665.0" minWidth="10.0" prefWidth="608.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

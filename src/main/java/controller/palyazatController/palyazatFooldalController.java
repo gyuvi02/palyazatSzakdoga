@@ -1,6 +1,8 @@
 package controller.palyazatController;
 
 import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,10 +14,16 @@ import org.gyula.App;
 public class palyazatFooldalController {
 
     @FXML
-    Button visszaPalyazatrol;
+    private Button visszaPalyazatrol;
 
     @FXML
-    Button kilepesGomb;
+    private Button szerkesztoGomb;
+
+    @FXML
+    private Button reszletekGomb;
+
+    @FXML
+    private Button kilepesGomb;
 
     @FXML
     private void ujPalyazat() throws IOException {
@@ -40,10 +48,17 @@ public class palyazatFooldalController {
     }
 
     @FXML
-    private void palyazatSzerkeszto() throws IOException {
+    private void palyazatSzerkeszto(ActionEvent event) throws IOException {
+        String fx = "";
         Stage dialog = new Stage();
         dialog.setTitle("Válasszon pályázatot");
-        Scene scene = new Scene(App.loadFXML("/org/gyula/palyazatFXML/palyazatListaSzerkeszto"));
+        if (event.getSource().equals(szerkesztoGomb)) {
+            fx = "palyazatListaSzerkeszto";
+        } else if (event.getSource().equals(reszletekGomb)) {
+            fx = "palyazatListaReszletek";
+        }
+
+        Scene scene = new Scene(App.loadFXML("/org/gyula/palyazatFXML/" + fx));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(scene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));

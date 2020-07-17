@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@../foablak.css"
-      xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.oktatoController.oktatoTanszekiAktivitasController">
-    <ListView fx:id="aktivitasLista" maxWidth="-Infinity" prefHeight="452.0" prefWidth="580.0" onMouseClicked="#nincsValasztas">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoTanszekiAktivitasController">
+    <ListView fx:id="aktivitasLista" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#nincsValasztas" prefHeight="520.0" prefWidth="900.0">
         <VBox.margin>
-            <Insets top="10.0" />
+            <Insets left="10.0" right="10.0" top="10.0" />
         </VBox.margin></ListView>
-    <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="55.0" prefWidth="580">
+    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="700.0">
         <children>
-            <Button fx:id="palyazatReszletek" mnemonicParsing="false" onAction="#nevValaszto" text="Részletek" HBox.hgrow="ALWAYS">
+            <Button fx:id="palyazatReszletek" mnemonicParsing="false" onAction="#nevValaszto" prefHeight="40.0" prefWidth="160.0" text="Részletek" HBox.hgrow="ALWAYS">
                 <HBox.margin>
-                    <Insets right="20.0" />
+                    <Insets bottom="10.0" />
                 </HBox.margin></Button>
-            <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER">
+            <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="160.0" text="Mégse" textAlignment="CENTER">
                 <HBox.margin>
-                    <Insets left="20.0" />
+                    <Insets bottom="10.0" left="80.0" />
                 </HBox.margin></Button>
         </children>
         <VBox.margin>
-            <Insets left="180.0" top="10.0" />
+            <Insets top="10.0" />
         </VBox.margin>
     </HBox>
 

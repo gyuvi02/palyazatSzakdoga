@@ -4,23 +4,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="500.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasOktatoPalyazatiTemaController">
-    <ListView fx:id="felhivasLista" prefHeight="434.0" prefWidth="393.0">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasOktatoPalyazatiTemaController">
+    <ListView fx:id="felhivasLista" prefHeight="510.0" prefWidth="900.0">
         
       <VBox.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin></ListView>
-    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="400.0">
+    <HBox alignment="CENTER" prefHeight="80.0" prefWidth="400.0">
         <VBox.margin>
             <Insets top="-10.0" />
         </VBox.margin>
-        <Button fx:id="felhivasValaszto" mnemonicParsing="false" onAction="#felhivasValaszto" text="Kiválaszt" HBox.hgrow="ALWAYS">
+        <Button fx:id="felhivasValaszto" mnemonicParsing="false" onAction="#felhivasValaszto" prefWidth="165.0" text="Kiválaszt" HBox.hgrow="ALWAYS">
             <HBox.margin>
                 <Insets right="20.0" />
             </HBox.margin>
         </Button>
-        <Button fx:id="kilepesGomb" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#kilep" text="Bezár" textAlignment="CENTER">
+        <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="165.0" text="Mégse" textAlignment="CENTER">
             <HBox.margin>
                 <Insets left="20.0" />
             </HBox.margin>

@@ -24,7 +24,7 @@ public class palyazatReszletekController {
 
     public void adatTranszfer(Palyazat palyazat) {
         kivalasztott = palyazat;
-        reszletek.setText(kivalasztott.toString());
+        reszletek.setText(Palyazat.toStringHelyettPalyazat(kivalasztott));
         reszletek.setWrapText(true);
     }
 

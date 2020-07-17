@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import okatok.Oktato;
@@ -72,7 +73,7 @@ public class oktatoModositoController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mentés");
         alert.setHeaderText(kivalasztott.getNev());
-        alert.setContentText("adatainak módosítását elmentettem");
+        alert.setContentText("adatainak módosítását elmentettük");
         alert.getDialogPane().getScene().getStylesheets().add("org/gyula/dialogCSS.css");
         alert.showAndWait();
     }
@@ -94,6 +95,7 @@ public class oktatoModositoController {
         stage.setTitle("Kutatási témák módosítása");
         stage.setScene(oktatoKutatasiScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }
 
@@ -113,6 +115,7 @@ public class oktatoModositoController {
         stage.setTitle("Pályázati témák módosítása");
         stage.setScene(oktatoPalyazatiScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }
 }

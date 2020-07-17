@@ -7,10 +7,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane minHeight="350.0" minWidth="500.0" prefHeight="350.0" prefWidth="500.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.ujOktatoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="350.0" minWidth="500.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.ujOktatoController">
    <bottom>
-       <HBox alignment="CENTER">
-           <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#visszaOktatooldalra" onMouseClicked="#kilep" text="Mégsem" BorderPane.alignment="CENTER">
+       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="70.0" prefWidth="900.0">
+           <Button fx:id="hozzaadGomb" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hozzaad" prefHeight="40.0" prefWidth="300.0" text="Oktató hozzáadása" textAlignment="CENTER">
+               <font>
+                   <Font name="Century Gothic" size="17.0" />
+               </font>
+            <HBox.margin>
+               <Insets bottom="10.0" />
+            </HBox.margin>
+           </Button>
+           <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#visszaOktatooldalra" onMouseClicked="#kilep" prefWidth="300.0" text="Mégse" BorderPane.alignment="CENTER">
                <font>
                    <Font name="Century Gothic" size="17.0" />
                </font>
@@ -18,37 +26,27 @@
                    <Insets />
                </opaqueInsets>
                <HBox.margin>
-                   <Insets bottom="20.0" right="40.0" />
+                   <Insets bottom="10.0" left="100.0" />
                </HBox.margin></Button>
-           <Button fx:id="hozzaadGomb" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hozzaad" text="Oktató hozzáadása" textAlignment="CENTER">
-               <font>
-                   <Font name="Century Gothic" size="17.0" />
-               </font>
-            <HBox.margin>
-               <Insets bottom="20.0" />
-            </HBox.margin>
-           </Button>
            <BorderPane.margin>
-               <Insets bottom="10.0" />
+               <Insets />
            </BorderPane.margin>
        </HBox>
    </bottom>
    <center>
-       <GridPane BorderPane.alignment="CENTER">
+       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="520.0" prefWidth="900.0" BorderPane.alignment="CENTER">
            <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.9999885559082" minWidth="10.0"
-                                  prefWidth="249.00000381469727"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="240.0000114440918"
-                                  prefWidth="244.99999618530273"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="10.0" prefWidth="344.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.0" minWidth="240.0000114440918" prefWidth="550.0" />
            </columnConstraints>
            <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
            </rowConstraints>
            <Label text="Oktató neve:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
               <GridPane.margin>
-                  <Insets right="20.0"/>
+                  <Insets right="20.0" />
               </GridPane.margin>
            </Label>
 
@@ -56,35 +54,29 @@
            <!--               <GridPane.margin>-->
            <!--                  <Insets right="20.0" />-->
            <!--               </GridPane.margin></Label>-->
-           <Label text="Oktató email címe:" GridPane.halignment="RIGHT" GridPane.rowIndex="2"
-                  GridPane.valignment="CENTER">
+           <Label text="Oktató email címe:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
               <GridPane.margin>
-                  <Insets right="20.0"/>
+                  <Insets right="20.0" />
               </GridPane.margin>
            </Label>
-           <TextField fx:id="oNev" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#uresMezo"
-                      prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT"
-                      GridPane.valignment="CENTER"/>
-           <TextField fx:id="oEmail" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefWidth="200.0"
-                      GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-           <ComboBox fx:id="oTanszek" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0"
-                     GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1"
-                     GridPane.valignment="CENTER">
+           <TextField fx:id="oNev" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefHeight="47.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+           <TextField fx:id="oEmail" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+           <ComboBox fx:id="oTanszek" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <items>
                    <FXCollections fx:factory="observableArrayList">
-                       <String fx:value="Gyermeknevelési"/>
-                       <String fx:value="Szociálpedagógia"/>
-                       <String fx:value="Gyógypedagógiai"/>
-                       <String fx:value="IKKA"/>
-                       <String fx:value="Társadalomtudományi"/>
-                       <String fx:value="Művészetnevelési és Sport"/>
+                       <String fx:value="Gyermeknevelési" />
+                       <String fx:value="Szociálpedagógia" />
+                       <String fx:value="Gyógypedagógiai" />
+                       <String fx:value="IKKA" />
+                       <String fx:value="Társadalomtudományi" />
+                       <String fx:value="Művészetnevelési és Sport" />
                    </FXCollections>
                </items>
                <value>
-                   <String fx:value="Gyermeknevelési"/>
+                   <String fx:value="Gyermeknevelési" />
                </value>
               <GridPane.margin>
-                  <Insets/>
+                  <Insets />
               </GridPane.margin>
            </ComboBox>
        </GridPane>

@@ -123,12 +123,11 @@ public class Oktato {
     @Override
     public String toString() {
         return
-                "\nNév: " + nev + "\n" +
-                    "Tanszék: " + tanszek + " Tanszék\n" +
-                    "Kutatási téma: " + String.join(", ", kutatasiTema) + "\n" +
-                    "Email cím: " + email + "\n" +
-                    "Honlap: " + honlap + "\n" +
+                "\nNév: " + nev + "\n\n" +
+                    "Tanszék: " + tanszek + " Tanszék\n\n" +
+                    "Email cím: " + email + "\n\n" +
+                    "Honlap: " + honlap + "\n\n" +
+                    "Kutatási téma: " + String.join(", ", kutatasiTema) + "\n\n" +
                     "Pályázati témák: " + String.join(", ", palyazatiTema) + "\n";
     }
-
 }

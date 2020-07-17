@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import palyazatkezelo.Main;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatiResztvevok;
 
@@ -58,7 +59,7 @@ public class palyazatSzerkeszto2Controller {
         mentes2.setDisable(disableButtons);
         kettoEgy.setDisable(disableButtons);
         kettoHarom.setDisable(disableButtons);
-    }
+        }
 
     @FXML
     public void adatTranszfer(Palyazat atadottPalyazat) {

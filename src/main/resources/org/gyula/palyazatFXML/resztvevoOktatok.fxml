@@ -5,75 +5,67 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.resztvevoOktatokController">
+<BorderPane prefHeight="850.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.resztvevoOktatokController">
     <center>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.3333333333333" minWidth="10.0"
-                                   prefWidth="299.3333333333333"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="95.33333333333331"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.66666666666663" minWidth="10.0"
-                                   prefWidth="300.66666666666663"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.0" minWidth="10.0" prefWidth="360.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="88.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="346.0" minWidth="10.0" prefWidth="346.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="200.33333333333334" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="200.33333333333334" minHeight="10.0" prefHeight="145.66666666666666"
-                                vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="201.6666742960612" minHeight="10.0" prefHeight="113.66666666666663"
-                                vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="133.33333333333331" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="200.33333333333334" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="376.0" minHeight="10.0" prefHeight="376.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="201.6666742960612" minHeight="10.0" prefHeight="113.66666666666663" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="133.33333333333331" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <ListView fx:id="resztvevoLista" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2"
-                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="4"
-                      GridPane.valignment="CENTER">
+            <ListView fx:id="resztvevoLista" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.valignment="CENTER">
                 <GridPane.margin>
-                    <Insets bottom="10.0" right="10.0" top="10.0"/>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </GridPane.margin>
             </ListView>
-            <ListView fx:id="teljesLista" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
-                      GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="4"
-                      GridPane.valignment="CENTER">
+            <ListView fx:id="teljesLista" prefHeight="325.0" prefWidth="340.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.valignment="CENTER">
                 <GridPane.margin>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </GridPane.margin>
             </ListView>
-            <Label text="A Kar oktatói" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Label textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER"
-                   GridPane.valignment="CENTER">
+            <Label text="A Kar oktatói" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                 <font>
-                    <Font name="Century Gothic" size="12.0"/>
+                    <Font name="Century Gothic" size="12.0" />
                 </font>
             </Label>
-            <Button fx:id="hozzaad" onMouseClicked="#pluszOktato" mnemonicParsing="false" text="&gt;&gt;" GridPane.columnIndex="1"
-                    GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Button fx:id="hozzaad" mnemonicParsing="false" onMouseClicked="#pluszOktato" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                 <GridPane.margin>
-                    <Insets bottom="10.0"/>
+                    <Insets bottom="10.0" />
                 </GridPane.margin>
             </Button>
-            <Button fx:id="elvesz" onMouseClicked="#minuszOktato" mnemonicParsing="false" text="&lt;&lt;" GridPane.columnIndex="1"
-                    GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <Button fx:id="elvesz" mnemonicParsing="false" onMouseClicked="#minuszOktato" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                 <GridPane.margin>
-                    <Insets top="10.0"/>
+                    <Insets top="10.0" />
                 </GridPane.margin>
             </Button>
-            <Label text="A pályázatban részt vevő oktatók" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
+            <Label text="A pályázatban részt vevő oktatók" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
         </GridPane>
     </center>
 
 
     <bottom>
         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="694.0" BorderPane.alignment="CENTER">
-            <Button mnemonicParsing="false" text="Mentés" onMouseClicked="#mentes">
+            <Button mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
                 <HBox.margin>
-                    <Insets right="100.0"/>
+                    <Insets right="100.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" text="Mégse" onMouseClicked="#kilep">
+            <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégse">
                 <HBox.margin>
-                    <Insets left="20.0"/>
+                    <Insets left="20.0" />
                 </HBox.margin>
             </Button>
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
         </HBox>
     </bottom>
 

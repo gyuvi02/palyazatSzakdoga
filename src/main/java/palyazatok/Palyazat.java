@@ -247,29 +247,55 @@ public class Palyazat {
         this.veg = veg;
     }
 
-    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy. MMMM dd. ");
+    static DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy. MMMM dd. ");
     public void setAktualisFazis(String aktualisFazis) {
         this.aktualisFazis = aktualisFazis;
     }
-    @Override
-    public String toString() {
-        return "Pályázat címe: " + getPalyazatCim() + "\n" +
-                "A pályázat állapota: " + getAktualisFazis() + "\n" +
-                "Leírás: " + getLeiras() + "\n" +
-                "Felhíváskód: " + getFelhivasKod() + "\n" +
-                "K+F: " + getKplusF() + "\n" +
-                "Önerő: " + getOnero() + "\n" +
-                "Tervezett összköltség: " + getTervezettOsszkoltseg() + " Ft\n" +
-                "Igényelt támogatás: " + getIgenyeltTamogatas() + " Ft\n" +
-                "Megjegyzés: " + getMegjegyzes() + "\n" +
-                "Szerződésszám: " + getSzerzodesSzam() + "\n" +
-                "A pályázat kezdete: " + getKezdet().format(formatters) + "\n" + //a datumok is NullPointer Exception-t adnak
-                "A pályázat vége: " + getVeg().format(formatters) + "\n" +
-                "Szakmai vezető: " + getResztvevok().getSzakmaiVezeto() + "\n"+     //ha nincs megadva, akkor NullPointerException lesz
-                "Projektmenedzser: " + getResztvevok().getProjektmenedzser() + "\n" +
-                "A pályázat kezelője: " + getResztvevok().getKezelo() + "\n" +
-                "Résztvevő kutatók: " + String.join(", ", getResztvevok().getResztvevoEmberek())  + "\n"
-                 ;
+
+    public static String toStringHelyettPalyazat(Palyazat palyazat) {
+        StringBuilder str = new StringBuilder();
+        ArrayList<String> resztvevok = palyazat.getResztvevok().getResztvevoEmberek();
+        str.append("Pályázat címe: ").append(palyazat.getPalyazatCim()).append("\n\n")
+                .append("A pályázat állapota: ").append(palyazat.getAktualisFazis()).append("\n\n")
+                .append("Leírás: ").append(palyazat.getLeiras() == null ? "-" : palyazat.getLeiras()).append("\n\n")
+                .append("Felhíváskód: ").append(palyazat.getFelhivasKod() == null ? "-" : palyazat.getFelhivasKod()).append("\n\n")
+                .append("K+F: ").append(palyazat.getKplusF() == null ? "-" : palyazat.getKplusF()).append("\n\n")
+                .append("Önerő: ").append(palyazat.getOnero().toString()).append("\n\n")
+                .append("Tervezett összköltség: ").append(palyazat.getTervezettOsszkoltseg().toString()).append("\n\n")
+                .append("Igényelt támogatás: ").append(palyazat.getIgenyeltTamogatas().toString()).append("\n\n")
+                .append("Megjegyzés: ").append(palyazat.getMegjegyzes() == null ? "-" : palyazat.getMegjegyzes()).append("\n\n")
+                .append("Szerződésszám: ").append(palyazat.getSzerzodesSzam() == null ? "-" : palyazat.getSzerzodesSzam()).append("\n\n")
+                .append("A pályázat kezdete: ").append(palyazat.getKezdet().format(formatters)).append("\n\n")
+                .append("A pályázat vége: ").append(palyazat.getVeg().format(formatters)).append("\n\n")
+                .append("Szakmai vezető: ").append(palyazat.getResztvevok().getSzakmaiVezeto()).append("\n\n")
+                .append("Projektmenedzser: ").append(palyazat.getResztvevok().getProjektmenedzser() == null ? "-"
+                : palyazat.getResztvevok().getProjektmenedzser()).append("\n\n")
+                .append("A pályázat kezelője: ").append(palyazat.getResztvevok().getKezelo() == null ? "-"
+                : palyazat.getResztvevok().getKezelo()).append("\n\n")
+                .append("Résztvevő kutatók: ").append(resztvevok.isEmpty() ? "-" :
+                String.join(", ", palyazat.getResztvevok().getResztvevoEmberek())).append("\n\n");
+        return str.toString();
     }
+
+//    @Override
+//    public String toString() {
+//        return "Pályázat címe: " + getPalyazatCim() + "\n\n" +
+//                "A pályázat állapota: " + getAktualisFazis() + "\n\n" +
+//                "Leírás: " + getLeiras() + "\n\n" +
+//                "Felhíváskód: " + getFelhivasKod() + "\n\n" +
+//                "K+F: " + getKplusF() + "\n\n" +
+//                "Önerő: " + getOnero() + "\n" +
+//                "Tervezett összköltség: " + getTervezettOsszkoltseg() + " Ft\n" +
+//                "Igényelt támogatás: " + getIgenyeltTamogatas() + " Ft\n\n" +
+//                "Megjegyzés: " + getMegjegyzes() + "\n\n" +
+//                "Szerződésszám: " + getSzerzodesSzam() + "\n\n" +
+//                "A pályázat kezdete: " + getKezdet().format(formatters) + "\n\n" + //a datumok is NullPointer Exception-t adnak
+//                "A pályázat vége: " + getVeg().format(formatters) + "\n\n" +
+//                "Szakmai vezető: " + getResztvevok().getSzakmaiVezeto() + "\n\n"+     //ha nincs megadva, akkor NullPointerException lesz
+//                "Projektmenedzser: " + getResztvevok().getProjektmenedzser() + "\n\n" +
+//                "A pályázat kezelője: " + getResztvevok().getKezelo() + "\n\n" +
+//                "Résztvevő kutatók: " + String.join(", ", getResztvevok().getResztvevoEmberek())  + "\n"
+//                 ;
+//    }
 
 }

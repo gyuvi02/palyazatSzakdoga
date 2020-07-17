@@ -1,5 +1,5 @@
 .root{
-    -fx-font-family: Century Gothic;
+    -fx-font-family: "Century Gothic";
     -fx-font-size: 20;
     -fx-background-color: #e6fff0;
     -fx-border-width: 3;
@@ -7,32 +7,32 @@
 }
 
 #focim {
-    -fx-font-family: Bahnschrift;
-    -fx-font-size: 34;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 48;
 }
 
 #adatMegtekintes {
     -fx-font-size: 32;
-    -fx-font-family: Bahnschrift;
+    -fx-font-family: "Century Gothic";
 }
 
 #adatModositas {
     -fx-font-size: 32;
-    -fx-font-family: Bahnschrift;
+    -fx-font-family: "Century Gothic";
 }
 #alcim {
-    -fx-font-size: 29;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 42;
+    -fx-font-family: "Century Gothic";
 }
 
 .label {
-    -fx-font-family: Bahnschrift;
-    -fx-font-size: 16;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 23;
 }
 
 .button{
-    -fx-font-size: 17;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 27;
+    -fx-font-family: "Century Gothic";
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
@@ -54,13 +54,13 @@
 /*  }*/
 
 .tooltip {
-    -fx-font-size: 16;
+    -fx-font-size: 25;
     -fx-show-delay: 300ms;
 }
 
 .combo-box {
-    -fx-font-size: 15;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 25;
+    -fx-font-family: "Century Gothic";
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
@@ -71,8 +71,8 @@
 }
 
 .menu-button {
-    -fx-font-size: 11;
-    -fx-font-family: "Bahnschrift";
+    -fx-font-size: 25;
+    -fx-font-family: "Century Gothic";
     -fx-background-color: darkgreen
     linear-gradient(#52f227, #e8f5fc),
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
@@ -83,31 +83,31 @@
 }
 
 .menu-item .label   {
-    -fx-font-family: Bahnschrift;
-    -fx-font-size: 15;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 25;
 }
 
 .text-field {
     -fx-background-radius:8;
-    -fx-font-family: Bahnschrift;
-    -fx-font-size: 14;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 24;
 }
 
 .list-view {
-    -fx-font-size: 15;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 25;
+    -fx-font-family: "Century Gothic";
 }
 
 .text-area {
     text-area-background: blue ;
-    -fx-font-size: 16;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 25;
+    -fx-font-family: "Century Gothic";
     -fx-display-caret: false;
 }
 
 #reszletekFigyelmeztetes {
-    -fx-font-size: 12;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 20;
+    -fx-font-family: "Century Gothic";
 }
 
 .list-cell:odd {
@@ -126,13 +126,13 @@
 }
 
 .hyperlink {
-    -fx-font-size: 14;
+    -fx-font-size: 21;
     -fx-font-weight: bold;
 }
 
 #pafiLink {
-    -fx-font-size: 18;
-    -fx-font-family: Bahnschrift;
+    -fx-font-size: 25 ;
+    -fx-font-family: "Century Gothic";
 }
 
 .combo-box .list-cell:selected {
@@ -158,9 +158,7 @@
     -fx-background-insets: 1 0 1 1;
     -fx-background-radius: 2 0 0 2;
     -fx-background-color: #e6fff0;
-    /*linear-gradient(#52f227, #e8f5fc),*/
-    /*linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);*/
-    -fx-font-family: Century Gothic;
+    -fx-font-family: "Century Gothic";
     -fx-font-size: 15;
 }
 
@@ -170,8 +168,6 @@
     linear-gradient(#fffaed 0%, #fff2d1 49%, #fce4a9 50%, #fadd91 100%);
     -fx-background-insets: 0,1,2;
     -fx-padding: 0.588883em 0.5em 0.666667em 0.5em; /* 7 6 8 6 */
-    /*-fx-background-color: lightgreen;*/
-    /*-fx-background-insets: 0 0 0 0, 0 0 1 0;*/
 }
 
 .date-picker .button {

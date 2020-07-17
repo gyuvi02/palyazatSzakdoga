@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import palyazatok.PalyazatiTemak;
@@ -63,6 +64,7 @@ public class oktatoPalyazatiTemaController {
 //        stage.setX(370.0);
         stage.setScene(oktatoValasztoScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
 
     }

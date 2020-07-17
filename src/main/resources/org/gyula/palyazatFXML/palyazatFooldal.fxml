@@ -6,8 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="950.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatFooldalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatFooldalController">
 
     <bottom>
         <HBox alignment="CENTER">
@@ -32,24 +31,25 @@
         </HBox>
     </bottom>
    <center>
-      <GridPane prefHeight="530.0" prefWidth="944.0" BorderPane.alignment="CENTER">
-          <Line endX="910.0" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+      <GridPane BorderPane.alignment="CENTER">
+          <Line endX="910.0" scaleX="1.2" startX="40.0" stroke="#156607" strokeWidth="4.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
               <GridPane.margin>
                   <Insets bottom="20.0" />
               </GridPane.margin>
           </Line>
-          <Line endX="400.0" rotate="90.0" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.valignment="CENTER">
+          <Line endX="400.0" rotate="90.0" scaleX="1.4" startX="-50.0" stroke="#156607" strokeWidth="4.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.valignment="CENTER">
               <GridPane.margin>
                   <Insets left="-225.0" top="-80.0" />
               </GridPane.margin>
           </Line>
-         <Button onMouseClicked="#ujPalyazat" mnemonicParsing="false" text="Pályázat létrehozása" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Button onMouseClicked="#palyazatSzerkeszto" mnemonicParsing="false" text="Pályázat szerkesztése" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Button onMouseClicked="#palyazatTorles" mnemonicParsing="false" text="Pályázat törlése"  GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Button mnemonicParsing="false" onMouseClicked="#ujPalyazat" prefWidth="350.0" text="Pályázat létrehozása" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Button mnemonicParsing="false" fx:id="szerkesztoGomb" onAction="#palyazatSzerkeszto" prefWidth="350.0" text="Pályázat szerkesztése" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button mnemonicParsing="false" onMouseClicked="#palyazatTorles" prefWidth="350.0" text="Pályázat törlése" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Button mnemonicParsing="false" fx:id="reszletekGomb" text="Pályázatok részletei" onAction="#palyazatSzerkeszto" GridPane.rowIndex="1" />
 
           <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="578.0" minWidth="10.0" prefWidth="471.9999694824219" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="472.0000305175781" minWidth="10.0" prefWidth="472.0000305175781" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="831.0" minWidth="10.0" prefWidth="649.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="664.0" minWidth="10.0" prefWidth="645.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />

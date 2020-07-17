@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -71,10 +72,12 @@ public class oktatoValasztoController {
             Stage stage = new Stage();
 //            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatói adatok módosítása");
-            stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
+//            stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.setScene(oktatoValasztoScene);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
+            kilep();
 
         } else if (event.getSource().equals(nevValasztoTorol)) {
             megerositesDialog();
@@ -88,9 +91,10 @@ public class oktatoValasztoController {
             Stage stage = new Stage();
 //            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Részletes oktatói adatok");
-            stage.setX(370.0);
+//            stage.setX(370.0);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(oktatoValasztoScene);
+            stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
 
         } else if (event.getSource().equals(nevValasztoAktvitas)) {
@@ -100,12 +104,13 @@ public class oktatoValasztoController {
 
             oktatoAktivitasController controller = loader.getController();
             controller.adatTranszfer(oktatoNevek.getSelectionModel().getSelectedItem());
-            Stage stage = new Stage();
-//            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatók pályázati aktivitása");
             stage.setScene(oktatoValasztoScene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setX(350);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
+            stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
 
         }
@@ -124,7 +129,4 @@ public class oktatoValasztoController {
             kilep();
         }
     }
-
-
-
 }

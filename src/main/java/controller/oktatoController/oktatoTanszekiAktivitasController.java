@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import okatok.OktatoLekerdezes;
@@ -70,11 +71,8 @@ public class oktatoTanszekiAktivitasController {
 //        stage.setX(370);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.setScene(oktatoValasztoScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
-
-
     }
-
-
 
 }
