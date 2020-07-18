@@ -30,9 +30,19 @@ public class oktatoKutatasiModositoController {
     @FXML
     private TextField ujElem;
 
-    public void initialize() {
+    @FXML
+    private Button hozzaadGomb;
 
+    public void initialize() {
+        hozzaadGomb.setDisable(true);
     }
+
+    @FXML
+    private void uresMezo() {
+        boolean disableButtons = ujElem.getText().trim().isEmpty();
+        hozzaadGomb.setDisable(disableButtons);
+    }
+
 
     @FXML
     public void kTemaTranszfer(Oktato oktato) {

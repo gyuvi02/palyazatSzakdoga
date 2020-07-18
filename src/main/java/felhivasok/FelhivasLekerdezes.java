@@ -132,7 +132,7 @@ public class FelhivasLekerdezes {
             return LocalDate.now().plusDays(365 * 5);//inkabb nem egy fix datumot adunk at, hanem 5 evvel kesobbi datumot
         }
     }
-    private ArrayList<String> nevRendezo(ArrayList<String> lista) {
+    public static ArrayList<String> nevRendezo(ArrayList<String> lista) {
         lista.sort(Comparator.comparing(String::trim)); //nev alapjan rendezve kuldi vissza
         return lista;
     }

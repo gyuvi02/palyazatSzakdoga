@@ -66,6 +66,7 @@ public class oktatoPalyazatiTemaController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
+        kilep();
 
     }
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -17,10 +18,17 @@ import org.gyula.App;
 import java.io.IOException;
 
 public class oktatoFooldalController {
-    String tanszek;
-
     String fx;
     String title;
+
+    @FXML
+    public Label adatModositas;
+
+    @FXML
+    public Label adatMegtekintes;
+
+    @FXML
+    public Button visszaOktatokrol;
 
     @FXML
     private Button oktatoReszlet;
@@ -79,6 +87,7 @@ public class oktatoFooldalController {
     //A palyazati es kutatasi temakat kozos oldalon irjuk ki, ehhez meg kell vizsgalni, melyik gombot nyomtuk meg
     @FXML
     private void tanszekiKutatasok(ActionEvent event) throws IOException {
+
         String tomb;
         MenuItem source = (MenuItem) event.getSource();
         switch (source.getId()) {   //a menu felirata mellett csak az id-t tudom vizsgalni, igy dontom el, hogy melyik gombbol jon

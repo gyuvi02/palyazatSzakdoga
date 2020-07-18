@@ -170,6 +170,7 @@ public class Felhivas {
     public static String toStingHelyettFelhivas(ArrayList<Felhivas> felhivas) {
         StringBuilder str = new StringBuilder();
         for (Felhivas hivas : felhivas) {
+            ArrayList<String> rendezett = new ArrayList<>(FelhivasLekerdezes.nevRendezo(hivas.lehetsegesResztvevok));
             str.append("A felhívás címe: ").append(hivas.getFelhivasCim()).append("\n\n")
                     .append("Kiíró: ").append(hivas.getFelhivasKiiro()).append("\n\n")
                     .append("Tárgymutato: ").append(hivas.getTargymutato()).append("\n\n")
@@ -178,7 +179,8 @@ public class Felhivas {
                     .append("Link: ").append(hivas.getFelhivasLink()).append("\n\n")
                     .append("Részletes leírás: ").append(hivas.getReszletesLeiras()).append("\n\n")
                     .append("Kategóriák: ").append(String.join(", ", hivas.getKategoriak())).append("\n\n")
-                    .append("Lehetséges résztvevők a karon: ").append(String.join(", ", hivas.getLehetsegesResztvevok())).append("\n\n")
+                    .append("Lehetséges résztvevők a karon: ").append(hivas.getLehetsegesResztvevok().isEmpty() ? "-" :
+                        "\n" + String.join(", \n", rendezett)).append("\n\n")
                     .append("--------------------------------------------------------------------").append("\n\n")
             ;
         }
