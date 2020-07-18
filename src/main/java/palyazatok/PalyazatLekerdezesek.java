@@ -102,7 +102,7 @@ public class PalyazatLekerdezesek {
     }
 
     //megsem akarom szetvalasztani a kategoriakat, akkor eleg ennyi a resztvevok megkeresesehez
-    public ArrayList<String> oktatoAktivitasCimek(String aktivOktato) {
+    public static ArrayList<String> oktatoAktivitasCimek(String aktivOktato) {
         return palyazatokColl.find(or(eq("resztvevok.kezelo", aktivOktato),
                 (eq("resztvevok.projektmenedzser", aktivOktato)),
                 (eq("resztvevok.szakmaiVezeto", aktivOktato)),

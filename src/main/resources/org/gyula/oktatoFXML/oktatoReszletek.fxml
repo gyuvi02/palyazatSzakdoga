@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoReszletekController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoReszletekController">
    <HBox maxWidth="500.0" prefHeight="23.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
       <VBox.margin>
          <Insets top="10.0" />

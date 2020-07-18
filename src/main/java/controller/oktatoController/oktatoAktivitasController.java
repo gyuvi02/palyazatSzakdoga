@@ -1,27 +1,24 @@
 package controller.oktatoController;
 
 import controller.palyazatController.palyazatReszletekController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import okatok.Oktato;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatLekerdezesek;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class oktatoAktivitasController {
-    Oktato kivalasztott = new Oktato();
-    PalyazatLekerdezesek palyazatLekerdezes = new PalyazatLekerdezesek();
+//    Oktato kivalasztott = new Oktato();
+//    PalyazatLekerdezesek palyazatLekerdezes = new PalyazatLekerdezesek();
     Palyazat kivalasztottPalyazat = new Palyazat();
 
     @FXML
@@ -40,8 +37,14 @@ public class oktatoAktivitasController {
 
 
     public void adatTranszfer(String oktato) {
-//        kivalasztott = oktato;
-        aktivitasLista.getItems().setAll(palyazatLekerdezes.oktatoAktivitasCimek(oktato));
+        ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.oktatoAktivitasCimek(oktato));
+        if (lista.isEmpty()){
+            palyazatReszletek.setDisable(true);
+            lista.add("Nincs megjeleníthető elem");
+        }
+        aktivitasLista.getItems().setAll(lista);
+        aktivitasLista.getSelectionModel().selectFirst();
+
     }
 
     @FXML
@@ -50,13 +53,13 @@ public class oktatoAktivitasController {
         ablak.close();
     }
 
-    @FXML
-    private void nincsValasztas() {
-        boolean disableButtons = aktivitasLista.getSelectionModel().isEmpty();
-        palyazatReszletek.setDisable(disableButtons);
-    }
+//    @FXML
+//    private void nincsValasztas() {
+//        boolean disableButtons = aktivitasLista.getSelectionModel().isEmpty();
+//        palyazatReszletek.setDisable(disableButtons);
+//    }
 
-    public void nevValaszto(ActionEvent event) throws IOException {
+    public void nevValaszto() throws IOException {
         kivalasztottPalyazat = kivalasztottPalyazat.PalyazatLetolto(aktivitasLista.getSelectionModel().getSelectedItems().get(0));
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatReszletek.fxml"));
@@ -72,7 +75,5 @@ public class oktatoAktivitasController {
 //        stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
-
-
     }
 }

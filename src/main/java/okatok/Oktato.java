@@ -40,8 +40,8 @@ public class Oktato {
     public Oktato() {
     }
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
+    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
 
     public boolean oktatoFeltolto() {
         if (oktatoEmailEllenorzes(this.getEmail()) != 0) {
@@ -64,7 +64,7 @@ public class Oktato {
 
 //    A vegso valtozatban nem itt vegzem el az ellenorzest kulon-kulon, es egy Oktato objectet adok at
 //    Mivel keves az oktato, nem kizart, hogy legordulo menuvel meg tudom oldani a kivalasztast
-    public Oktato oktatoLetolto(String oktato) {
+    public static Oktato oktatoLetolto(String oktato) {
         return oktatokColl.find(eq("nev", oktato)).first(); //ha null a visszakapott ertek, akkor nem letezik
     }
 

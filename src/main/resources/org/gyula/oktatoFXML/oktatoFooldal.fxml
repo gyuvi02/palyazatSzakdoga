@@ -97,7 +97,7 @@
            </MenuButton>
            <MenuButton mnemonicParsing="false" prefWidth="405.0" stylesheets="@../foablak.css" text="Tanszéki pályázati aktivitás" GridPane.rowIndex="5">
                <tooltip>
-                   <Tooltip text="Válassza ki, melyik tanszék pályázati aktivitsát akarja látni" />
+                   <Tooltip text="Válassza ki, melyik tanszék pályázati aktivitását akarja látni" />
                </tooltip>
                <items>
                    <MenuItem mnemonicParsing="false" onAction="#tanszekAktivitas" text="Minden tanszék" />
@@ -110,7 +110,8 @@
                </items>
            </MenuButton>
            <!--             <Button fx:id="oktatoFelhivas" onAction="#oktatoSzerkeszto" text="Oktató szerkesztése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />-->
-           <Button fx:id="oktatoPalyazat" mnemonicParsing="false" onMouseClicked="#oktatoPalyazatTema" prefWidth="405.0" text="Keresés pályázati témára" GridPane.rowIndex="6">
+           <Button fx:id="oktatoPalyazat" mnemonicParsing="false" onMouseClicked="#oktatoPalyazatTema" prefWidth="405.0" text="Keresés pályázati témára"
+                   GridPane.rowIndex="6">
                <tooltip>
                    <Tooltip text="Oktatók, akiket érint egy adott pályázati téma" />
                </tooltip>

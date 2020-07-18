@@ -57,7 +57,7 @@ public class oktatoPalyazatiTemaController {
         Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
 
         oktatoListaController controller = loader.getController();
-        controller.adatTranszfer(temaLista.getSelectionModel().getSelectedItems().get(0));
+        controller.adatTranszfer(temaLista.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
 //        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Oktatók a választott pályázati témával");

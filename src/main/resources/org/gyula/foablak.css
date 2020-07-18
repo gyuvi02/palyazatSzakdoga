@@ -25,6 +25,11 @@
     -fx-font-family: "Century Gothic";
 }
 
+#reszletek{
+    -fx-font-size: 20;
+    -fx-font-family: "Century Gothic";
+}
+
 .label {
     -fx-font-family: "Century Gothic";
     -fx-font-size: 23;

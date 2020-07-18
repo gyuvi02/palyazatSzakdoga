@@ -23,7 +23,7 @@ public class felhivasOktatoPalyazatiTemaController {
     FelhivasLekerdezes felhivasLekerdezes = new FelhivasLekerdezes();
 
     @FXML
-    private ListView felhivasLista;
+    private ListView<String> felhivasLista;
 
     @FXML
     private Button kilepesGomb;
@@ -46,7 +46,7 @@ public class felhivasOktatoPalyazatiTemaController {
     public void adatLegutobbi() {
         LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok();
         felhivasLista.getItems().setAll(legutobbi.legutobbiLekerdezes());
-        felhivasLista.getSelectionModel().select(0);
+        felhivasLista.getSelectionModel().selectFirst();
     }
 
     public void kulcsszoKereso(String kereso) {
@@ -64,12 +64,12 @@ public class felhivasOktatoPalyazatiTemaController {
     public void adatKategoria(String kategoria) {
         ArrayList<String> lista = felhivasLekerdezes.palyazatiKategoriaAlapjan(kategoria);
         if (lista.isEmpty()) {
-            felhivasLista.getItems().setAll("Jelenleg nincs ilyen felhívás az adatbázisban");
+            lista.add("Jelenleg nincs ilyen felhívás az adatbázisban");
             felhivasValaszto.setDisable(true);
-        } else {
+        }
             felhivasLista.getItems().setAll(lista);
             felhivasLista.getSelectionModel().select(0);
-        }
+
     }
 
     @FXML

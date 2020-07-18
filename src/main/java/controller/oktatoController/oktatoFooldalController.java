@@ -65,16 +65,8 @@ public class oktatoFooldalController {
         ablak.close();
     }
 
-//    @FXML
-//    private void tanszekLekerdezes(ActionEvent event) throws IOException {
-//        MenuItem source = (MenuItem) event.getSource();
-//        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
-//        System.out.println(oktatoLekerdezes.oktatoListak(source.getText()));
-//    }
-
     @FXML
     private void ujOktato() throws IOException {
-//        App.setRoot("/org/gyula/oktatoFXML/ujOktato");
         Stage dialog = new Stage();
         dialog.setTitle("Új oktató hozzáadása");
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/ujOktato"));

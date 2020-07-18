@@ -19,8 +19,8 @@ public class OktatoLekerdezes{
     public OktatoLekerdezes() {
     }
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
+    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
     MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 
     //A kar összes oktatójának vagy egy tanszékhez tartozó oktatók lekérdezése – ennek igazából nincs túl sok gyakorlati jelentősége,
@@ -69,7 +69,7 @@ public class OktatoLekerdezes{
     }
 
     //Az oktatók pályázati témái alapján leválogatva – ezekből nincs túl sok, legördülő menüvel megoldható
-    public ArrayList<String> palyazatiTemaKereso(String tema) {
+    public static ArrayList<String> palyazatiTemaKereso(String tema) {
         return oktatokColl.find(eq("palyazatiTema", tema)).map(Oktato::getNev).into(new ArrayList<>());
     }
 
