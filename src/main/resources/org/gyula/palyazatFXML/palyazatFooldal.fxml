@@ -42,11 +42,39 @@
                   <Insets left="-225.0" top="-80.0" />
               </GridPane.margin>
           </Line>
-         <Button mnemonicParsing="false" onMouseClicked="#ujPalyazat" prefWidth="350.0" text="Pályázat létrehozása" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         <Button mnemonicParsing="false" fx:id="szerkesztoGomb" onAction="#palyazatSzerkeszto" prefWidth="350.0" text="Pályázat szerkesztése" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Button mnemonicParsing="false" onMouseClicked="#palyazatTorles" prefWidth="350.0" text="Pályázat törlése" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         <Button mnemonicParsing="false" fx:id="reszletekGomb" text="Pályázatok részletei" onAction="#palyazatSzerkeszto" GridPane.rowIndex="1" />
+         <Button mnemonicParsing="false" onMouseClicked="#ujPalyazat" prefWidth="355.0" text="Pályázat létrehozása" GridPane.columnIndex="1" />
+         <Button fx:id="szerkesztoGomb" mnemonicParsing="false" onAction="#palyazatListazo" prefWidth="355.0" text="Pályázat szerkesztése" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Button mnemonicParsing="false" onMouseClicked="#palyazatTorles" prefWidth="355.0" text="Pályázat törlése" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button fx:id="reszletekGomb" mnemonicParsing="false" onAction="#palyazatListazo" prefWidth="365.0" text="Pályázatok részletei" />
+          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+              <TextField fx:id="kulcsszoField" onAction="#kulcsszavasKereses" onKeyReleased="#uresMezo" prefHeight="47.0" prefWidth="388.0" promptText="Csak pontos kifejezésre keres">
+                  <tooltip>
+                      <Tooltip text="Kulcsszó alapján keres a pályázat címében, a leírásban és a megjegyzésekben" />
+                  </tooltip>
+              </TextField>
+              <Button fx:id="kulcsszoGomb" mnemonicParsing="false" onAction="#kulcsszavasKereses" text="Keresés">
+                  <HBox.margin>
+                     <Insets left="20.0" />
+                 </HBox.margin>
+              </Button>
+          </HBox>
+         <Button fx:id="kezdoGomb" mnemonicParsing="false" onAction="#kezdoDatum" prefWidth="365.0" text="Kezdődátum alapján" GridPane.rowIndex="1">
+             <tooltip>
+                 <Tooltip text="A pályázatok kezdő dátuma alapján kereshetünk" />
+             </tooltip>
+         </Button>
+         <Button fx:id="zaroGomb" mnemonicParsing="false" onAction="#kezdoDatum" prefHeight="40.0" prefWidth="365.0" text="Lezárás dátuma alapján" GridPane.rowIndex="2">
+             <tooltip>
+                 <Tooltip text="A pályázatok záró dátuma alapján kereshetünk" />
+             </tooltip>
 
+         </Button>
+         <Button fx:id="kPluszFGomb" mnemonicParsing="false" onAction="#palyazatListazo" prefWidth="365.0" text="K+F pályázatok" GridPane.rowIndex="3">
+             <tooltip>
+                 <Tooltip text="Leválogatja a K+F pályázatokat" />
+             </tooltip>
+         </Button>
+         <Button fx:id="oneroNelkul" onAction="#palyazatListazo" mnemonicParsing="false" prefWidth="355.0" text="Pályázatok önerő nélkül" GridPane.columnIndex="1" GridPane.rowIndex="4" />
           <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="831.0" minWidth="10.0" prefWidth="649.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="664.0" minWidth="10.0" prefWidth="645.0" />

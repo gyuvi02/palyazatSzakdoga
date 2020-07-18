@@ -20,8 +20,8 @@ import static com.mongodb.client.model.Filters.*;
 
 public class PalyazatLekerdezesek {
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
+   static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+   static MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 
 
 //levalogatja a megadott fazisban levo palyazatok cimet
@@ -29,15 +29,6 @@ public class PalyazatLekerdezesek {
         return palyazatokColl.find(eq("aktualisFazis", fazis)).into(new ArrayList<>());
     }
 
-    //ezt most nem tudom pontosan, mire akaratm hasznalni, de valamire jo lesz
-    public ArrayList<Palyazat> rendezettLekerdezes(String rendezesAlapja) {
-        ArrayList<Palyazat> palyazatLista = new ArrayList<>();
-        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find();
-        for (Palyazat palyazat : iterPalyazat) {
-            palyazatLista.add(palyazat);
-        }
-        return palyazatLista;
-    }
     //minden resztvevo szerepben kulon kereshetunk vele, parameterkent adjuk at, ha barmelyikben mezoben keresunk, akkor "osszes"
     public ArrayList<Palyazat> resztvevoKereso(String pozicio, String nev) {
         if (pozicio.equals("összes")) {
@@ -48,7 +39,7 @@ public class PalyazatLekerdezesek {
         return palyazatokColl.find(eq("resztvevok." + pozicio, nev)).into(new ArrayList<>());
     }
 
-    public ArrayList<String>  resztvevoKeresoCim(String pozicio, String nev) {
+    public ArrayList<String> resztvevoKeresoCim(String pozicio, String nev) {
         if (pozicio.equals("összes")) {
             return palyazatokColl.find(or(eq("resztvevok.kezelo", nev), eq("resztvevok.projektmenedzser", nev),
                     eq("resztvevok.szakmaiVezeto", nev), eq("resztvevok.resztvevoEmberek", nev))).map(Palyazat::getPalyazatCim)
@@ -68,35 +59,30 @@ public class PalyazatLekerdezesek {
         return palyazatokColl.find().into(new ArrayList<>());
     }
 
-    //levalogatja azokat a palyazatokat, amelyek az adott evben kezdodtek
-    public ArrayList<Palyazat> melyikEvbenKezdodott(String evszam) {
-        return palyazatokColl.find(eq("beadasEve", evszam)).into(new ArrayList<>());
-    }
-
     //levalogatja a K+F palyazatokat
-    public ArrayList<Palyazat> kPlusFFelhivasok() {
-        return palyazatokColl.find(eq("KplusF", true)).into(new ArrayList<>());
+    public static ArrayList<String> kPlusFPalyazatok() {
+                return palyazatokColl.find(eq("kplusF", "Igen")).map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
 
     //levalogatja azokat a palyazatokat, ahol nem kellett onero
-    public ArrayList<Palyazat> oneroNelkul() {
-        return palyazatokColl.find(eq("onero", 0)).into(new ArrayList<>());
+    public static ArrayList<String> oneroNelkul() {
+        return palyazatokColl.find(eq("onero", 0)).map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
 
     //min es max - a ket datum kozott kezdodott palyazatokat adja vissza
-    public ArrayList<Palyazat> kezdoEvPeriodus(LocalDate min, LocalDate max) {
+    public static ArrayList<String> kezdoEvPeriodus(LocalDate min, LocalDate max) {
         return palyazatokColl.aggregate(Arrays.asList(
                 Aggregates.match(Filters.gte("kezdet", min)),
-                Aggregates.match(Filters.lte("kezdet", max)))).into(new ArrayList<>());
+                Aggregates.match(Filters.lte("kezdet", max)))).map(Palyazat::getPalyazatCim).into(new ArrayList<>());
 
     }
 
     //min es max - a ket datum kozott befejezodott palyazatokat adja vissza
-    public ArrayList<Palyazat> vegeEvPeriodus(LocalDate min, LocalDate max) {
+    public static ArrayList<String> vegeEvPeriodus(LocalDate min, LocalDate max) {
         return palyazatokColl.aggregate(Arrays.asList(
                 Aggregates.match(Filters.gte("veg", min)),
                 Aggregates.match(Filters.lte("veg", max))))
-                .into(new ArrayList<>());
+                .map(Palyazat::getPalyazatCim).into(new ArrayList<>());
 
     }
 
@@ -110,8 +96,9 @@ public class PalyazatLekerdezesek {
     }
 
     //kulcsszavak alapjan keres a palyazat cimeben, a leirasban es a megjegyzesekben
-    public ArrayList<Palyazat> kulcsszavakPalyazat(String kulcsszo) {
-        return palyazatokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).into(new ArrayList<>());
+    public static ArrayList<String> kulcsszavakPalyazat(String kulcsszo) {
+        return palyazatokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu")))
+                .map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
 
     //megsem akarom szetvalasztani a kategoriakat, akkor eleg ennyi a resztvevok megkeresesehez

@@ -15,8 +15,10 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import palyazatok.Palyazat;
+import palyazatok.PalyazatLekerdezesek;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class palyazatListaController {
@@ -38,8 +40,74 @@ public class palyazatListaController {
     private Button kivalasztReszletekre;
 
     @FXML
+    private Button kivalasztKezdo;
+
+    @FXML
     private void initialize() {
+    }
+
+    @FXML
+    public void adatTranszfer(ArrayList<String> lista) {
+        if (lista.isEmpty()) {
+            lista.add("Nincs ilyen pályázat");
+            kivalasztReszletekre.setDisable(true);
+        }
+            palyazatLista.getItems().setAll(lista);
+            palyazatLista.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void adatTranszferOsszes() {
         palyazatLista.getItems().setAll(Palyazat.PalyazatokListaja());
+        palyazatLista.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void kezdoDatumTranszfer(ArrayList<String> lista) {
+        if (lista.isEmpty()) {
+            lista.add("Nincs ilyen pályázat");
+            kivalasztKezdo.setDisable(true);
+        }
+        palyazatLista.getItems().setAll(lista);
+        palyazatLista.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void adatTranszferTorles() {
+        palyazatLista.getItems().setAll(Palyazat.PalyazatokListaja());
+        palyazatLista.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void adatTranszferKpluszF() {
+        ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.kPlusFPalyazatok());
+        if (lista.isEmpty()) {
+            lista.add("Nincs ilyen pályázat");
+            kivalasztKezdo.setDisable(true);
+        }
+        palyazatLista.getItems().setAll(lista);
+        palyazatLista.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void adatTranszferKulcsszo(String kereso) {
+        ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.kulcsszavakPalyazat(kereso));
+        if (lista.isEmpty()) {
+            lista.add("Nincs ilyen pályázat");
+            kivalasztKezdo.setDisable(true);
+        }
+        palyazatLista.getItems().setAll(lista);
+        palyazatLista.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    public void adatTranszferOnero() {
+        ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.oneroNelkul());
+        if (lista.isEmpty()) {
+            lista.add("Nincs ilyen pályázat");
+            kivalasztKezdo.setDisable(true);
+        }
+        palyazatLista.getItems().setAll(lista);
         palyazatLista.getSelectionModel().selectFirst();
     }
 
@@ -58,6 +126,8 @@ public class palyazatListaController {
             kilep();
         }
         if (event.getSource().equals(kivalasztSzerkesztesre)) {
+            palyazatLista.getItems().setAll(Palyazat.PalyazatokListaja());
+            palyazatLista.getSelectionModel().selectFirst();
             loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatSzerkeszto.fxml"));
             Parent palyazatValasztoParent = loader.load();
             Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);
@@ -71,7 +141,10 @@ public class palyazatListaController {
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
         }
-        if (event.getSource().equals(kivalasztReszletekre)) {
+        if (event.getSource().equals(kivalasztReszletekre) || event.getSource().equals("kulcsszoGomb") ||
+                event.getSource().equals(kivalasztKezdo)) {
+            palyazatLista.getItems().setAll(Palyazat.PalyazatokListaja());
+            palyazatLista.getSelectionModel().selectFirst();
             loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatReszletek.fxml"));
             Parent palyazatValasztoParent = loader.load();
             Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);

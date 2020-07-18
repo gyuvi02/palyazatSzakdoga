@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatKezdoDatumController">
+   <top>
+      <Label fx:id="datumLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="142.0" prefWidth="794.0" text="A két megadott dátum között kezdődött pályázatokat tudjuk lekérdezni" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </BorderPane.margin></Label>
+   </top>
+   <center>
+       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+           <DatePicker fx:id="elsoDatum">
+            <HBox.margin>
+               <Insets bottom="50.0" />
+            </HBox.margin></DatePicker>
+           <DatePicker fx:id="masodikDatum">
+            <HBox.margin>
+               <Insets bottom="50.0" left="40.0" />
+            </HBox.margin></DatePicker>
+       </HBox>
+   </center>
+   <bottom>
+       <HBox alignment="CENTER" prefHeight="87.0" prefWidth="694.0">
+           <Button fx:id="kereses" mnemonicParsing="false" onMouseClicked="#kezdoKereses" prefWidth="165.0" text="Keresés" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                   <Insets right="20.0" />
+               </HBox.margin>
+           </Button>
+           <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="165.0" text="Mégse" textAlignment="CENTER">
+               <HBox.margin>
+                   <Insets left="20.0" />
+               </HBox.margin>
+           </Button>
+       </HBox>
+   </bottom>
+</BorderPane>

@@ -57,8 +57,8 @@ public class Palyazat {
                     Double igenyeltTamogatas) {
         this.palyazatCim = palyazatCim;
         this.aktualisFazis = aktualisFazis;
-        this.kezdet = LocalDate.now();
-        this.veg = LocalDate.now();
+        this.kezdet = LocalDate.of(1900,1,1); //a NullPointer miatt meg kell adni, de ezzel tudom ellenorizni, hogy valodi datum-e
+        this.veg = LocalDate.of(1900,1,1);
         this.resztvevok = new PalyazatiResztvevok(szakmaiVezeto, "", "", new ArrayList<String>()); //ezt a NullPointerException elkerulese miatt adjuk hozza
         this.onero = onero;
         this.tervezettOsszkoltseg = tervezettOsszkoltseg;
@@ -255,7 +255,7 @@ public class Palyazat {
     public static String toStringHelyettPalyazat(Palyazat palyazat) {
         StringBuilder str = new StringBuilder();
         ArrayList<String> resztvevok = palyazat.getResztvevok().getResztvevoEmberek();
-        str.append("Pályázat címe: ").append(palyazat.getPalyazatCim()).append("\n\n")
+        str.append("A pályázat címe: ").append(palyazat.getPalyazatCim()).append("\n\n")
                 .append("A pályázat állapota: ").append(palyazat.getAktualisFazis()).append("\n\n")
                 .append("Leírás: ").append(palyazat.getLeiras() == null ? "-" : palyazat.getLeiras()).append("\n\n")
                 .append("Felhíváskód: ").append(palyazat.getFelhivasKod() == null ? "-" : palyazat.getFelhivasKod()).append("\n\n")
@@ -265,15 +265,17 @@ public class Palyazat {
                 .append("Igényelt támogatás: ").append(palyazat.getIgenyeltTamogatas().toString()).append("\n\n")
                 .append("Megjegyzés: ").append(palyazat.getMegjegyzes() == null ? "-" : palyazat.getMegjegyzes()).append("\n\n")
                 .append("Szerződésszám: ").append(palyazat.getSzerzodesSzam() == null ? "-" : palyazat.getSzerzodesSzam()).append("\n\n")
-                .append("A pályázat kezdete: ").append(palyazat.getKezdet().format(formatters)).append("\n\n")
-                .append("A pályázat vége: ").append(palyazat.getVeg().format(formatters)).append("\n\n")
+                .append("A pályázat kezdete: ").append(palyazat.getKezdet().equals(LocalDate.of(1900,1,1)) ?
+                    "-" : palyazat.getKezdet().format(formatters)).append("\n\n")
+                .append("A pályázat vége: ").append(palyazat.getVeg().equals(LocalDate.of(1900,1,1)) ?
+                "-" : palyazat.getVeg().format(formatters)).append("\n\n")
                 .append("Szakmai vezető: ").append(palyazat.getResztvevok().getSzakmaiVezeto()).append("\n\n")
                 .append("Projektmenedzser: ").append(palyazat.getResztvevok().getProjektmenedzser() == null ? "-"
                 : palyazat.getResztvevok().getProjektmenedzser()).append("\n\n")
                 .append("A pályázat kezelője: ").append(palyazat.getResztvevok().getKezelo() == null ? "-"
                 : palyazat.getResztvevok().getKezelo()).append("\n\n")
-                .append("Résztvevő kutatók: ").append(resztvevok.isEmpty() ? "-" :
-                String.join(", ", palyazat.getResztvevok().getResztvevoEmberek())).append("\n\n");
+                .append("Résztvevő kutatók: ").append(resztvevok.isEmpty() ? "-" : "\n" +
+                String.join("\n", palyazat.getResztvevok().getResztvevoEmberek())).append("\n\n");
         return str.toString();
     }
 

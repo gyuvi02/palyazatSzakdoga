@@ -20,7 +20,7 @@
         <VBox.margin>
             <Insets top="-10.0" />
         </VBox.margin>
-        <Button fx:id="kivalasztReszletekre" mnemonicParsing="false" onAction="#palyazatKivalaszto" text="Kiválaszt" textAlignment="CENTER">
+        <Button fx:id="kivalasztKezdo" mnemonicParsing="false" onAction="#palyazatKivalaszto" text="Kiválaszt" textAlignment="CENTER">
             <HBox.margin>
                 <Insets right="20.0" top="10.0" />
             </HBox.margin>
@@ -31,6 +31,4 @@
             </HBox.margin>
         </Button>
     </HBox>
-
-
 </VBox>

@@ -9,17 +9,17 @@
 <BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkesztoController">
     <bottom>
         <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
-            <Button fx:id="mentes1" mnemonicParsing="false" onMouseClicked="#palyazatMentes" text="Mentés">
+            <Button fx:id="mentes1" mnemonicParsing="false" onMouseClicked="#palyazatMentes" prefWidth="180.0" text="Mentés">
                 <HBox.margin>
                     <Insets bottom="20.0" left="10.0" top="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
+            <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" prefWidth="180.0" text="Mégse">
                 <HBox.margin>
                     <Insets bottom="20.0" left="200.0" top="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="egyKetto" alignment="CENTER" mnemonicParsing="false" onAction="#elsoScene" text="Következő">
+            <Button fx:id="egyKetto" alignment="CENTER" mnemonicParsing="false" onAction="#elsoScene" prefWidth="180.0" text="Következő">
                 <HBox.margin>
                     <Insets bottom="20.0" left="200.0" right="10.0" top="10.0" />
                 </HBox.margin>

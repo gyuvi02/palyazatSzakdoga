@@ -7,22 +7,22 @@
 <BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkeszto2Controller">
    <bottom>
       <HBox alignment="CENTER" prefHeight="63.0" prefWidth="594.0" BorderPane.alignment="CENTER">
-         <Button fx:id="kettoEgy" mnemonicParsing="false" onAction="#masodikScene" text="Előző">
+         <Button fx:id="kettoEgy" mnemonicParsing="false" onAction="#masodikScene" prefWidth="180.0" text="Előző">
             <HBox.margin>
                <Insets bottom="20.0" left="10.0" top="10.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="mentes2" mnemonicParsing="false" onMouseClicked="#palyazatMentes" text="Mentés">
+         <Button fx:id="mentes2" mnemonicParsing="false" onMouseClicked="#palyazatMentes" prefWidth="170.0" text="Mentés">
             <HBox.margin>
                <Insets bottom="20.0" left="100.0" top="10.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
+         <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" prefWidth="170.0" text="Mégse">
             <HBox.margin>
                <Insets bottom="20.0" left="100.0" top="10.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="kettoHarom" alignment="CENTER" mnemonicParsing="false" onAction="#masodikScene" text="Következő">
+         <Button fx:id="kettoHarom" alignment="CENTER" mnemonicParsing="false" onAction="#masodikScene" prefWidth="180.0" text="Következő">
             <HBox.margin>
                <Insets bottom="20.0" left="100.0" right="10.0" top="10.0" />
             </HBox.margin>
