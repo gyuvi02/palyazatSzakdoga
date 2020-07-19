@@ -9,7 +9,6 @@ import palyazatkezelo.MongoAccess;
 import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.set;
 
 public class Oktato {
 

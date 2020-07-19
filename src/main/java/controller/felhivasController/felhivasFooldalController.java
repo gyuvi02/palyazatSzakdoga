@@ -177,7 +177,7 @@ public class felhivasFooldalController {
 
 
     @FXML
-    private void visszaKezdooldalra() throws IOException {
+    private void visszaKezdooldalra() throws Exception {
         App.setRoot("kezdooldal");
     }
 

@@ -55,7 +55,7 @@ public class oktatoFooldalController {
     private Button oktatoFelhivas;
 
     @FXML
-    private void visszaKezdooldalra() throws IOException {
+    private void visszaKezdooldalra() throws Exception {
         App.setRoot("kezdooldal");
     }
 
@@ -66,7 +66,7 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void ujOktato() throws IOException {
+    private void ujOktato() throws Exception {
         Stage dialog = new Stage();
         dialog.setTitle("Új oktató hozzáadása");
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/ujOktato"));
@@ -108,7 +108,7 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void oktatoSzerkeszto(ActionEvent event) throws IOException {
+    private void oktatoSzerkeszto(ActionEvent event) throws Exception {
         if (event.getSource().equals(oktatoSzerk)) {
             fx = "oktatoValasztoSzerkesztFXML";
             title = " - szerkesztés";
@@ -133,7 +133,7 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void tanszekAktivitas(ActionEvent event) throws IOException {
+    private void tanszekAktivitas(ActionEvent event) throws Exception {
         MenuItem source = (MenuItem) event.getSource();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoTanszekiAktivitas.fxml"));
@@ -150,7 +150,7 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void oktatoPalyazatTema() throws IOException {
+    private void oktatoPalyazatTema() throws Exception {
         Stage dialog = new Stage();
         dialog.setTitle("Keresés kari pályázati témák alapján");
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/oktatoPalyazatiTema"));

@@ -12,7 +12,7 @@
    <right>
       <ImageView fitHeight="315.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets right="20.0" />
+            <Insets right="50.0" />
          </BorderPane.margin>
          <image>
             <Image url="@images/egyetemlogo.png" />
@@ -73,7 +73,7 @@
                         <Font name="Century Gothic" size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#menuKilepes" text="Kilépés" textAlignment="CENTER">
+                  <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilepes" text="Kilépés" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="10.0" top="80.0" />
                      </VBox.margin>

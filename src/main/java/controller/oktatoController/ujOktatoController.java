@@ -32,7 +32,7 @@ public class ujOktatoController {
     }
 
     @FXML
-    private void visszaOktatooldalra() throws IOException {
+    private void visszaOktatooldalra() throws Exception {
         App.setRoot("/org/gyula/oktatoFXML/oktatoFooldal");
     }
 

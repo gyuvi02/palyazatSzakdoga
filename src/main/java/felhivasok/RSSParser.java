@@ -65,7 +65,7 @@ public class RSSParser {
 
             }
             if (elozoRSSEllenorzes(feedLista)) {
-                regiLetoltesColl.insertOne(feedLista.get(0));
+                regiLetoltesColl.insertOne(feedLista.get(0));//ha uj az RSS, akkor elmentjuk a lista elso elemet, ehhez hasonlitunk a kovetkezo alkalommal
                 return feedLista;
             } else {
                 return null;
@@ -80,7 +80,7 @@ public class RSSParser {
         if (!feedLista.isEmpty() && regiLetoltesColl.find().sort(new Document("_id", -1)).first() != null) { //Ha ures a feedLista, nincs szukseg az ellenorzesre
             RssElemek regiElsoElem = regiLetoltesColl.find().sort(new Document("_id", -1)).first();            //ha pedig nincs elmentve regi letoltott RSS elem, akkor nem lehetseges
             System.out.println("A regi elso elem cime: " + regiElsoElem.getTitle());
-            System.out.println("Mostani feedLista elso elemenek cime: " + feedLista.get(0).getTitle().toString() + "\n");
+            System.out.println("Mostani feedLista elso elemenek cime: " + feedLista.get(0).getTitle() + "\n");
             System.out.println(regiElsoElem.getTitle().equals(feedLista.get(0).getTitle()));
             if (regiElsoElem.getTitle().equals(feedLista.get(0).getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
                 feedLista.clear(); //uresen kuldjuk tovabb, igy nem tolti le meg egyszer a felhivasokat

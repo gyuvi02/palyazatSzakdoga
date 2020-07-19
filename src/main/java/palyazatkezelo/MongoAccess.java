@@ -5,8 +5,12 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoConfigurationException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.gyula.InternetEllenorzo;
+import org.gyula.kezdooldalController;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -19,6 +23,7 @@ public class MongoAccess {
 
     public static MongoClient getConnection() {
         ConnectionString connectionString = null;
+        InternetEllenorzo.ellenoriz();
 
         try {
 //        ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
@@ -26,13 +31,12 @@ public class MongoAccess {
             connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
         } catch (MongoConfigurationException e) {
             System.out.println("Problema a kapcsolattal");
-            //meghivok egy figyelmezteto ablakot
+
         }
 
         if (mongoAccess == null) {
                 mongoAccess = new MongoAccess();
-            }
-
+        }
         try {
             CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
             CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),

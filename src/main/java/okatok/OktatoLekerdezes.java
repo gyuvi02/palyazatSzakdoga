@@ -35,7 +35,7 @@ public class OktatoLekerdezes{
     }
 
     //Ha nem csak a nevekre van szukseg, hanem a teljes dokumentumra
-    public ArrayList<Oktato> oktatoTeljesDok(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
+    public static ArrayList<Oktato> oktatoTeljesDok(String tanszek) {//meg kell adni (legordulo menu), hogy melyik tanszek, vagy az osszes
         if (tanszek.equals("Minden tanszék")) {
             return oktatokColl.find().into(new ArrayList<>());
         }

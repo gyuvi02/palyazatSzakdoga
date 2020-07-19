@@ -163,6 +163,7 @@ public class palyazatSzerkeszto3Controller {
         mezoUpdate();
         palyazat.PalyazatFrissito();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setWidth(200.0);
         alert.setTitle("Megerősítés");
         alert.setHeaderText("Módosítottuk a következő pályázatot:");
         alert.setContentText(palyazat.getPalyazatCim());

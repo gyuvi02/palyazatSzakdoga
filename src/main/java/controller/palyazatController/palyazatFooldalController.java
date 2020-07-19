@@ -65,7 +65,7 @@ public class palyazatFooldalController {
 
 
     @FXML
-    private void ujPalyazat() throws IOException {
+    private void ujPalyazat() throws Exception {
         Stage dialog = new Stage();
         dialog.setTitle("Új pályázat létrehozása");
         Scene scene = new Scene(App.loadFXML("/org/gyula/palyazatFXML/ujPalyazat"));
@@ -169,7 +169,7 @@ public class palyazatFooldalController {
     }
 
     @FXML
-    private void visszaKezdooldalra() throws IOException {
+    private void visszaKezdooldalra() throws Exception {
         App.setRoot("kezdooldal");
     }
 

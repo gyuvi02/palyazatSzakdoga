@@ -21,42 +21,47 @@ import java.util.Date;
 
 public class FelhivasParser {
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+//    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
 
     int[] elemek = {9, 11, 13, 17, 19}; //ezeken a helyeken talalhatok a nekem fontos informaciok a letrehozott feed elemekben
 
-    public void felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
+    public boolean felhivasKeszito(ArrayList<RssElemek> feedLista) throws IOException {
         ArrayList<String> legutobbiFelhivasok = new ArrayList<>();
 //         feedLista = new RSSParser().rssListaKeszito();
-        int k = 1;
+        int k = 1; //ezzel szamolom meg, hany elemet toltottem le
 
-        if (feedLista == null) {
-            return;
+        if (feedLista == null) { //ha nincs uj RSS, vagy kivetel tortent a letoltes kozben, akkor itt ki is lep
+            return false;
         }
         ArrayList<RssElemek> aktualizaltFeedLista = new ArrayList<RssElemek>(feedLista); //egy valoban uj lista kell, hogy ne hasson vissza az egyik torlese a masikra
 
         try {
             for (RssElemek elem : feedLista) {
-                System.out.println("Elemek szama: " + k++);
                 String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
                 Document doc = Jsoup.connect(elem.link).get();
                 Elements alapAdatok = doc.select("td");
                 for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
                     adatok[i] = alapAdatok.get(elemek[i]).text();
                 }
-
+                //az RSS-ekben ujra megjelennek korabbi felhivasok is, ezeket nem akarjuk ujra letolteni
+                //itt futtatom le az ellenorzest a link alapjan, hogy mar van-e ilyen felhivas, ha nem (false), akkor folytatom
+                if (linkOsszevetes(elem.getLink(), adatok[0])) {
+                    return false;
+                }
+                System.out.println("Elemek szama: " + k++);
                 String date = datumKeszito(adatok[2]);
-//            System.out.println(elem.getCategory());
-                String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
+                System.out.println(elem.getCategory());
+                String  reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
                 ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory());
                 Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
                         reszletesLeiras, elem.getCategory(), lehetsegesResztvevok(ellenorizendoKategoriak),
                         torlesSzamolo(date));
+                //elorebb vittem az ellenorzest, hogy gyorsitsam a folyamatot, nem kell peldanyositani sem, ha mar van ilyen felhivas
                 //itt ellenorzom a link alapjan, hogy mar van-e ilyen felhivas, ha nem (true), akkor feltoltom
-                if (linkOsszevetes(keszFelhivas)) {
-                    keszFelhivas.felhivasFeltolto();
-                    legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
-                }
+//                if (linkOsszevetes(keszFelhivas)) {
+                keszFelhivas.felhivasFeltolto();
+                legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
+//                }
                 aktualizaltFeedLista.remove(0); // kitoroljuk, hogy a catch jol mukodjon szukseg eseten, ha nincs kivetel, erre nem lesz szukseg
             }
             //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a
@@ -70,6 +75,7 @@ public class FelhivasParser {
 
         LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
         legutobbi.legutobbiListaFeltoltes();
+        return true;
     }
 
     //ha kozvetlenul adunk meg egy pafi.hu linket, mivel a palyazati kategoriak az RSS-ben vannak, itt nekunk kell megadni
@@ -81,6 +87,9 @@ public class FelhivasParser {
             for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
                 adatok[i] = alapAdatok.get(elemek[i]).text();
             }
+            if (linkOsszevetes(link, adatok[0])) {
+                return false;
+            }
             String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
             ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(palyazatiKategoriak);
 
@@ -90,16 +99,15 @@ public class FelhivasParser {
                     reszletesLeiras, palyazatiKategoriak, lehetsegesResztvevok(ellenorizendoKategoriak),
                     torlesSzamolo(date));
 
-            if (linkOsszevetes(keszFelhivas)) {
-                keszFelhivas.felhivasFeltolto();
-                return true;
-            }
+//            if (linkOsszevetes(keszFelhivas)) {
+            keszFelhivas.felhivasFeltolto();
+            return true;
+//            }
 
         } catch (HttpStatusException | IllegalArgumentException e) {
             System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
             return false;
         }
-        return false;
     }
 
     private static String leirasParser(String html) {  //ez megoldja, hogy a <br> tageket atalakitsuk \n jelekke, es jol tagolja a szoveget
@@ -136,30 +144,41 @@ public class FelhivasParser {
     }
 
     private ArrayList<String> lehetsegesResztvevok(ArrayList<String> fixKategoriak) { //itt valogatjuk le, kinek a palyazati temaja egyezik a kategoriakkal
-        OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
         ArrayList<String> lehetsegesOktatok = new ArrayList<>();
-        for (Oktato iterOktato :  oktatoLekerdezes.oktatoTeljesDok("Minden tanszék")) {
+        for (Oktato iterOktato :  OktatoLekerdezes.oktatoTeljesDok("Minden tanszék")) {
             ArrayList<String> kategoriak = new ArrayList<>(fixKategoriak);
-            kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan a kategoria valtozo a metszetnek felel meg
-            if (!kategoriak.isEmpty()){
+            kategoriak.retainAll(iterOktato.getPalyazatiTema());    //ezek utan a kategoriak valtozo a metszetnek felel meg
+            if (!kategoriak.isEmpty()){ //ha a metszet ures, nem kell hozzaadni az oktatot
                 lehetsegesOktatok.add(iterOktato.getNev());
-                System.out.println(lehetsegesOktatok.toString()); //csak ellenorzes celjabol
+//                System.out.println(lehetsegesOktatok.toString()); //csak ellenorzes celjabol
             }
         }
         return lehetsegesOktatok;
     }
 
-    private boolean linkOsszevetes(Felhivas ellenorizendo) {
+    private boolean linkOsszevetes(String ellenorizendoLink, String ellenorizendoCim) {
         Felhivas felhivasLista = new Felhivas();
-        ArrayList<Felhivas> osszehasonlitoLista = felhivasLista.felhivasLetolto(ellenorizendo.getFelhivasCim()); //csak azokkal a felhivasokkal vetjuk ossze, amelyeknek azonos a cime
-        if (!osszehasonlitoLista.isEmpty()) { //ha ures, akkor NullPointer lenne, de akkor nem is kell ellemoriznem
+        ArrayList<Felhivas> osszehasonlitoLista = felhivasLista.felhivasLetolto(ellenorizendoCim); //csak azokkal a felhivasokkal vetjuk ossze, amelyeknek azonos a cime
+        if (!osszehasonlitoLista.isEmpty()) { //ha ures, vagyis nem volt korabban ilyen cimu felhivas, akkor NullPointer lenne, de akkor nem is kell ellemoriznem
             for (Felhivas felhivas : osszehasonlitoLista) {
-                if (felhivas.getFelhivasLink().equals(ellenorizendo.getFelhivasLink())) {
-                    return false;
+                if (felhivas.getFelhivasLink().equals(ellenorizendoLink)) {
+                    return true; //akkor adunk vissza true-t, ha mar van ilyen, es nem kell letolteni
                 }
             }
         }
-        return true;
+        return false;
     }
 
+//    private boolean linkOsszevetes(Felhivas ellenorizendo) {
+//        Felhivas felhivasLista = new Felhivas();
+//        ArrayList<Felhivas> osszehasonlitoLista = felhivasLista.felhivasLetolto(ellenorizendo.getFelhivasCim()); //csak azokkal a felhivasokkal vetjuk ossze, amelyeknek azonos a cime
+//        if (!osszehasonlitoLista.isEmpty()) { //ha ures, akkor NullPointer lenne, de akkor nem is kell ellemoriznem
+//            for (Felhivas felhivas : osszehasonlitoLista) {
+//                if (felhivas.getFelhivasLink().equals(ellenorizendo.getFelhivasLink())) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
 }

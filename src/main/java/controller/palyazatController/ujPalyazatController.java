@@ -32,7 +32,7 @@ public class ujPalyazatController {
     }
 
     @FXML
-    private void visszaPalyazatOldalra() throws IOException {
+    private void visszaPalyazatOldalra() throws Exception {
         App.setRoot("/org/gyula/palyazatFXML/palyazatFooldal");
     }
 

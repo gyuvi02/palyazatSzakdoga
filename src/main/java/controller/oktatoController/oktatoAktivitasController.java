@@ -32,7 +32,7 @@ public class oktatoAktivitasController {
 
     @FXML
     public void initialize() {
-        palyazatReszletek.setDisable(true);
+
     }
 
 

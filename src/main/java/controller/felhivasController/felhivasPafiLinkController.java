@@ -87,7 +87,7 @@ public class felhivasPafiLinkController {
     @FXML
     private void feltoltes() throws IOException {
         FelhivasParser felhivasParser = new FelhivasParser();
-        if (felhivasParser.felhivasLinkbol(cim.getText(), new ArrayList<String>(kivalasztottLista.getItems()))) {
+        if (felhivasParser.felhivasLinkbol(cim.getText(), new ArrayList<>(kivalasztottLista.getItems()))) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Megerősítés");
             alert.setHeaderText("A felhívást hozzáadtuk az adatbázishoz");
@@ -101,7 +101,7 @@ public class felhivasPafiLinkController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Hiba!");
             alert.setHeaderText("Nem sikerült feltölteni a felhívást");
-            alert.setContentText("Ellenőrizze az internet kapcsolatot és a bemásolt linket!");
+            alert.setContentText("Ellenőrizze az internet kapcsolatot és a bemásolt linket! Az is lehet a hiba oka, hogy már benne van a felhívás az adatbázisba");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(
                     getClass().getResource("/org/gyula/dialogCSS.css").toExternalForm());
