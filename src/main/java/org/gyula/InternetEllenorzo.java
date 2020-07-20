@@ -14,8 +14,6 @@ public class InternetEllenorzo {
             URL url = new URL("https://www.mongodb.com/");
             URLConnection connection = url.openConnection();
             connection.connect();
-
-            System.out.println("A kapcsolat rendben");
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);

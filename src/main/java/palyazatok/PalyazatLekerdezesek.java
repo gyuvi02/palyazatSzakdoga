@@ -66,7 +66,7 @@ public class PalyazatLekerdezesek {
 
     //levalogatja azokat a palyazatokat, ahol nem kellett onero
     public static ArrayList<String> oneroNelkul() {
-        return palyazatokColl.find(eq("onero", 0)).map(Palyazat::getPalyazatCim).into(new ArrayList<>());
+        return palyazatokColl.find(eq("onero", 0.0)).map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
 
     //min es max - a ket datum kozott kezdodott palyazatokat adja vissza

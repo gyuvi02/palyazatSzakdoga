@@ -48,6 +48,9 @@ public class felhivasFooldalController {
     private Button torles;
 
     @FXML
+    private Button osszesFelhivas;
+
+    @FXML
     private Button hatarido;
 
     @FXML
@@ -146,12 +149,15 @@ public class felhivasFooldalController {
     }
 
     @FXML
-    private void felhivasTorles() throws IOException {
+    private void felhivasTorles(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasTorles.fxml"));
         Parent felhivasTorlesParent = loader.load();
         Scene felhivasTorlesScene = new Scene(felhivasTorlesParent);
         felhivasTorlesController controller = loader.getController();
+        if (event.getSource().equals(osszesFelhivas)) {
+            controller.osszesMegjelenito();
+        }
         Stage dialog = new Stage();
         dialog.setTitle("Felhívások törlése");
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -177,7 +183,7 @@ public class felhivasFooldalController {
 
 
     @FXML
-    private void visszaKezdooldalra() throws Exception {
+    private void visszaKezdooldalra() throws IOException {
         App.setRoot("kezdooldal");
     }
 

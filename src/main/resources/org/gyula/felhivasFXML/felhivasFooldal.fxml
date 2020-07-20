@@ -88,7 +88,10 @@
          <Button fx:id="hatarido" mnemonicParsing="false" onMouseClicked="#hataridoValaszto" prefWidth="360.0" text="Felhívások határidő szerint" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
              <tooltip> <Tooltip text="A felhívások beadási határideje alapján kereshetünk" /> </tooltip>
          </Button>
-         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="360.0" text="Az összes felhívás" GridPane.columnIndex="1" />
+         <Button fx:id="osszesFelhivas" onAction="#felhivasTorles" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="360.0" text="Az összes felhívás"
+                 GridPane.columnIndex="1">
+             <tooltip> <Tooltip text="Kilistázza az összes pályázati felhívást az adadtbázisból" /> </tooltip>
+         </Button>
           <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="661.0" minWidth="10.0" prefWidth="606.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="665.0" minWidth="10.0" prefWidth="608.0" />

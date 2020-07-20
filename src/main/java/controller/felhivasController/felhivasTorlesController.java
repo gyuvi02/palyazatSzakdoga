@@ -46,7 +46,16 @@ public class felhivasTorlesController {
 //        felhivasSzam = felhivasLekerdezes.felhivasListak().size(); // ez nagyon lelassitja az ablak megnyitasat
         felhivasLista.getItems().setAll(felhivasLekerdezes.felhivasListaLimited(oldalszam, sorokSzama));
         felhivasLista.getSelectionModel().select(0);
-        elozo.setDisable(true);
+//        elozo.setDisable(true);
+        elozo.setVisible(false);
+    }
+
+    public void osszesMegjelenito() {
+        felhivasLista.getItems().setAll(felhivasLekerdezes.felhivasListaLimited(oldalszam, sorokSzama));
+        felhivasLista.getSelectionModel().select(0);
+//        elozo.setDisable(true);
+        elozo.setVisible(false);
+        torlesGomb.setVisible(false);
     }
 
     @FXML
@@ -76,16 +85,20 @@ public class felhivasTorlesController {
     public void lepteto(ActionEvent event) {
         if (event.getSource().equals(elozo)) {
             oldalszam--;
-            kovetkezo.setDisable(false);
+//            kovetkezo.setDisable(false);
+            kovetkezo.setVisible(true);
         } else {
             if (oldalszam > 0 && (felhivasSzam / (sorokSzama * (oldalszam + 2))) < 1) {
-                kovetkezo.setDisable(true);
+//                kovetkezo.setDisable(true);
+                kovetkezo.setVisible(false);
             }
             oldalszam++;
-            elozo.setDisable(false);
+//            elozo.setDisable(false);
+            elozo.setVisible(true);
         }
         if (oldalszam == 0) {
-            elozo.setDisable(true);
+//            elozo.setDisable(true);
+            elozo.setVisible(false);
         }
         felhivasLista.getItems().setAll(felhivasLekerdezes.felhivasListaLimited(oldalszam, sorokSzama));
         felhivasLista.getSelectionModel().select(0);

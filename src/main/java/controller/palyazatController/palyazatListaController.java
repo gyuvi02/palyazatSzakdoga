@@ -102,12 +102,12 @@ public class palyazatListaController {
 
     @FXML
     public void adatTranszferOnero() {
-        ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.oneroNelkul());
-        if (lista.isEmpty()) {
-            lista.add("Nincs ilyen pályázat");
+        ArrayList<String> oneroNelkul = new ArrayList<>(PalyazatLekerdezesek.oneroNelkul());
+        if (oneroNelkul.isEmpty()) {
+            oneroNelkul.add("Nincs ilyen pályázat");
             kivalasztKezdo.setDisable(true);
         }
-        palyazatLista.getItems().setAll(lista);
+        palyazatLista.getItems().setAll(oneroNelkul);
         palyazatLista.getSelectionModel().selectFirst();
     }
 
@@ -150,10 +150,12 @@ public class palyazatListaController {
             Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);
             palyazatReszletekController controller = loader.getController();
             controller.adatTranszfer(kivalasztottPalyazat);
-            Stage stage = new Stage();
-            stage.setTitle("A pályázat szerkesztése");
+//            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("A pályázat részletei");
             stage.setScene(palyazatValasztoScene);
-            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setX((Screen.getPrimary().getBounds().getMaxX() - palyazatValasztoScene.getWidth())/2);
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
         }
