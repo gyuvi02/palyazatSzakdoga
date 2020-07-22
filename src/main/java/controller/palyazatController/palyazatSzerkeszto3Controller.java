@@ -71,15 +71,38 @@ public class palyazatSzerkeszto3Controller {
 
 
     @FXML
-    public void adatTranszfer(Palyazat atadottPalyazat) throws IOException {
+    public void adatTranszfer(Palyazat atadottPalyazat) {
         palyazat = atadottPalyazat;
+        resztvevok = atadottPalyazat.getResztvevok();
+        String szakmaiVezeto = palyazat.getResztvevok().getSzakmaiVezeto();
+        String menedzser = palyazat.getResztvevok().getProjektmenedzser();
         OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();
         ArrayList<String> oktatoLista = new ArrayList<>((oktatoLekerdezes.oktatoNevsor("összes")));//kiolvasom az oktatok aktualis listajat
-        oktatoLista.add("Egyéb"); //hozzaadok egy lehetoseget, ha nem sajat oktato a szakmai vezeto
+        oktatoLista.add("Egyéb"); //hozzaadok egy lehetoseget, ha nem sajat oktato a szakmai vezeto/projektmenedzser
+        oktatoLista.add("Nincs"); //hozzaadok egy lehetoseget, ha meg nem tudjuk, ki a szakmai vezeto/projektmenedzser
         szakmaiCombo.setItems(FXCollections.observableArrayList(oktatoLista)); //beolvasom a ComboBoxba a listat
-        szakmaiCombo.setValue(palyazat.getResztvevok().getSzakmaiVezeto()); //belepeskor az legyen kivalasztva, aki az adatbazisban meg van adva
+        if (oktatoLista.contains(szakmaiVezeto) && !szakmaiVezeto.equals("Egyéb")) { //ha az oktatok kozul kerul ki a szakmai vezeto
+            szakmaiCombo.setValue(szakmaiVezeto); //belepeskor az legyen kivalasztva, aki az adatbazisban meg van adva
+//        } else if (szakmaiVezeto.equals("Egyéb")) { //ha a szakmai vezeto nem oktato - ez elvileg nem fordulhat elo, csak ha ezt irja be nevkent
+//            szakmaiField.setVisible(true);
+//            szakmaiCombo.setValue("Egyéb");
+        } else {
+            szakmaiField.setVisible(true);
+            szakmaiCombo.setValue("Egyéb");
+            szakmaiField.setText(szakmaiVezeto); //itt jelenitjuk meg
+        }
+
         menedzserCombo.setItems(FXCollections.observableArrayList(oktatoLista));
-        menedzserCombo.setValue(palyazat.getResztvevok().getProjektmenedzser());
+        if (oktatoLista.contains(menedzser)) {
+            menedzserCombo.setValue(menedzser);
+//        } else if (menedzser.equals("Egyéb")) { //ha a szakmai vezeto nem oktato
+//            menedzserField.setVisible(true);
+//            menedzserCombo.setValue("Egyéb");
+        } else {
+            menedzserField.setVisible(true);
+            menedzserCombo.setValue("Egyéb");
+            menedzserField.setText(menedzser); //itt jelenitjuk meg
+        }
         kezeloField.setText(palyazat.getResztvevok().getKezelo());
         kezdoDatum.setValue(palyazat.getKezdet());
         zaroDatum.setValue(palyazat.getVeg());
@@ -93,9 +116,15 @@ public class palyazatSzerkeszto3Controller {
     private void egyebKivalasztott(ActionEvent event) {
         if (szakmaiCombo.getValue().equals("Egyéb")) {
             szakmaiField.setVisible(true);
+        }else {
+            szakmaiField.clear();
+            szakmaiField.setVisible(false);
         }
         if (menedzserCombo.getValue().equals("Egyéb")) {
             menedzserField.setVisible(true);
+        } else {
+            menedzserField.clear();
+            menedzserField.setVisible(false);
         }
     }
 
@@ -138,16 +167,25 @@ public class palyazatSzerkeszto3Controller {
 
 
     private void mezoUpdate() {
+
         if (!szakmaiField.getText().isEmpty()) {//csak akkor lehet nem ures, ha az Egyeb kategoriat valasztottuk, de ha nem irtunk be semmit, azt ki kell zarni
         resztvevok.setSzakmaiVezeto(szakmaiField.getText());
+        } else if (szakmaiCombo.getValue().equals("Egyéb")) {//ha kivalasztotta, de nem irt be semmit, ugy vesszuk, hogy nincs
+            resztvevok.setSzakmaiVezeto("Nincs");
+            szakmaiField.setVisible(false);
         }else {
             resztvevok.setSzakmaiVezeto(szakmaiCombo.getValue());
+            szakmaiField.setVisible(false);
         }
 
         if (!menedzserField.getText().isEmpty()) {
-        resztvevok.setSzakmaiVezeto(menedzserField.getText());
-        }else {
+        resztvevok.setProjektmenedzser(menedzserField.getText());
+        } else if (menedzserCombo.getValue().equals("Egyéb")) {
+            resztvevok.setProjektmenedzser("Nincs");
+            menedzserField.setVisible(false);
+        } else {
             resztvevok.setProjektmenedzser(menedzserCombo.getValue());
+            menedzserField.setVisible(false);
         }
         resztvevok.setKezelo(kezeloField.getText());
         resztvevok.setResztvevoEmberek(palyazatLekerdezesek.osszesResztvevo(palyazat.getPalyazatCim()));//ezt mar frissitettuk a resztvevoSzerkeszto
@@ -163,7 +201,6 @@ public class palyazatSzerkeszto3Controller {
         mezoUpdate();
         palyazat.PalyazatFrissito();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setWidth(200.0);
         alert.setTitle("Megerősítés");
         alert.setHeaderText("Módosítottuk a következő pályázatot:");
         alert.setContentText(palyazat.getPalyazatCim());
@@ -172,7 +209,6 @@ public class palyazatSzerkeszto3Controller {
         dialogPane.getStyleClass().add("/org/gyula/dialogCSS.css");
         alert.showAndWait();
         kilep();
-
     }
 
     @FXML

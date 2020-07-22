@@ -60,12 +60,6 @@ public class oktatoFooldalController {
     }
 
     @FXML
-    private void menuKilepes() {
-        Stage ablak = (Stage) kilepesGomb.getScene().getWindow();
-        ablak.close();
-    }
-
-    @FXML
     private void ujOktato() throws Exception {
         Stage dialog = new Stage();
         dialog.setTitle("Új oktató hozzáadása");
@@ -159,4 +153,12 @@ public class oktatoFooldalController {
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
+
+    @FXML
+    private void menuKilepes() {
+        Stage ablak = (Stage) kilepesGomb.getScene().getWindow();
+        App.exit();
+        ablak.close();
+    }
+
 }

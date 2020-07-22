@@ -175,6 +175,7 @@ public class palyazatFooldalController {
 
     @FXML
     private void menuKilepes() {
+        App.exit();
         Stage ablak = (Stage) kilepesGomb.getScene().getWindow();
         ablak.close();
     }

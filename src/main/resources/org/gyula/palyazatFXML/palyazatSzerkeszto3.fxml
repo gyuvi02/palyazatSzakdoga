@@ -27,7 +27,7 @@
     <center>
         <GridPane alignment="CENTER" prefHeight="720.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="425.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="450.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="869.0" minWidth="10.0" prefWidth="869.0" />
             </columnConstraints>
             <rowConstraints>
@@ -86,10 +86,10 @@
              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                  <ComboBox fx:id="menedzserCombo" onAction="#egyebKivalasztott" prefHeight="38.0" prefWidth="400.0">
                     <HBox.margin>
-                        <Insets left="-100.0" />
+                        <Insets left="-25.0" />
                     </HBox.margin>
                  </ComboBox>
-                 <TextField fx:id="menedzserField" visible="false">
+                 <TextField fx:id="menedzserField" prefWidth="368.0" visible="false">
                     <HBox.margin>
                         <Insets left="15.0" />
                     </HBox.margin>
@@ -98,10 +98,10 @@
              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                  <ComboBox fx:id="szakmaiCombo" onAction="#egyebKivalasztott" prefHeight="50.0" prefWidth="400.0">
                     <HBox.margin>
-                        <Insets left="-100.0" />
+                        <Insets left="-25.0" />
                     </HBox.margin>
                  </ComboBox>
-                 <TextField fx:id="szakmaiField" visible="false">
+                 <TextField fx:id="szakmaiField" prefHeight="47.0" prefWidth="368.0" visible="false">
                     <HBox.margin>
                         <Insets left="15.0" />
                     </HBox.margin>

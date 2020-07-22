@@ -64,6 +64,10 @@ public class FelhivasParser {
 //                }
                 aktualizaltFeedLista.remove(0); // kitoroljuk, hogy a catch jol mukodjon szukseg eseten, ha nincs kivetel, erre nem lesz szukseg
             }
+            LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
+            legutobbi.legutobbiListaFeltoltes();
+            return true;
+
             //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a
             //kovetkezo elemmel folytatjuk, ehhez toroljuk az aktualis elemet, es ujra futtatjuk a metodust, de ez csak akkor jo,
             // ha a tomb elso eleme a hibas, ezert toroljuk fentebb mindig az aktualis elemet
@@ -71,11 +75,9 @@ public class FelhivasParser {
             System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
             aktualizaltFeedLista.remove(0);
             felhivasKeszito(aktualizaltFeedLista); //a folyamatosan torolt listaval hivjuk meg ujra, ebben mar csak azok vannak, amelyeket meg nem olvastunk be
+            return false;
         }
 
-        LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
-        legutobbi.legutobbiListaFeltoltes();
-        return true;
     }
 
     //ha kozvetlenul adunk meg egy pafi.hu linket, mivel a palyazati kategoriak az RSS-ben vannak, itt nekunk kell megadni

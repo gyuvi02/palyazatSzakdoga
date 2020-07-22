@@ -26,7 +26,7 @@ public class RSSParser {
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";
 
-    public SyndFeed rssOlvaso() {
+    private SyndFeed rssOlvaso() {
         try { //egy SSLException tortent, es
             URL url = new URL(cim);
             SyndFeedInput input = new SyndFeedInput();
@@ -62,14 +62,13 @@ public class RSSParser {
                 if (rssEllenorzo(elemek.category)) {     //csak az kerul bele az ArrayListbe, amelyik relevans a kategoria besorolas alapjan
                     feedLista.add(elemek);
                 }
+                if (feedLista.size() == 1 && !elozoRSSEllenorzes(feedLista)) { //az elso elem eseteben ellenorizzuk az egyezest, ha egyezik, a tobbit mar nem szedjuk le
+                    return null;
+                }
 
             }
-            if (elozoRSSEllenorzes(feedLista)) {
-                regiLetoltesColl.insertOne(feedLista.get(0));//ha uj az RSS, akkor elmentjuk a lista elso elemet, ehhez hasonlitunk a kovetkezo alkalommal
+                regiLetoltesColl.insertOne(feedLista.get(0));//ha ideig eljutott, akkor uj az RSS, es elmentjuk a lista elso elemet, ehhez hasonlitunk a kovetkezo alkalommal
                 return feedLista;
-            } else {
-                return null;
-            }
         } catch (Exception e) {
             System.out.println("Hiba az RSS beolvasas soran\n" + e.getMessage());
             return null;

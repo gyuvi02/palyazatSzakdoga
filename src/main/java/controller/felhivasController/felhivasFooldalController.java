@@ -190,6 +190,7 @@ public class felhivasFooldalController {
     @FXML
     private void menuKilepes() {
         Stage ablak = (Stage) kilepesGomb.getScene().getWindow();
+        App.exit();
         ablak.close();
     }
 

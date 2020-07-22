@@ -101,7 +101,7 @@ public class felhivasPafiLinkController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Hiba!");
             alert.setHeaderText("Nem sikerült feltölteni a felhívást");
-            alert.setContentText("Ellenőrizze az internet kapcsolatot és a bemásolt linket! Az is lehet a hiba oka, hogy már benne van a felhívás az adatbázisba");
+            alert.setContentText("Ellenőrizze az internet kapcsolatot és a bemásolt linket! Az is lehet a hiba oka, hogy a felhívás már benne van az adatbázisba");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(
                     getClass().getResource("/org/gyula/dialogCSS.css").toExternalForm());

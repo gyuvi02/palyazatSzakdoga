@@ -23,8 +23,8 @@ import static com.mongodb.client.model.Projections.*;
 
 public class FelhivasLekerdezes {
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
-    MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
+    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
 
     //Az osszes felhivas cimet visszaadja
     public ArrayList<String> felhivasListak() {
@@ -95,7 +95,7 @@ public class FelhivasLekerdezes {
 
 //    A felhivas dokumentumokban torles neven tarolt datumot nezzuk vegig
 //    ha ez kevesebb, mint a mai datum, akkor toroljuk az adatbazisbol
-    public void automatikusTorles() {
+    public static void automatikusTorles() {
         System.out.println(felhivasokColl.deleteMany(lte("torles", LocalDate.now())));
     }
 
