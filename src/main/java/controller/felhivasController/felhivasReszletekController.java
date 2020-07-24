@@ -4,7 +4,6 @@ import felhivasok.Felhivas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
@@ -26,9 +25,9 @@ public class felhivasReszletekController {
     @FXML
     private Hyperlink hyperlink;
 
-    @FXML
-    private Label pafiLink;
-
+//    @FXML
+//    private Label pafiLink;
+//
     @FXML
     public void adatTranszfer(String felhivas) {
         ArrayList<Felhivas> lista = new Felhivas().felhivasLetolto(felhivas);

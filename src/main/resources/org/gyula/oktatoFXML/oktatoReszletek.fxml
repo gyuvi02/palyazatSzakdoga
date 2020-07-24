@@ -11,7 +11,9 @@
       <VBox.margin>
          <Insets top="10.0" />
       </VBox.margin>
-      <Label fx:id="reszletekFigyelmeztetes" alignment="CENTER" disable="true" maxWidth="500.0" minWidth="500.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="39.0" prefWidth="500.0" text="Az adatok kimásolhatók, de itt nem módosíthatók!" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+      <Label alignment="CENTER" disable="true" maxWidth="500.0" minWidth="500.0"
+             nodeOrientation="LEFT_TO_RIGHT" prefHeight="39.0" prefWidth="500.0"
+             text="Az adatok kimásolhatók, de itt nem módosíthatók!" textAlignment="CENTER" HBox.hgrow="ALWAYS">
          <font>
             <Font size="20.0" />
          </font>

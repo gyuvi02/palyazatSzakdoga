@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import okatok.Oktato;
 import okatok.OktatoLekerdezes;
-
-import java.util.ArrayList;
 
 public class oktatoTanszekiKutatasokController {
 

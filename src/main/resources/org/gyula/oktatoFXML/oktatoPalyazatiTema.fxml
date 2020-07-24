@@ -11,19 +11,21 @@
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin></ListView>
     <HBox alignment="CENTER" prefHeight="58.0" prefWidth="494.0">
-        <children>
-            <Button fx:id="temaValaszto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#temaValaszto" prefHeight="40.0" prefWidth="150.0" text="Kiválaszt" HBox.hgrow="ALWAYS">
-                <HBox.margin>
-                    <Insets />
-                </HBox.margin></Button>
-            <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" prefWidth="150.0" text="Bezár" textAlignment="CENTER">
-                <HBox.margin>
-                    <Insets left="50.0" />
-                </HBox.margin></Button>
-        </children>
         <VBox.margin>
-            <Insets />
+            <Insets/>
         </VBox.margin>
+        <Button fx:id="temaValaszto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                onAction="#temaValaszto" prefHeight="40.0" prefWidth="150.0" text="Kiválaszt" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
+        </Button>
+        <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                onMouseClicked="#kilep" prefWidth="150.0" text="Bezár" textAlignment="CENTER">
+            <HBox.margin>
+                <Insets left="50.0"/>
+            </HBox.margin>
+        </Button>
     </HBox>
 
 

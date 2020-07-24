@@ -1,9 +1,7 @@
 package controller.oktatoController;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +13,6 @@ import javafx.stage.Stage;
 import palyazatok.PalyazatiTemak;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class oktatoPalyazatiTemaController {
     PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
@@ -49,7 +46,7 @@ public class oktatoPalyazatiTemaController {
     }
 
     @FXML
-    private void temaValaszto(ActionEvent event) throws IOException {
+    private void temaValaszto() throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoLista.fxml"));
@@ -64,6 +61,7 @@ public class oktatoPalyazatiTemaController {
 //        stage.setX(370.0);
         stage.setScene(oktatoValasztoScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
         kilep();

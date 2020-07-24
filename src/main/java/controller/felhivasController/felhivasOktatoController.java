@@ -1,6 +1,5 @@
 package controller.felhivasController;
 
-import controller.oktatoController.oktatoAktivitasController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import okatok.Oktato;
 import okatok.OktatoLekerdezes;
 
 import java.io.IOException;
@@ -53,6 +50,7 @@ public class felhivasOktatoController {
 //        Stage stage = new Stage();
         stage.setTitle("Felhívások "  + oktatoNevek.getSelectionModel().getSelectedItems().get(0) + " számára");
         stage.setScene(oktatoValasztoScene);
+        stage.setResizable(false);
         stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
         stage.show();
     }

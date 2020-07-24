@@ -74,6 +74,7 @@ public class oktatoAktivitasController {
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
 //        stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.show();
     }
 }

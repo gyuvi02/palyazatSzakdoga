@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import okatok.Oktato;
 import palyazatok.Palyazat;
 
 public class palyazatReszletekController {

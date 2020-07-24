@@ -65,6 +65,7 @@ public class oktatoFooldalController {
         dialog.setTitle("Új oktató hozzáadása");
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/ujOktato"));
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(scene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
@@ -97,6 +98,8 @@ public class oktatoFooldalController {
         Stage stage = new Stage();
         stage.setTitle("Tanszéki témakörök");
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(oktatoValasztoScene);
         stage.show();
     }
@@ -121,6 +124,7 @@ public class oktatoFooldalController {
         dialog.setTitle("Oktató kiválasztása " + title);
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/" + fx));
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.setScene(scene);
         dialog.show();
@@ -139,6 +143,8 @@ public class oktatoFooldalController {
         Stage stage = new Stage();
         stage.setTitle("Tanszéki pályázatok");
         stage.setScene(oktatoValasztoScene);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }
@@ -150,6 +156,7 @@ public class oktatoFooldalController {
         Scene scene = new Scene(App.loadFXML("/org/gyula/oktatoFXML/oktatoPalyazatiTema"));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(scene);
+        dialog.setResizable(false);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }

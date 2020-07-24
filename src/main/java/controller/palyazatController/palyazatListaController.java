@@ -150,12 +150,12 @@ public class palyazatListaController {
             Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);
             palyazatReszletekController controller = loader.getController();
             controller.adatTranszfer(kivalasztottPalyazat);
-//            Stage stage = new Stage();
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
+//            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("A pályázat részletei");
             stage.setScene(palyazatValasztoScene);
-//            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setX((Screen.getPrimary().getBounds().getMaxX() - palyazatValasztoScene.getWidth())/2);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
         }

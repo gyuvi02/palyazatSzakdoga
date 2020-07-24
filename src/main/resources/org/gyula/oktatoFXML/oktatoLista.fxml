@@ -21,7 +21,7 @@
             <Insets top="10.0" />
          </HBox.margin>
       </Button>
-        <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#kilep" prefWidth="165.0" text="Mégse" textAlignment="CENTER">
+        <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="165.0" text="Mégse" textAlignment="CENTER">
             <HBox.margin>
                 <Insets left="100.0" top="10.0" />
             </HBox.margin>

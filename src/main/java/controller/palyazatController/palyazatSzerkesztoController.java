@@ -3,42 +3,35 @@ package controller.palyazatController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import palyazatok.Palyazat;
-import palyazatok.PalyazatiResztvevok;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class palyazatSzerkesztoController {
     Palyazat palyazat = new Palyazat();
 
-    String fx = "palyazatSzerkeszto2";
-
-    @FXML
-    private Button egyKetto;
-
-    @FXML
-    private Button kettoHarom;
-
-    @FXML
-    private Button haromKetto;
-
-    @FXML
-    private Button kettoEgy;
-
+//    String fx = "palyazatSzerkeszto2";
+//
+//    @FXML
+//    private Button egyKetto;
+//
+//    @FXML
+//    private Button kettoHarom;
+//
+//    @FXML
+//    private Button haromKetto;
+//
+//    @FXML
+//    private Button kettoEgy;
+//
     @FXML
     private TextField cimField;
 
@@ -68,7 +61,13 @@ public class palyazatSzerkesztoController {
     }
 
     @FXML
-    public void adatTranszfer(Palyazat atadottPalyazat) throws IOException {
+    private void uresMezo() {
+        boolean disableButtons = cimField.getText().trim().isEmpty();
+        mentes1.setDisable(disableButtons);
+    }
+
+    @FXML
+    public void adatTranszfer(Palyazat atadottPalyazat){
         palyazat = atadottPalyazat;
         cimField.setText(palyazat.getPalyazatCim());
         fazisModosito.setValue(palyazat.getAktualisFazis());

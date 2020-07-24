@@ -12,30 +12,26 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import okatok.Oktato;
 import okatok.OktatoLekerdezes;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatLekerdezesek;
 import palyazatok.PalyazatiResztvevok;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class palyazatSzerkeszto3Controller {
     Palyazat palyazat = new Palyazat();
     PalyazatiResztvevok resztvevok = new PalyazatiResztvevok();
     PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
-    String szakmaiVezetoAktualis;
 
-
-    private LocalDate kezdet;
-    private LocalDate veg;
-
-    private String szakmaiVezeto;
-    private String projektmenedzser;
-    private String kezelo; //A kezelo nem oktato, o nem szerepel az adatbazisban
-    private ArrayList<String> resztvevoEmberek;
+//    private LocalDate kezdet;
+//    private LocalDate veg;
+//
+//    private String szakmaiVezeto;
+//    private String projektmenedzser;
+//    private String kezelo; //A kezelo nem oktato, o nem szerepel az adatbazisban
+//    private ArrayList<String> resztvevoEmberek;
 
     @FXML
     private TextField kezeloField;
@@ -48,9 +44,9 @@ public class palyazatSzerkeszto3Controller {
     private DatePicker zaroDatum;
 
 
-    @FXML
-    private Button haromKetto;
-
+//    @FXML
+//    private Button haromKetto;
+//
     @FXML
     private ComboBox<String> szakmaiCombo;
 
@@ -66,9 +62,9 @@ public class palyazatSzerkeszto3Controller {
     @FXML
     private Button kilepesGomb;
 
-    @FXML
-    private Button mentes3;
-
+//    @FXML
+//    private Button mentes3;
+//
 
     @FXML
     public void adatTranszfer(Palyazat atadottPalyazat) {
@@ -113,7 +109,7 @@ public class palyazatSzerkeszto3Controller {
     }
 
     @FXML
-    private void egyebKivalasztott(ActionEvent event) {
+    private void egyebKivalasztott() {
         if (szakmaiCombo.getValue().equals("Egyéb")) {
             szakmaiField.setVisible(true);
         }else {

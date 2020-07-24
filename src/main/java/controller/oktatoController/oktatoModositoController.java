@@ -1,9 +1,7 @@
 package controller.oktatoController;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,11 +14,13 @@ import javafx.stage.Stage;
 import okatok.Oktato;
 import okatok.OktatoModosito;
 
-
 import java.io.IOException;
 
 
 public class oktatoModositoController {
+
+    @FXML
+    public Button mentesGomb;
 
     Oktato kivalasztott = new Oktato();
 
@@ -40,9 +40,20 @@ public class oktatoModositoController {
     ComboBox<String> oktatoTanszek;
 
     public void initialize() {
-
-
     }
+
+    @FXML
+    private void uresMezoNev() {
+        boolean disableButtons = oktatoNev.getText().trim().isEmpty();
+        mentesGomb.setDisable(disableButtons);
+    }
+
+    @FXML
+    private void uresMezoEmail() {
+        boolean disableButtons = oktatoEmail.getText().trim().isEmpty();
+        mentesGomb.setDisable(disableButtons);
+    }
+
 
     public void adatTranszfer(Oktato oktato) {
         kivalasztott = oktato;
@@ -80,7 +91,7 @@ public class oktatoModositoController {
 
 
     @FXML
-    private void kutatasiTemak(ActionEvent event) throws IOException {
+    private void kutatasiTemak() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoKutatasiModosito.fxml"));
         Parent oktatoKTemaParent = loader.load();
@@ -94,13 +105,13 @@ public class oktatoModositoController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Kutatási témák módosítása");
         stage.setScene(oktatoKutatasiScene);
-        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }
 
     @FXML
-    private void palyazatiTemak(ActionEvent event) throws IOException {
+    private void palyazatiTemak() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/oktatoFXML/oktatoPalyazatiModosito.fxml"));
         Parent oktatoKPalyazatParent = loader.load();
@@ -114,7 +125,7 @@ public class oktatoModositoController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Pályázati témák módosítása");
         stage.setScene(oktatoPalyazatiScene);
-        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }

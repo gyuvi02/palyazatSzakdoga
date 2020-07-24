@@ -13,17 +13,14 @@ import palyazatkezelo.MongoAccess;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Projections.*;
 
 public class FelhivasLekerdezes {
 
-    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoDatabase palyazatDB = Objects.requireNonNull(MongoAccess.getConnection()).getDatabase("PalyazatDB");
     static MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
 
     //Az osszes felhivas cimet visszaadja
@@ -32,8 +29,7 @@ public class FelhivasLekerdezes {
     }
 
     public ArrayList<String> felhivasListaLimited(int oldalszam, int limit) {
-        ArrayList<String> cimLista = new ArrayList<>();
-        return nevRendezo(felhivasokColl.find().skip(oldalszam*limit).limit(limit).map(Felhivas::getFelhivasCim).into(new ArrayList<>()));
+        return felhivasokColl.find().skip(oldalszam*limit).limit(limit).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
         //Ha az egyes adagokat beadasi hatarido szerint akarjuk felsorolni, az egy kicsit bonyolultabb:
 //       ArrayList<Felhivas> felhivasLista = hataridoRendezes(felhivasokColl.find().skip(oldalszam*limit).limit(limit).into(new ArrayList<>()));
 //        for (Felhivas felhivas : felhivasLista) {

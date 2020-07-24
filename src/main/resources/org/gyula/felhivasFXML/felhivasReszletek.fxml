@@ -29,7 +29,7 @@
         <Hyperlink fx:id="hyperlink" onAction="#felhivasLink" textAlignment="CENTER" BorderPane.alignment="CENTER" />
         </center>
         <top>
-        <Label fx:id="pafiLink" text="A pályázat oldala a pafi.hu-n:" BorderPane.alignment="CENTER" />
+        <Label text="A pályázat oldala a pafi.hu-n:" BorderPane.alignment="CENTER" />
         </top>
     </BorderPane>
 </VBox>

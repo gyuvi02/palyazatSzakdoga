@@ -1,10 +1,8 @@
 package controller.oktatoController;
 
 import controller.palyazatController.palyazatReszletekController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,14 +10,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import okatok.OktatoLekerdezes;
 import palyazatok.Palyazat;
 import palyazatok.PalyazatLekerdezesek;
 
 import java.io.IOException;
 
 public class oktatoTanszekiAktivitasController {
-    PalyazatLekerdezesek palyazatLekerdezes = new PalyazatLekerdezesek();
     Palyazat kivalasztottPalyazat = new Palyazat();
 
 
@@ -57,7 +53,7 @@ public class oktatoTanszekiAktivitasController {
         palyazatReszletek.setDisable(disableButtons);
     }
 
-    public void nevValaszto(ActionEvent event) throws IOException {
+    public void nevValaszto() throws IOException {
         kivalasztottPalyazat = kivalasztottPalyazat.PalyazatLetolto(aktivitasLista.getSelectionModel().getSelectedItems().get(0));
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatReszletek.fxml"));
@@ -71,6 +67,7 @@ public class oktatoTanszekiAktivitasController {
 //        stage.setX(370);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
         stage.setScene(oktatoValasztoScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }

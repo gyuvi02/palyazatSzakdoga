@@ -46,7 +46,8 @@
                    text="Kijelölt törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
            <Label text="Új kutatási téma hozzáadása" GridPane.halignment="CENTER" GridPane.rowIndex="1"
                   GridPane.valignment="BOTTOM"/>
-           <TextField fx:id="ujElem" onAction="#hozzaad" onKeyReleased="#uresMezo" maxWidth="-Infinity" prefHeight="47.0" prefWidth="395.0"
+           <TextField fx:id="ujElem" onAction="#hozzaad" onKeyReleased="#uresMezo" maxWidth="-Infinity" prefHeight="47.0"
+                      prefWidth="395.0"
                       GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
            <Button fx:id="hozzaadGomb" mnemonicParsing="false" onAction="#hozzaad" text="Hozzáad" GridPane.halignment="CENTER"
                    GridPane.rowIndex="3" GridPane.valignment="TOP"/>

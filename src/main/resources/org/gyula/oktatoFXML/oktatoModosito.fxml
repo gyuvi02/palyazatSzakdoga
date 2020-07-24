@@ -6,101 +6,108 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoModositoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.oktatoController.oktatoModositoController">
    <bottom>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
-               <HBox.margin>
-                  <Insets bottom="10.0" right="30.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="30.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" />
-         </BorderPane.margin>
-      </HBox>
+       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+           <BorderPane.margin>
+               <Insets bottom="10.0"/>
+           </BorderPane.margin>
+           <Button fx:id="mentesGomb" mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
+              <HBox.margin>
+                  <Insets bottom="10.0" right="30.0" top="10.0"/>
+              </HBox.margin>
+           </Button>
+           <Button fx:id="kilepesGomb" mnemonicParsing="false" onMouseClicked="#kilep" text="Mégsem">
+              <HBox.margin>
+                  <Insets bottom="10.0" left="30.0" top="10.0"/>
+              </HBox.margin>
+           </Button>
+       </HBox>
    </bottom>
    <center>
-      <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="539.0" minWidth="10.0" prefWidth="448.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="446.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Oktató neve" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Oktató email címe" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Oktató honlapja" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </Label>
-            <Button mnemonicParsing="false" onAction="#kutatasiTemak" prefWidth="420.0" text="Kutatási témák szerkesztése" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets bottom="30.0" top="30.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#palyazatiTemak" prefHeight="40.0" prefWidth="420.0" text="Pályázati témák szerkesztése" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets bottom="30.0" top="20.0" />
-               </GridPane.margin>
-            </Button>
-            <ComboBox fx:id="oktatoTanszek" maxHeight="-Infinity" prefHeight="30.0" prefWidth="420.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-              <items>
-                  <FXCollections fx:factory="observableArrayList">
-                      <String fx:value="Gyermeknevelési" />
-                      <String fx:value="Szociálpedagógia" />
-                      <String fx:value="Gyógypedagógiai" />
-                      <String fx:value="IKKA" />
-                      <String fx:value="Társadalomtudományi" />
-                      <String fx:value="Művészetnevelési és Sport" />
-                  </FXCollections>
-              </items>
-                <value>
-                    <String fx:value="Gyermeknevelési" />
-                </value>
+       <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="900.0"
+                 BorderPane.alignment="CENTER">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="539.0" minWidth="10.0" prefWidth="448.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="446.0"/>
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES"/>
+               <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES"/>
+               <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES"/>
+               <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES"/>
+               <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES"/>
+               <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES"/>
+           </rowConstraints>
+           <Label alignment="CENTER" contentDisplay="CENTER" text="Oktató neve" GridPane.halignment="RIGHT">
+              <GridPane.margin>
+                  <Insets right="10.0"/>
+              </GridPane.margin>
+           </Label>
+           <Label text="Oktató email címe" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+              <GridPane.margin>
+                  <Insets right="10.0"/>
+              </GridPane.margin>
+           </Label>
+           <Label text="Oktató honlapja" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+              <GridPane.margin>
+                  <Insets right="10.0"/>
+              </GridPane.margin>
+           </Label>
+           <Button mnemonicParsing="false" onAction="#kutatasiTemak" prefWidth="420.0"
+                   text="Kutatási témák szerkesztése" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                   GridPane.rowIndex="4" GridPane.valignment="CENTER">
+              <GridPane.margin>
+                  <Insets bottom="30.0" top="30.0"/>
+              </GridPane.margin>
+           </Button>
+           <Button mnemonicParsing="false" onAction="#palyazatiTemak" prefHeight="40.0" prefWidth="420.0"
+                   text="Pályázati témák szerkesztése" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                   GridPane.rowIndex="5">
+              <GridPane.margin>
+                  <Insets bottom="30.0" top="20.0"/>
+              </GridPane.margin>
+           </Button>
+           <ComboBox fx:id="oktatoTanszek" maxHeight="-Infinity" prefHeight="30.0" prefWidth="420.0"
+                     GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <items>
+                   <FXCollections fx:factory="observableArrayList">
+                       <String fx:value="Gyermeknevelési"/>
+                       <String fx:value="Szociálpedagógia"/>
+                       <String fx:value="Gyógypedagógiai"/>
+                       <String fx:value="IKKA"/>
+                       <String fx:value="Társadalomtudományi"/>
+                       <String fx:value="Művészetnevelési és Sport"/>
+                   </FXCollections>
+               </items>
+               <value>
+                   <String fx:value="Gyermeknevelési"/>
+               </value>
 
-                <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </ComboBox>
-            <TextField fx:id="oktatoNev" maxWidth="-Infinity" prefHeight="47.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="oktatoEmail" maxWidth="-Infinity" prefWidth="380.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="oktatoHonlap" maxWidth="380.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" />
-               </GridPane.margin>
-            </TextField>
-         </children>
-      </GridPane>
+                   <Insets/>
+              </GridPane.margin>
+           </ComboBox>
+           <TextField fx:id="oktatoNev" onKeyReleased="#uresMezoNev" maxWidth="-Infinity" prefHeight="47.0" prefWidth="380.0"
+                      GridPane.columnIndex="1" GridPane.halignment="LEFT">
+              <GridPane.margin>
+                  <Insets left="10.0"/>
+              </GridPane.margin>
+           </TextField>
+           <TextField fx:id="oktatoEmail" onKeyReleased="#uresMezoEmail" maxWidth="-Infinity" prefWidth="380.0" GridPane.columnIndex="1"
+                      GridPane.halignment="LEFT" GridPane.rowIndex="1">
+              <GridPane.margin>
+                  <Insets left="10.0"/>
+              </GridPane.margin>
+           </TextField>
+           <TextField fx:id="oktatoHonlap" maxWidth="380.0" prefWidth="380.0" GridPane.columnIndex="1"
+                      GridPane.halignment="LEFT" GridPane.rowIndex="2">
+              <GridPane.margin>
+                  <Insets left="10.0"/>
+              </GridPane.margin>
+           </TextField>
+       </GridPane>
    </center>
 </BorderPane>

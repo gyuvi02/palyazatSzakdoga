@@ -1,11 +1,8 @@
 package controller.oktatoController;
 
-import controller.oktatoController.oktatoModositoController;
-import controller.oktatoController.oktatoReszletekController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -43,9 +40,9 @@ public class oktatoValasztoController {
     @FXML
     private Button kilepesGomb;
 
-    @FXML
-    private Button oktatoReszlet;
-
+//    @FXML
+//    private Button oktatoReszlet;
+//
     public void initialize() {
         oktatoNevek.getItems().setAll(oktatoLekerdezes.oktatoNevsor("összes"));
         oktatoNevek.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -68,13 +65,14 @@ public class oktatoValasztoController {
             Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
 
             oktatoModositoController controller = loader.getController();
-            controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
+            controller.adatTranszfer(Oktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
             Stage stage = new Stage();
 //            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Oktatói adatok módosítása");
 //            stage.setX(280);//ezzel kezilg allitom nagyjabol kozepre, de kell lenni mas megoldasnak, hogy ne az elozo ablak bal szelehez igazitsa, hanem kozepre, mint a tobbi ablakot
             stage.setScene(oktatoValasztoScene);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
             kilep();
@@ -87,12 +85,13 @@ public class oktatoValasztoController {
             Scene oktatoValasztoScene = new Scene(oktatoValasztoParent);
 
             oktatoReszletekController controller = loader.getController();
-            controller.adatTranszfer(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
+            controller.adatTranszfer(Oktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)));
             Stage stage = new Stage();
 //            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Részletes oktatói adatok");
 //            stage.setX(370.0);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(oktatoValasztoScene);
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
@@ -110,6 +109,7 @@ public class oktatoValasztoController {
             stage.setScene(oktatoValasztoScene);
             stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
 //            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
 
@@ -125,7 +125,7 @@ public class oktatoValasztoController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             System.out.println(kivalasztottOktato.getEmail());
-            System.out.println(kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)).oktatoTorol(kivalasztottOktato.getEmail()));
+            System.out.println(Oktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0)).oktatoTorol(kivalasztottOktato.getEmail()));
             kilep();
         }
     }

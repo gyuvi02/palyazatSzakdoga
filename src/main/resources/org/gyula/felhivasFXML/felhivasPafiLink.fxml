@@ -10,54 +10,49 @@
          <Insets bottom="10.0" />
       </VBox.margin></Label>
    <HBox alignment="CENTER" prefHeight="550.0" prefWidth="600.0">
-      <children>
-         <ListView fx:id="teljesLista" prefHeight="325.0" prefWidth="340.0">
-            <HBox.margin>
-               <Insets bottom="5.0" left="5.0" top="5.0" />
-            </HBox.margin></ListView>
-         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-            <children>
-               <Button fx:id="hozzaad" mnemonicParsing="false" onMouseClicked="#pluszTema" text="&gt;&gt;">
-                  <VBox.margin>
-                     <Insets bottom="20.0" />
-                  </VBox.margin>
-               </Button>
-               <Button fx:id="elvesz" mnemonicParsing="false" onMouseClicked="#minuszTema" text="&lt;&lt;">
-                  <VBox.margin>
-                     <Insets top="20.0" />
-                  </VBox.margin>
-               </Button>
-            </children>
-         </VBox>
-         <ListView fx:id="kivalasztottLista" prefHeight="200.0" prefWidth="340.0">
-            <HBox.margin>
-               <Insets bottom="5.0" right="5.0" top="5.0" />
-            </HBox.margin>
-         </ListView>
-      </children></HBox>
+      <ListView fx:id="teljesLista" prefHeight="325.0" prefWidth="340.0">
+         <HBox.margin>
+            <Insets bottom="5.0" left="5.0" top="5.0"/>
+         </HBox.margin>
+      </ListView>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <Button mnemonicParsing="false" onMouseClicked="#pluszTema" text="&gt;&gt;">
+            <VBox.margin>
+               <Insets bottom="20.0"/>
+            </VBox.margin>
+         </Button>
+         <Button mnemonicParsing="false" onMouseClicked="#minuszTema" text="&lt;&lt;">
+            <VBox.margin>
+               <Insets top="20.0"/>
+            </VBox.margin>
+         </Button>
+      </VBox>
+      <ListView fx:id="kivalasztottLista" prefHeight="200.0" prefWidth="340.0">
+         <HBox.margin>
+            <Insets bottom="5.0" right="5.0" top="5.0"/>
+         </HBox.margin>
+      </ListView>
+   </HBox>
    <HBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0">
-      <children>
-         <Label text="A felhívás linkjét másolja ide:">
-            <HBox.margin>
-               <Insets right="10.0" />
-            </HBox.margin>
-         </Label>
-         <TextField fx:id="cim" onKeyReleased="#uresMezo" prefHeight="30.0" prefWidth="341.0" />
-      </children>
+      <Label text="A felhívás linkjét másolja ide:">
+         <HBox.margin>
+            <Insets right="10.0"/>
+         </HBox.margin>
+      </Label>
+      <TextField fx:id="cim" onKeyReleased="#uresMezo" prefHeight="30.0" prefWidth="341.0"/>
    </HBox>
    <HBox alignment="CENTER" prefHeight="46.0" prefWidth="593.0">
-      <children>
-         <Button fx:id="feltoltes" mnemonicParsing="false" onMouseClicked="#feltoltes" prefWidth="165.0" text="Feltöltés">
-            <HBox.margin>
-               <Insets right="150.0" />
-            </HBox.margin>
-         </Button>
-          <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="165.0" text="Mégse" textAlignment="CENTER">
-    </Button>
-      </children>
       <VBox.margin>
-         <Insets top="10.0" />
+         <Insets top="10.0"/>
       </VBox.margin>
+      <Button fx:id="feltoltes" mnemonicParsing="false" onMouseClicked="#feltoltes" prefWidth="165.0" text="Feltöltés">
+         <HBox.margin>
+            <Insets right="150.0"/>
+         </HBox.margin>
+      </Button>
+      <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep"
+              prefWidth="165.0" text="Mégse" textAlignment="CENTER">
+      </Button>
    </HBox>
 
 </VBox>

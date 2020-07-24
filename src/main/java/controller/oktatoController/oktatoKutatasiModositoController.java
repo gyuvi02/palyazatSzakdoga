@@ -1,13 +1,7 @@
 package controller.oktatoController;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import okatok.Oktato;
 import okatok.OktatoModosito;
@@ -47,8 +41,7 @@ public class oktatoKutatasiModositoController {
     @FXML
     public void kTemaTranszfer(Oktato oktato) {
         aktualisOktato = oktato;
-//        aktualisLista = new ArrayList<String>(oktato.getKutatasiTema());
-        aktualisLista = new ArrayList<>(oktato.oktatoLetolto(oktato.getNev()).getKutatasiTema());
+        aktualisLista = new ArrayList<>(Oktato.oktatoLetolto(oktato.getNev()).getKutatasiTema());
         kutatasiLista.getItems().setAll(aktualisLista);
         nev.setText(oktato.getNev());
     }
@@ -70,6 +63,7 @@ public class oktatoKutatasiModositoController {
         aktualisLista.add(ujElem.getText().toLowerCase());
         kutatasiLista.getItems().setAll(aktualisLista);
         ujElem.clear();
+        hozzaadGomb.setDisable(true);
     }
 
     @FXML

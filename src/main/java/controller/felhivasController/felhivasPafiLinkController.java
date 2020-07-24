@@ -1,6 +1,5 @@
 package controller.felhivasController;
 
-import com.sun.javafx.scene.control.LabeledText;
 import felhivasok.FelhivasParser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -25,12 +24,12 @@ public class felhivasPafiLinkController {
     @FXML
     private ListView<String> kivalasztottLista;
 
-    @FXML
-    private Button hozzaad;
-
-    @FXML
-    private Button elvesz;
-
+//    @FXML
+//    private Button hozzaad;
+//
+//    @FXML
+//    private Button elvesz;
+//
     @FXML
     private TextField cim;
 

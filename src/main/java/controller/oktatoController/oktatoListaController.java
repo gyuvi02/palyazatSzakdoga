@@ -1,6 +1,5 @@
 package controller.oktatoController;
 
-import controller.palyazatController.palyazatReszletekController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,6 +55,7 @@ public class oktatoListaController {
 //        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Az oktató részletes adatai");
         stage.setScene(oktatoValasztoScene);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
 //        stage.setX((Screen.getPrimary().getBounds().getMaxX() - oktatoValasztoScene.getWidth())/2);
         stage.initModality(Modality.APPLICATION_MODAL);

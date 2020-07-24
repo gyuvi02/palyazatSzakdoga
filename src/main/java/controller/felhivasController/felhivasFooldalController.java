@@ -3,7 +3,6 @@ package controller.felhivasController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,8 +19,8 @@ public class felhivasFooldalController {
     String fx;
     String title;
 
-    @FXML
-    private Button visszaFelhivasrol;
+//    @FXML
+//    private Button visszaFelhivasrol;
 
     @FXML
     private Button kilepesGomb;
@@ -44,14 +43,14 @@ public class felhivasFooldalController {
     @FXML
     private Button kulcsKereso;
 
-    @FXML
-    private Button torles;
+//    @FXML
+//    private Button torles;
 
     @FXML
     private Button osszesFelhivas;
 
-    @FXML
-    private Button hatarido;
+//    @FXML
+//    private Button hatarido;
 
     @FXML
     private void initialize() {
@@ -76,6 +75,7 @@ public class felhivasFooldalController {
         Scene scene = new Scene(App.loadFXML("/org/gyula/felhivasFXML/" + fx));
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(scene);
+        dialog.setResizable(false);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
@@ -96,6 +96,7 @@ public class felhivasFooldalController {
         dialog.setTitle(title);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setScene(felhivasValasztoScene);
+        dialog.setResizable(false);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
     }
@@ -111,6 +112,7 @@ public class felhivasFooldalController {
         Stage dialog = new Stage();
         dialog.setTitle("A pályázati kategóriák");
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(felhivasValasztoScene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
@@ -128,6 +130,7 @@ public class felhivasFooldalController {
         Stage dialog = new Stage();
         dialog.setTitle("A keresés eredménye");
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(felhivasValasztoScene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
@@ -139,10 +142,11 @@ public class felhivasFooldalController {
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasPafiLink.fxml"));
         Parent felhivasPafiParent = loader.load();
         Scene felhivasPafiScene = new Scene(felhivasPafiParent);
-        felhivasPafiLinkController controller = loader.getController();
+//        felhivasPafiLinkController controller = loader.getController();
         Stage dialog = new Stage();
         dialog.setTitle("Új felhívás hozzáadása");
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(felhivasPafiScene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
@@ -161,6 +165,7 @@ public class felhivasFooldalController {
         Stage dialog = new Stage();
         dialog.setTitle("Felhívások törlése");
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(felhivasTorlesScene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
@@ -172,10 +177,11 @@ public class felhivasFooldalController {
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasHatarido.fxml"));
         Parent felhivasHataridoParent = loader.load();
         Scene felhivasHataridoScene = new Scene(felhivasHataridoParent);
-        felhivasHataridoController controller = loader.getController();
+//        felhivasHataridoController controller = loader.getController();
         Stage dialog = new Stage();
-        dialog.setTitle("Felhívások törlése");
+        dialog.setTitle("Válasszon dátumot");
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(felhivasHataridoScene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();

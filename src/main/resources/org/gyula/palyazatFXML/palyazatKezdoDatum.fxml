@@ -26,7 +26,7 @@
    </center>
    <bottom>
        <HBox alignment="CENTER" prefHeight="87.0" prefWidth="694.0">
-           <Button fx:id="kereses" mnemonicParsing="false" onMouseClicked="#kezdoKereses" prefWidth="165.0" text="Keresés" HBox.hgrow="ALWAYS">
+           <Button mnemonicParsing="false" onMouseClicked="#kezdoKereses" prefWidth="165.0" text="Keresés" HBox.hgrow="ALWAYS">
                <HBox.margin>
                    <Insets right="20.0" />
                </HBox.margin>

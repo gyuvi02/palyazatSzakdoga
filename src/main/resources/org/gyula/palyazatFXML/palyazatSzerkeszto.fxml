@@ -19,7 +19,7 @@
                     <Insets bottom="20.0" left="200.0" top="10.0" />
                 </HBox.margin>
             </Button>
-            <Button fx:id="egyKetto" alignment="CENTER" mnemonicParsing="false" onAction="#elsoScene" prefWidth="180.0" text="Következő">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#elsoScene" prefWidth="180.0" text="Következő">
                 <HBox.margin>
                     <Insets bottom="20.0" left="200.0" right="10.0" top="10.0" />
                 </HBox.margin>
@@ -45,7 +45,7 @@
                   <Insets right="10.0" />
               </GridPane.margin>
            </Label>
-           <TextField fx:id="cimField" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+           <TextField fx:id="cimField" onKeyReleased="#uresMezo" GridPane.columnIndex="1" GridPane.halignment="LEFT">
               <GridPane.margin>
                   <Insets left="10.0" right="30.0" />
               </GridPane.margin>

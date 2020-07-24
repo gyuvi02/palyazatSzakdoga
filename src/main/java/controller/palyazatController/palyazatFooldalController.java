@@ -1,29 +1,25 @@
 package controller.palyazatController;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.gyula.App;
-import palyazatok.Palyazat;
-import palyazatok.PalyazatLekerdezesek;
+
+import java.io.IOException;
 
 public class palyazatFooldalController {
 //    PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
 
-    @FXML
-    private Button visszaPalyazatrol;
-
+//    @FXML
+//    private Button visszaPalyazatrol;
+//
     @FXML
     private Button szerkesztoGomb;
 
@@ -39,9 +35,9 @@ public class palyazatFooldalController {
     @FXML
     private Button kezdoGomb;
 
-    @FXML
-    private Button zaroGomb;
-
+//    @FXML
+//    private Button zaroGomb;
+//
     @FXML
     private Button kPluszFGomb;
 
@@ -70,6 +66,7 @@ public class palyazatFooldalController {
         dialog.setTitle("Új pályázat létrehozása");
         Scene scene = new Scene(App.loadFXML("/org/gyula/palyazatFXML/ujPalyazat"));
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setResizable(false);
         dialog.setScene(scene);
         dialog.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         dialog.show();
@@ -86,6 +83,7 @@ public class palyazatFooldalController {
         Stage stage = new Stage();
         stage.setTitle("\"A pályázatok listája\"");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.setScene(palyazatValasztoScene);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
@@ -114,8 +112,9 @@ public class palyazatFooldalController {
         Scene palyazatValasztoScene = new Scene(palyazatValasztoParent);
         palyazatListaController controller = loader.getController();
         switch (adatTranszfer) {
-            case "szerkeszto" : controller.adatTranszferOsszes(); break;
-            case "reszletek" : controller.adatTranszferOsszes(); break;
+            case "szerkeszto" :
+            case "reszletek" :
+                controller.adatTranszferOsszes(); break;
             case "kPluszF" : controller.adatTranszferKpluszF(); break;
             case "kulcsszo" : controller.adatTranszferKulcsszo(kulcsszoField.getText()); break;
             case "onero" : controller.adatTranszferOnero();
@@ -123,6 +122,7 @@ public class palyazatFooldalController {
         Stage stage = new Stage();
         stage.setTitle("A pályázatok listája");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.setScene(palyazatValasztoScene);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
@@ -145,13 +145,14 @@ public class palyazatFooldalController {
         Stage stage = new Stage();
         stage.setTitle("Válassza ki a dátumokat");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.setScene(palyazatValasztoScene);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }
 
     @FXML
-    public void kulcsszavasKereses(ActionEvent event) throws IOException {
+    public void kulcsszavasKereses() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatListaKezdo.fxml"));
         Parent palyazatValasztoParent = loader.load();
@@ -162,6 +163,7 @@ public class palyazatFooldalController {
         Stage stage = new Stage();
         stage.setTitle("A kereses eredménye");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.setScene(palyazatValasztoScene);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();

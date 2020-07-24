@@ -1,8 +1,5 @@
 package controller.oktatoController;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,9 +12,6 @@ import okatok.OktatoModosito;
 import palyazatok.PalyazatiTemak;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class OktatoPalyazatiModositoController {
     Oktato aktualisOktato = new Oktato();
@@ -25,9 +19,10 @@ public class OktatoPalyazatiModositoController {
     PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
 //    ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.temaLetolt()); //igy csak a kari temak kozul lehet valasztani, de inkabb az osszes pafi.hu temabol lehessen
     ArrayList<String> maradek = new ArrayList<>(palyazatiTemak.pafiTemaLetolt()); //igy a maradek az osszes lehetseges pafi temat tartalmazza
-    ArrayList<String> relevansTemak = new PalyazatiTemak().temaLetolt(); //az eppen aktualis kari kutatasi temak letoltese
+//    ArrayList<String> relevansTemak = new PalyazatiTemak().temaLetolt(); //az eppen aktualis kari kutatasi temak letoltese
 
-
+    @FXML
+    public Button mentesGomb;
 
     @FXML
     private Button kilepesGomb;
@@ -41,19 +36,28 @@ public class OktatoPalyazatiModositoController {
     @FXML
     private Label oktatoNev;
 
-    @FXML
-    private Button hozzaad;
-
-    @FXML
-    private Button elvesz;
-
+//    @FXML
+//    private Button hozzaad;
+//
+//    @FXML
+//    private Button elvesz;
+//
     public void initialize() {
+    }
+
+    @FXML
+    private void uresMezo() {
+        boolean disableButtons = oktatoLista.getItems().isEmpty();
+        mentesGomb.setDisable(disableButtons);
+        if (disableButtons) {
+            oktatoLista.setPlaceholder(new Label("Legalább egy kategóriát \n ki kell választani!"));
+        }
     }
 
     @FXML
     public void pTemaTranszfer(Oktato oktato) {
         aktualisOktato = oktato;
-        aktualisLista = new ArrayList<>(oktato.oktatoLetolto(oktato.getNev()).getPalyazatiTema());//itt nem a peldanybol kell kiolvasni, hanem az adatbazisbol
+        aktualisLista = new ArrayList<>(Oktato.oktatoLetolto(oktato.getNev()).getPalyazatiTema());//itt nem a peldanybol kell kiolvasni, hanem az adatbazisbol
         oktatoNev.setText(oktato.getNev() + "\n pályázati témái");
         oktatoLista.getItems().setAll(aktualisLista);
         maradek.removeAll(aktualisLista);
@@ -82,6 +86,7 @@ public class OktatoPalyazatiModositoController {
             aktualisLista.remove(oktatoLista.getSelectionModel().getSelectedItem());
             maradek.add(oktatoLista.getSelectionModel().getSelectedItem());
             listaMegjelenito();
+            uresMezo();
         }
     }
 

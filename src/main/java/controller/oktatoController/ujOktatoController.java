@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import okatok.Oktato;
 import org.gyula.App;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ujOktatoController {
@@ -44,7 +43,7 @@ public class ujOktatoController {
     }
 
     @FXML
-    private void hozzaad() throws IOException{
+    private void hozzaad(){
         Oktato ujOktato = new Oktato(oNev.getText(), oTanszek.getValue(), new ArrayList<>(), oEmail.getText(),
                 "", new ArrayList<>());
         if (ujOktato.oktatoFeltolto()) {

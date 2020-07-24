@@ -1,12 +1,12 @@
 package controller.felhivasController;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,9 +21,9 @@ public class felhivasHataridoController {
     @FXML
     private Button kilepesGomb;
 
-    @FXML
-    private Button kereses;
-
+//    @FXML
+//    private Button kereses;
+//
     @FXML
     private void initialize() {
         hataridoGomb.setValue(LocalDate.now());
@@ -47,8 +47,11 @@ public class felhivasHataridoController {
         Stage stage = new Stage();
         stage.setTitle("Az megfelelő felhívások");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.setScene(kategoriaValasztoScene);
         stage.show();
+        kilep();
 
     }
 

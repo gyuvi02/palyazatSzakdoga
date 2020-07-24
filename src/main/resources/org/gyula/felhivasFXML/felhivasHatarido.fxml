@@ -29,7 +29,7 @@
         <VBox.margin>
             <Insets bottom="-40.0" top="-10.0" />
         </VBox.margin>
-        <Button fx:id="kereses" mnemonicParsing="false" onAction="#hataridoKereso" prefWidth="165.0" text="Keresés" HBox.hgrow="ALWAYS">
+        <Button mnemonicParsing="false" onAction="#hataridoKereso" prefWidth="165.0" text="Keresés" HBox.hgrow="ALWAYS">
             <HBox.margin>
                 <Insets right="20.0" />
             </HBox.margin>

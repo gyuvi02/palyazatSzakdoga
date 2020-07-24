@@ -30,6 +30,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("kezdooldal"));
         stage.setScene(scene);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
+        stage.setResizable(false);
         stage.show();
         kezdoFigyelmezetetes();
         Runnable hatterben = () -> {
@@ -89,7 +90,7 @@ public class App extends Application {
         dialogPane.getStylesheets().add(MongoAccess.class.getResource("/org/gyula/dialogCSS.css").toExternalForm());
         dialogPane.getStyleClass().add("/org/gyula/dialogCSS.css");
         alert.show();
-        PauseTransition delay = new PauseTransition(Duration.seconds(1)); //1 masodperc a kesleletetes
+        PauseTransition delay = new PauseTransition(Duration.seconds(2)); //1 masodperc a kesleletetes
         delay.setOnFinished( event -> dialogPane.getButtonTypes().add(0, ButtonType.OK));
         delay.play();
     }

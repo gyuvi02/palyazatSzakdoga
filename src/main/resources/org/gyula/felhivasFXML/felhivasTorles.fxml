@@ -19,7 +19,7 @@
             <Insets />
          </HBox.margin>
       </Button>
-        <Button fx:id="felhivasValaszto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#felhivasValaszto" prefWidth="160.0" text="Részletek" HBox.hgrow="ALWAYS">
+        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#felhivasValaszto" prefWidth="160.0" text="Részletek" HBox.hgrow="ALWAYS">
             <HBox.margin>
                 <Insets left="40.0" />
             </HBox.margin>
@@ -28,7 +28,7 @@
          <HBox.margin>
             <Insets left="30.0" />
          </HBox.margin></Button>
-        <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="160.0" text="Mégse" textAlignment="CENTER">
+        <Button fx:id="kilepesGomb" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#kilep" prefWidth="160.0" text="Bezár" textAlignment="CENTER">
             <HBox.margin>
                 <Insets left="30.0" />
             </HBox.margin>

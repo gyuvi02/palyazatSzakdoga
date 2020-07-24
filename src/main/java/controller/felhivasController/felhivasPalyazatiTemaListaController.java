@@ -1,6 +1,5 @@
 package controller.felhivasController;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +18,7 @@ public class felhivasPalyazatiTemaListaController {
     PalyazatiTemak palyazatiTemak = new PalyazatiTemak();
 
     @FXML
-    private ListView kategoriaLista;
+    private ListView<String> kategoriaLista;
 
     @FXML
     private Button kilepesGomb;
@@ -47,8 +46,8 @@ public class felhivasPalyazatiTemaListaController {
     }
 
     @FXML
-    private void kategoriaValaszto(ActionEvent event) throws IOException {
-        String kivalasztottKategoria = kategoriaLista.getSelectionModel().getSelectedItem().toString();
+    private void kategoriaValaszto() throws IOException {
+        String kivalasztottKategoria = kategoriaLista.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasOktatoPalyazatiTema.fxml"));
         Parent kategoriaValasztoParent = loader.load();
@@ -60,6 +59,7 @@ public class felhivasPalyazatiTemaListaController {
         stage.setTitle("A kategóriába tarozó felhívások - " + kivalasztottKategoria );
         stage.setScene(kategoriaValasztoScene);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();
     }

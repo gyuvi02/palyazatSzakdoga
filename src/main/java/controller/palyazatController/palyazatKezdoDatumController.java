@@ -1,6 +1,5 @@
 package controller.palyazatController;
 
-import controller.felhivasController.felhivasOktatoPalyazatiTemaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,13 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import palyazatok.PalyazatLekerdezesek;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class palyazatKezdoDatumController {
     String kezdoE;
@@ -22,9 +21,9 @@ public class palyazatKezdoDatumController {
     @FXML
     private Button kilepesGomb;
 
-    @FXML
-    private Button kereses;
-
+//    @FXML
+//    private Button kereses;
+//
     @FXML
     private Label datumLabel;
 
@@ -40,7 +39,7 @@ public class palyazatKezdoDatumController {
     }
 
     @FXML
-    public void adatTranszferKezdo(String felirat, String str) throws IOException {
+    public void adatTranszferKezdo(String felirat, String str){
         elsoDatum.setValue(LocalDate.now());
         masodikDatum.setValue(LocalDate.now());
         datumLabel.setText("A két megadott dátum között " + felirat + " pályázatokat tudjuk lekérdezni");
@@ -69,6 +68,8 @@ public class palyazatKezdoDatumController {
         Stage stage = new Stage();
         stage.setTitle("A keresésnek megfelelő felhívások");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.setScene(palyazatKezdoScene);
         stage.show();
         kilep();

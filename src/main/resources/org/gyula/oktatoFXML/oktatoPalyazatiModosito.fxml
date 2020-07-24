@@ -41,14 +41,14 @@
                     <Font name="Century Gothic" size="12.0"/>
                 </font>
             </Label>
-            <Button fx:id="hozzaad" mnemonicParsing="false" onMouseClicked="#pluszTema" text="&gt;&gt;"
+            <Button mnemonicParsing="false" onMouseClicked="#pluszTema" text="&gt;&gt;"
                     GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
                     GridPane.valignment="BOTTOM">
                 <GridPane.margin>
                     <Insets bottom="10.0"/>
                 </GridPane.margin>
             </Button>
-            <Button fx:id="elvesz" mnemonicParsing="false" onMouseClicked="#minuszTema" text="&lt;&lt;"
+            <Button mnemonicParsing="false" onMouseClicked="#minuszTema" text="&lt;&lt;"
                     GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
                     GridPane.valignment="TOP">
                 <GridPane.margin>
@@ -60,7 +60,7 @@
 
     <bottom>
         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="70.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-            <Button mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
+            <Button fx:id="mentesGomb" mnemonicParsing="false" onMouseClicked="#mentes" text="Mentés">
                 <HBox.margin>
                     <Insets right="100.0" />
                 </HBox.margin>

@@ -11,12 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import palyazatkezelo.Main;
 import palyazatok.Palyazat;
-import palyazatok.PalyazatiResztvevok;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class palyazatSzerkeszto2Controller {
     Palyazat palyazat = new Palyazat();
