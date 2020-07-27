@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -95,7 +96,7 @@ public class felhivasOktatoPalyazatiTemaController {
         stage.setTitle("A felhívás részletei - " + kivalasztottFelhivas);
         stage.setScene(felhivasValasztoScene);
 //        stage.setX((Screen.getPrimary().getBounds().getMaxX() - felhivasValasztoScene.getWidth())/2);
-//        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
         stage.show();

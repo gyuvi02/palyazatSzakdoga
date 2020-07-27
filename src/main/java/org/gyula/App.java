@@ -37,7 +37,7 @@ public class App extends Application {
             Platform.runLater(() -> {
                 try {
                     felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
-                } catch (IOException e) {
+                } catch (IOException | NullPointerException e) {
                     e.printStackTrace();
                 }
             });
