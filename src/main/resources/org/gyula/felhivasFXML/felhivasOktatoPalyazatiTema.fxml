@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasOktatoPalyazatiTemaController">
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.felhivasController.felhivasOktatoPalyazatiTemaController">
     <ListView fx:id="felhivasLista" prefHeight="510.0" prefWidth="900.0">
         
       <VBox.margin>

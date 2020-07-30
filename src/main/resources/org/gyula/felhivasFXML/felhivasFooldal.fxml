@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasFooldalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.felhivasController.felhivasFooldalController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1294.0" BorderPane.alignment="CENTER">
          <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#visszaKezdooldalra" text="Vissza a főoldalra" BorderPane.alignment="CENTER">

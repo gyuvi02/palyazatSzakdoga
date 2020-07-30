@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkeszto3Controller">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.palyazatController.palyazatSzerkeszto3Controller">
     <bottom>
         <HBox alignment="CENTER" prefHeight="63.0" prefWidth="594.0" BorderPane.alignment="CENTER">
             <Button mnemonicParsing="false" onAction="#harmadikScene" prefWidth="150.0" text="Előző">

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.ujPalyazatController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.palyazatController.ujPalyazatController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="26.0" prefWidth="494.0">
          <Button fx:id="kilepesGomb" alignment="CENTER" mnemonicParsing="false" onAction="#visszaPalyazatOldalra" onMouseClicked="#kilep" text="Mégsem" BorderPane.alignment="CENTER">

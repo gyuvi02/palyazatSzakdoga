@@ -1,21 +1,19 @@
 package org.gyula;
 
-import felhivasok.FelhivasLekerdezes;
-import felhivasok.FelhivasParser;
-import felhivasok.RSSParser;
+import javafx.scene.control.*;
+import org.gyula.felhivasok.FelhivasLekerdezes;
+import org.gyula.felhivasok.FelhivasParser;
+import org.gyula.felhivasok.RSSParser;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import palyazatkezelo.MongoAccess;
+import org.gyula.palyazatkezelo.MongoAccess;
 
 import java.io.IOException;
 
@@ -82,16 +80,16 @@ public class App extends Application {
     public void kezdoFigyelmezetetes() throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Türelmet kérek!");
-        alert.setHeight(320);
+        ButtonType koszonom = new ButtonType("Köszönöm a türelmet, most már folytathatjuk"); //itt definialok egy sajat gombot
         alert.setHeaderText("Az alkalmazás ellenőrzi, hogy vannak-e új felhívások az interneten");
-        alert.setContentText("Ez egy kis időbe telik, kérem a türelmét. \nHa a frissítés lezárult, megjelenik az OK gomb");
+        alert.setContentText("Ez egy kis időbe telik, különösen akkor, ha új pályázatok érhetők el, kérem a türelmét. \nHa a frissítés lezárult, megjelenik az OK gomb");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getButtonTypes().remove(0); //ez tunteti el az OK gombot
-        dialogPane.getStylesheets().add(MongoAccess.class.getResource("/org/gyula/dialogCSS.css").toExternalForm());
-        dialogPane.getStyleClass().add("/org/gyula/dialogCSS.css");
+        dialogPane.getStylesheets().add(MongoAccess.class.getResource("/org/gyula/alertCSS.css").toExternalForm());
+        dialogPane.getStyleClass().add("/org/gyula/alertCSS.css");
         alert.show();
         PauseTransition delay = new PauseTransition(Duration.seconds(2)); //1 masodperc a kesleletetes
-        delay.setOnFinished( event -> dialogPane.getButtonTypes().add(0, ButtonType.OK));
+        delay.setOnFinished( event -> dialogPane.getButtonTypes().add(0, koszonom));
         delay.play();
     }
 

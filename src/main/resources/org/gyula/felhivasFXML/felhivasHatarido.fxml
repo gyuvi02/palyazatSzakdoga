@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasHataridoController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="700.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.felhivasController.felhivasHataridoController">
    <Label contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="652.0" text="Azokat a felhívásokat keresi meg, amelyek beadási határideje a megadott dátum után van" textAlignment="CENTER" wrapText="true">
       <padding>
          <Insets top="-50.0" />

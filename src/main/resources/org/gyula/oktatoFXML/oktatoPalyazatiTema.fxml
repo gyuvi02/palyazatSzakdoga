@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="CENTER" prefHeight="700.0" prefWidth="500.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoPalyazatiTemaController">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.oktatoController.oktatoPalyazatiTemaController">
     <ListView fx:id="temaLista" maxWidth="-Infinity" onMouseClicked="#nincsValasztas" prefHeight="620.0" prefWidth="500.0">
       <VBox.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

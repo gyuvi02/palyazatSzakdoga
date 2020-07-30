@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.palyazatController.palyazatListaController"
+      fx:controller="org.gyula.controller.palyazatController.palyazatListaController"
       prefHeight="700.0" prefWidth="600.0" stylesheets="@../foablak.css">
     <ListView fx:id="palyazatLista" prefHeight="620.0" prefWidth="600.0">
         <VBox.margin>

@@ -6,7 +6,7 @@
 
 <VBox prefHeight="700.0" prefWidth="600.0" stylesheets="@../foablak.css"
       xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.felhivasController.felhivasOktatoController">
+      fx:controller="org.gyula.controller.felhivasController.felhivasOktatoController">
 
 
     <ListView fx:id="oktatoNevek" prefHeight="620.0" prefWidth="600.0">

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoKutatasiModositoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.oktatoController.oktatoKutatasiModositoController">
    <bottom>
        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="894.0" BorderPane.alignment="CENTER">
            <Button mnemonicParsing="false" onMouseClicked="#mentes" prefHeight="40.0" prefWidth="150.0" text="Mentés">

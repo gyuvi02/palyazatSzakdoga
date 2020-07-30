@@ -2,7 +2,7 @@ package org.gyula;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
-import palyazatkezelo.MongoAccess;
+import org.gyula.palyazatkezelo.MongoAccess;
 
 import java.net.URL;
 import java.net.URLConnection;

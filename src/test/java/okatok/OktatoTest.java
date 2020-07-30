@@ -2,15 +2,11 @@ package okatok;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.gyula.okatok.Oktato;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import palyazatkezelo.MongoAccess;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.gyula.palyazatkezelo.MongoAccess;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

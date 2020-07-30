@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatSzerkesztoController">
+<BorderPane prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.palyazatController.palyazatSzerkesztoController">
     <bottom>
         <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
             <Button fx:id="mentes1" mnemonicParsing="false" onMouseClicked="#palyazatMentes" prefWidth="180.0" text="Mentés">

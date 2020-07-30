@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane prefHeight="400.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.palyazatController.palyazatKezdoDatumController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.palyazatController.palyazatKezdoDatumController">
    <top>
       <Label fx:id="datumLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="142.0" prefWidth="794.0" text="A két megadott dátum között kezdődött pályázatokat tudjuk lekérdezni" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>

@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.oktatoTanszekiAktivitasController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.oktatoController.oktatoTanszekiAktivitasController">
     <ListView fx:id="aktivitasLista" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#nincsValasztas" prefHeight="520.0" prefWidth="900.0">
         <VBox.margin>
             <Insets left="10.0" right="10.0" top="10.0" />

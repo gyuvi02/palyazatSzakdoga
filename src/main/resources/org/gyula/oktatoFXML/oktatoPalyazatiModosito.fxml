@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="850.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.oktatoController.OktatoPalyazatiModositoController">
+<BorderPane prefHeight="850.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.oktatoController.OktatoPalyazatiModositoController">
 
     <center>
         <GridPane alignment="CENTER" BorderPane.alignment="CENTER">

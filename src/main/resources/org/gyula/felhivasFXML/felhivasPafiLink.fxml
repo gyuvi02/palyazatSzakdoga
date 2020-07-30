@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="850.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.felhivasController.felhivasPafiLinkController">
+<VBox alignment="CENTER" prefHeight="850.0" prefWidth="800.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.felhivasController.felhivasPafiLinkController">
    <Label text="Ezen az oldalon a pafi.hu oldalról származó link segítségével adhatunk hozzá egy pályázati felhívást az adatbázisunkhoz.  A pályázati kategóriákat nekünk kell kiválasztani az alábbi listából." textAlignment="CENTER" wrapText="true">
       <VBox.margin>
          <Insets bottom="10.0" />
