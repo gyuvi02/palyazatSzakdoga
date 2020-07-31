@@ -74,10 +74,7 @@ public class Felhivas {
     }
 
     private boolean felhivasEllenorzo(Felhivas keresettFelhivas) {
-        if (keresettFelhivas != null) {
-            return true;
-        }
-        return false;
+        return keresettFelhivas != null;
     }
 
 

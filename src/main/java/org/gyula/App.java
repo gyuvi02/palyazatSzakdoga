@@ -1,6 +1,7 @@
 package org.gyula;
 
 import javafx.scene.control.*;
+import org.gyula.felhivasok.FelhivasParser;
 import org.gyula.felhivasok.FelhivasLekerdezes;
 import org.gyula.felhivasok.FelhivasParser;
 import org.gyula.felhivasok.RSSParser;
@@ -77,12 +78,12 @@ public class App extends Application {
         new Thread(kilepes).start();
     }
 
-    public void kezdoFigyelmezetetes() throws IOException {
+    public void kezdoFigyelmezetetes(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Türelmet kérek!");
         ButtonType koszonom = new ButtonType("Köszönöm a türelmet, most már folytathatjuk"); //itt definialok egy sajat gombot
         alert.setHeaderText("Az alkalmazás ellenőrzi, hogy vannak-e új felhívások az interneten");
-        alert.setContentText("Ez egy kis időbe telik, különösen akkor, ha új pályázatok érhetők el, kérem a türelmét. \nHa a frissítés lezárult, megjelenik az OK gomb");
+        alert.setContentText("Ez egy kis időbe telik, különösen akkor, ha új pályázatok érhetők el, kérem a türelmét.");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getButtonTypes().remove(0); //ez tunteti el az OK gombot
         dialogPane.getStylesheets().add(MongoAccess.class.getResource("/org/gyula/alertCSS.css").toExternalForm());

@@ -143,7 +143,6 @@ public class palyazatListaController {
         }
         if (event.getSource().equals(kivalasztReszletekre) || event.getSource().equals("kulcsszoGomb") ||
                 event.getSource().equals(kivalasztKezdo)) {
-            palyazatLista.getItems().setAll(Palyazat.PalyazatokListaja());
             palyazatLista.getSelectionModel().selectFirst();
             loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatReszletek.fxml"));
             Parent palyazatValasztoParent = loader.load();
@@ -159,6 +158,7 @@ public class palyazatListaController {
             stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
             stage.show();
         }
+//        adatTranszfer();
     }
 
     private void megerositesDialog() {

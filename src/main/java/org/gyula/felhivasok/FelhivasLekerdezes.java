@@ -8,10 +8,12 @@ import org.gyula.palyazatkezelo.MongoAccess;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Objects;
 
 import static com.mongodb.client.model.Filters.*;
-import static com.mongodb.client.model.Projections.*;
 
 public class FelhivasLekerdezes {
 
@@ -19,9 +21,9 @@ public class FelhivasLekerdezes {
     static MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
 
     //Az osszes felhivas cimet visszaadja
-    public ArrayList<String> felhivasListak() {
-        return felhivasokColl.find().map(Felhivas::getFelhivasCim).into(new ArrayList<>());
-    }
+//    public ArrayList<String> felhivasListak() {
+//        return felhivasokColl.find().map(Felhivas::getFelhivasCim).into(new ArrayList<>());
+//    }
 
     public ArrayList<String> felhivasListaLimited(int oldalszam, int limit) {
         return felhivasokColl.find().skip(oldalszam*limit).limit(limit).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
@@ -38,10 +40,10 @@ public class FelhivasLekerdezes {
         return felhivasokColl.countDocuments();
     }
 
-    public HashSet<String>  felhivasCimekHash() {
-        return felhivasokColl.find().projection((fields(include("felhivasCim"),
-                excludeId()))).map(Felhivas::getFelhivasCim).into(new HashSet<>());
-    }
+//    public HashSet<String>  felhivasCimekHash() {
+//        return felhivasokColl.find().projection((fields(include("felhivasCim"),
+//                excludeId()))).map(Felhivas::getFelhivasCim).into(new HashSet<>());
+//    }
 
 //    //visszaadja a keresett kiirohoz tartozo osszes felhivast - a gyakorlatban nincs jelentosege
 //    public ArrayList<Felhivas> kiiroLekerdezes(String kiiro) {
@@ -64,25 +66,25 @@ public class FelhivasLekerdezes {
         return felhivasokColl.find(Filters.text(kulcsszo, new TextSearchOptions().language("hu"))).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
     }
 
-    private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){ //egyszerubb, ha a torles datum alapjan csinaljuk
-        lista.sort(((o1, o2) -> {
-            LocalDate date1 = o1.getTorles();
-            LocalDate date2 = o2.getTorles();
-            return date1.compareTo(date2);
-        }));
-
-//        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-//        lista.sort((o1, o2) -> {
-//                LocalDate date1 = parseDate(o1.getBeadasiHatarido());
-//                LocalDate date2 = parseDate(o2.getBeadasiHatarido());
-//            if (date1 != null) {
-//                return date1.compareTo(date2);
-//            } else {
-//                return 1;
-//            }
-//        });
-        return lista;
-    }
+//    private ArrayList<Felhivas> hataridoRendezes(ArrayList<Felhivas> lista){ //egyszerubb, ha a torles datum alapjan csinaljuk
+//        lista.sort(((o1, o2) -> {
+//            LocalDate date1 = o1.getTorles();
+//            LocalDate date2 = o2.getTorles();
+//            return date1.compareTo(date2);
+//        }));
+//
+////        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+////        lista.sort((o1, o2) -> {
+////                LocalDate date1 = parseDate(o1.getBeadasiHatarido());
+////                LocalDate date2 = parseDate(o2.getBeadasiHatarido());
+////            if (date1 != null) {
+////                return date1.compareTo(date2);
+////            } else {
+////                return 1;
+////            }
+////        });
+//        return lista;
+//    }
 
 //    A felhivas dokumentumokban torles neven tarolt datumot nezzuk vegig
 //    ha ez kevesebb, mint a mai datum, akkor toroljuk az adatbazisbol
