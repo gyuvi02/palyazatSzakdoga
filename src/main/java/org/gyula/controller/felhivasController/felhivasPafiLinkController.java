@@ -1,9 +1,14 @@
 package org.gyula.controller.felhivasController;
 
-import org.gyula.felhivasok.FelhivasParser;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.gyula.felhivasok.FelhivasParser;
 import org.gyula.palyazatok.PalyazatiTemak;
 
 import java.io.IOException;
@@ -86,16 +91,36 @@ public class felhivasPafiLinkController {
     @FXML
     private void feltoltes() throws IOException {
         FelhivasParser felhivasParser = new FelhivasParser();
-        if (felhivasParser.felhivasLinkbol(cim.getText(), new ArrayList<>(kivalasztottLista.getItems()))) {
+        String ujFelhivasCim = felhivasParser.felhivasLinkbol(cim.getText(), new ArrayList<>(kivalasztottLista.getItems()));
+        if (!ujFelhivasCim.equals("hiba")) {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasReszletek.fxml"));
+            Parent felhivasValasztoParent = loader.load();
+            Scene felhivasValasztoScene = new Scene(felhivasValasztoParent);
+            felhivasReszletekController controller = loader.getController();
+            controller.adatTranszfer(ujFelhivasCim);
+//        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
+            stage.setTitle("A felhívás részletei - " + ujFelhivasCim);
+            stage.setScene(felhivasValasztoScene);
+//        stage.setX((Screen.getPrimary().getBounds().getMaxX() - felhivasValasztoScene.getWidth())/2);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.getIcons().add(new Image("/org/gyula/images/egyetemlogo.png"));
+            stage.show();
+
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Megerősítés");
             alert.setHeaderText("A felhívást hozzáadtuk az adatbázishoz");
-            alert.setContentText("Az OK gombot megnyomva visszatér a felhívások oldalra");
+            alert.setContentText("Az OK gombot megnyomva elolvashatja a felhívás részleteit");
             DialogPane dialogPane = alert.getDialogPane();
             dialogPane.getStylesheets().add(getClass().getResource("/org/gyula/dialogCSS.css").toExternalForm());
             dialogPane.getStyleClass().add("/org/gyula/dialogCSS.css");
             alert.showAndWait();
             kilep();
+
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Hiba!");

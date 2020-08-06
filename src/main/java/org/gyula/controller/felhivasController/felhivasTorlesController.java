@@ -115,6 +115,7 @@ public class felhivasTorlesController {
 
     private void megerositesDialog() {
         String kivalasztottFelhivas = felhivasLista.getSelectionModel().getSelectedItem();
+        System.out.println(kivalasztottFelhivas);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Megerősítés");
         alert.setHeaderText("Biztos benne, hogy törli a következő felhívást:");
@@ -122,7 +123,7 @@ public class felhivasTorlesController {
         alert.getDialogPane().getScene().getStylesheets().add("org/gyula/dialogCSS.css");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            System.out.println(felhivas.felhivasTorol(kivalasztottFelhivas));
+            System.out.println(kivalasztottFelhivas + "   " + felhivas.felhivasTorol(kivalasztottFelhivas));
             initialize();
         }
     }

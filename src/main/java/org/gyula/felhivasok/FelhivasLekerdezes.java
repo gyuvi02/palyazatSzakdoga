@@ -33,7 +33,7 @@ public class FelhivasLekerdezes {
 //            cimLista.add(felhivas.getFelhivasCim());
 //        }
 //        return cimLista;
-        //bar valoszinuleg gyorsabb lenne, ha csak egy LocalDate tombot kerseznek le, es azt kuldenem at sorbarendezesre, de nincs gyakorlati jelentosege
+        //bar valoszinuleg gyorsabb lenne, ha csak egy LocalDate tombot kerdeznek le, es azt kuldenem at sorbarendezesre, de nincs gyakorlati jelentosege
     }
 
     public long felhivasokSzama() {
@@ -121,8 +121,7 @@ public class FelhivasLekerdezes {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy. MMMM dd.");
             return LocalDate.parse(date, inputFormat);
         } catch (Exception e) {
-//            return LocalDate.of(2025, 12, 31);
-            return LocalDate.now().plusDays(365 * 5);//inkabb nem egy fix datumot adunk at, hanem 5 evvel kesobbi datumot
+            return LocalDate.now().plusDays(365);//inkabb nem egy fix datumot adunk at, hanem 1 evvel kesobbi datumot
         }
     }
     public static ArrayList<String> nevRendezo(ArrayList<String> lista) {

@@ -1,19 +1,20 @@
 package org.gyula;
 
-import javafx.scene.control.*;
-import org.gyula.felhivasok.FelhivasParser;
-import org.gyula.felhivasok.FelhivasLekerdezes;
-import org.gyula.felhivasok.FelhivasParser;
-import org.gyula.felhivasok.RSSParser;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.gyula.felhivasok.FelhivasLekerdezes;
+import org.gyula.felhivasok.FelhivasParser;
+import org.gyula.felhivasok.RSSParser;
 import org.gyula.palyazatkezelo.MongoAccess;
 
 import java.io.IOException;
@@ -32,15 +33,13 @@ public class App extends Application {
         stage.setResizable(false);
         stage.show();
         kezdoFigyelmezetetes();
-        Runnable hatterben = () -> {
-            Platform.runLater(() -> {
-                try {
-                    felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
-                } catch (IOException | NullPointerException e) {
-                    e.printStackTrace();
-                }
-            });
-        };
+        Runnable hatterben = () -> Platform.runLater(() -> {
+            try {
+                felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
+            } catch (IOException | NullPointerException e) {
+                e.printStackTrace();
+            }
+        });
         new Thread(hatterben).start();
 
         try {

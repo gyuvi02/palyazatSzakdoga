@@ -42,9 +42,9 @@ public class FelhivasParser {
                 //az RSS-ekben ujra megjelennek korabbi felhivasok is, ezeket nem akarjuk ujra letolteni
                 //itt futtatom le az ellenorzest a link alapjan, hogy mar van-e ilyen felhivas, ha nem (false), akkor folytatom
                 if (!linkOsszevetes(elem.getLink(), adatok[0])) {
-                    System.out.println("Elemek szama: " + k++);
+//                    System.out.println("Elemek szama: " + k++);
                     String date = datumKeszito(adatok[2]);
-                    System.out.println(elem.getCategory());
+//                    System.out.println(elem.getCategory());
                     String  reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
                     ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(elem.getCategory());
                     Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, elem.getLink(),
@@ -52,7 +52,6 @@ public class FelhivasParser {
                             torlesSzamolo(date));
                     //elorebb vittem az ellenorzest, hogy gyorsitsam a folyamatot, nem kell peldanyositani sem, ha mar van ilyen felhivas
                     //itt ellenorzom a link alapjan, hogy mar van-e ilyen felhivas, ha nem (true), akkor feltoltom
-//                if (linkOsszevetes(keszFelhivas)) {
                     keszFelhivas.felhivasFeltolto();
                     legutobbiFelhivasok.add(keszFelhivas.getFelhivasCim());
 //                }
@@ -73,11 +72,10 @@ public class FelhivasParser {
             felhivasKeszito(aktualizaltFeedLista); //a folyamatosan torolt listaval hivjuk meg ujra, ebben mar csak azok vannak, amelyeket meg nem olvastunk be
             return false;
         }
-
     }
 
-    //ha kozvetlenul adunk meg egy pafi.hu linket, mivel a palyazati kategoriak az RSS-ben vannak, itt nekunk kell megadni
-    public boolean felhivasLinkbol(String link, ArrayList<String> palyazatiKategoriak) throws IOException {
+    //ha kozvetlenul adunk meg egy pafi.hu linket - mivel a palyazati kategoriak az RSS-ben vannak, itt nekunk kell megadni
+    public String felhivasLinkbol(String link, ArrayList<String> palyazatiKategoriak) throws IOException {
         try {
             String[] adatok = new String[5]; //5 adatra lesz szuksegem, ezek helyet az oldalon belul tarolom majd ebben a tombben
             Document doc = Jsoup.connect(link).get();
@@ -85,27 +83,25 @@ public class FelhivasParser {
             for (int i = 0; i < 5; i++) {                   // A tombben megadott helyekrol igy szedem ki a szovegeket
                 adatok[i] = alapAdatok.get(elemek[i]).text();
             }
-            if (linkOsszevetes(link, adatok[0])) {
-                return false;
+            if (!linkOsszevetes(link, adatok[0])) {
+                String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
+                ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(palyazatiKategoriak);
+
+                String date = datumKeszito(adatok[2]);
+
+                Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, link,
+                        reszletesLeiras, palyazatiKategoriak, lehetsegesResztvevok(ellenorizendoKategoriak),
+                        torlesSzamolo(date));
+
+                keszFelhivas.felhivasFeltolto();
+                return adatok[0];
             }
-            String reszletesLeiras = reszletesLeiras(doc.select("td").get(22).html());
-            ArrayList<String> ellenorizendoKategoriak = new ArrayList<>(palyazatiKategoriak);
-
-            String date = datumKeszito(adatok[2]);
-
-            Felhivas keszFelhivas = new Felhivas(adatok[0], adatok[1], adatok[3], adatok[4], date, link,
-                    reszletesLeiras, palyazatiKategoriak, lehetsegesResztvevok(ellenorizendoKategoriak),
-                    torlesSzamolo(date));
-
-//            if (linkOsszevetes(keszFelhivas)) {
-            keszFelhivas.felhivasFeltolto();
-            return true;
-//            }
 
         } catch (HttpStatusException | IllegalArgumentException e) {
             System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
-            return false;
+            return "hiba";
         }
+        return "hiba";
     }
 
     private static String leirasParser(String html) {  //ez megoldja, hogy a <br> tageket atalakitsuk \n jelekke, es jol tagolja a szoveget

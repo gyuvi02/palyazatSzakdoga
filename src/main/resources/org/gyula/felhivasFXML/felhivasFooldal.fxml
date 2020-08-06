@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.felhivasController.felhivasFooldalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.felhivasController.felhivasFooldalController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1294.0" BorderPane.alignment="CENTER">
          <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#visszaKezdooldalra" text="Vissza a főoldalra" BorderPane.alignment="CENTER">
@@ -84,12 +84,11 @@
               </Label>
               <Button fx:id="linkMegadas" maxWidth="360.0" mnemonicParsing="false" onMouseClicked="#linkAblakhoz" text="Link megadása" />
           </VBox>
-         <Button mnemonicParsing="false" onAction="#felhivasTorles" prefWidth="360.0" text="Felhívások törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-         <Button mnemonicParsing="false" onMouseClicked="#hataridoValaszto" prefWidth="360.0" text="Felhívások határidő szerint" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#felhivasTorles" prefWidth="360.0" text="Felhívások törlése" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+         <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#hataridoValaszto" prefWidth="360.0" text="Felhívások határidő szerint" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
              <tooltip> <Tooltip text="A felhívások beadási határideje alapján kereshetünk" /> </tooltip>
          </Button>
-         <Button fx:id="osszesFelhivas" onAction="#felhivasTorles" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="360.0" text="Az összes felhívás"
-                 GridPane.columnIndex="1">
+         <Button fx:id="osszesFelhivas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#felhivasTorles" prefWidth="360.0" text="Az összes felhívás" GridPane.columnIndex="1">
              <tooltip> <Tooltip text="Kilistázza az összes pályázati felhívást az adatbázisból a letöltés sorrendjében" /> </tooltip>
          </Button>
           <columnConstraints>
