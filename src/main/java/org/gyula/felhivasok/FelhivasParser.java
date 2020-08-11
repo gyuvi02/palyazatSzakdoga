@@ -59,8 +59,10 @@ public class FelhivasParser {
                 }
             }
             LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok(legutobbiFelhivasok);
-            legutobbi.legutobbiListaFeltoltes();
-            System.out.println("Kiirtam a legutobb letoltott felhivasok listajat");
+            if (legutobbiFelhivasok.size() > 0) {
+                legutobbi.legutobbiListaFeltoltes();
+                System.out.println("Kiirtam a legutobb letoltott felhivasok listajat");
+            }
             return true;
 
             //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a

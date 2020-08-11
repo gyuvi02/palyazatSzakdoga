@@ -17,7 +17,7 @@ public class RSSParser {
 
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<RssElemek> regiLetoltesColl = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
-    MongoCollection<ArrayList> temaColl = palyazatDB.getCollection("Temak", ArrayList.class);
+//    MongoCollection<ArrayList> temaColl = palyazatDB.getCollection("Temak", ArrayList.class);
 
     ArrayList<String> relevansTemak = new PalyazatiTemak().temaLetolt(); //ennek a megvaltoztatatsa a GUI-bol lehetseges lesz
         // - vegul nem kezzel allithato lett, hanem automatikusan, az oktatok palyazati temaibol rakja ossze a listat
@@ -39,10 +39,9 @@ public class RSSParser {
     public ArrayList<RssElemek> rssListaKeszito() {
         SyndFeed feed = rssOlvaso();
         ArrayList<RssElemek> feedLista = new ArrayList<>();
-        int bejegyzesekSzama = feed.getEntries().size();
 
         try {
-
+            int bejegyzesekSzama = feed.getEntries().size();
             for (int i = 0; i < bejegyzesekSzama; i++) {
                 ArrayList<String> categories = new ArrayList<>();
                 SyndEntry bejegyzes = feed.getEntries().get(i);
@@ -83,6 +82,7 @@ public class RSSParser {
             if (regiElsoElem.getTitle().equals(feedLista.get(0).getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
                 feedLista.clear(); //uresen kuldjuk tovabb, igy nem tolti le meg egyszer a felhivasokat
                 return false;
+//                return true;
 
             } else {
                 regiLetoltesColl.insertOne(feedLista.get(0));
