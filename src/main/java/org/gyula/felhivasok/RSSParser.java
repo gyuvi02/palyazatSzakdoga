@@ -12,10 +12,12 @@ import org.gyula.palyazatok.PalyazatiTemak;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RSSParser {
 
-    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+//    MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    MongoDatabase palyazatDB = Objects.requireNonNull(MongoAccess.getConnection()).getDatabase("PalyazatDB");
     MongoCollection<RssElemek> regiLetoltesColl = palyazatDB.getCollection("RegiLetoltesek", RssElemek.class);
 //    MongoCollection<ArrayList> temaColl = palyazatDB.getCollection("Temak", ArrayList.class);
 
@@ -56,13 +58,15 @@ public class RSSParser {
                         bejegyzes.getDescription().getValue(),
                         categories
                 );
+                if (i == 0 && !elozoRSSEllenorzes(elemek)) { //az elso elem eseteben ellenorizzuk az egyezest, ha egyezik, a tobbit mar nem szedjuk le
+                    return null;
+                }
+                System.out.println(elemek.category);
 
                 if (rssEllenorzo(elemek.category)) {     //csak az kerul bele az ArrayListbe, amelyik relevans a kategoria besorolas alapjan
                     feedLista.add(elemek);
                 }
-                if (feedLista.size() == 1 && !elozoRSSEllenorzes(feedLista)) { //az elso elem eseteben ellenorizzuk az egyezest, ha egyezik, a tobbit mar nem szedjuk le
-                    return null;
-                }
+                System.out.println(feedLista.size());
 
             }
                 regiLetoltesColl.insertOne(feedLista.get(0));//ha ideig eljutott, akkor uj az RSS, es elmentjuk a lista elso elemet, ehhez hasonlitunk a kovetkezo alkalommal
@@ -73,19 +77,18 @@ public class RSSParser {
         }
     }
     //Az RSS-nek nincs azonositoja, nem tudom massal ellenorizni elozetesen, mint az elso elem cimevel, hogy ezt mar hasznaltam-e
-    private boolean elozoRSSEllenorzes(ArrayList<RssElemek> feedLista) {
-        if (!feedLista.isEmpty() && regiLetoltesColl.find().sort(new Document("_id", -1)).first() != null) { //Ha ures a feedLista, nincs szukseg az ellenorzesre
-            RssElemek regiElsoElem = regiLetoltesColl.find().sort(new Document("_id", -1)).first();            //ha pedig nincs elmentve regi letoltott RSS elem, akkor nem lehetseges
+    private boolean elozoRSSEllenorzes(RssElemek elsofeed) {
+        if (regiLetoltesColl.find().sort(new Document("_id", -1)).first() != null) { //ha nincs elmentve regi letoltott RSS elem, akkor nem lehetseges az ellenorzesre
+            RssElemek regiElsoElem = regiLetoltesColl.find().sort(new Document("_id", -1)).first();
             System.out.println("A regi elso elem cime: " + regiElsoElem.getTitle());
-            System.out.println("Mostani feedLista elso elemenek cime: " + feedLista.get(0).getTitle() + "\n");
-            System.out.println(regiElsoElem.getTitle().equals(feedLista.get(0).getTitle()));
-            if (regiElsoElem.getTitle().equals(feedLista.get(0).getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
-                feedLista.clear(); //uresen kuldjuk tovabb, igy nem tolti le meg egyszer a felhivasokat
-                return false;
-//                return true;
+            System.out.println("Mostani feedLista elso elemenek cime: " + elsofeed.getTitle() + "\n");
+            System.out.println(regiElsoElem.getTitle().equals(elsofeed.getTitle()));
+            if (regiElsoElem.getTitle().equals(elsofeed.getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
+//                return false;
+                return true;
 
             } else {
-                regiLetoltesColl.insertOne(feedLista.get(0));
+                regiLetoltesColl.insertOne(elsofeed);
                 return true;
             }
         }
