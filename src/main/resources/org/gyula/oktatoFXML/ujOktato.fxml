@@ -7,9 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="350.0" minWidth="500.0" prefHeight="600.0" prefWidth="900.0"
-            stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.gyula.controller.oktatoController.ujOktatoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="350.0" minWidth="500.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@../foablak.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gyula.controller.oktatoController.ujOktatoController">
    <bottom>
        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="70.0" prefWidth="900.0">
            <Button fx:id="hozzaadGomb" contentDisplay="CENTER" mnemonicParsing="false" onAction="#hozzaad" prefHeight="40.0" prefWidth="300.0" text="Oktató hozzáadása" textAlignment="CENTER">
@@ -63,7 +61,7 @@
            </Label>
            <TextField fx:id="oNev" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefHeight="47.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
            <TextField fx:id="oEmail" maxWidth="-Infinity" onKeyReleased="#uresMezo" prefWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-           <ComboBox fx:id="oTanszek" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+           <ComboBox fx:id="oTanszek" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <items>
                    <FXCollections fx:factory="observableArrayList">
                        <String fx:value="Gyermeknevelési" />
@@ -81,6 +79,11 @@
                   <Insets />
               </GridPane.margin>
            </ComboBox>
+         <Label text="Tanszék:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <GridPane.margin>
+               <Insets right="20.0" />
+            </GridPane.margin>
+         </Label>
        </GridPane>
    </center>
 </BorderPane>

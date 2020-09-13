@@ -84,8 +84,8 @@ public class RSSParser {
             System.out.println("Mostani feedLista elso elemenek cime: " + elsofeed.getTitle() + "\n");
             System.out.println(regiElsoElem.getTitle().equals(elsofeed.getTitle()));
             if (regiElsoElem.getTitle().equals(elsofeed.getTitle())) { //ha a ket cim megegyezik, felteszem, hogy ugyanaz az RSS
-//                return false;
-                return true;
+                return false;
+//                return true;
 
             } else {
                 regiLetoltesColl.insertOne(elsofeed);
