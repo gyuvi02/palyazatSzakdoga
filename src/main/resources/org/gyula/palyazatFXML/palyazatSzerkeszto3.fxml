@@ -87,7 +87,7 @@
             </DatePicker>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1"
                   GridPane.rowIndex="2">
-                <ComboBox fx:id="menedzserCombo" onMouseClicked="#egyebKivalasztott" prefHeight="38.0"
+                <ComboBox fx:id="menedzserCombo" onAction="#egyebKivalasztott" prefHeight="38.0"
                           prefWidth="400.0">
                    <HBox.margin>
                        <Insets left="-25.0"/>

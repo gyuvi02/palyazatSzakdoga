@@ -77,6 +77,7 @@ public class palyazatSzerkeszto3Controller {
         oktatoLista.add("Egyéb"); //hozzaadok egy lehetoseget, ha nem sajat oktato a szakmai vezeto/projektmenedzser
         oktatoLista.add("Nincs"); //hozzaadok egy lehetoseget, ha meg nem tudjuk, ki a szakmai vezeto/projektmenedzser
         szakmaiCombo.setItems(FXCollections.observableArrayList(oktatoLista)); //beolvasom a ComboBoxba a listat
+
         if (oktatoLista.contains(szakmaiVezeto) && !szakmaiVezeto.equals("Egyéb")) { //ha az oktatok kozul kerul ki a szakmai vezeto
             szakmaiCombo.setValue(szakmaiVezeto); //belepeskor az legyen kivalasztva, aki az adatbazisban meg van adva
 //        } else if (szakmaiVezeto.equals("Egyéb")) { //ha a szakmai vezeto nem oktato - ez elvileg nem fordulhat elo, csak ha ezt irja be nevkent
