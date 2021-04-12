@@ -6,10 +6,12 @@ import com.mongodb.client.MongoDatabase;
 import org.gyula.palyazatkezelo.MongoAccess;
 import org.gyula.palyazatok.Palyazat;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.or;
 import static com.mongodb.client.model.Projections.*;
 
 public class OktatoLekerdezes{
@@ -17,7 +19,16 @@ public class OktatoLekerdezes{
     public OktatoLekerdezes() {
     }
 
-    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoDatabase palyazatDB;
+
+    static {
+        try {
+            palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     static MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
     MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 

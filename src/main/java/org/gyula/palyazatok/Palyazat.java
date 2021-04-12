@@ -1,6 +1,5 @@
 package org.gyula.palyazatok;
 
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
@@ -68,7 +67,16 @@ public class Palyazat {
     public Palyazat() {
     }
 
-    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoDatabase palyazatDB;
+
+    static {
+        try {
+            palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     static MongoCollection<Palyazat> palyazatokColl = palyazatDB.getCollection("Palyazatok", Palyazat.class);
 
 
@@ -98,24 +106,24 @@ public class Palyazat {
     public static ArrayList<String> PalyazatokListaja() {
         return palyazatokColl.find().map(Palyazat::getPalyazatCim).into(new ArrayList<>());
     }
-
-    public ArrayList<String> osszesPalyazat() {
-        ArrayList<String> palyazatLista = new ArrayList<>();
-        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find();
-        for (Palyazat palyazat : iterPalyazat) {
-            palyazatLista.add(palyazat.getPalyazatCim());
-        }
-        return palyazatLista;
-    }
-
-    public ArrayList<String> menedzserKereso(String menedzser) {
-        ArrayList<String> palyazatLista = new ArrayList<>();
-            FindIterable<Palyazat> iterPalyazat = palyazatokColl.find();
-        for (Palyazat palyazat : iterPalyazat) {
-            palyazatLista.add(palyazat.getPalyazatCim());
-        }
-        return palyazatLista;
-    }
+//
+//    public ArrayList<String> osszesPalyazat() {
+//        ArrayList<String> palyazatLista = new ArrayList<>();
+//        FindIterable<Palyazat> iterPalyazat = palyazatokColl.find();
+//        for (Palyazat palyazat : iterPalyazat) {
+//            palyazatLista.add(palyazat.getPalyazatCim());
+//        }
+//        return palyazatLista;
+//    }
+//
+//    public ArrayList<String> menedzserKereso(String menedzser) {
+//        ArrayList<String> palyazatLista = new ArrayList<>();
+//            FindIterable<Palyazat> iterPalyazat = palyazatokColl.find();
+//        for (Palyazat palyazat : iterPalyazat) {
+//            palyazatLista.add(palyazat.getPalyazatCim());
+//        }
+//        return palyazatLista;
+//    }
 
     public void resztvevoFrissito(String palyazatCim, ArrayList<String> ujLista) {
         Bson filter = eq("palyazatCim", palyazatCim);
@@ -269,14 +277,15 @@ public class Palyazat {
                 .append("A pályázat vége: ").append(palyazat.getVeg().equals(LocalDate.of(1900,1,1)) ?
                 "-" : palyazat.getVeg().format(formatters)).append("\n\n")
                 .append("Szakmai vezető: ").append(palyazat.getResztvevok().getSzakmaiVezeto()).append("\n\n")
-                .append("Projektmenedzser: ").append(palyazat.getResztvevok().getProjektmenedzser() == null ? "-"
+                .append("Projektmenedzser: ").append(palyazat.getResztvevok().getProjektmenedzser() == null || palyazat.getResztvevok().getProjektmenedzser().equals("") ? "-"
                 : palyazat.getResztvevok().getProjektmenedzser()).append("\n\n")
-                .append("A pályázat kezelője: ").append(palyazat.getResztvevok().getKezelo() == null ? "-"
+                .append("A pályázat kezelője: ").append(palyazat.getResztvevok().getKezelo() == null || palyazat.getResztvevok().getKezelo().equals("") ? "-"
                 : palyazat.getResztvevok().getKezelo()).append("\n\n")
                 .append("Résztvevő kutatók: ").append(resztvevok.isEmpty() ? "-" : "\n" +
                 String.join("\n", palyazat.getResztvevok().getResztvevoEmberek())).append("\n\n");
         return str.toString();
     }
+
 
 //    @Override
 //    public String toString() {

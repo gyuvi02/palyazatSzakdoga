@@ -7,13 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.gyula.App;
-
 
 import java.io.IOException;
 
@@ -45,14 +43,14 @@ public class oktatoFooldalController {
     @FXML
     private Button oktatoAktivitas;
 
-    @FXML
-    private MenuButton menuKutatas;
-
-    @FXML
-    private Button oktatoPalyazat;
-
-    @FXML
-    private Button oktatoFelhivas;
+//    @FXML
+//    private MenuButton menuKutatas;
+//
+//    @FXML
+//    private Button oktatoPalyazat;
+//
+//    @FXML
+//    private Button oktatoFelhivas;
 
     @FXML
     private void visszaKezdooldalra() throws Exception {

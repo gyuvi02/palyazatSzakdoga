@@ -91,7 +91,7 @@ public class palyazatFooldalController {
     }
 
     @FXML
-    private void palyazatListazo(ActionEvent event) throws IOException {
+    private void palyazatListazo(ActionEvent event) throws IOException, InterruptedException {
         if (event.getSource().equals(szerkesztoGomb)) {
             ujAblak("palyazatListaSzerkeszto", "szerkeszto");
         } else if (event.getSource().equals(reszletekGomb)) {
@@ -105,7 +105,7 @@ public class palyazatFooldalController {
         }
     }
 
-    private void ujAblak(String fx, String adatTranszfer) throws IOException {
+    private void ujAblak(String fx, String adatTranszfer) throws IOException, InterruptedException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/" + fx + ".fxml"));
         Parent palyazatValasztoParent = loader.load();
@@ -152,7 +152,7 @@ public class palyazatFooldalController {
     }
 
     @FXML
-    public void kulcsszavasKereses() throws IOException {
+    public void kulcsszavasKereses() throws IOException, InterruptedException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatListaKezdo.fxml"));
         Parent palyazatValasztoParent = loader.load();

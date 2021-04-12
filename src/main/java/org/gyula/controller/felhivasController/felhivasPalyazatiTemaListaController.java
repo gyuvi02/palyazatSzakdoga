@@ -26,6 +26,9 @@ public class felhivasPalyazatiTemaListaController {
     @FXML
     private Button felhivasValaszto;
 
+    public felhivasPalyazatiTemaListaController() throws InterruptedException {
+    }
+
     @FXML
     public void initialize() {
         kategoriaLista.getItems().setAll(palyazatiTemak.temaLetolt());

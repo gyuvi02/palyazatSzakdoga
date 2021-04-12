@@ -34,7 +34,7 @@ public class Felhivas {
 
     public Felhivas(String felhivasCim, String felhivasKiiro, String targymutato, String kiPalyazhat,
                     String beadasiHatarido, String felhivasLink, String reszletesLeiras,
-                    ArrayList<String> kategoriak, ArrayList<String> lehetsegesResztvevok, LocalDate torles ) {
+                    ArrayList<String> kategoriak, ArrayList<String> lehetsegesResztvevok, LocalDate torles ) throws InterruptedException {
         this.felhivasCim = felhivasCim;
         this.felhivasKiiro = felhivasKiiro;
         this.targymutato = targymutato;
@@ -47,7 +47,7 @@ public class Felhivas {
         this.torles = torles;
     }
 
-    public Felhivas() {
+    public Felhivas() throws InterruptedException {
     }
 
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
@@ -62,7 +62,7 @@ public class Felhivas {
     }
 
     //ellenoriznem kell, hogy a legutobbiFelhivasok collection-bol is kitoroljuk a torolt felhivast
-    public long felhivasTorol(String torlendoFelhivas) {
+    public long felhivasTorol(String torlendoFelhivas) throws InterruptedException {
         LegutobbiFelhivasok legutobbiFelhivasok = new LegutobbiFelhivasok().legutobbiTeljes(); //letoltjuk az aktualis dokumentkumot
         ArrayList<String> lista = legutobbiFelhivasok.legutobbiLekerdezes(); //a dokumentumbol kivesszuk a listat
         if (lista.contains(torlendoFelhivas)) {
@@ -79,7 +79,7 @@ public class Felhivas {
 
 
 
-    public Felhivas(String felhivasCim) {
+    public Felhivas(String felhivasCim) throws InterruptedException {
         this.felhivasCim = felhivasCim;
     }
 

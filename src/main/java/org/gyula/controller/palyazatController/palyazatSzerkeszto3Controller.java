@@ -126,7 +126,7 @@ public class palyazatSzerkeszto3Controller {
     }
 
     @FXML
-    private void resztvevoSzerkeszto() throws IOException {
+    private void resztvevoSzerkeszto() throws IOException, InterruptedException {
         Scene palyazatSzerkesztoScene;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/resztvevoOktatok.fxml"));
@@ -144,7 +144,7 @@ public class palyazatSzerkeszto3Controller {
     }
 
     @FXML
-    private void harmadikScene(ActionEvent event) throws IOException {
+    private void harmadikScene(ActionEvent event) throws IOException, InterruptedException {
         mezoUpdate();
         Scene palyazatSzerkesztoScene;
         FXMLLoader loader = new FXMLLoader();
@@ -163,7 +163,7 @@ public class palyazatSzerkeszto3Controller {
     }
 
 
-    private void mezoUpdate() {
+    private void mezoUpdate() throws InterruptedException {
 
         if (!szakmaiField.getText().isEmpty()) {//csak akkor lehet nem ures, ha az Egyeb kategoriat valasztottuk, de ha nem irtunk be semmit, azt ki kell zarni
         resztvevok.setSzakmaiVezeto(szakmaiField.getText());
@@ -194,7 +194,7 @@ public class palyazatSzerkeszto3Controller {
     }
 
     @FXML
-    private void palyazatMentes() {
+    private void palyazatMentes() throws InterruptedException {
         mezoUpdate();
         palyazat.PalyazatFrissito();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

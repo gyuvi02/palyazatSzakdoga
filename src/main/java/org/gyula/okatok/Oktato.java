@@ -39,7 +39,16 @@ public class Oktato {
     public Oktato() {
     }
 
-    static MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+    static MongoDatabase palyazatDB;
+
+    static {
+        try {
+            palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     static MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
 
     public boolean oktatoFeltolto() {

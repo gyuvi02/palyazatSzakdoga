@@ -27,8 +27,11 @@ public class RSSParser {
     SyndFeed feed;
     static final String cim = "http://www.pafi.hu/_pafi/palyazat.nsf/uj_palyazatok_tema.rss?OpenPage";
 
+    public RSSParser() throws InterruptedException {
+    }
+
     private SyndFeed rssOlvaso() {
-        try { //egy SSLException tortent, es
+        try {
             URL url = new URL(cim);
             SyndFeedInput input = new SyndFeedInput();
             feed = input.build(new XmlReader(url));
@@ -61,12 +64,12 @@ public class RSSParser {
                 if (i == 0 && !elozoRSSEllenorzes(elemek)) { //az elso elem eseteben ellenorizzuk az egyezest, ha egyezik, a tobbit mar nem szedjuk le
                     return null;
                 }
-                System.out.println(elemek.category);
+//                System.out.println(elemek.category);
 
-                if (rssEllenorzo(elemek.category)) {     //csak az kerul bele az ArrayListbe, amelyik relevans a kategoria besorolas alapjan
+                if (rssKategoriaEllenorzo(elemek.category)) {     //csak az kerul bele az ArrayListbe, amelyik relevans a kategoria besorolas alapjan
                     feedLista.add(elemek);
                 }
-                System.out.println(feedLista.size());
+//                System.out.println(feedLista.size());
 
             }
                 regiLetoltesColl.insertOne(feedLista.get(0));//ha ideig eljutott, akkor uj az RSS, es elmentjuk a lista elso elemet, ehhez hasonlitunk a kovetkezo alkalommal
@@ -80,6 +83,7 @@ public class RSSParser {
     private boolean elozoRSSEllenorzes(RssElemek elsofeed) {
         if (regiLetoltesColl.find().sort(new Document("_id", -1)).first() != null) { //ha nincs elmentve regi letoltott RSS elem, akkor nem lehetseges az ellenorzesre
             RssElemek regiElsoElem = regiLetoltesColl.find().sort(new Document("_id", -1)).first();
+            assert regiElsoElem != null;
             System.out.println("A regi elso elem cime: " + regiElsoElem.getTitle());
             System.out.println("Mostani feedLista elso elemenek cime: " + elsofeed.getTitle() + "\n");
             System.out.println(regiElsoElem.getTitle().equals(elsofeed.getTitle()));
@@ -96,11 +100,11 @@ public class RSSParser {
     }
 
     //Letoltesi hiba eseten ezzel szurunk be egy ures dokumentumot, hogy ne vegye mar letoltottnek a hibat okozo RSS-t
-    public void ureBeszuras() {
-        regiLetoltesColl.insertOne(new RssElemek("", "a", "", new ArrayList<>()));
-    }
+//    public void ureBeszuras() {
+//        regiLetoltesColl.insertOne(new RssElemek("", "a", "", new ArrayList<>()));
+//    }
 
-    private boolean rssEllenorzo(ArrayList<String > kategoriak) {
+    private boolean rssKategoriaEllenorzo(ArrayList<String> kategoriak) {
         if (kategoriak.isEmpty()) {   //igy nem tudjuk eldonteni, hogy milyen palyazat, ezert inkabb letoltjuk
             return true;
         }

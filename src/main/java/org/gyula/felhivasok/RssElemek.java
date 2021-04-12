@@ -8,7 +8,6 @@ public class RssElemek {
     String title;
     String description;
     ArrayList<String> category;
-//    String pubdate;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY. MMMM dd.");
 

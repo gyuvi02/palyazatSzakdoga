@@ -38,7 +38,7 @@ public class oktatoTanszekiAktivitasController {
         ablak.close();
     }
 
-    public void adatTranszfer(String tanszek) {
+    public void adatTranszfer(String tanszek) throws InterruptedException {
         PalyazatLekerdezesek palyazatLekerdezesek = new PalyazatLekerdezesek();
         if (palyazatLekerdezesek.tanszekiAktivitasCimek(tanszek).isEmpty()) {
             aktivitasLista.getItems().setAll("Nincs megjeleníthető elem");

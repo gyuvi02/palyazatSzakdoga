@@ -40,7 +40,7 @@ public class felhivasOktatoPalyazatiTemaController {
         felhivasLista.getSelectionModel().select(0);
     }
 
-    public void adatLegutobbi() {
+    public void adatLegutobbi() throws InterruptedException {
         LegutobbiFelhivasok legutobbi = new LegutobbiFelhivasok();
         felhivasLista.getItems().setAll(legutobbi.legutobbiLekerdezes());
         felhivasLista.getSelectionModel().selectFirst();
@@ -82,7 +82,7 @@ public class felhivasOktatoPalyazatiTemaController {
 //    }
 
     @FXML
-    private void felhivasValaszto() throws IOException {
+    private void felhivasValaszto() throws IOException, InterruptedException {
         String kivalasztottFelhivas = felhivasLista.getSelectionModel().getSelectedItem().toString();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasReszletek.fxml"));

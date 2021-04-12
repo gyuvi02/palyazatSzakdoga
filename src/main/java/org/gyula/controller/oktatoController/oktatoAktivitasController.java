@@ -36,7 +36,7 @@ public class oktatoAktivitasController {
     }
 
 
-    public void adatTranszfer(String oktato) {
+    public void adatTranszfer(String oktato) throws InterruptedException {
         ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.oktatoAktivitasCimek(oktato));
         if (lista.isEmpty()){
             palyazatReszletek.setDisable(true);

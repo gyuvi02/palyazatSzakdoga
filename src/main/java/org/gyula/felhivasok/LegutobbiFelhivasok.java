@@ -12,7 +12,7 @@ public class LegutobbiFelhivasok {
     private ArrayList<String> legutobbi;
     private LocalDateTime most;
 
-    public LegutobbiFelhivasok(ArrayList<String> legutobbi) {
+    public LegutobbiFelhivasok(ArrayList<String> legutobbi) throws InterruptedException {
         this.legutobbi = legutobbi;
         this.most = LocalDateTime.now();
     }
@@ -20,7 +20,7 @@ public class LegutobbiFelhivasok {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<LegutobbiFelhivasok> legutobbikColl = palyazatDB.getCollection("LegutobbiFelhivasok", LegutobbiFelhivasok.class);
 
-    public LegutobbiFelhivasok() {
+    public LegutobbiFelhivasok() throws InterruptedException {
     }
 
     public LegutobbiFelhivasok legutobbiTeljes() {

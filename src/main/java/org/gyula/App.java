@@ -25,7 +25,7 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, InterruptedException {
         stage.setTitle("Pályázatkezelő program");
         scene = new Scene(loadFXML("kezdooldal"));
         stage.setScene(scene);
@@ -36,7 +36,7 @@ public class App extends Application {
         Runnable hatterben = () -> Platform.runLater(() -> {
             try {
                 felhivasParser.felhivasKeszito(new RSSParser().rssListaKeszito());
-            } catch (IOException | NullPointerException e) {
+            } catch (IOException | NullPointerException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
@@ -58,11 +58,11 @@ public class App extends Application {
         }
     }
 
-    public static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException, InterruptedException {
         scene.setRoot(loadFXML(fxml));
     }
 
-    public static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException, InterruptedException {
         InternetEllenorzo.ellenoriz();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
@@ -85,8 +85,8 @@ public class App extends Application {
         alert.setContentText("Ez egy kis időbe telik, különösen akkor, ha új pályázatok érhetők el, kérem a türelmét.");
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getButtonTypes().remove(0); //ez tunteti el az OK gombot
-        dialogPane.getStylesheets().add(MongoAccess.class.getResource("/org/gyula/alertCSS.css").toExternalForm());
-        dialogPane.getStyleClass().add("/org/gyula/alertCSS.css");
+        dialogPane.getStylesheets().add(MongoAccess.class.getResource("/org/gyula/dialogCSS.css").toExternalForm());
+        dialogPane.getStyleClass().add("/org/gyula/dialogCSS.css");
         alert.show();
         PauseTransition delay = new PauseTransition(Duration.seconds(2)); //1 masodperc a kesleletetes
         delay.setOnFinished( event -> dialogPane.getButtonTypes().add(0, koszonom));

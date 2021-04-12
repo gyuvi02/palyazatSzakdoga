@@ -67,7 +67,7 @@ public class oktatoKutatasiModositoController {
     }
 
     @FXML
-    private void mentes() {
+    private void mentes() throws InterruptedException {
         OktatoModosito modosito = new OktatoModosito();
         modosito.tombFrissito("kutatasiTema", aktualisOktato.getNev(), aktualisLista );
         mentesDialog();

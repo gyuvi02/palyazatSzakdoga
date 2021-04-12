@@ -69,7 +69,7 @@ public class FelhivasParser {
             //Ennel a tipusu hibanal a weboldal cime nem jol van megadva, 404-es hibat ad. Mast nem tudok tenni, mint hogy kihagyom, es a
             //kovetkezo elemmel folytatjuk, ehhez toroljuk az aktualis elemet, es ujra futtatjuk a metodust, de ez csak akkor jo,
             // ha a tomb elso eleme a hibas, ezert toroljuk fentebb mindig az aktualis elemet
-        } catch (HttpStatusException e) {
+        } catch (HttpStatusException | InterruptedException e) {
             System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
             aktualizaltFeedLista.remove(0);
             felhivasKeszito(aktualizaltFeedLista); //a folyamatosan torolt listaval hivjuk meg ujra, ebben mar csak azok vannak, amelyeket meg nem olvastunk be
@@ -100,7 +100,7 @@ public class FelhivasParser {
                 return adatok[0];
             }
 
-        } catch (HttpStatusException | IllegalArgumentException e) {
+        } catch (HttpStatusException | IllegalArgumentException | InterruptedException e) {
             System.out.println("Ugy tunik, az oldal jelenleg nem elerheto, probalja meg kesobb\n" + e.getMessage());
             return "hiba";
         }
@@ -154,7 +154,7 @@ public class FelhivasParser {
     }
 
     //viszonylag gyakran elofordul, hogy ugyanazt a felhivast megismetlik egy kovetkezo RSS-ben, ezeket nem akarjuk meg egyszer letolteni
-    private boolean linkOsszevetes(String ellenorizendoLink, String ellenorizendoCim) {
+    private boolean linkOsszevetes(String ellenorizendoLink, String ellenorizendoCim) throws InterruptedException {
         Felhivas felhivasLista = new Felhivas();
         ArrayList<Felhivas> osszehasonlitoLista = felhivasLista.felhivasLetolto(ellenorizendoCim); //csak azokkal a felhivasokkal vetjuk ossze, amelyeknek azonos a cime
         if (!osszehasonlitoLista.isEmpty()) { //ha ures, vagyis nem volt korabban ilyen cimu felhivas, akkor NullPointer lenne, de akkor nem is kell ellemoriznem

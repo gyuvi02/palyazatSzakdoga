@@ -79,7 +79,7 @@ public class palyazatListaController {
     }
 
     @FXML
-    public void adatTranszferKpluszF() {
+    public void adatTranszferKpluszF() throws InterruptedException {
         ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.kPlusFPalyazatok());
         if (lista.isEmpty()) {
             lista.add("Nincs ilyen pályázat");
@@ -90,7 +90,7 @@ public class palyazatListaController {
     }
 
     @FXML
-    public void adatTranszferKulcsszo(String kereso) {
+    public void adatTranszferKulcsszo(String kereso) throws InterruptedException {
         ArrayList<String> lista = new ArrayList<>(PalyazatLekerdezesek.kulcsszavakPalyazat(kereso));
         if (lista.isEmpty()) {
             lista.add("Nincs ilyen pályázat");
@@ -101,7 +101,7 @@ public class palyazatListaController {
     }
 
     @FXML
-    public void adatTranszferOnero() {
+    public void adatTranszferOnero() throws InterruptedException {
         ArrayList<String> oneroNelkul = new ArrayList<>(PalyazatLekerdezesek.oneroNelkul());
         if (oneroNelkul.isEmpty()) {
             oneroNelkul.add("Nincs ilyen pályázat");

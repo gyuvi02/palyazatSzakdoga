@@ -56,7 +56,7 @@ public class oktatoValasztoController {
     }
 
     @FXML
-    public void nevValaszto(ActionEvent event) throws IOException {
+    public void nevValaszto(ActionEvent event) throws IOException, InterruptedException {
 //        kivalasztottOktato = kivalasztottOktato.oktatoLetolto(oktatoNevek.getSelectionModel().getSelectedItems().get(0));
         FXMLLoader loader = new FXMLLoader();
         if (event.getSource().equals(nevValasztoSzerkeszt)) {

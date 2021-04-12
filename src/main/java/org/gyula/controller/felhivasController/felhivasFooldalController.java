@@ -65,7 +65,7 @@ public class felhivasFooldalController {
 
 
     @FXML
-    private void oktatoValaszto(ActionEvent event) throws IOException {
+    private void oktatoValaszto(ActionEvent event) throws IOException, InterruptedException {
         if (event.getSource().equals(felhivasOktato)) {
             fx = "felhivasOktatoFXML";
             title = "";
@@ -81,7 +81,7 @@ public class felhivasFooldalController {
     }
 
     @FXML
-    private void legutobbiFelhivas(ActionEvent event) throws IOException {
+    private void legutobbiFelhivas(ActionEvent event) throws IOException, InterruptedException {
         String title = null;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasOktatoPalyazatiTema.fxml"));
@@ -189,7 +189,7 @@ public class felhivasFooldalController {
 
 
     @FXML
-    private void visszaKezdooldalra() throws IOException {
+    private void visszaKezdooldalra() throws IOException, InterruptedException {
         App.setRoot("kezdooldal");
     }
 

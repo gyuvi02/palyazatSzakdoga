@@ -19,13 +19,13 @@ public class MongoAccess {
     private MongoAccess() {
     }
 
-    public static MongoClient getConnection() {
+    public static MongoClient getConnection() throws InterruptedException {
         ConnectionString connectionString = null;
         InternetEllenorzo.ellenoriz();
 
         try {
-//        ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
-//        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
+//        connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
+//        connectionString = new ConnectionString("mongodb://localhost:27017");
             connectionString = new ConnectionString("mongodb+srv://SzaboGyula:Gyulus99@gygykpalyazat-kljmo.mongodb.net/test?retryWrites=true&w=majority");
         } catch (MongoConfigurationException | MongoTimeoutException e) {
             System.out.println("Problema a kapcsolattal");
@@ -52,7 +52,7 @@ public class MongoAccess {
         }
     }
 
-    public static void closeDatabase() {
+    public static void closeDatabase() throws InterruptedException {
         MongoAccess.getConnection().close();
 //        mongoClient.close();
     }

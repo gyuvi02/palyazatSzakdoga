@@ -41,6 +41,9 @@ public class felhivasPafiLinkController {
     @FXML
     private Button feltoltes;
 
+    public felhivasPafiLinkController() throws InterruptedException {
+    }
+
     @FXML
     private void initialize() {
         kivalasztottLista.setPlaceholder(new Label("Legalább egy kategóriát \n ki kell választani!")); //hogy elkeruljuk a Nullpointert
@@ -89,7 +92,7 @@ public class felhivasPafiLinkController {
     }
 
     @FXML
-    private void feltoltes() throws IOException {
+    private void feltoltes() throws IOException, InterruptedException {
         FelhivasParser felhivasParser = new FelhivasParser();
         String ujFelhivasCim = felhivasParser.felhivasLinkbol(cim.getText(), new ArrayList<>(kivalasztottLista.getItems()));
         if (!ujFelhivasCim.equals("hiba")) {

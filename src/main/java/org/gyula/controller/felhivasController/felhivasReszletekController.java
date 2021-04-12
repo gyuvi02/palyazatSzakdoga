@@ -29,7 +29,7 @@ public class felhivasReszletekController {
 //    private Label pafiLink;
 //
     @FXML
-    public void adatTranszfer(String felhivas) {
+    public void adatTranszfer(String felhivas) throws InterruptedException {
         ArrayList<Felhivas> lista = new Felhivas().felhivasLetolto(felhivas);
         reszletek.setText(lista.size() + " felhívást találtam ezzel a címmel:\n\n" +
                 Felhivas.toStingHelyettFelhivas(lista));

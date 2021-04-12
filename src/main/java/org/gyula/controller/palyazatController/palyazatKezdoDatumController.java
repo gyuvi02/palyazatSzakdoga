@@ -53,7 +53,7 @@ public class palyazatKezdoDatumController {
     }
 
     @FXML
-    private void kezdoKereses() throws IOException {
+    private void kezdoKereses() throws IOException, InterruptedException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/palyazatFXML/palyazatListaKezdo.fxml"));
         Parent palyazatKezdoParent = loader.load();

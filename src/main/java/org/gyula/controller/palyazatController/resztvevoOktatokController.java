@@ -35,7 +35,7 @@ public class resztvevoOktatokController {
     private ListView<String> resztvevoLista;
 
     @FXML
-    public void adatTranszfer(Palyazat atadottPalyazat) {
+    public void adatTranszfer(Palyazat atadottPalyazat) throws InterruptedException {
         maradek = oktatoLekerdezes.oktatoNevsor("összes");
         palyazat = atadottPalyazat;
         aktualisLista = new ArrayList<>(palyazatLekerdezesek.osszesResztvevo(palyazat.getPalyazatCim()));//itt nem a peldanybol kell kiolvasni, hanem az adatbazisbol

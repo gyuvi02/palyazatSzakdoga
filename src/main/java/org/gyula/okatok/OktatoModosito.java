@@ -7,13 +7,15 @@ import org.gyula.palyazatkezelo.MongoAccess;
 
 import java.util.ArrayList;
 
-import static com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.set;
-import static com.mongodb.client.model.Updates.setOnInsert;
 
 public class OktatoModosito {
     MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
     MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
+
+    public OktatoModosito() throws InterruptedException {
+    }
 
     public void oktatoUjNev(String nev, String ujNev) {
         Bson filter = eq("nev", nev);

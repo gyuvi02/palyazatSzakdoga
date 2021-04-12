@@ -19,7 +19,7 @@ class OktatoTest {
     }
 
     @org.junit.jupiter.api.BeforeAll
-    static void setUp() {
+    static void setUp() throws InterruptedException {
         MongoDatabase palyazatDB = MongoAccess.getConnection().getDatabase("PalyazatDB");
         MongoCollection<Oktato> oktatokColl = palyazatDB.getCollection("Oktatok", Oktato.class);
     }

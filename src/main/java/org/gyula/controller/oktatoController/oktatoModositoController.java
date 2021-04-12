@@ -70,7 +70,7 @@ public class oktatoModositoController {
     }
 
     @FXML
-    private void mentes() {
+    private void mentes() throws InterruptedException {
         OktatoModosito oktatoModosito = new OktatoModosito();
         oktatoModosito.oktatoUjNev(kivalasztott.getNev(), oktatoNev.getText());
         oktatoModosito.oktatoUjTanszek(kivalasztott.getNev(), oktatoTanszek.getSelectionModel().getSelectedItem());

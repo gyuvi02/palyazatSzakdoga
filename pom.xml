@@ -8,12 +8,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <mongodb-driver-sync.version>3.11.0</mongodb-driver-sync.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -35,10 +37,16 @@
             <version>0.1.1</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.mongodb</groupId>-->
+<!--            <artifactId>mongo-java-driver</artifactId>-->
+<!--            <version>3.12.7</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.0.4</version>
+            <version>4.1.1</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -58,6 +66,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>14</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

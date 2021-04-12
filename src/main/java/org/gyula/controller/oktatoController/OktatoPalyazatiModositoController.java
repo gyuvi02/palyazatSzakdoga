@@ -36,7 +36,10 @@ public class OktatoPalyazatiModositoController {
     @FXML
     private Label oktatoNev;
 
-//    @FXML
+    public OktatoPalyazatiModositoController() throws InterruptedException {
+    }
+
+    //    @FXML
 //    private Button hozzaad;
 //
 //    @FXML
@@ -99,7 +102,7 @@ public class OktatoPalyazatiModositoController {
     }
 
     @FXML
-    private void mentes() {
+    private void mentes() throws InterruptedException {
         OktatoModosito modosito = new OktatoModosito();
         modosito.tombFrissito("palyazatiTema", aktualisOktato.getNev(), aktualisLista );
         OktatoLekerdezes oktatoLekerdezes = new OktatoLekerdezes();

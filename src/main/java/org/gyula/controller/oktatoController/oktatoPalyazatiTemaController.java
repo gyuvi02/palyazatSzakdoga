@@ -26,6 +26,9 @@ public class oktatoPalyazatiTemaController {
     @FXML
     public ListView<String> temaLista;
 
+    public oktatoPalyazatiTemaController() throws InterruptedException {
+    }
+
     @FXML
     public void initialize() {
         temaLista.getItems().setAll(palyazatiTemak.temaLetolt());

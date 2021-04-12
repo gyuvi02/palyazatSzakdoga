@@ -41,6 +41,9 @@ public class felhivasTorlesController {
     @FXML
     private Button kovetkezo;
 
+    public felhivasTorlesController() throws InterruptedException {
+    }
+
     @FXML
     public void initialize() {
 //        felhivasSzam = felhivasLekerdezes.felhivasListak().size(); // ez nagyon lelassitja az ablak megnyitasat
@@ -65,7 +68,7 @@ public class felhivasTorlesController {
     }
 
     @FXML
-    private void felhivasValaszto() throws IOException {
+    private void felhivasValaszto() throws IOException, InterruptedException {
         String kivalasztottFelhivas = felhivasLista.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/org/gyula/felhivasFXML/felhivasReszletek.fxml"));
@@ -107,13 +110,13 @@ public class felhivasTorlesController {
     }
 
     @FXML
-    public void felhivasTorles() {
+    public void felhivasTorles() throws InterruptedException {
         megerositesDialog();
         String kivalasztottFelhivas = felhivasLista.getSelectionModel().getSelectedItem();
         felhivas.felhivasTorol(kivalasztottFelhivas);
     }
 
-    private void megerositesDialog() {
+    private void megerositesDialog() throws InterruptedException {
         String kivalasztottFelhivas = felhivasLista.getSelectionModel().getSelectedItem();
         System.out.println(kivalasztottFelhivas);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

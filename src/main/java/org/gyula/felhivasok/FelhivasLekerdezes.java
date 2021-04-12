@@ -17,7 +17,16 @@ import static com.mongodb.client.model.Filters.*;
 
 public class FelhivasLekerdezes {
 
-    static MongoDatabase palyazatDB = Objects.requireNonNull(MongoAccess.getConnection()).getDatabase("PalyazatDB");
+    static MongoDatabase palyazatDB;
+
+    static {
+        try {
+            palyazatDB = Objects.requireNonNull(MongoAccess.getConnection()).getDatabase("PalyazatDB");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     static MongoCollection<Felhivas> felhivasokColl = palyazatDB.getCollection("Felhivasok", Felhivas.class);
 
     //Az osszes felhivas cimet visszaadja
@@ -52,7 +61,10 @@ public class FelhivasLekerdezes {
 
     //az osszes felhivas, amelyben szerepel az adott kategoria
     public ArrayList<String> palyazatiKategoriaAlapjan(String kategoria) {
-        return felhivasokColl.find(eq("kategoriak", kategoria)).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
+        ArrayList<String> rendezettFelhivasok = new ArrayList<>
+                (felhivasokColl.find(eq("kategoriak", kategoria)).map(Felhivas::getFelhivasCim).into(new HashSet<>()));
+        return nevRendezo(rendezettFelhivasok);
+//        return felhivasokColl.find(eq("kategoriak", kategoria)).map(Felhivas::getFelhivasCim).into(new ArrayList<>());
     }
 
     //az osszes felhivas, amelyben erintett lehet a megadott oktato
