@@ -1,1 +1,1 @@
-# Thesis work for Computer Scienece BSc n 2020
+# Thesis work for Computer Scienece BSc in 2020
